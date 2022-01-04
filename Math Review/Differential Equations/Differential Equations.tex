@@ -1,0 +1,182 @@
+% Since \input doesn't like preambles, only uncomment next line if you're editing this TeX, don't forget the \end{document}! 
+%\documentclass{article}\input{../MAIN/packages}\input{../MAIN/commands}\begin{document}
+\section{Differential Equations} 
+\invisiblelocaltableofcontents\label{toc:diffeq}
+Differential equations are equalities made from functions and their derivatives. Ordinary differential equations (ODEs) only have 1-D derivatives, while partial differential equations (PDEs) have partial derivatives in multiple dimensions. The order of a differential equation is the determined by the highest order derivative present in the differential equation. Since this is physics oriented, the highest order I'll explicitly cover right now is second order. 
+\par
+\begingroup
+    \parindent 0cm \parfillskip 0cm \leftskip 0cm \rightskip 0cm
+    \etocframedstyle[1]{\Large\bf Table of Contents}
+    \etocsetstyle{subsection}
+                  {}
+                  {\leavevmode\leftskip 0cm\relax} {\normalsize\bf\etocnumber~\rm\etocname\nobreak\leaders\hbox{.}\hfill\tt p.\makebox[12 pt][r]{\etocpage} \par}
+                  {\vspace{-0.25cm}}
+    \etocsetstyle{subsubsection}
+                  {}
+                  {\leavevmode\leftskip 1cm\relax}
+                  {\small\bf\etocnumber~\rm\etocname\par}
+                  {}
+    \tableofcontents\ref{toc:diffeq}
+\endgroup\newpage
+\subsection{First Order ODEs}
+    \subsubsection{Homogeneous}
+        A function of the form $f(x,y,y'...)=0$. If the equation as a whole is linear\footnote{An example of a nonlinear differential equation could be $f(x,y,y')=\sin(y'(x))+y^2(x)=0$}, 
+        the solution will be of the form \(y=e^{mx}\) where m is some complex number ($m=a+bi$). Solutions start by plugging in this guess of $y=e^{mx}$ and finding $m$:
+        {
+        \length[0.25 cm]
+        \begin{gather*}
+            ay''+by'+cy=0 
+            \\
+            a\qty(m^2e^{m x})+b \qty(m e^{m x})+c \qty(e^{m x})=0
+            \\
+            \qty(am^2+b m+c)e^{mx}=0
+            \\
+            am^2+b m+c=0
+            \\
+            m=\frac{-b\pm\sqrt{b^2-4ac}}{2a}
+        \end{gather*}
+        }
+        Solve for $m$, since $m$ is a complex root there are three cases:
+        \begin{gather}
+            \underset { a_1 \neq a_2\And b=0 }{\textbf{Real Distinct Roots:}}\quad y_c=c_1e^{a_1x}+c_2e^{a_2x}\\[0.7 cm]
+            \underset{a_1=a_2 \And b=0 }{\textbf{Real Repeating Roots:}}\quad y_c=c_1e^{ax}+c_2xe^{ax}\\[0.7 cm]
+            \underset{b \neq 0}{\textbf{Complex Roots:}}\quad y_c=e^{ax}\left(c_1\cos(bx)+c_2\sin(bx)\right)
+        \end{gather}
+    \subsubsection{Non-Homogeneous}
+        Takes the form: $y'+P(x)y=g(x)$. 
+        \begin{align*}
+            \mu(x)
+            &\equiv e^{\int P(x) dx}\\
+            \frac{d}{dx}(\mu(x)y)=\mu(x)g(x) 
+            &\xrightarrow{Move\ dx,\ integrate} \mu(x)y +c_1=\int \mu(x) g(x)dx\\
+            y(x)
+            &=\frac{\int \mu(x) g(x)dx - c_1}{\mu(x)}
+        \end{align*}
+
+        \subsubsection*{Variation of Parameters}
+        Not limited by non-constant coefficients. 
+        \begin{align*}
+            y_p=y_c\int{\frac{g(x)}{y_c}dx}
+        \end{align*}    
+        \subsubsection{Reduction of Order}
+\subsection{Second Order ODEs}
+    \subsubsection{Homogeneous}
+    \subsubsection{Non-Homogeneous}
+        Takes the form: $y''+Q(x)y'+P(x)y=g(x)$
+    \subsubsection{Variation of Parameters}
+        The general idea is to replace the coefficients ($c_1,c_2$) with functions. 
+        $$y_c=c_1y_1(x)+c_2y_2(x)$$
+        $$y_p=u_1(x)y_1(x)+u_2(x)y_2(x)$$
+        For the case of a second order, the relations of $u(x)$ are depicted below
+        \begin{align*}
+            u_1'&=\frac{W_1}{W} & u_2'&=\frac{W_2}{W}\\[0.7 cm]
+            W&=
+            \begin{vmatrix}
+            y_1 & y_2 \\
+            y_1'& y_2'
+            \end{vmatrix}
+            &
+            W_1&=
+            \begin{vmatrix}
+            0 & y_2 \\
+            g(x)& y_2'
+            \end{vmatrix}
+            &
+            W_2&=
+            \begin{vmatrix}
+            y_1 & 0 \\
+            y_1'& g(x)
+            \end{vmatrix}
+        \end{align*}
+        In summary: Find Wronskian (determinant represented by W). Find $u_i'$. Integrate to get $u_i$ and plug in to $y_p$, then add to $y_c$.
+
+    \subsubsection{Undetermined Coefficients}
+        There are two subcategories of this method: The superposition approach and the annihilator approach.\\
+        Superposition: Solve for the complementary function $y_c$ (shown in the 'Homogeneous' section), then find a particular solution $y_p$.
+\subsection{System of Linear Equations}
+    Multiple differential equations that are related to each other. They are typically solved by putting them into matrices and using eigenvalues/eigenvectors.
+    \begin{align*}
+        \textbf{First Order:}%{
+        \begin{bmatrix}
+        x'\\
+        y'
+        \end{bmatrix}
+        =
+        \begin{bmatrix}
+        a&b\\
+        c&d\\
+        \end{bmatrix}
+        \begin{bmatrix}
+        x\\
+        y
+        \end{bmatrix}\implies \textbf{X'}=M\textbf{X}\\
+        \textbf{Solving:}\; |M-\lambda I|=0\quad\big{|}\quad  (M-\lambda_iI)\vb{e}_i=0 \quad\big{|}\quad \textbf{X}=\sum_i\vec{c}_ie^{\lambda_ix}\\%}
+        \textbf{Normal Modes:}%{
+        \begin{bmatrix}
+        x''\\
+        y''
+        \end{bmatrix}
+        =
+        \begin{bmatrix}
+        a&b\\
+        c&d\\
+        \end{bmatrix}
+        \begin{bmatrix}
+        x\\
+        y
+        \end{bmatrix}\implies \textbf{X''}=M\textbf{X}\\
+        \textbf{Solving:}\; |M-\omega^2 I|=0 %}
+    \end{align*}
+\newpage
+
+
+\subsection{The Laplace Transform}
+    A powerful method for solving IVPs using an integral transform. The general method is to transform a differential equation from the $t$ domain to the $s$ domain using the transform, where the equation becomes a simple algebra system. After solving for $Y(s)$, use the inverse transform to turn the obtained function into the complete solution.  Using Partial Fraction Decomposition is often useful when solving these. Use tables.
+    \begin{align*}
+        \lap[f'](s)&=s\lap[f](s)-f(0)
+        \\
+        \lap[f''](s)&=s^2\lap[f](s)-sf(0)-f'(0)
+        \\
+        \lap[f'''](s)&=s^3\lap[f](s)-s^2f(0)-sf'(0)-f''(0)
+        \\
+        \vdots
+    \end{align*}
+    Laplace Convolution of two functions $f,g$ is defined to be 
+    \[
+    (f*g)(t)=\int_0^tf(\tau)g(t-\tau)d\tau
+    \]
+    If $\lap[f](s)=F(s)~\&~\lap[g](s)=G(s)$ exists, then $\lap^{-1}[FG]=(f*g)$ and $\lap[f*g](s)=FG$. This is useful for when we want to recover $h(t)$ from $H(s)=FG$ for a known $FG$.
+\subsection{Partial Fraction Decomposition}
+Useful for re-writing some of the results of a Laplace transform. It involves decomposing the denominator of some difficult fraction into multiple seperate fractions. 
+\begin{align*}
+    \frac{1}{x^2-x+1}=\frac{A}{}
+\end{align*}
+\newpage
+\subsection{Bernoulli Equations: \protect\(y'+P(x)y=g(x)y^n\protect\protect\)}
+    Take the form: $y'+P(x)y=g(x)y^n$ for $n \in \mathbb{R}$ When $n \neq 0,1$ solve by substituting $u=y^{1-n}$
+    \begin{align*}
+        y'+\frac{1}{x}y&=xy^2\xrightarrow{n=2\ \therefore\ u=y^{-1}\ \therefore\ y=u^{-1}} \frac{dy}{dx}=\frac{dy}{du}\frac{du}{dx}=-u^{-2}\frac{du}{dx}\\
+        -u^{-2}\frac{du}{dx}+\frac{1}{ux}&=xu^{-2}\xrightarrow{rearrange}\frac{du}{dx}-\frac{1}{x}u=-x\\
+        \mu(x)&=e^{-\int 1/x\ dx}=e^{-\ln(x)}=\frac{1}{x}\\
+        \int d(\mu(x)u)&=\int \mu(x)g(x)dx\ ;\ \int d\left(\frac{u}{x}\right)=\int (-1)dx\\
+        u&=-x^2+c_1x\ \therefore\ \boxed{y=\frac{1}{-x^2+c_1x}}
+        \end{align*}
+\subsection*{Cauchy-Euler: $x^ny^{(n)}+...+x^2y''+axy'+by=0$}
+    Also called The ``Equidimensional'' Equation. Assume solution of $y=x^m$ and plug in. Solve for $m$.
+    \begin{alignat}{2}
+        \underset { m_1 \neq m_2}{\textbf{Real Distinct Roots:}}
+        &\quad y=c_1x^{m_1}+c_1x^{m_2}\\[0.7 cm]
+        \underset{m_1=m_2}{\textbf{Real Repeating Roots:}}
+        &\quad y=c_1\ln(x)x^m+c_2x^m\\[0.7 cm]
+        \underset{b \neq 0}{\textbf{Complex Roots:}}
+        &\quad y=c_{1}x^{\alpha }\cos(\beta \ln(x))+c_{2}x^{\alpha }\sin(\beta \ln(x))
+    \end{alignat}
+\subsection{Numerical}
+
+    What types of numerical differential equations do you do again\ldots?
+\subsection{PDEs in Physics}
+    \subsubsection{The Heat Equation} % most general and applications 
+    \subsubsection{The Wave Equation} % 1d, 3d, spherical, cylindrical
+    \subsubsection{Laplace's Equation} % in multi dimensions and coords
+    \subsubsection{Poisson's Equation} % same
+%\end{document}

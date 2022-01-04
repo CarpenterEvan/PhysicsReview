@@ -1,0 +1,27 @@
+% Since \input doesn't like preambles, only uncomment next line if you're editing this TeX, don't forget the \end{document}! 
+%\documentclass{article}\input{../MAIN/packages}\input{../MAIN/commands}\begin{document}
+\section{Fourier Analysis}       
+\subsection{Fourier Series}
+If a function $f$ and it's derivative $f'$ are both piece-wise continuous on the interval $[-L,L]$, then $f$ can be written as a weighted sum of sines and cosines in a Fourier series:
+\begin{align*}
+    f(x)
+    &=a_0+\sum_{n=1}^\infty \qty[a_n\ft+b_n\ft*]
+    \\
+    a_0
+    &=\oo{2L}\int_{-L}^L f(x)dx
+    &
+    a_n
+    &= \oo{L} \int_{-L}^L f(x)\ft dx
+    \\
+    b_n
+    &= \oo{L} \int_{-L}^L f(x)\ft* dx
+\end{align*}
+If $f$ is odd: $a_n=0$ and if $f$ is even: $b_n=0$
+\subsection{Fourier Transform}
+Along frequency $\omega\equiv n\pi/l$
+\begin{align*}
+    \mathcal{F}[f](\omega)&\equiv\hat{f}(\omega)=\intall f(x)e^{-i\omega x}dx
+    \\
+    \mathcal{F}^{-1}[\hat{f}](x)&=\oo{2\pi}\intall \hat{f}(\omega)e^{i\omega x}d\omega
+\end{align*}
+%\end{document}

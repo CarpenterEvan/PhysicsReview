@@ -1,0 +1,52 @@
+\thetitle{Mathematics Review}[\sl For Applications In Physics  \\ \small \bf \UM]
+\author{\EC}
+\date{\today}
+\fancyhf{}
+\fancyhead[LE,RO]{\hyperlink{top}{\textbf{\thepage}}}
+\fancyhead[LO,RE]{\small\sl\leftmark}
+\setlength\headheight{17pt}
+
+\pagenumbering{gobble} % no page number going forward!
+\maketitle
+\begingroup
+    \parindent 0cm \parfillskip 0cm \leftskip 0cm \rightskip 0cm
+    \etocframedstyle[1]{}
+    \etocsetstyle{section}
+                  {}
+                  {} {\Large\bf\etocnumber.~\etocname\hfill\nobreak\tt p.~\makebox[12 pt][r]{\etocpage}\par}
+                  {\vspace{-0.25cm}}
+    \etocsetstyle{subsection}{}{}{}{}
+    \etocsetstyle{subsubsection}{}{}{}{}
+    \tableofcontents\label{toc:FirstPage}
+\endgroup
+\newpage
+\subsubsection*{Notation/How I write things}  
+    \begin{itemize}
+    \item I try to stay as consistent as I can with variable and function letters; no one needs u {\sl and\/}~v for velocity. That being said, different fields do regularly use different notations, and it would be ridiculous of me to ignore them entirely, I'll try to include some ``translations'' for important things.
+    \item
+    Different types of derivative notation will be used when convenient (Euler, Leibniz, Newton), all of the following can be considered equivalent: 
+    \begin{align*}
+        \der{x}f&=\der{f}{x}=\der*{x}f=f'(x)
+        \\
+        \pder{x}f&=\pder{f}{x}=\pder*{x}f=f_x(x,y)
+    \end{align*}
+    \item Bold notation will be used over arrow notation for vectors.  
+    \begin{equation*}
+        \vb{A}= A_i=
+        \begin{bmatrix}
+        A_r
+        \\
+        A_\theta
+        \\
+        A_\phi
+        \end{bmatrix} =A_r\e{r}+A_\theta\e{\theta}+A_\phi\e{\phi}
+    \end{equation*}   
+    \item A function $f$ is linear if you can take out constants and add/subtract without changing the function:\footnote{Examples of functions that aren't linear are: \(f(x)=\sin(x)\,,\,f(x)= x^2\)}
+    \begin{align*}
+        f(cx)&=cf(x)\quad c\in \mathbb{R}
+        \\
+        f(x\pm y)&=f(x)\pm f(y)
+    \end{align*}
+    \end{itemize}
+\newpage\pagenumbering{arabic} % arabic page numbering going forward!
+\endinput

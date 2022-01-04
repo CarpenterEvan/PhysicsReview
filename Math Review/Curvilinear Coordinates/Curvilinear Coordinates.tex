@@ -1,0 +1,354 @@
+% Since \input doesn't like preambles, only uncomment next line if you're editing this TeX, don't forget the \end{document}! 
+%\documentclass{article}\input{../MAIN/packages}\input{../MAIN/commands}\begin{document}
+\section{Curvilinear Coordinates}
+\subsection{Spherical Coordinates}
+    In this system, the following describe the space's basis set:
+    \tikzsetnextfilename{spherical}
+    \begin{align*}
+        \begin{tikzpicture}[scale=1]
+            \begin{scope}[canvas is xy plane at z=0] % THETA
+                \fill [red!20] (0,0,0)--(1,1.732) arc [start angle=60, end angle=90, radius=2cm]--cycle;
+                \node at (0.35,1.5){$\theta$};
+                \draw [thick] (0,0) circle (2);
+            \end{scope}
+            \begin{scope}[canvas is xz plane at y=0] % PHI
+                \fill [blue!20] (0,0)--(2,0) arc[start angle=0, end angle=90,radius=2cm];
+                \node at (1,1) {$\phi$};
+                \draw [thick] (0,0) circle (2);
+            \end{scope}
+            \begin{scope}[ultra thick, latex-latex]
+            \draw  (xyz cs:y=-2)--(xyz cs:y=2) node [anchor=south]      {\textbf{z}};
+            \draw  (xyz cs:x=-2)--(xyz cs:x=2) node [anchor=north west] {\textbf{y}};
+            \draw  (xyz cs:z=-2)--(xyz cs:z=2) node [anchor=north west] {\textbf{x}};
+            \end{scope}
+            \draw [ultra thick, blue, -latex] (0,0,0)--(xyz spherical cs:radius=2, longitude= 30) node [anchor=south] {\textbf{r}};
+        \end{tikzpicture}
+    \text{Distance from the origin: r}\\
+    \text{Angle from z-axis, the polar angle: $\theta$}\\
+    \text{Angle around z-axis, the azimuthal angle: $\phi$}
+    \end{align*}
+    Important relationships:
+    \begin{align*}
+        \begin{bmatrix}
+        \e{r}\\
+        \e{\theta}\\
+        \e{\phi}
+        \end{bmatrix}
+        &=
+        \begin{bmatrix}
+        \sin(\theta)\cos(\phi)&\sin(\theta)\sin(\phi)&\cos(\theta)\\
+        \cos(\theta)\cos(\phi)&\cos(\theta)\sin(\phi)&-\sin(\theta)\\
+        -\sin(\phi)&\cos(\phi)&0
+        \end{bmatrix}
+        \begin{bmatrix}
+        \e{x}\\
+        \e{y}\\
+        \e{z}
+        \end{bmatrix}
+    \end{align*}
+    \begin{center}
+    Matrix is orthogonal, transpose to find $\e{x}$ in terms of $\e{r}$
+    \end{center}
+    \vspace{0.5 cm}
+    Position, velocity, and acceleration:
+    \begin{align*}
+        \vb{r}(t)&=
+        \begin{bmatrix}
+        r
+        \\
+        0
+        \\
+        0
+        \end{bmatrix}
+        \cdot
+        \begin{bmatrix}
+        \e{r}
+        \\
+        \e{\theta}
+        \\
+        \e{\phi}
+        \end{bmatrix}
+        \\
+        \vb{v}(t)&=
+        \begin{bmatrix}
+        \dot{r}
+        \\
+        r\dot{\theta}
+        \\
+        r\dot{\phi}\sin(\theta)
+        \end{bmatrix}
+        \cdot
+        \begin{bmatrix}
+        \e{r}
+        \\
+        \e{\theta}
+        \\
+        \e{\phi}
+        \end{bmatrix}
+        \\
+        \vb{a}(t)&=
+        \begin{bmatrix}
+        \Ddot{r}-r\dot{\theta}^2-r\dot{\phi}^2\sin^2(\theta)
+        \\
+        r\Ddot{\theta}+2\dot{r}\dot{\theta}-r\dot{\phi}^2\sin(\theta)\cos(\theta)
+        \\
+        2r\dot{\theta}\dot{\phi}\cos(\theta)+2\dot{r}\dot{\phi}\sin(\theta)+r\Ddot{\phi}\sin(\theta)
+        \end{bmatrix}
+        \cdot
+        \begin{bmatrix}
+        \e{r}\\
+        \e{\theta}\\
+        \e{\phi}
+        \end{bmatrix}
+    \end{align*}
+    \newpage\noindent
+    Infinitesimal Displacement:
+    \[\dl* = dr\ \e{r} + r d\theta\ \e{\theta} + r \sin(\theta) d\phi\ \e{\phi} \]
+    Infinitesimal Areas:
+    \begin{align*}
+    \begin{tabular}{|c|c|}
+        \hline
+        Held Constant & $\da*$ \\ 
+        \hline
+        r & $r^2 \sin(\theta) d\theta d\phi\ \e{r}$\\ 
+        \hline
+        $\theta$ & $r \sin(\theta) dr d\phi\ \e{\theta}$ \\ 
+        \hline
+        $\phi$ & $r dr d\theta\ \e{\phi}$\\
+        \hline
+    \end{tabular}
+    \end{align*}
+    Infinitesimal volume: \[dV = r^2\sin(\theta) dr d\theta d\phi\]
+    \subsubsection*{Spherical Vector Derivatives:}
+    \length[0.7cm]
+    \begin{align*}
+    % Gradient         {
+    \text{Gradient:}&&
+    \nabla f &=
+    \left[
+    \begin{matrix}
+    \pder*{r}f
+    \\[0.3 cm]
+    \frac{1}{r} \pder*{\theta}f
+    \\[0.3 cm]
+    \frac{1}{r \sin(\theta)}\pder*{\phi}f
+    \end{matrix}\right]
+    \cdot
+    \left[
+    \begin{matrix}
+    \e{r}
+    \\[0.3 cm]
+    \e{\theta}
+    \\[0.3 cm]
+    \e{\phi}
+    \end{matrix}\right]
+    \\
+    \text{Divergence:}&&
+    \nabla \cdot \vb{A} &= \oo{r^2} \pder*{r}\qty(r^2A_r) + \oo{r \sin(\theta)} \pder*{\theta} \qty(\sin(\theta)A_\theta) + \oo{r \sin(\theta)} \pder*{\phi}A_\phi 
+    \\
+    \text{Curl:}&&
+    \nabla \times \vb{A} &= 
+    \left[
+    \begin{matrix}
+    \mathlarger{\frac{1}{r\sin(\theta)} \qty(\pder*{\theta}A_\phi\sin(\theta)-\pder*{\phi}A_\theta)}
+    \\[0.3 cm]
+    \mathlarger{\oo{r}\qty(\oo{\sin(\theta)}\pder*{\phi}A_r-\pder*{r}\qty(r A_{\phi}))}
+    \\[0.3 cm]
+    \mathlarger{\frac{1}{r}\qty(\pder*{r}\qty(rA_{\theta}) - \pder*{\theta}A_r)}
+    \end{matrix}\right]
+    \cdot
+    \left[
+    \begin{matrix}
+    \e{r}
+    \\
+    \e{\theta} 
+    \\
+    \e{\phi}
+    \end{matrix}\right]
+    \\
+    \text{Scalar Laplacian:}&&
+    \nabla^2 f 
+    &= \frac{1}{r^2} \pder*{r} \qty(r^2 \pder*{r}f) + \frac{1}{r^2 \sin(\theta)} \pder*{\theta} \qty(\sin(\theta)\pder*{\theta}f) +\frac{1}{r^2 \sin^2(\theta)} \pder*[2]{\phi}f
+    \end{align*}
+    \length
+
+
+\newpage
+\subsection{Cylindrical Coordinates}
+    In this system, the following describe the space's basis set:
+    \tikzsetnextfilename{cylindrical}
+    \begin{align*}
+        \begin{tikzpicture}
+            \begin{scope}[canvas is xz plane at y=-2]
+                \draw [gray!50] (0,0) circle (2 cm);
+            \end{scope}
+            \begin{scope}[canvas is xz plane at y=-1]
+                \draw [gray] (0,0) circle (2 cm);
+            \end{scope}
+            \begin{scope}[canvas is xz plane at y= 0]
+                \fill [blue!20] (0,0)--(2,0) arc[start angle=0, end angle=90,radius=2cm];
+                \draw [ultra thick] (0,0) circle (2 cm);
+                \node at (1,1)[black, ultra thick]{$\mathbf{\phi}$};
+            \end{scope}
+            \begin{scope}[canvas is xz plane at y= 1]
+                \draw [gray] (0,0) circle (2 cm);
+            \end{scope}
+            \begin{scope}[canvas is xz plane at y= 2]
+                \draw [gray!50] (0,0) circle (2 cm);
+            \end{scope}
+            \draw [ultra thick, latex-latex] (-2,0,0)--(2,0,0) node [anchor=north west] {\textbf{y}};
+            \draw [ultra thick, latex-latex] (0,-2,0)--(0,2,0) node [anchor=south] {\textbf{z}};
+            \draw [ultra thick, latex-latex] (0,0,-2)--(0,0,2) node [anchor=north west] {\textbf{x}};
+            \draw [ultra thick, -latex, brown] (0,0.1,0)--(2,0.1,0) node [anchor=south east] {\textbf{s}};
+            \draw [ultra thick, -latex, red] (2,0,0)--(2,1,0) node [anchor=south] {\textbf{z}};
+        \end{tikzpicture}
+        \text{Distance from the z-axis: s}\\
+        \text{Angle around x-axis, the azimuthal angle: $\phi$}\\
+        \text{Distance on z-axis: z}\\
+    \end{align*}
+    Important relationships:
+    \begin{align*}
+        \begin{bmatrix}
+        \e{s}\\
+        \e{\phi}\\
+        \e{z}
+        \end{bmatrix}
+        &=
+        \begin{bmatrix}
+        \cos(\phi)&\sin(\phi)&0\\
+        -\sin(\phi)&\cos(\phi)&0\\
+        0&0&1
+        \end{bmatrix}
+        \begin{bmatrix}
+        \e{x}\\
+        \e{y}\\
+        \e{z}
+        \end{bmatrix}
+    \end{align*}
+    \begin{center}
+    Matrix is orthogonal, transpose to find $\e{x}$ in terms of $\e{s}$
+    \vspace{0.5 cm}
+    \end{center}
+    Position, velocity, and acceleration:
+    \begin{align*}
+        \vb{r}(t)&=
+        \begin{bmatrix}
+            s
+            \\
+            0
+            \\
+            z
+        \end{bmatrix}
+        \cdot
+        \begin{bmatrix}
+            \e{s}
+            \\
+            \e{\phi}
+            \\
+            \e{z}
+        \end{bmatrix}
+        \\
+        \vb{v}(t)&=
+        \begin{bmatrix}
+            \dot{s}
+            \\
+            s\dot{\phi}
+            \\
+            \dot{z}
+        \end{bmatrix}
+        \cdot
+        \begin{bmatrix}
+            \e{s}
+            \\
+            \e{\phi}
+            \\
+            \e{z}
+        \end{bmatrix}
+        \\
+        \vb{a}(t)&=
+        \begin{bmatrix}
+            \Ddot{s}-r\dot{\phi}^2
+            \\
+            s\Ddot{\phi}+2\dot{s}\dot{\phi}
+            \\
+            \Ddot{z}
+        \end{bmatrix}
+        \cdot
+        \begin{bmatrix}
+            \e{s}
+            \\
+            \e{\phi}
+            \\
+            \e{z}
+        \end{bmatrix}
+    \end{align*}
+    \newpage\noindent
+    Infinitesimal Length:
+        \[\dl*= ds\ \e{s}+sd\phi\ \e{\phi}+dz\ \e{z}\]
+    Infinitesimal Areas:
+        \begin{center}
+        \begin{tabular}{|c|c|}
+            \hline
+            Held Constant & $\da*$ \\ 
+            \hline
+            s & $sd\phi dz\ \e{s}$ \\ 
+            \hline
+            $\phi$ & $dsdz\ \e{\phi}$  \\ 
+            \hline
+            z & $sdsd\phi\ \e{z}$\\
+            \hline
+        \end{tabular}
+        \end{center}
+    Infinitesimal Volume: \[dV=sdsd\phi dz\]
+    \subsubsection*{Cylindrical Vector Derivatives:}
+    \length[0.7cm]
+        \begin{align*}
+        % Gradient         {
+        \text{Gradient:}&&%\quad
+            \nabla f &= 
+            \qty[
+            \begin{matrix}
+                \mathlarger{\partial_{s}f}
+                \\[0.3 cm]
+                \mathlarger{\frac{1}{s} \partial_{\phi}f}
+                \\[0.3 cm]
+                \mathlarger{\partial_{z}f}
+            \end{matrix}]
+            \cdot
+            \qty[
+            \begin{matrix}
+                \e{s}
+                \\[0.3 cm]
+                \e{\phi}
+                \\[0.3 cm]
+                \e{z}
+            \end{matrix}]
+            \\
+        \text{Divergence:}&&%\quad
+            \div\vb{A} &= \oo{s}\pder*{s}\qty(s A_s) + \oo{s}\pder*{\phi}A_\phi  + \pder*{z}A_z
+            \\
+        \text{Curl:}&&%\quad
+            \curl \vb{A} &= 
+            \qty[ 
+            \begin{matrix}
+                \mathlarger{\oo{s} \pder*{\phi}A_z - \pder*{z}A_\phi} 
+                \\[0.3 cm]
+                \mathlarger{\pder*{z}A_s - \pder*{s}A_z}
+                \\[0.3 cm]
+                \mathlarger{\oo{s}\pder*{s}\qty(s A_\phi) - \oo{s}\pder*{\phi}A_s}
+            \end{matrix}]
+            \cdot\qty[
+            \begin{matrix}
+                \e{s}
+                \\[0.3 cm]
+                \e{\phi}
+                \\[0.3 cm]
+                \e{z}
+            \end{matrix}]
+            \\
+            \text{Scalar Laplacian:}&&%\quad
+            \nabla^2 f
+            &=\oo{s}\pder*{s}\qty(s\pder*{s}F) + \oo{{s}^2}\pder*[2]{\phi}F+ \pder*[2]{z}F 
+        \end{align*}
+        \length
+%\end{document}

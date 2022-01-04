@@ -1,0 +1,191 @@
+% Since \input doesn't like preambles, only uncomment next line if you're editing this TeX, don't forget the \end{document}!
+%\documentclass{article}\input{../MAIN/packages}\input{../MAIN/commands}\begin{document}
+\section{Differential Calculus}
+    \subsection*{Differentiation in One Dimension (1-D)}
+        The derivative is the proportionality factor of how rapidly the function \(f(x)\) varies when the argument \(x\) is changed by \(dx\); \(f\) changes by an amount \(df\):
+        \begin{align*}
+            df = \qty(\frac{df}{dx})dx
+        \end{align*}
+        Multiplying and dividing functions in derivatives \[f=f(x),~g=g(x)\]
+        Product Rule:
+        \begin{equation}
+            \der{x}(fg)=(f')g+f(g')
+        \end{equation}
+        Quotient Rule:
+        \begin{equation}
+            \der{x}\qty(\frac{f}{g})=\frac{(f')g-f(g')}{{(g)}^2}
+        \end{equation}
+    \subsection*{Differentiation in Three Dimensions (3-D)}
+        For 3-variable functions:
+        \begin{align*}
+            df =\qty(\dv{f}{x})dx + \qty(\dv{f}{y})dy + \qty(\dv{f}{z})dz
+        \end{align*}
+        The derivative of \(f(x,y,z)\) tells one how \(f\) changes when one alters all three variables by \(dx, dy, dz\).
+    \subsection*{Gradient}
+        \begin{equation}
+            \coloredanswer{\nabla f = \begin{bmatrix}
+            \pder*{x}f
+            \\
+            \pder*{y}f
+            \\
+            \pder*{z}f
+            \end{bmatrix} = \pder{f}{x}\e{x}+\pder{f}{y}\e{y}+\pder{f}{z}\e{z}}
+        \end{equation}
+        \textcolor{Blue1}{\bf The gradient of \(f\) is a vector field} that assigns a vector to each point on \(f\) that \textcolor{Blue1}{\bf points in the direction of \(f\)'s maximum increase}, moreover, the magnitude of \(\nabla f\) gives the magnitude of each vector along this maximal direction.
+        \\[0.5 cm]
+        Just like 1-D derivatives, you can find the extrema of a function with three variables by observing if at a stationary point \((x,y,z)\):
+        \begin{align*}
+            \nabla f = 0 
+        \end{align*}
+        Gradients obey the following Product Rules:
+        \begin{gather*}
+            \nabla (fg) = (\nabla f)g + f (\nabla g) 
+            \\
+            \nabla (\vb{A} \cdot \vb{B}) 
+            = (\vb{A} \cdot \nabla)\vb{B} + (\vb{B} \cdot \nabla)\vb{A}+ \vb{A} \times (\nabla \times \vb{B}) + \vb{B} \times(\nabla \times \vb{A}) \\
+        \end{gather*}
+    \subsection*{Divergence}
+        Divergence is a measure of how much a vector field spreads out from a point or volume.  Similar to a dot product, it takes a vector to a number, \textcolor{Blue1}{\bf the divergence of a vector field is a scalar.} 
+        \begin{equation}
+            \coloredanswer{\div\vb{A}=\pder*{x} A_x+\pder*{y} A_y+\pder*{z} A_z}
+        \end{equation}
+        Divergences obey the following Product Rules:
+        \length[0.25 cm]
+        \begin{align*}
+            \div(f\vb{A}) &= f(\nabla \cdot \vb{A}) + \vb{A} \cdot (\nabla f)
+            \\
+            \div{(\vb{A} \times \vb{B})} &= \vb{B} \cdot (\nabla \times \vb{A}) - \vb{A} \cdot (\nabla \times \vb{B})
+        \end{align*}
+        \length{}
+        When the divergence of a vector field is zero everywhere it is called {\bf solenoidal}. Any closed surface has no net flux across it in a solenoidal field.
+    \subsection*{Curl}
+        Curl is a measure of how much a vector ``swirls'' around the point in question. One can find the curl conveniently as the determinant of the following matrix: 
+        \begin{equation}
+            \curl \vb{A} = 
+            \begin{vmatrix}
+            \e{x}&\e{y}&\e{z}
+            \\
+            \pder*{x}&\pder*{y}&\pder*{z}
+            \\
+            A_x&A_y&A_z
+            \end{vmatrix}
+            =\coloredanswer{
+            \begin{bmatrix}
+            (\pder*{y} A_z-\pder*{z} A_y)
+            \\[0.25 cm]
+            (\pder*{z} A_x-\pder*{x} A_z)
+            \\[0.25 cm]
+            (\pder*{x} A_y-\pder*{y} A_x)
+            \end{bmatrix}
+            \cdot
+            \begin{bmatrix}
+            \e{x}
+            \\
+            \e{y}
+            \\
+            \e{z}
+            \end{bmatrix}}
+        \end{equation}
+        Curls obey the following Product Rules:
+        \begin{align*}
+        \curl (f\vb{A}) &= f(\curl \vb{A}) - \vb{A} \times (\nabla f)
+        \\[0.3 cm]
+        \curl (\vb{A} \times \vb{B}) &= (\vb{B} \cdot \nabla)\vb{A} - (\vb{A} \cdot \nabla)\vb{B} + \vb{A}(\nabla \cdot \vb{B}) - \vb{B}(\nabla \cdot \vb{A})
+        \end{align*}
+        \textcolor{Blue1}{\bf The curl of a vector field is a vector field.}\footnote{\sl Technically\rm\ a pseudo-vector field.} When the curl of a vector field is zero, the field is called {\bf irrotational} and the field is conservative. %(See Section \textbf{\ref{vectorfields}})
+    \subsection*{Laplacian}
+        The laplace operator (denoted by \(\nabla^2\)) is a kind of second derivative for scalars and vectors.\footnote{Some people use \(\Delta\) instead of \(\nabla^2\), but that seems goofy, so I don't use it.} It can be thought of as taking whichever two vector derivatives are possible. 
+        \begin{align}
+            \nabla^2f
+            &=\nabla \cdot (\nabla f)
+            \\
+            \nabla^2 \vb{A} 
+            &= \nabla(\nabla \cdot \vb{A}) - \nabla\times (\nabla \times \vb{A}) 
+        \end{align}
+        The following is also true for second derivatives based on the nature of first order vector derivatives:
+        \begin{gather}
+            \nabla\times (\nabla f)
+            = 0
+            \\
+            \nabla \cdot (\nabla \times \vb{A}) 
+            = 0 
+        \end{gather}
+\newpage
+\section{Integral Calculus}      
+    Remember that \(\dl*,~\da*,\) and $dV$ are different in different coordinate systems.\footnote{\(\oint\) is used to say that the thing you're integrating is either a closed path for a curve integral or a closed surface for a surface integral.}
+    \length[0.5 cm]
+    \begin{align}
+        \textbf{ \large Curve Integral}&
+        \quad\int_C \vb{A}\dl=\iiint\vb{A}\cdot\qty(dx\ \e{x}+dy\ \e{y}+dz\ \e{z})
+        \\
+        \textbf{\large Surface Integral}&\quad
+        \int_S \vb{A}\da=\iint_D(\vb{A}\cdot\e{z})dxdy=\iint_D A_k dx_idx_j
+        \\
+        \textbf{\large Volume Integral}&\quad
+        \int_{\mathcal{V}} \vb{A} dV=\int A_xdV\ \e{x}+\int A_ydV\ \e{y}+\int A_z dV\ \e{z}
+    \end{align}
+    \length
+
+    \subsection*{The Fundamental Theorem for Gradients}
+        Similar to the fundamental theorem of calculus, the curve integral of the gradient of a scalar function is equal to the difference of values of that scalar function at the endpoints. 
+        \begin{equation}
+            \boxed{\int_C(\nabla f)\dl=f(\mathbf{b})-f(\mathbf{a})}
+        \end{equation}
+    \subsection*{Divergence Theorem}
+        The divergence of \(\vb{A}\) over a volume is equal to the components of \(\vb{A}\) that are normal to the surface that bounds the volume. 
+        \begin{align}
+            \boxed{\oint_S \vb{A} \da =\int_{\mathcal{V}} (\nabla \cdot \vb{A})dV } 
+        \end{align}
+    \subsection*{The Fundamental Theorem for Curls: Stokes' Theorem}
+        The integral of a derivative over a region is equal to the value of the function at the boundary. That is, the curl over a surface is equal to the value of the function at the perimeter P. 
+        \begin{align}
+            \boxed{\oint_C \vb{A} \cdot d\vb{l}=\int_{S} (\nabla \times \vb{A}) \cdot d\vb{a}} 
+        \end{align}
+        \subsection*{Integration by Parts in Vector Calculus}
+        \begin{align*}
+        \int_{\mathcal{V}} f(\nabla \cdot \vb{A})dV = \oint_S f\vb{A}\da-\int_{\mathcal{V}} \vb{A} \cdot (\nabla f)dV 
+        \end{align*}
+
+
+        \newpage
+
+
+    \section{Theory of Vector Fields \label{vectorfields}}
+    \subsubsection*{The Helmholtz Theorem}
+        A field is uniquely determined by its divergence and curl when boundary conditions are applied. For a vector field \(\vb{A}\), if :
+        \begin{align*}
+            \left.
+            \begin{gathered}
+            \nabla \cdot \vb{A}= \phi
+            \\
+            \nabla \times \vb{A}= \vb{C}
+            \end{gathered}
+            \right\}
+            \implies
+            \nabla \cdot \vb{C} = 0
+        \end{align*}
+        Then \(\vb{A}\) can be determined uniquely from $\phi$ and $\vb{C}$
+    \subsubsection*{Potentials}
+        If the curl of a vector field $\vb{E}$ vanishes everywhere, then the field is conservative, meaning that the curve integral between any two points is path independent (so if the path is closed, the curve integral is zero) and by definition of conservative fields, $\vb{E}$ can be represented as the gradient of some scalar function $V$:
+        \footnote{The negative of the gradient is \textbf{used by convention} to make physics easier. Think about the gravitational force compared to gravitational potential, the force field points from from high (scalar) potential to low (scalar) potential.}
+        \begin{align*}
+            \boxed{\nabla \times \vb{E} = 0} 
+            \iff
+            \boxed{\oint_C \vb{E}\cdot d\vb{l}=0} 
+            \iff
+            \boxed{\vb{E} = -\nabla V}
+        \end{align*}
+
+        If the divergence of a vector field, $\vb{B}$, vanishes everywhere, then the surface integral of $\vb{B}$ is independent of the surface for any given boundary line. 
+        \begin{align*}
+            \boxed{\nabla \cdot \vb{B} = 0} 
+            \iff
+            \boxed{\oint_S\vb{B}\cdot d\vb{s}=0}
+            \iff
+            \boxed{\vb{B} = \nabla \times \vb{A}}
+        \end{align*}
+        In general, the following is always true for a vector field $\vb{F}$:
+        \begin{equation}
+            \vb{F}=-\nabla V+\curl\vb{A}
+        \end{equation}
+%\end{document}

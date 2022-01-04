@@ -1,0 +1,23 @@
+\documentclass[12 pt, twoside]{article}
+\input{packages}
+\input{commands}
+
+\addbibresource[datatype=bibtex]{references.bib} % this command inputs the references file and analyzes it using bibtex
+
+\begin{document}
+
+\input{FirstPage}
+\newpage
+\input{../Sections/Vector Calculus}
+\newpage
+\input{../Sections/Curvilinear Coordinates}
+\newpage
+\input{../Sections/Differential Equations}
+\newpage
+\input{../Sections/Fourier Analysis} % and taylor?
+\newpage
+\input{../Sections/Special Functions}
+\newpage
+\nocite{*} %I didnt cite anything, dump all my references here
+\printbibliography{}
+\end{document}
