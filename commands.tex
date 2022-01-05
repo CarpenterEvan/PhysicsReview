@@ -79,18 +79,6 @@
 	 \item #2  % +b is for inputs that are long
 	 \end{trivlist} % end list
 	}{} % don't do anything then "problem" environment ends, irrelevant because trivlist is already ended
-
-\newcounter{lecturecount} % new counter for problem numbers, starts at 0 by default
-\NewDocumentEnvironment{ lecture } {O{} O{} +b} 
-	{\addtocounter{lecturecount}{1} % increase counter
-		\phantomsection % invisible page marker for hyperref
-		\addcontentsline{toc}{subsection}{{#1}~Lecture:~\thelecturecount~{#2}} % add to table of contents
-		\begin{trivlist} % begin unmarked ("trivial") list
-		\item \colorbox{LavenderBlush2}{\textbf{Lecture \thelecturecount.}~(\texttt{#1})~ \textit{#2}} % Header
-		\item
-		\item #3  % +b is for inputs that are long
-		\end{trivlist} % end list
-	}{}
 	
 \def\UM{\colorbox{blue}{\textcolor{Gold1}{\textbf{University of Michigan}}}} % School Pride
 \def\EC{\hyperlink{https://github.com/CarpenterEvan/PhysicsReview}{\(\mathbb{E}\textsc{van}~\mathbb{C}\textsc{arpenter}\)}}

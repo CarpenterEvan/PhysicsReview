@@ -1,0 +1,22 @@
+\invisiblelocaltableofcontents\label{toc:lecturetest}
+\begingroup
+    \parindent 0cm \parfillskip 0cm \leftskip 0cm \rightskip 0cm
+    \etocframedstyle[1]{}
+    \etocsetstyle{subsection}
+                  {}
+                  {\leavevmode\leftskip 0cm\relax} {\normalsize\textbf{\etocnumber}~\rm\etocname\nobreak\leaders\hbox{.}\hfill\tt p.\makebox[12 pt][r]{\etocpage} \par}
+                  {\vspace{-0.25cm}}
+    \tableofcontents\ref{toc:lecturetest}
+\endgroup
+\newcounter{lecturecount} % new counter for problem numbers, starts at 0 by default
+\NewDocumentEnvironment{ lecture } {O{} O{} +b} 
+	{\addtocounter{lecturecount}{1} % increase counter
+		\phantomsection % invisible page marker for hyperref
+		\addcontentsline{toc}{subsection}{\texttt{\small #1}~\textbf{Lecture~\thelecturecount:}~\textsl{#2}} % add to table of contents
+		\begin{trivlist} % begin unmarked ("trivial") list
+		\item \colorbox{LavenderBlush2}{\textbf{Lecture \thelecturecount.}~(\texttt{#1})~ \textit{#2}} % Header
+		\item
+		\item #3  % +b is for inputs that are long
+		\end{trivlist} % end list
+	}{}
+\newpage
