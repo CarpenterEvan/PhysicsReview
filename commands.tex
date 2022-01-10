@@ -1,3 +1,32 @@
+\usepackage[utf8]{inputenc} % allows for non-ASCII characters
+\usepackage[x11names]{xcolor}    % Color extensions
+\usepackage[margin=1in]{geometry} % Formatting on page
+\usepackage{array} % big arrays
+\usepackage{amsmath} % Math symbols
+\usepackage{amsthm}   
+\usepackage{amssymb}
+\usepackage[backend=bibtex]{biblatex} % bibliography
+\usepackage{bm} % bold for greek letters
+\usepackage{enumitem} % Enumerating things
+\usepackage{esint} % better double and triple Integrals
+\usepackage{etoc}
+\usepackage{fancyhdr} % Headers
+    \pagestyle{fancy}
+\usepackage{gensymb}
+\usepackage{physics} % easier commands for physics things
+\usepackage{relsize}  % allows for larger/smaller math 
+\usepackage{textcomp} % Gets rid of perthousand error
+\usepackage{upquote}  % fixes quotes in verbatim environment
+\usepackage{verbatim} % Allows for comment environment
+\usepackage{tikz} % pictures
+\usepackage{pgfplots} % plots and graphics
+\usepackage{graphicx} % plots and graphics
+    \pgfplotsset{compat=newest} % or use compat=1.6
+    \usetikzlibrary{calc}
+    \usetikzlibrary{3d}
+\usepackage{xparse} % Better commands
+\usepackage[hidelinks]{hyperref}% References--THIS GOES LAST
+
 % Packages that this breaks without: amsmath, gensymb, physics, hyperref, xcolor, xparse, and possibly others
 \numberwithin{equation}{section} % amsmath command that renews equation counter in each section\
 \def\ints{\int_\mathcal{S}} % Surface integral
