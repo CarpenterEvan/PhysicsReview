@@ -3,10 +3,47 @@
 \thetitle{Statistical Mechanics}[\tt Physics 406 at \rm\small \UM]
 \date{Winter Semester 2022}
 \author{\EC}
+\def \pa {particle\ }
+\def \pas {particles\ }
+\def \ste {state\ }
+\def \micst {micro\ste}
+\def \macst {macro\ste}
+\def \dof {degree of freesdom\ }
+\def \dofs {degrees of freesdom\ }
 \begin{document}
 \maketitle
 \input{../lectureformatting.tex}
 \begin{lecture}[Jan 05][States, Probability and Binomial Distribution]
-    words
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}
+            \draw[<->] (-2,0)--(2,0) node [anchor=west]{$x$};
+            \draw[<->] (0,-2)--(0,2) node [anchor=south]{$p$};
+            \draw[thick, black, fill] (1,1.5) circle(1pt);
+        \end{tikzpicture}
+        \caption{Phase space of 1-D \pa}
+    \end{figure}
+\end{lecture}
+\begin{lecture}[Jan 10][Ensembles]
+    Lagrange multipliers
+    \begin{equation}
+        S=-k\sum_rp_r\ln(p_r)
+    \end{equation}
+    Microcanonical ensemble: All accessible \micst are equally probable
+\end{lecture}
+\begin{lecture}[Jan 12][Finding total \micst]
+    $N$ \pas in volume $V$ with energy between $E,E+\delta E$.
+    Counting number of \micst by using phase space 
+    \\
+        simplifying example : a 1-D \pa has only $x$ and $p$. Plot in phase space
+        Example in harmonic oscillator with ellipse and shading in phi(E) and Omega(E) Include text in caption explaining equations below it. 
+    \\
+    Moving to 3-D talk about \dofs and volume of $h_0$.
+    \\
+    Integrating to get Phi(E) with multiintegrals and then taylor approx to get Omega
+    \\
+    Quantum Description--> specify \micst with quantum numbers
+    \\
+    example with simp harmon oscill
 \end{lecture}
 \end{document}
