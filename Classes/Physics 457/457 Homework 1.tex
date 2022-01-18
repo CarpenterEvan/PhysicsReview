@@ -27,13 +27,20 @@ powers.
         \rightarrow
         8.617 333 262\times 10^{-14} \GeV=1K\rightarrow \coloredanswer{1\GeV=1.16045\times10^{13}K}$
     \item $E=mc^2$ so $E/c^2=m\rightarrow\coloredanswer{1\GeV=1.783 \times10^{-27} kg}$ 
-    \item $E=\frac{hc}{\lambda}$ so $1\GeV^{-1}=\frac{\lambda}{hc}\rightarrow \lambda=$
+    \item $E=\frac{hc}{\lambda}$ so $1\GeV^{-1}=\frac{\lambda}{hc}\rightarrow \coloredanswer{1\GeV^{-1}=1.973\times10^{-16}m}$
+    \item $\hbar=6.58212\times10^{-16}eVs\rightarrow\frac{\hbar}{eV}=6.58212\times10^{-16}s\rightarrow\frac{1}{eV}=6.58212\times10^{-16}s\rightarrow\coloredanswer{\GeV^{-1}=6.58212\times10^{-25}s}$
+    \item Using results from c),d), the answer is:
+    \begin{gather*}
+        \frac{1\GeV}{1\GeV^{-3}}=\frac{1.783 \times10^{-27} kg}{\qty(1.973\times10^{-16}m)^3}
+        \\
+        \coloredanswer{1\GeV^{4}=2.322\times10^{20} kg/m^{3}}
+    \end{gather*} 
 \end{enumerate}
 \end{problem}
 \newpage
 \begin{problem}
     Unstable particles appear to live longer if moving, therefore can travel a longer distance after creation. Consider the following problems and calculate the flight distances. 
-    \begin{enumerate}
+    \begin{enumerate}[label=\alph*.]
         \item Calculate the flight distance of a muon with 100 GeV energy. Note that the muon lifetime (in its rest frame) is $2.2 \mu s$. 
         \item Calculate the flight distance of a B$^{+}$-meson with 20 GeV energy if its lifetime is $1.6x10^{-12}$ s and its mass is 5.38 GeV. 
         \item Pions are produced in the upper atmosphere when a proton from outer space hits a proton in the atmosphere. The pions then decay into muons:
@@ -45,6 +52,26 @@ powers.
         But the lifetime of the pion (2.6 $\times10^{-8}$ s) is much shorter than that of the muon. If the pion is produced at 800 meters above the ground, can it reach the ground if its speed is 0.998c?
     \end{enumerate}
     \answerline
+    \begin{enumerate}[label=\alph*.]
+        \item Given the energy and $\Delta t_{lab}$ and knowing 
+        \begin{gather*}
+            d_{flight}=v\Delta t_{lab}=\boxed{c\gamma\beta\Delta t_{\mu}}
+            \\
+            \gamma\beta=pc/mc^2
+            \\
+            p=\sqrt{E^2-m^2}
+        \end{gather*} 
+        from lecture, I can calculate:\footnote{using muon mass $m_\mu=0.1056\GeV/c^2$} 
+        \begin{align*}
+            d_{flight}&=\frac{pc}{mc^2}c\Delta t_{\mu}=\frac{p}{m}\Delta t_{\mu}
+            \\
+            &=\frac{\sqrt{E^2-m_{\mu}^2}}{m_{\mu}}\Delta t_{lab}
+            \\
+            &\coloredanswer{d_{flight}=0.00208m}
+        \end{align*}
+        \item Calculate the flight distance of a B$^{+}$-meson with 20 GeV energy if its lifetime is $1.6x10^{-12}$ s and its mass is 5.38 GeV. 
+        \item 
+    \end{enumerate}
 \end{problem}
 \newpage
 \begin{problem}
