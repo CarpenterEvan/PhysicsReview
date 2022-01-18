@@ -90,7 +90,12 @@
             {\frac{\partial^{#2} #3}{\partial #4^{#2}}}
                 }} 
                 
-
+\NewDocumentCommand \header {m m m}{
+	\fancyhead[L]{#1} 
+	\fancyhead[C]{\hyperlink{top}{ \textbf{#2} }}
+	\fancyhead[R]{#3}
+	\pagestyle{fancy}
+	\setlength\headheight{17pt}}
     
 \NewDocumentCommand{\coloredanswer}{O{LavenderBlush2} m}{ % makes coloredbox with pretty color
 	\mathchoice

@@ -1,0 +1,55 @@
+\documentclass{article}
+\input{../../commands.tex}
+\header{Physics 457}{Homework 1}{Evan Carpenter}
+\thetitle{Physics 457 Hw 1}
+\date{Due: 01-19-2022}
+\author{\EC}
+\DeclareMathOperator{\GeV}{GeV}
+\begin{document}
+\maketitle
+\begin{problem}
+Make the following unit conversions, and show all work. 
+Note that this tests how you use natural units where $c = \hbar = k_B = 1$. Thus, there is one 
+fundamental dimension, which we can take to be energy and express it in GeV to various 
+powers.
+\begin{enumerate}[label=\alph*)]
+    \item 1 GeV, in joules (energy) 
+    \item 1 GeV, in Kelvin (temperature) 
+    \item 1 GeV, in kilograms (mass) 
+    \item 1 GeV$^{-1}$, in meters (length) 
+    \item 1 GeV$^{-1}$, in seconds (time) 
+    \item 1 GeV$^{4}$, in kg/m$^3$ (mass density) 
+\end{enumerate}
+\answerline
+\begin{enumerate}[label=\alph*)]
+    \item $1~GeV= 1.602\times10^{-10}~J$ 
+    \item $k_B=8.617 333 262\times 10^{-5} eV/K=1
+        \rightarrow
+        8.617 333 262\times 10^{-14} \GeV=1K\rightarrow \coloredanswer{1\GeV=1.16045\times10^{13}K}$
+    \item $E=mc^2$ so $E/c^2=m\rightarrow\coloredanswer{1\GeV=1.783 \times10^{-27} kg}$ 
+    \item $E=\frac{hc}{\lambda}$ so $1\GeV^{-1}=\frac{\lambda}{hc}\rightarrow \lambda=$
+\end{enumerate}
+\end{problem}
+\newpage
+\begin{problem}
+    Unstable particles appear to live longer if moving, therefore can travel a longer distance after creation. Consider the following problems and calculate the flight distances. 
+    \begin{enumerate}
+        \item Calculate the flight distance of a muon with 100 GeV energy. Note that the muon lifetime (in its rest frame) is $2.2 \mu s$. 
+        \item Calculate the flight distance of a B$^{+}$-meson with 20 GeV energy if its lifetime is $1.6x10^{-12}$ s and its mass is 5.38 GeV. 
+        \item Pions are produced in the upper atmosphere when a proton from outer space hits a proton in the atmosphere. The pions then decay into muons:
+        \begin{gather*} 
+            \pi^{-}\rightarrow \mu^{-}+\overline{\nu}_\mu
+            \\
+            \pi^{+}\rightarrow \mu^{+}+\nu_\mu
+        \end{gather*}
+        But the lifetime of the pion (2.6 $\times10^{-8}$ s) is much shorter than that of the muon. If the pion is produced at 800 meters above the ground, can it reach the ground if its speed is 0.998c?
+    \end{enumerate}
+    \answerline
+\end{problem}
+\newpage
+\begin{problem}
+    Antiprotons were first created at Lawrence Berkeley National Lab (LBL) in 1955 by a proton beam hitting a proton target with the following reaction:  
+    $$p+p\rightarrow 3p+\overline{p}$$  What is the minimum total energy $E$ of the proton beam to allow this reaction? Please give your answer in unit of proton mass $m_p$. (Hint: using center-of-mass energy $E_{CM}$ conservation, and assume the final particles are produced at rest.)
+    \answerline
+\end{problem}
+\end{document}
