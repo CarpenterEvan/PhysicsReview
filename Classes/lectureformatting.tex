@@ -8,10 +8,10 @@
                   {\vspace{-0.25cm}}
     \tableofcontents\ref{toc:lecturetoc}
 \endgroup
-\newcounter{lecturecount} % new counter for problem numbers, starts at 0 by default
+\newcounter{lecturecount} % starts at 0 by default
 \NewDocumentEnvironment{ lecture } {O{} O{} +b} 
 	{\addtocounter{lecturecount}{1} % increase counter
-		\phantomsection % invisible page marker for hyperref
+		\phantomsection % invisible marker for hyperref
 		\addcontentsline{toc}{subsection}{\makebox[40 pt][l]{\texttt{\small #1 }}~\textbf{Lecture~\thelecturecount:}~\textsl{#2}} % add to table of contents
 		\begin{trivlist} % begin unmarked ("trivial") list
 		\item \colorbox{LavenderBlush2}{\textbf{Lecture \thelecturecount.}~(\texttt{#1})~ \textit{#2}} % Header

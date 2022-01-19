@@ -8,34 +8,36 @@
 \begin{document}
 \maketitle
 \begin{problem}
-Make the following unit conversions, and show all work. 
-Note that this tests how you use natural units where $c = \hbar = k_B = 1$. Thus, there is one 
-fundamental dimension, which we can take to be energy and express it in GeV to various 
-powers.
-\begin{enumerate}[label=\alph*)]
-    \item 1 GeV, in joules (energy) 
-    \item 1 GeV, in Kelvin (temperature) 
-    \item 1 GeV, in kilograms (mass) 
-    \item 1 GeV$^{-1}$, in meters (length) 
-    \item 1 GeV$^{-1}$, in seconds (time) 
-    \item 1 GeV$^{4}$, in kg/m$^3$ (mass density) 
-\end{enumerate}
-\answerline
-\begin{enumerate}[label=\alph*)]
-    \item $1~GeV= 1.602\times10^{-10}~J$ 
-    \item $k_B=8.617 333 262\times 10^{-5} eV/K=1
-        \rightarrow
-        8.617 333 262\times 10^{-14} \GeV=1K\rightarrow \coloredanswer{1\GeV=1.16045\times10^{13}K}$
-    \item $E=mc^2$ so $E/c^2=m\rightarrow\coloredanswer{1\GeV=1.783 \times10^{-27} kg}$ 
-    \item $E=\frac{hc}{\lambda}$ so $1\GeV^{-1}=\frac{\lambda}{hc}\rightarrow \coloredanswer{1\GeV^{-1}=1.973\times10^{-16}m}$
-    \item $\hbar=6.58212\times10^{-16}eVs\rightarrow\frac{\hbar}{eV}=6.58212\times10^{-16}s\rightarrow\frac{1}{eV}=6.58212\times10^{-16}s\rightarrow\coloredanswer{\GeV^{-1}=6.58212\times10^{-25}s}$
-    \item Using results from c),d), the answer is:
-    \begin{gather*}
-        \frac{1\GeV}{1\GeV^{-3}}=\frac{1.783 \times10^{-27} kg}{\qty(1.973\times10^{-16}m)^3}
+    Make the following unit conversions, and show all work. 
+    Note that this tests how you use natural units where $c = \hbar = k_B = 1$. Thus, there is one 
+    fundamental dimension, which we can take to be energy and express it in GeV to various 
+    powers.
+    \begin{enumerate}[label=\alph*)]
+        \item 1 GeV, in joules (energy) 
+        \item 1 GeV, in Kelvin (temperature) 
+        \item 1 GeV, in kilograms (mass) 
+        \item 1 GeV$^{-1}$, in meters (length) 
+        \item 1 GeV$^{-1}$, in seconds (time) 
+        \item 1 GeV$^{4}$, in kg/m$^3$ (mass density) 
+    \end{enumerate}
+    \answerline
+    \begin{enumerate}[label=\alph*)]
+        \item $1~GeV= 1.602\times10^{-10}~J$ 
+        \item $k_B=8.617 333 262\times 10^{-5} eV/K=1
+            \rightarrow
+            8.617 333 262\times 10^{-14} \GeV=1K\rightarrow \coloredanswer{1\GeV=1.16045\times10^{13}K}$
+        \item $E=mc^2$ so $E/c^2=m\rightarrow\coloredanswer{1\GeV=1.783 \times10^{-27} kg}$ 
+        \item $E=\frac{hc}{\lambda}$ so $1\GeV^{-1}=\frac{\lambda}{hc}\rightarrow \coloredanswer{1\GeV^{-1}=1.973\times10^{-16}m}$
+        \item $\hbar=6.58212\times10^{-16}eVs\rightarrow\frac{\hbar}{eV}=6.58212\times10^{-16}s$
         \\
-        \coloredanswer{1\GeV^{4}=2.322\times10^{20} kg/m^{3}}
-    \end{gather*} 
-\end{enumerate}
+        $\rightarrow$$\frac{1}{eV}=6.58212\times10^{-16}s\rightarrow\coloredanswer{\GeV^{-1}=6.58212\times10^{-25}s}$
+        \item Using results from c),d), the answer is:
+        \begin{gather*}
+            \frac{1\GeV}{1\GeV^{-3}}=\frac{1.783 \times10^{-27} kg}{\qty(1.973\times10^{-16}m)^3}
+            \\
+            \coloredanswer{1\GeV^{4}=2.322\times10^{20} kg/m^{3}}
+        \end{gather*} 
+    \end{enumerate}
 \end{problem}
 \newpage
 \begin{problem}
@@ -55,22 +57,28 @@ powers.
     \begin{enumerate}[label=\alph*.]
         \item Given the energy and $\Delta t_{lab}$ and knowing 
         \begin{gather*}
-            d_{flight}=v_{lab}\Delta t_{lab}=\boxed{c\gamma\beta\Delta t_{\mu}}
+            d_{flight}=v_{lab}\Delta t_{lab}=\boxed{v\gamma\Delta t_{\mu}}
             \\
-            \gamma\beta=pc/mc^2
+            \gamma=E/m_\mu\approxeq 943.4\implies v\approxeq1(c)
             \\
-            p=\sqrt{E^2-m^2}
+            \Delta t_\mu=2.2\mu s
+            \\
+            m_\mu=0.1056\GeV/c^2
         \end{gather*} 
-        from lecture, I can calculate:\footnote{using muon mass $m_\mu=0.1056\GeV/c^2$} 
-        \begin{align*}
-            d_{flight}&=\frac{pc}{mc^2}c\Delta t_{\mu}=\frac{p}{m}\Delta t_{\mu}
-            \\
-            &=\frac{\sqrt{E^2-m_{\mu}^2c^4}}{m_{\mu}c}\Delta t_{\mu}
-            \\
-            &\coloredanswer{d_{flight}=0.00208m}
-        \end{align*}
-        \item Calculate the flight distance of a B$^{+}$-meson with 20 GeV energy if its lifetime is $1.6\times10^{-12}$ s and its mass is 5.38 GeV. 
-        \item 
+        from lecture, I can calculate:
+        \begin{equation*}
+            d_{flight}=943.4*3\times10^{8}\frac{m}{s}*2.2\times10^{-6}s=622,644m
+            \rightarrow
+            \coloredanswer{d_{flight}=622~\text{km}}
+        \end{equation*}
+        \item $\gamma=\frac{E}{m_{B^+}}=3.71747\rightarrow v\approxeq0.96314c$
+        \begin{equation*}
+            \coloredanswer{d_{flight}=0.001717~\text{m}}
+        \end{equation*}
+        \item $\displaystyle\gamma=\qty(1-\qty(\frac{v}{c})^2)^{-1/2}\approxeq 15.819$
+        \begin{equation*}
+            d_{flight}=0.998c\times15.819\times2.6\times10^{-8}s=\coloredanswer{123.056~\text{m}}
+        \end{equation*}
     \end{enumerate}
 \end{problem}
 \newpage
