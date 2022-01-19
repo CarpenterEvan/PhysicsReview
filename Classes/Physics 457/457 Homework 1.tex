@@ -71,7 +71,7 @@
             \rightarrow
             \coloredanswer{d_{flight}=622~\text{km}}
         \end{equation*}
-        \item $\gamma=\frac{E}{m_{B^+}}=3.71747\rightarrow v\approxeq0.96314c$
+        \item $\gamma=\frac{E}{m_{B^+}c^2}=3.71747\rightarrow v\approxeq0.96314c$
         \begin{equation*}
             \coloredanswer{d_{flight}=0.001717~\text{m}}
         \end{equation*}
@@ -79,6 +79,7 @@
         \begin{equation*}
             d_{flight}=0.998c\times15.819\times2.6\times10^{-8}s=\coloredanswer{123.056~\text{m}}
         \end{equation*}
+        No, the pion will not reach the ground!
     \end{enumerate}
 \end{problem}
 \newpage
@@ -86,5 +87,22 @@
     Antiprotons were first created at Lawrence Berkeley National Lab (LBL) in 1955 by a proton beam hitting a proton target with the following reaction:  
     $$p+p\rightarrow 3p+\overline{p}$$  What is the minimum total energy $E$ of the proton beam to allow this reaction? Please give your answer in unit of proton mass $m_p$. (Hint: using center-of-mass energy $E_{CM}$ conservation, and assume the final particles are produced at rest.)
     \answerline
+    \begin{align*}
+        E_{CM}&=\sqrt{2E_{beam}m_pc^2}=\sqrt{2E_{B}m_pc^2}
+        \\
+        E_{CM}+m_pc^2+0+m_pc^2&=3m_pc^2+m_{\overline{p}}c^2=4m_pc^2
+        \\
+        E_{CM}+2m_pc^2&=4m_pc^2
+        \\
+        \sqrt{2E_{B}m_pc^2}+2m_pc^2&=4m_pc^2
+        \\
+        \sqrt{2E_{B}m_pc^2}&=2m_pc^2
+        \\
+        2E_{B}m_pc^2&=4m_p^2c^4
+        \\
+        E_{B}&=2m_pc^2
+        \\
+        &\coloredanswer{E_{Beam}=2m_p}
+    \end{align*}
 \end{problem}
 \end{document}

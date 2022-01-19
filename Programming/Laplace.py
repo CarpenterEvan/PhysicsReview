@@ -23,7 +23,7 @@ def get_phi(M,target):
         phi,phiprime = phiprime,phi
     return x,phi
 
-M,target = 20, 1e-9
+M,target = 20, 1e-8
 x,phi = get_phi(M, target)
 fig,ax = plt.subplots(1,1)
 fig.colorbar(ax.contourf(x/M,x/M,phi))
