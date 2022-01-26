@@ -44,11 +44,11 @@
   <internal package="biblatex" priority="9" active="0">
     <generic>latex</generic>
     <provides type="dynamic">
-      <file>"Physics 413".aux</file>
-      <file>Physics_413-blx.bib</file>
+      <file>"406 Homework 1".aux</file>
+      <file>406_Homework_1-blx.bib</file>
     </provides>
     <requires type="dynamic">
-      <file>"Physics 413".bbl</file>
+      <file>"406 Homework 1".bbl</file>
     </requires>
     <requires type="static">
       <file>blx-dm.def</file>
@@ -67,20 +67,20 @@
     <cmdline>
       <binary>bibtex</binary>
       <option>-min-crossrefs 2</option>
-      <infile>"Physics 413"</infile>
+      <infile>"406 Homework 1"</infile>
     </cmdline>
     <input>
-      <file>"Physics 413".aux</file>
+      <file>"406 Homework 1".aux</file>
     </input>
     <output>
-      <file>"Physics 413".bbl</file>
+      <file>"406 Homework 1".bbl</file>
     </output>
     <provides type="dynamic">
-      <file>"Physics 413".bbl</file>
+      <file>"406 Homework 1".bbl</file>
     </provides>
     <requires type="dynamic">
-      <file>"Physics 413".aux</file>
-      <file>Physics_413-blx.bib</file>
+      <file>"406 Homework 1".aux</file>
+      <file>406_Homework_1-blx.bib</file>
     </requires>
     <requires type="editable">
     </requires>

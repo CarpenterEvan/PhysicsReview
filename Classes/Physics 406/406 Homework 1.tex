@@ -1,0 +1,74 @@
+\documentclass{article}
+\input{../../commands.tex}
+\header{Physics 406}{}{Evan Carpenter}
+\thetitle{Physics 406 Homework}
+\date{Winter 2022}
+\author{\EC}
+\begin{document}
+\maketitle
+\section{Homework 1}
+\begin{problem}
+    problem 1
+\end{problem}
+\begin{problem}
+    problem 2
+\end{problem}
+\begin{problem}
+    problem 3
+\end{problem}
+\begin{problem}
+    Suppose that a particle moving in one dimension is confined to $x>0$, and it's energy is $E=\frac{p^2}{2m}+mgx$ Make a sketch to indicate what
+    region of classical phase space is accessible to this particle if its energy lies between $E_0$ and $E_0+\delta E_0$.
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}
+            \draw[<->] (-2,0)--(2,0) node [anchor=west]{$x$};
+            \draw[<->] (0,-2)--(0,2) node [anchor=south]{$p$};
+            \draw[scale=0.5, domain=-2:2, smooth, variable=\x, blue] plot({-\x*\x+1}, {\x});
+            \draw[scale=0.5, domain=-2:2, smooth, variable=\x, red] plot({-\x*\x+2}, {\x});
+        \end{tikzpicture}
+        \caption{Particle constrained}
+    \end{figure}
+\end{problem}
+
+\newpage
+\section{Homework 2}
+\setcounter{probcount}{0}
+
+\begin{problem}
+    \begin{enumerate}[label=(\alph*)]
+        \item Show that the number of states $\phi(E)$ with energy less than $E$, for a particle of mass $m$ in a cubical box of side $L$ is:
+        $$\phi(E)=\frac{\pi}{6}\qty(\frac{L}{\pi\hbar})^3\qty(2mE)^{3/2}$$
+        Hint: Use the energy levels 2.1.3 in Reif and treat the n as continuous variables.
+        \item Calculate $\Omega(E)$
+        \item A nitrogen molecule at room temperature has a typical energy of $6\times10^{-14}$ergs. Calculate $\phi(E)$ for a particle in a box of side length 10cm. Also calculate $\Omega(E)$ assuming $\delta E=10^{-24}$ergs
+    \end{enumerate}
+    \answerline
+
+\end{problem}\newpage
+\begin{problem}[Reif 2.4]
+    Consider an isolated system consisting of a large number $N$ of weakly interacting localized particles of spin $\frac{1}{2}$. Each particle has a magnetic moment $\mu$ which can point either parallel or antiparallel to an applied field $H$. The energy od the system is then $E=-(n_1-n_2)\mu H$, where $n_1$ is the number of spins aligned parallel to $H$ and $n_2$ is the number of spins aligned antiparallel to $H$. 
+    \begin{enumerate}[label=(\alph*)]
+        \item Consider the energy range between $E+\delta E$ where $\delta E$ is much smaller than $E$, but $E$ is still microscopically large, so $\mu H \ll \delta E\ll E$. What is $\Omega(E)$ (the total number of states  in the energy range)?
+        \item Write down an expression for $\ln(\Omega(E))$ as a function of $E$. Simplify this expression by using Stirling's formula in it's simplest form: $$\ln(n!)\approx n\ln(n)-n$$
+        \item Assume that the energy $E$ is in a region where $\Omega(E)$ is appreciable~$\rightarrow$~that it is not close to the extreme possible values $\pm N\mu H$ which it can assume. In this case apply a Gaussian approximation to part (a) to obtain a simple expression for $\Omega(E)$ as a function of $E$.
+    \end{enumerate}
+    \answerline
+\end{problem}\newpage
+\def\dbar{{\mathchar'26\mkern-12mu d}} % found online
+\begin{problem}[Reif 2.5]
+    Consider the infinitesimal quantity $$A(x,y)dx+B(x,y)dy\equiv\dbar F$$
+    \begin{enumerate}[label=(\alph*)]
+        \item Suppose $\dbar F$ is an exact differential so that $F=F(x,y)$. Show that $A,B$ must satisfy the condition: $$\pder{A}{y}=\pder{B}{x}$$
+        \item If $\dbar F$ is an exact differential, show that the integral $\int \dbar F$ evaluated along any clsoed path on the $xy$ plane must vanish.
+    \end{enumerate}
+    \answerline
+\end{problem}\newpage
+\begin{problem}[Reif 2.7]
+    \begin{enumerate}[label=(\alph*)]
+        \item Consider a particle confined to a cubical box. The possible energy levels are given by $$E=\frac{(\hbar \pi)^2}{2m}\qty[\qty(\frac{n_x}{L_x})^2+ \qty(\frac{n_y}{L_y})^2+ \qty(\frac{n_z}{L_z})^2]$$ Show that the force exerted by the particle in this state on a wall perpendicular to the $x$ axis is given by $$F_x=-\pder{E}{L_x}$$ while the length $L_x$ is changed quasi-statically by an amount $d L_x$.
+        \item Calculate explicitly the pressure on this wall. By averaging over all posible states, find an expression for the mean pressure on this wall (Hint: Exploit the property that $\overline{n_x^2}=\overline{n_y^2}=\overline{n_z^2}$ must be true by symmetry.) Show that the mean pressure can be simply expressed in terms of mean energy $\overline{E}$ of the particle and the volume $V=L_xL_yL_z$ of the box.  
+    \end{enumerate}
+    \answerline
+\end{problem}
+\end{document}
