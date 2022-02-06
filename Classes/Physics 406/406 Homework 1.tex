@@ -4,102 +4,152 @@
 \thetitle{Physics 406 Homework}
 \date{Winter 2022}
 \author{\EC}
+\counterwithin{probcount}{section} % reset problem every section.
 \begin{document}
 \maketitle
-\section{Homework 1}
-\begin{problem}
-    problem 1
-\end{problem}
-\begin{problem}
-    problem 2
-\end{problem}
-\begin{problem}
-    problem 3
-\end{problem}
-\begin{problem}
-    Suppose that a particle moving in one dimension is confined to $x>0$, and it's energy is $E=\frac{p^2}{2m}+mgx$ Make a sketch to indicate what
-    region of classical phase space is accessible to this particle if its energy lies between $E_0$ and $E_0+\delta E_0$.
-    \begin{figure}[H]
-        \centering
-        \begin{tikzpicture}
-            \draw[<->] (-2,0)--(2,0) node [anchor=west]{$x$};
-            \draw[<->] (0,-2)--(0,2) node [anchor=south]{$p$};
-            \draw[scale=0.5, domain=-2:2, smooth, variable=\x, blue] plot({-\x*\x+1}, {\x});
-            \draw[scale=0.5, domain=-2:2, smooth, variable=\x, red] plot({-\x*\x+2}, {\x});
-        \end{tikzpicture}
-        \caption{Particle constrained}
-    \end{figure}
-\end{problem}
-
+\tableofcontents
 \newpage
+\section{Homework 1}
+    \begin{problem}
+        Prove that the quantity $\displaystyle S=-k\sum_{r=1}^{n}p_r\ln(p_r)$ is a maximum when $p_r=\frac{1}{2}$. You may need to use the inequality: $$\ln(\oo{np_r})\leq\qty(\oo{np_r}-1)$$
+        This completes the proof that the choide of equal relative probabilities for the states in a microcanonical ensemble maximizes missing information (entropy).
+        \answerline
+    \end{problem}\newpage
+    \begin{problem}[Reif 2.3]
+        Consider an ensemble of classical 1-D Harmonic oscillators. 
+        \begin{enumerate}[label=(\alph*)]
+            \item Let the displacement $x$ of an oscillattor as a function of time $t$ be given by $x=A\cos(\omega t+\varphi)$. Assume that the phase angle $\varphi$ is equally likely to assume any value $0<\varphi<2\pi$. The probability $w(\varphi)d\varphi$ that $\varphi$ lies in the range between $\varphi,\varphi+d\varphi$ is then simply $$w(\varphi)d\varphi=\frac{d\varphi}{2\pi}$$For any fixed time $t$, find the probability $P(x)dx$ that $x$ lies between $x+dx$ by summing $w(\varphi)d\varphi$ over all angles for which $x$ lies in this range. Express $P(x)$ in terms of $A,x$. 
+            \item Consider the classical phase space for such an ensemble of oscillators, their energy being known to lie in the small range between $E,E+\delta E$. Calculate $P(x)$ by taking the ratio of that volume of phase space lying in this energy range \emph{and} in the range between $x,x+dx$ to the total volume of phase space lying in the energy range between $E,E+\delta E$. Express $P(x)$ in terms of $E,x$. By relating $E$ to the amplitude $A$, show that the result is the same as that obtained in (a)
+        \end{enumerate}
+        \answerline
+    \end{problem}\newpage
+    \begin{problem}
+        Consider an assembly of $N$ weakly interacting one dimensional harmonic oscillators, each with a mass $m$ and frequency $\omega$.
+        \begin{enumerate}[label=(\alph*)]
+            \item Describe the region of phase space that is accessible to this system
+            if its energy lies between $E$ and $E + \delta E$.
+            \item Use phase space considerations to find how entropy of this system depends on $E$. (There will be an additive constant independent of $E$ which you need not determine.)
+            \item How would a microstate of this system be described in quantum mechanical terms?
+        \end{enumerate}
+    \end{problem}\newpage
+    \begin{problem}
+        Suppose that a particle moving in one dimension is confined to $x>0$, and it's energy is $E=\frac{p^2}{2m}+mgx$ Make a sketch to indicate what
+        region of classical phase space is accessible to this particle if its energy lies between $E_0$ and $E_0+\delta E_0$.
+        \begin{figure}[H]
+            \centering
+            \begin{tikzpicture}
+                \draw[<->] (-2,0)--(2,0) node [anchor=west]{$x$};
+                \draw[<->] (0,-2)--(0,2) node [anchor=south]{$p$};
+                \draw[scale=0.5, domain=-2:2, smooth, variable=\x, blue] plot({-\x*\x+1}, {\x});
+                \draw[scale=0.5, domain=-2:2, smooth, variable=\x, red] plot({-\x*\x+2}, {\x});
+            \end{tikzpicture}
+            \caption{Particle constrained}
+        \end{figure}
+    \end{problem}\newpage
 \section{Homework 2}
-\setcounter{probcount}{0}
+    \begin{problem}
+        \begin{enumerate}[label=(\alph*)]
+            \item Show that the number of states $\phi(E)$ with energy less than $E$, for a particle of mass $m$ in a cubical box of side $L$ is:
+            $$\phi(E)=\frac{\pi}{6}\qty(\frac{L}{\pi\hbar})^3\qty(2mE)^{3/2}$$
+            Hint: Use the energy levels 2.1.3 in Reif and treat the n as continuous variables.
+            \item Calculate $\Omega(E)$
+            \item A nitrogen molecule at room temperature has a typical energy of $6\times10^{-14}$ergs. Calculate $\phi(E)$ for a particle in a box of side length 10cm. Also calculate $\Omega(E)$ assuming $\delta E=10^{-24}$ergs
+        \end{enumerate}
+        \answerline
 
-\begin{problem}
-    \begin{enumerate}[label=(\alph*)]
-        \item Show that the number of states $\phi(E)$ with energy less than $E$, for a particle of mass $m$ in a cubical box of side $L$ is:
-        $$\phi(E)=\frac{\pi}{6}\qty(\frac{L}{\pi\hbar})^3\qty(2mE)^{3/2}$$
-        Hint: Use the energy levels 2.1.3 in Reif and treat the n as continuous variables.
-        \item Calculate $\Omega(E)$
-        \item A nitrogen molecule at room temperature has a typical energy of $6\times10^{-14}$ergs. Calculate $\phi(E)$ for a particle in a box of side length 10cm. Also calculate $\Omega(E)$ assuming $\delta E=10^{-24}$ergs
-    \end{enumerate}
-    \answerline
-
-\end{problem}\newpage
-\begin{problem}[Reif 2.4]
-    Consider an isolated system consisting of a large number $N$ of weakly interacting localized particles of spin $\frac{1}{2}$. Each particle has a magnetic moment $\mu$ which can point either parallel or antiparallel to an applied field $H$. The energy od the system is then $E=-(n_1-n_2)\mu H$, where $n_1$ is the number of spins aligned parallel to $H$ and $n_2$ is the number of spins aligned antiparallel to $H$. 
-    \begin{enumerate}[label=(\alph*)]
-        \item Consider the energy range between $E+\delta E$ where $\delta E$ is much smaller than $E$, but $E$ is still microscopically large, so $\mu H \ll \delta E\ll E$. What is $\Omega(E)$ (the total number of states  in the energy range)?
-        \item Write down an expression for $\ln(\Omega(E))$ as a function of $E$. Simplify this expression by using Stirling's formula in it's simplest form: $$\ln(n!)\approx n\ln(n)-n$$
-        \item Assume that the energy $E$ is in a region where $\Omega(E)$ is appreciable~$\rightarrow$~that it is not close to the extreme possible values $\pm N\mu H$ which it can assume. In this case apply a Gaussian approximation to part (a) to obtain a simple expression for $\Omega(E)$ as a function of $E$.
-    \end{enumerate}
-    \answerline
-\end{problem}\newpage
-\def\dbar{{\mathchar'26\mkern-12mu d}} % found online
-\begin{problem}[Reif 2.5]
-    Consider the infinitesimal quantity $$A(x,y)dx+B(x,y)dy\equiv\dbar F$$
-    \begin{enumerate}[label=(\alph*)]
-        \item Suppose $\dbar F$ is an exact differential so that $F=F(x,y)$. Show that $A,B$ must satisfy the condition: $$\pder{A}{y}=\pder{B}{x}$$
-        \item If $\dbar F$ is an exact differential, show that the integral $\int \dbar F$ evaluated along any clsoed path on the $xy$ plane must vanish.
-    \end{enumerate}
-    \answerline
-\end{problem}\newpage
-\begin{problem}[Reif 2.7]
-    \begin{enumerate}[label=(\alph*)]
-        \item Consider a particle confined to a cubical box. The possible energy levels are given by $$E=\frac{(\hbar \pi)^2}{2m}\qty[\qty(\frac{n_x}{L_x})^2+ \qty(\frac{n_y}{L_y})^2+ \qty(\frac{n_z}{L_z})^2]$$ Show that the force exerted by the particle in this state on a wall perpendicular to the $x$ axis is given by $$F_x=-\pder{E}{L_x}$$ while the length $L_x$ is changed quasi-statically by an amount $d L_x$.
-        \item Calculate explicitly the pressure on this wall. By averaging over all posible states, find an expression for the mean pressure on this wall (Hint: Exploit the property that $\overline{n_x^2}=\overline{n_y^2}=\overline{n_z^2}$ must be true by symmetry.) Show that the mean pressure can be simply expressed in terms of mean energy $\overline{E}$ of the particle and the volume $V=L_xL_yL_z$ of the box.  
-    \end{enumerate}
-    \answerline
-\end{problem}\newpage
+    \end{problem}\newpage
+    \begin{problem}[Reif 2.4]
+        Consider an isolated system consisting of a large number $N$ of weakly interacting localized particles of spin $\frac{1}{2}$. Each particle has a magnetic moment $\mu$ which can point either parallel or antiparallel to an applied field $H$. The energy of the system is then $E=-(n_1-n_2)\mu H$, where $n_1$ is the number of spins aligned parallel to $H$ and $n_2$ is the number of spins aligned antiparallel to $H$. 
+        \begin{enumerate}[label=(\alph*)]
+            \item Consider the energy range between $E+\delta E$ where $\delta E$ is much smaller than $E$, but $E$ is still microscopically large, so $\mu H \ll \delta E\ll E$. What is $\Omega(E)$ (the total number of states  in the energy range)?
+            \item Write down an expression for $\ln(\Omega(E))$ as a function of $E$. Simplify this expression by using Stirling's formula in it's simplest form: $$\ln(n!)\approx n\ln(n)-n$$
+            \item Assume that the energy $E$ is in a region where $\Omega(E)$ is appreciable~$\rightarrow$~that it is not close to the extreme possible values $\pm N\mu H$ which it can assume. In this case apply a Gaussian approximation to part (a) to obtain a simple expression for $\Omega(E)$ as a function of $E$.
+        \end{enumerate}
+        \answerline
+        \begin{enumerate}[label=(\alph*)]
+            \item Using the equation $E=-(n_1-n_2)\mu H$ and knowing that $\Omega(E)=\frac{N!}{n_1!n_2!}\delta n$
+            \begin{align*}
+                E&=-(n_1-n_2)\mu H=-(n_1-(N-n_1))\mu H=-(2n_1-N)\mu H
+                \\
+                &n_1=\frac{N}{2}-\frac{E}{2\mu H}\quad,\quad n_2=\frac{N}{2}+\frac{E}{2\mu H}
+                \\
+                \delta E&=|-2\delta n\mu H|\rightarrow \delta n=\frac{\delta E}{2\mu H}
+                \\
+                &\boxed{\Omega(E)=\frac{N!}{\qty(\oo[N]{2}-\frac{E}{2\mu H})!\qty(\oo[N]{2}+\frac{E}{2\mu H})!}\frac{\delta E}{2\mu H}}
+            \end{align*}
+            \item $\displaystyle\ln\Omega(E)=\ln(N!)-\ln(n_1!)-\ln(n_2!)+\ln(\frac{\delta E}{2\mu H})$
+            \\ Now, using Stirling's approximation: 
+            \begin{align*}
+                \ln\Omega(E)&\approx N\ln(N)-N-(n_1\ln(n_1)-n_1)-(n_2\ln(n_2)-n_2)+\ln(\frac{\delta E}{2\mu H})
+                \\
+                &\approx N\ln(N)-\cancel{N}-n_1\ln(n_1)+\qty(\cancel{\frac{N}{2}}-\xcancel{\frac{E}{2\mu H}})-n_2\ln(n_2)+\qty(\cancel{\frac{N}{2}}+\xcancel{\frac{E}{2\mu H}})
+                \\
+                &\approx N\ln(N)-n_1\ln(n_1)-n_2\ln(n_2)+\ln(\frac{\delta E}{2\mu H})
+            \end{align*}
+        \end{enumerate}
+    \end{problem}\newpage
+    \def\dbar{{\mathchar'26\mkern-12mu d}} % found online
+    \begin{problem}[Reif 2.5]
+        Consider the infinitesimal quantity $$A(x,y)dx+B(x,y)dy\equiv\dbar F$$
+        \begin{enumerate}[label=(\alph*)]
+            \item Suppose $\dbar F$ is an exact differential so that $F=F(x,y)$. Show that $A,B$ must satisfy the condition: $$\pder{A}{y}=\pder{B}{x}$$
+            \item If $\dbar F$ is an exact differential, show that the integral $\int \dbar F$ evaluated along any clsoed path on the $xy$ plane must vanish.
+        \end{enumerate}
+        \answerline
+        \begin{enumerate}[label=(\alph*)]
+            \item Using the definition of F with exact differentials:
+            \begin{align*}
+                Adx+Bdy&=dF=\pder{F}{x}dx+\pder{F}{y}dy
+                \\
+                Adx&=\pder{F}{x}dx 
+                \quad,\quad
+                Bdy=\pder{F}{y}dy
+                \rightarrow
+            \pder{A}{y}=\pder{F}{xy}=\pder{B}{x}\quad\checkmark
+            \end{align*}
+            \item $dF$ is exact $\iff\int_a^bdF=F(b)-F(a)$. 
+            \\[0.25 cm]
+            Closed path $\implies$ a=b.
+            \\[0.25 cm]
+            $\int_a^adF=F(a)-F(a)=0\quad\checkmark$
+        \end{enumerate}
+    \end{problem}\newpage
+    \begin{problem}[Reif 2.7]
+        \begin{enumerate}[label=(\alph*)]
+            \item Consider a particle confined to a cubical box. The possible energy levels are given by $$E=\frac{(\hbar \pi)^2}{2m}\qty[\qty(\frac{n_x}{L_x})^2+ \qty(\frac{n_y}{L_y})^2+ \qty(\frac{n_z}{L_z})^2]$$ Show that the force exerted by the particle in this state on a wall perpendicular to the $x$ axis is given by $$F_x=-\pder{E}{L_x}$$ while the length $L_x$ is changed quasi-statically by an amount $d L_x$.
+            \item Calculate explicitly the pressure on this wall. By averaging over all posible states, find an expression for the mean pressure on this wall (Hint: Exploit the property that $\overline{n_x^2}=\overline{n_y^2}=\overline{n_z^2}$ must be true by symmetry.) Show that the mean pressure can be simply expressed in terms of mean energy $\overline{E}$ of the particle and the volume $V=L_xL_yL_z$ of the box.  
+        \end{enumerate}
+        \answerline
+    \end{problem}\newpage
 \section{Homework 3}
-\begin{problem}[Reif 2.11]
-    In a quasi-static process $A\rightarrow B$ (Add diagram) in which no heat is exchanged with the environment, the mean pressure $\overline{p}$ of a certain amount of gas is found to change with its volume $V$ according to the relation: $$\overline{p}=\alpha V^{-5/3}$$ where $\alpha$ is a constant. Find the quasi-static work done and the net heat absorbed by the system in each of the following three processes, all of which take the system from macrostate $A$ to macrostate $B$. 
-    \begin{enumerate}[label=(\alph*)]
-        \item The system is expanded from its original to its final volume, heat being added to maintain the pressure constant. The volume is then kept constant, and heat is extracted to reduce the pressure to $10^{-6}$ dynes cm$^{-2}$.
-        \item The volume is increased and heat is supploed to cause the pressure to decrease linearly with the volume. 
-        \item The two steps in process (a) are performed in the oppisite order. 
-    \end{enumerate}
-    \answerline
-\end{problem}\newpage
-\begin{problem}[Reif 3.2]
-    Consider a system of $N$ localized weakly-interacting particles, each of spin $1/2$ and magnetic moment $\mu$ located in an external magnetic field $H$. \footnote{This system was already discussed in Reif 2.4}
-    \begin{enumerate}[label=(\alph*)]
-        \item Using the expression for $\ln(\Omega(E))$ calculated in Reif 2.4b and the definition $\beta=\pder{\ln\Omega}{E}$ find the relation between the absolute temperature $T$ and the total energy $E$ of this system. 
-        \item Under what circumstances is $T$ negative?
-        \item The total magnetic moment $M$ of this system is related to its energy $E$. Use the result of part (a) to find $M$ as a function of $H$ and the absolute temperature $T$.
-    \end{enumerate}
-    \answerline
-\end{problem}\newpage
-\begin{problem}[Reif 3.4]
-    Suppose a system $A$ is places into thermal contact with a heat reservoir $A'$ which is at an absolute temperature $T'$ and that A absorbs an amount of heat $Q$ in this process. Show that the entropy increase $\Delta S$ of $A$ in this process satisfies the inequality $$\Delta S \geq \frac{Q}{T'}$$ Where the = case is only valid if the initial temperature of $A$ differs infinitesimally from $T'$. 
-    \answerline
-\end{problem}\newpage
-\begin{problem}[Reif 3.5]
-    A system consists of $N_1$ molecules of type 1, and $N_2$ molecules of type 2 confined within a box of volume $V$. The molecules are supposed to interact very weakly so that they constitute an ideal gas mixture. 
-    \begin{enumerate}[label=(\alph*)]
-        \item How does $\Omega(E)$ (the total number of states between $E,E+\delta E$) depend on $V$ in this system? You may treat the problem clasically. 
-        \item Use this result to find the equation of the state of this system$\rightarrow$ find the mean pressure $\overline{p}$ as a function of $V,T$.
-    \end{enumerate}
-    \answerline
-\end{problem}
+    \begin{problem}[Reif 2.11]
+        In a quasi-static process $A\rightarrow B$ (Add diagram) in which no heat is exchanged with the environment, the mean pressure $\overline{p}$ of a certain amount of gas is found to change with its volume $V$ according to the relation: $$\overline{p}=\alpha V^{-5/3}$$ where $\alpha$ is a constant. Find the quasi-static work done and the net heat absorbed by the system in each of the following three processes, all of which take the system from macrostate $A$ to macrostate $B$. 
+        \begin{enumerate}[label=(\alph*)]
+            \item The system is expanded from its original to its final volume, heat being added to maintain the pressure constant. The volume is then kept constant, and heat is extracted to reduce the pressure to $10^{-6}$ dynes cm$^{-2}$.
+            \item The volume is increased and heat is supploed to cause the pressure to decrease linearly with the volume. 
+            \item The two steps in process (a) are performed in the oppisite order. 
+        \end{enumerate}
+        \answerline
+    \end{problem}\newpage
+    \begin{problem}[Reif 3.2]
+        Consider a system of $N$ localized weakly-interacting particles, each of spin $1/2$ and magnetic moment $\mu$ located in an external magnetic field $H$. \footnote{This system was already discussed in Reif 2.4}
+        \begin{enumerate}[label=(\alph*)]
+            \item Using the expression for $\ln(\Omega(E))$ calculated in Reif 2.4b and the definition $\beta=\pder{\ln\Omega}{E}$ find the relation between the absolute temperature $T$ and the total energy $E$ of this system. 
+            \item Under what circumstances is $T$ negative?
+            \item The total magnetic moment $M$ of this system is related to its energy $E$. Use the result of part (a) to find $M$ as a function of $H$ and the absolute temperature $T$.
+        \end{enumerate}
+        \answerline
+    \end{problem}\newpage
+    \begin{problem}[Reif 3.4]
+        Suppose a system $A$ is places into thermal contact with a heat reservoir $A'$ which is at an absolute temperature $T'$ and that A absorbs an amount of heat $Q$ in this process. Show that the entropy increase $\Delta S$ of $A$ in this process satisfies the inequality $$\Delta S \geq \frac{Q}{T'}$$ Where the = case is only valid if the initial temperature of $A$ differs infinitesimally from $T'$. 
+        \answerline
+    \end{problem}\newpage
+    \begin{problem}[Reif 3.5]
+        A system consists of $N_1$ molecules of type 1, and $N_2$ molecules of type 2 confined within a box of volume $V$. The molecules are supposed to interact very weakly so that they constitute an ideal gas mixture. 
+        \begin{enumerate}[label=(\alph*)]
+            \item How does $\Omega(E)$ (the total number of states between $E,E+\delta E$) depend on $V$ in this system? You may treat the problem clasically. 
+            \item Use this result to find the equation of the state of this system$\rightarrow$ find the mean pressure $\overline{p}$ as a function of $V,T$.
+        \end{enumerate}
+        \answerline
+    \end{problem}
 \end{document}
