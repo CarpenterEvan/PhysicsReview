@@ -5,6 +5,8 @@
 \date{Winter 2022}
 \author{\EC}
 \counterwithin{probcount}{section} % reset problem every section.
+\addtolength{\jot}{0.25cm} % changes row spacing to 0.25cm in align environment. Equivalent to replacing all \\ with \\[0.25cm] in align environment. 
+\def\dbar{{\mathchar'26\mkern-12mu d}} % found online
 \begin{document}
 \maketitle
 \tableofcontents
@@ -12,7 +14,7 @@
 \section{Homework 1}
     \begin{problem}
         Prove that the quantity $\displaystyle S=-k\sum_{r=1}^{n}p_r\ln(p_r)$ is a maximum when $p_r=\frac{1}{2}$. You may need to use the inequality: $$\ln(\oo{np_r})\leq\qty(\oo{np_r}-1)$$
-        This completes the proof that the choide of equal relative probabilities for the states in a microcanonical ensemble maximizes missing information (entropy).
+        This completes the proof that the choice of equal relative probabilities for the states in a microcanonical ensemble maximizes missing information (entropy).
         \answerline
     \end{problem}\newpage
     \begin{problem}[Reif 2.3]
@@ -31,6 +33,8 @@
             \item Use phase space considerations to find how entropy of this system depends on $E$. (There will be an additive constant independent of $E$ which you need not determine.)
             \item How would a microstate of this system be described in quantum mechanical terms?
         \end{enumerate}
+        \answerline
+        \textcolor{red}{What does weakly interacting mean? How do we define it, interacting with the system? not each other?}
     \end{problem}\newpage
     \begin{problem}
         Suppose that a particle moving in one dimension is confined to $x>0$, and it's energy is $E=\frac{p^2}{2m}+mgx$ Make a sketch to indicate what
@@ -38,12 +42,22 @@
         \begin{figure}[H]
             \centering
             \begin{tikzpicture}
-                \draw[<->] (-2,0)--(2,0) node [anchor=west]{$x$};
-                \draw[<->] (0,-2)--(0,2) node [anchor=south]{$p$};
-                \draw[scale=0.5, domain=-2:2, smooth, variable=\x, blue] plot({-\x*\x+1}, {\x});
-                \draw[scale=0.5, domain=-2:2, smooth, variable=\x, red] plot({-\x*\x+2}, {\x});
+                \begin{axis}[ultra thick,
+                            samples=40,
+                            range=0:2,
+                            xtick={0},
+                            ytick={0},
+                            xticklabels={0,},
+                            yticklabels={0,},
+                            xlabel={Momentum $(p)$},
+                            ylabel={Position $(x)$}]
+                    \addplot [name path=E, blue, domain=-1:1]{-x^2+1} node [pos=0.25, anchor=west] {$E$};
+                    \addplot [name path=dE, red, domain=-1.41:1.41]{-x^2+2} node [pos=0.25, anchor=east] {$E+dE$};
+                    \addplot[thin, black, domain=-1.5:1.5]{0};
+                    \addplot [purple!30] fill between [of = E and dE, soft clip={domain=-1.5:1.5}];
+                \end{axis}
             \end{tikzpicture}
-            \caption{Particle constrained}
+            \caption{Particle constrained between blue and red curves.}
         \end{figure}
     \end{problem}\newpage
 \section{Homework 2}
@@ -52,11 +66,49 @@
             \item Show that the number of states $\phi(E)$ with energy less than $E$, for a particle of mass $m$ in a cubical box of side $L$ is:
             $$\phi(E)=\frac{\pi}{6}\qty(\frac{L}{\pi\hbar})^3\qty(2mE)^{3/2}$$
             Hint: Use the energy levels 2.1.3 in Reif and treat the n as continuous variables.
+            \\[0.5 cm]
+            Reif 2.1.3: $\displaystyle E=\frac{(\hbar \pi)^2}{2m}\qty[\qty(\frac{n_x}{L_x})^2+ \qty(\frac{n_y}{L_y})^2+ \qty(\frac{n_z}{L_z})^2]$
             \item Calculate $\Omega(E)$
             \item A nitrogen molecule at room temperature has a typical energy of $6\times10^{-14}$ergs. Calculate $\phi(E)$ for a particle in a box of side length 10cm. Also calculate $\Omega(E)$ assuming $\delta E=10^{-24}$ergs
         \end{enumerate}
         \answerline
-
+        \begin{enumerate}[label=\alph*)]
+            \item Reif 2.1.3 can be simplified, knowing that the box is a cube implies that $L_x=L_y=L_z\equiv L$. 
+            \\
+            The remaining $n_x,n_y,n_z$ describe a sphere of radius $R=n_x^2+n_y^2+n_z^2$ in phase space. 
+            \begin{figure}[H]
+                \centering
+                \begin{tikzpicture}
+                    \draw[-latex] (0,0,0)--(2,0,0) node [anchor=west]{$n_y$};
+                    \draw[-latex] (0,0,0)--(0,2,0) node [anchor=south]{$n_z$};
+                    \draw[-latex] (0,0,0)--(0,0,2) node [anchor=north east]{$n_x$};
+                    \draw [thick, red] (0,0,0)--(0.7,0,0.7) node [anchor=north west]{R};
+                    \begin{scope}[thick]
+                        \draw[canvas is xz plane at y=0] (0,0)++(1,0) arc[start angle=0, end angle=90,radius=1];
+                        \draw[canvas is xz plane at y=0.25] (0,0)++(0.96,0) arc[start angle=0, end angle=90,radius=0.96];
+                        \draw[canvas is xz plane at y=0.5] (0,0)++(0.87,0) arc[start angle=0, end angle=90,radius=0.87];
+                        \draw[canvas is xz plane at y=0.75] (0,0)++(0.68,0) arc[start angle=0, end angle=90,radius=0.68];
+                        \draw[canvas is yz plane at x=0] (0,0)++(1,0) arc[start angle=0, end angle=90,radius=1];
+                        \draw[canvas is xy plane at z=0] (0,0)++(1,0) arc[start angle=0, end angle=90,radius=1];
+                    \end{scope}
+                \end{tikzpicture}
+                \caption*{$\displaystyle E=\frac{(\hbar \pi)^2}{2mL^2}\qty[\textcolor{Red1}{ n_x^2+ n_y^2+ n_z^2}]$}
+            \end{figure} 
+            All possible states for the system are contained in this sphere. Since we can assume $n_x,n_y,n_z$ are continuous, $\phi(E)$ is just the volume of this slice of the sphere ($V=\oo{8}\frac{4}{3}\pi R^3$): 
+            \begin{equation*}
+                \boxed{\phi(E)=\oo{8}\frac{4}{3}\pi R^3}\longrightarrow
+                \boxed{\phi(E)=\oo[\pi]{6}\qty(\sqrt{2mE}\frac{L}{\hbar\pi})^3}
+                \longrightarrow
+                \boxed{\phi(E)=\frac{\pi}{6}\qty(\frac{L}{\pi\hbar})^3\qty(2mE)^{3/2}}\quad\checkmark
+            \end{equation*}
+            \item $\displaystyle \Omega(E)=\phi(E+\delta E)-\phi(E)=\frac{\phi(E+\delta E)-\phi(E)}{\delta E}\delta E= \der{\phi}{E}\delta E$
+            \begin{align*}
+                \Omega(E)&=\der{\phi}{E}\delta E=\frac{\pi}{6}\qty(\frac{L}{\pi\hbar})^3\qty(\frac{3}{\cancel{2}})(\cancel{2}m)\qty(2mE)^{1/2}\delta E
+                \\
+                &\coloredanswer{\Omega(E)=\frac{m\pi}{2}\sqrt{2mE}\qty(\frac{L}{\pi\hbar})^3\delta E}
+            \end{align*}
+            \item \textcolor{Red1}{Find energy in joules, plug in to phi equation with other units, or just use cgs}
+        \end{enumerate}
     \end{problem}\newpage
     \begin{problem}[Reif 2.4]
         Consider an isolated system consisting of a large number $N$ of weakly interacting localized particles of spin $\frac{1}{2}$. Each particle has a magnetic moment $\mu$ which can point either parallel or antiparallel to an applied field $H$. The energy of the system is then $E=-(n_1-n_2)\mu H$, where $n_1$ is the number of spins aligned parallel to $H$ and $n_2$ is the number of spins aligned antiparallel to $H$. 
@@ -66,16 +118,16 @@
             \item Assume that the energy $E$ is in a region where $\Omega(E)$ is appreciable~$\rightarrow$~that it is not close to the extreme possible values $\pm N\mu H$ which it can assume. In this case apply a Gaussian approximation to part (a) to obtain a simple expression for $\Omega(E)$ as a function of $E$.
         \end{enumerate}
         \answerline
-        \begin{enumerate}[label=(\alph*)]
+        \begin{enumerate}[label=\alph*)]
             \item Using the equation $E=-(n_1-n_2)\mu H$ and knowing that $\Omega(E)=\frac{N!}{n_1!n_2!}\delta n$
             \begin{align*}
                 E&=-(n_1-n_2)\mu H=-(n_1-(N-n_1))\mu H=-(2n_1-N)\mu H
                 \\
-                &n_1=\frac{N}{2}-\frac{E}{2\mu H}\quad,\quad n_2=\frac{N}{2}+\frac{E}{2\mu H}
+                &\boxed{n_1=\frac{N}{2}-\frac{E}{2\mu H}\quad,\quad n_2=\frac{N}{2}+\frac{E}{2\mu H}}
                 \\
                 \delta E&=|-2\delta n\mu H|\rightarrow \delta n=\frac{\delta E}{2\mu H}
                 \\
-                &\boxed{\Omega(E)=\frac{N!}{\qty(\oo[N]{2}-\frac{E}{2\mu H})!\qty(\oo[N]{2}+\frac{E}{2\mu H})!}\frac{\delta E}{2\mu H}}
+                &\coloredanswer{\Omega(E)=\frac{N!}{\qty(\oo[N]{2}-\frac{E}{2\mu H})!\qty(\oo[N]{2}+\frac{E}{2\mu H})!}\frac{\delta E}{2\mu H}}
             \end{align*}
             \item $\displaystyle\ln\Omega(E)=\ln(N!)-\ln(n_1!)-\ln(n_2!)+\ln(\frac{\delta E}{2\mu H})$
             \\ Now, using Stirling's approximation: 
@@ -84,11 +136,10 @@
                 \\
                 &\approx N\ln(N)-\cancel{N}-n_1\ln(n_1)+\qty(\cancel{\frac{N}{2}}-\xcancel{\frac{E}{2\mu H}})-n_2\ln(n_2)+\qty(\cancel{\frac{N}{2}}+\xcancel{\frac{E}{2\mu H}})
                 \\
-                &\approx N\ln(N)-n_1\ln(n_1)-n_2\ln(n_2)+\ln(\frac{\delta E}{2\mu H})
+                &\coloredanswer{\ln\Omega(E)\approx N\ln(N)-n_1\ln(n_1)-n_2\ln(n_2)+\ln(\frac{\delta E}{2\mu H})}
             \end{align*}
         \end{enumerate}
     \end{problem}\newpage
-    \def\dbar{{\mathchar'26\mkern-12mu d}} % found online
     \begin{problem}[Reif 2.5]
         Consider the infinitesimal quantity $$A(x,y)dx+B(x,y)dy\equiv\dbar F$$
         \begin{enumerate}[label=(\alph*)]
@@ -96,7 +147,7 @@
             \item If $\dbar F$ is an exact differential, show that the integral $\int \dbar F$ evaluated along any clsoed path on the $xy$ plane must vanish.
         \end{enumerate}
         \answerline
-        \begin{enumerate}[label=(\alph*)]
+        \begin{enumerate}[label=\alph*)]
             \item Using the definition of F with exact differentials:
             \begin{align*}
                 Adx+Bdy&=dF=\pder{F}{x}dx+\pder{F}{y}dy
@@ -120,6 +171,24 @@
             \item Calculate explicitly the pressure on this wall. By averaging over all posible states, find an expression for the mean pressure on this wall (Hint: Exploit the property that $\overline{n_x^2}=\overline{n_y^2}=\overline{n_z^2}$ must be true by symmetry.) Show that the mean pressure can be simply expressed in terms of mean energy $\overline{E}$ of the particle and the volume $V=L_xL_yL_z$ of the box.  
         \end{enumerate}
         \answerline
+        \begin{enumerate}[label=\alph*)]
+            \item As $\boxed{L_x\rightarrow L_x+dL_x}$ , $\boxed{E\rightarrow E+dE}$~. This means that $dE=[?]dL_x$ for some constant. \textcolor{red}{Since this is a quasi-static process? What about adiabatic? Is there heat?}  
+            \begin{align*}
+                \pder{E}{L_x}&=\frac{(-\cancel{2})(\hbar\pi n_x)^2}{\cancel{2}mL_x^3}=\frac{-(\hbar\pi n_x)^2}{mL_x^3}
+                \\
+                F_x=-\pder{E}{L_x}&=\frac{(\hbar\pi n_x)^2}{mL_x^3}
+            \end{align*}
+            \item Pressure $P_x$ is equivalent to force over area, so $P_x=F_x/A_x$. The area $A_x$ of the wall perpendicular to the $x$ axis is just $L_yL_z$. Since the box is cubical, $L_x=L_y=L_z$ and $\overline{n_x^2}=\overline{n_y^2}=\overline{n_z^2}$.
+            \begin{align*}
+                \overline{E}&=\frac{(\hbar\pi)^2}{2m}\qty(\qty(\frac{\overline{n_x}}{L_x})^2+\qty(\frac{\overline{n_y}}{L_y})^2+\qty(\frac{\overline{n_z}}{L_z})^2)=\frac{(\hbar\pi)^2}{2m}3\qty(\frac{\overline{n_x}}{L_x})^2
+                \\
+                P_x&=\frac{F_x}{L_yL_z}=\frac{(\hbar\pi n_x)^2}{mL_x^3L_yL_z}=\frac{(\hbar\pi)^2}{mL_xL_yL_z}\qty(\frac{n_x}{L_x})=\frac{(\hbar\pi)^2}{mV}\qty(\frac{n_x}{L_x})^2
+                \\
+                \overline{P}_x&=\frac{(\hbar\pi)^2}{mV}\boxed{\qty(\frac{\overline{n_x}}{L_x})^2}\longrightarrow \qty(\frac{\overline{n_x}}{L_x})^2=\frac{2m\overline{E}}{3(\hbar\pi)^2}
+                \\
+                \overline{P}_x&=\frac{\cancel{(\hbar\pi)^2}}{\cancel{m}V}\frac{2\cancel{m}\overline{E}}{3\cancel{(\hbar\pi)^2}}\longrightarrow\coloredanswer{\overline{P}_x=\frac{2}{3}\frac{\overline{E}}{V}}
+            \end{align*}
+        \end{enumerate}
     \end{problem}\newpage
 \section{Homework 3}
     \begin{problem}[Reif 2.11]
@@ -152,4 +221,5 @@
         \end{enumerate}
         \answerline
     \end{problem}
-\end{document}
+
+    \end{document}

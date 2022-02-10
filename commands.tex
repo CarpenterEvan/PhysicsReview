@@ -8,6 +8,7 @@
 \usepackage[backend=bibtex]{biblatex} % bibliography
 \usepackage{bm} % bold for greek letters
 \usepackage{cancel}
+\usepackage[format=hang]{caption}
 \usepackage{enumitem} % Enumerating things
 \usepackage{esint} % better double and triple Integrals
 \usepackage{etoc}
@@ -21,11 +22,14 @@
 \usepackage{upquote}  % fixes quotes in verbatim environment
 \usepackage{verbatim} % Allows for comment environment
 \usepackage{tikz} % pictures
+	\usetikzlibrary{calc}
+	\usetikzlibrary{3d}
+	\usetikzlibrary{intersections}
 \usepackage{pgfplots} % plots and graphics
+	\pgfplotsset{compat=newest} % or use compat=1.6
+	\usepgfplotslibrary{fillbetween}
 \usepackage{graphicx} % plots and graphics
-    \pgfplotsset{compat=newest} % or use compat=1.6
-    \usetikzlibrary{calc}
-    \usetikzlibrary{3d}
+\usepackage{wrapfig}
 \usepackage{xparse} % Better commands
 \usepackage[hidelinks]{hyperref}% References--THIS GOES LAST
 
@@ -95,6 +99,7 @@
 	\fancyhead[L]{#1} 
 	\fancyhead[C]{\hyperlink{top}{ \textbf{#2} }}
 	\fancyhead[R]{#3}
+	\fancyfoot[C]{--\thepage--}
 	\pagestyle{fancy}
 	\setlength\headheight{17pt}}
     

@@ -44,11 +44,11 @@
   <internal package="biblatex" priority="9" active="0">
     <generic>latex</generic>
     <provides type="dynamic">
-      <file>"406 Homework 1".aux</file>
-      <file>406_Homework_1-blx.bib</file>
+      <file>"Derivative Crusher".aux</file>
+      <file>Derivative_Crusher-blx.bib</file>
     </provides>
     <requires type="dynamic">
-      <file>"406 Homework 1".bbl</file>
+      <file>"Derivative Crusher".bbl</file>
     </requires>
     <requires type="static">
       <file>blx-dm.def</file>
@@ -67,20 +67,20 @@
     <cmdline>
       <binary>bibtex</binary>
       <option>-min-crossrefs 2</option>
-      <infile>"406 Homework 1"</infile>
+      <infile>"Derivative Crusher"</infile>
     </cmdline>
     <input>
-      <file>"406 Homework 1".aux</file>
+      <file>"Derivative Crusher".aux</file>
     </input>
     <output>
-      <file>"406 Homework 1".bbl</file>
+      <file>"Derivative Crusher".bbl</file>
     </output>
     <provides type="dynamic">
-      <file>"406 Homework 1".bbl</file>
+      <file>"Derivative Crusher".bbl</file>
     </provides>
     <requires type="dynamic">
-      <file>"406 Homework 1".aux</file>
-      <file>406_Homework_1-blx.bib</file>
+      <file>"Derivative Crusher".aux</file>
+      <file>Derivative_Crusher-blx.bib</file>
     </requires>
     <requires type="editable">
     </requires>

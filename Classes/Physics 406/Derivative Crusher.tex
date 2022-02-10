@@ -1,0 +1,46 @@
+\documentclass{article}
+\input{../../commands.tex}
+\header{Physics 406}{}{\EC}
+\thetitle{Physics 406 Homework}
+\date{Winter 2022}
+\author{\EC}
+\counterwithin{probcount}{section} % reset problem every section.
+\addtolength{\jot}{0.25cm} % changes row spacing to 0.25cm in align environment. Equivalent to replacing all \\ with \\[0.25cm] in align environment. 
+\begin{document}
+\section{Derivative Crusher Algorithm}
+    Derivative crusher algorithm taught by Ratindranath Akhoury
+    \begin{table}[H]
+        \renewcommand{\arraystretch}{1.5}
+        \centering
+        \begin{tabular}{|c|m{5.5cm}|m{5cm}|}
+            \hline
+            Variable & Easy to keep fixed? & Easy to measure change? 
+            \\\hline
+            $S$ & \textcolor{SpringGreen3}{\textbf{Yes}}, Adiabatic processes & \textcolor{OrangeRed3}{\textbf{No}}, change in S depends on change in Q, which is hard to measure
+            \\\hline
+            $T$ & \textcolor{SpringGreen3}{\textbf{Yes}}, with a heat bath or feedback system& \textcolor{SpringGreen3}{\textbf{Yes}}, by using a thermometer
+            \\\hline
+            $V$ & \textcolor{OrangeRed3}{\textbf{No}}, not easily, thermal expansion of the container is a byproduct of the container being thermally conductive, the volume changes with heat & \textcolor{SpringGreen3}{\textbf{Yes}}
+            \\\hline
+            $P$ & \textcolor{SpringGreen3}{\textbf{Yes}}, keeping equilibrium with atmosphere & \textcolor{SpringGreen3}{\textbf{Yes}}, barometer
+            \\\hline
+        \end{tabular}
+        \caption{$T,P$ are the easiest quantities to measure and control, making $G(T,P)$ the easiest fundamental relationship to work with.}
+    \end{table}
+    Looking at $G(T,P)=E-TS-PV$ more closely: 
+    \begin{align*}
+        \qty(\pder{G}{T})_{P}&=-S & \qty(\pder{G}{P})_{T}&=V
+        \\
+        \qty(\pder[2]{G}{T})_{P}&=-\qty(\pder{S}{T})_{P}\equiv\frac{C_p}{T} & \qty(\pder[2]{G}{P})_T&=\qty(\pder{V}{P})_T\equiv\kappa V
+    \end{align*}
+    \begin{equation*}
+        \qty[\pder{T}\qty(\pder{G}{P})_{T}]_{P}=\qty[\pder{P}\qty(\pder{G}{T})_{P}]_{T}=\alpha V
+    \end{equation*}
+    $C_p$ is specific heat at constant pressure. 
+    \\
+    $\kappa$ is isothermal compressibility.
+    \\
+    $\alpha$ is volume coefficient of expansion.
+    \subsection{Math Background}
+    A partial derivative $\displaystyle \qty(\pder{x}{y})_z$ where $\{x,y,z\}$ can be any of $\{S,T,P,V,E,F,G,H\}$ can be expressed in terms of in terms of first and second derivatives of fundamental relations. 
+\end{document}
