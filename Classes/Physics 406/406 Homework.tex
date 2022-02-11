@@ -7,13 +7,14 @@
 \counterwithin{probcount}{section} % reset problem every section.
 \addtolength{\jot}{0.25cm} % changes row spacing to 0.25cm in align environment. Equivalent to replacing all \\ with \\[0.25cm] in align environment. 
 \def\dbar{{\mathchar'26\mkern-12mu d}} % found online
+\NewDocumentCommand{\ten}{m O{}}{\times10^{#1}\text{#2}}
 \begin{document}
 \maketitle
 \tableofcontents
 \newpage
 \section{Homework 1}
     \begin{problem}
-        Prove that the quantity $\displaystyle S=-k\sum_{r=1}^{n}p_r\ln(p_r)$ is a maximum when $p_r=\frac{1}{2}$. You may need to use the inequality: $$\ln(\oo{np_r})\leq\qty(\oo{np_r}-1)$$
+        Prove that the quantity $\displaystyle S=-k\sum_{r=1}^{n}p_r\ln(p_r)$ is a maximum when $p_r=\oo{n}$. You may need to use the inequality: $$\ln(\oo{np_r})\leq\qty(\oo{np_r}-1)$$
         This completes the proof that the choice of equal relative probabilities for the states in a microcanonical ensemble maximizes missing information (entropy).
         \answerline
     \end{problem}\newpage
@@ -119,24 +120,29 @@
         \end{enumerate}
         \answerline
         \begin{enumerate}[label=\alph*)]
-            \item Using the equation $E=-(n_1-n_2)\mu H$ and knowing that $\Omega(E)=\frac{N!}{n_1!n_2!}\delta n$
+            \item Using the equation $E=-(n_1-n_2)\mu H$ and knowing that \begin{equation*}
+                \Omega(E)=~_NC_{n_1}\delta E=\frac{N!}{n_1!(N-n_1)!}=\frac{N!}{n_1!n_2!}\delta E
+            \end{equation*}
             \begin{align*}
                 E&=-(n_1-n_2)\mu H=-(n_1-(N-n_1))\mu H=-(2n_1-N)\mu H
                 \\
                 &\boxed{n_1=\frac{N}{2}-\frac{E}{2\mu H}\quad,\quad n_2=\frac{N}{2}+\frac{E}{2\mu H}}
                 \\
-                \delta E&=|-2\delta n\mu H|\rightarrow \delta n=\frac{\delta E}{2\mu H}
+                \delta E&=|-2\delta n\mu H|
                 \\
                 &\coloredanswer{\Omega(E)=\frac{N!}{\qty(\oo[N]{2}-\frac{E}{2\mu H})!\qty(\oo[N]{2}+\frac{E}{2\mu H})!}\frac{\delta E}{2\mu H}}
             \end{align*}
-            \item $\displaystyle\ln\Omega(E)=\ln(N!)-\ln(n_1!)-\ln(n_2!)+\ln(\frac{\delta E}{2\mu H})$
+            \item $\displaystyle\ln\Omega(E)=\ln(N!)-\ln(n_1!)-\ln(n_2!)+\ln(2\mu H\delta n)$
             \\ Now, using Stirling's approximation: 
             \begin{align*}
-                \ln\Omega(E)&\approx N\ln(N)-N-(n_1\ln(n_1)-n_1)-(n_2\ln(n_2)-n_2)+\ln(\frac{\delta E}{2\mu H})
+                \ln\Omega(E)&\approx N\ln(N)-N-(n_1\ln(n_1)-n_1)-(n_2\ln(n_2)-n_2)+\ln(2\mu H\delta n)
                 \\
-                &\approx N\ln(N)-\cancel{N}-n_1\ln(n_1)+\qty(\cancel{\frac{N}{2}}-\xcancel{\frac{E}{2\mu H}})-n_2\ln(n_2)+\qty(\cancel{\frac{N}{2}}+\xcancel{\frac{E}{2\mu H}})
+                &\approx N\ln(N)-\cancel{N}-n_1\ln(n_1)+\qty(\cancel{\frac{N}{2}}-\xcancel{\frac{E}{2\mu H}})-n_2\ln(n_2)+\qty(\cancel{\frac{N}{2}}+\xcancel{\frac{E}{2\mu H}})+\ln(2\mu H\delta n)
                 \\
-                &\coloredanswer{\ln\Omega(E)\approx N\ln(N)-n_1\ln(n_1)-n_2\ln(n_2)+\ln(\frac{\delta E}{2\mu H})}
+                \ln\Omega(E)&\approx N\ln(N)-n_1\ln(n_1)-n_2\ln(n_2)+\ln(2\mu H\delta n)
+            \end{align*}
+            \begin{align*}
+                \coloredanswer{\ln\Omega(E)\approx N\ln(N)-\qty(\frac{N}{2}-\frac{E}{2\mu H})\ln(\frac{N}{2}-\frac{E}{2\mu H})-\qty(\frac{N}{2}+\frac{E}{2\mu H})\ln(\frac{N}{2}+\frac{E}{2\mu H})+\ln(\frac{\delta E}{2\mu H})}
             \end{align*}
         \end{enumerate}
     \end{problem}\newpage
@@ -192,13 +198,72 @@
     \end{problem}\newpage
 \section{Homework 3}
     \begin{problem}[Reif 2.11]
-        In a quasi-static process $A\rightarrow B$ (Add diagram) in which no heat is exchanged with the environment, the mean pressure $\overline{p}$ of a certain amount of gas is found to change with its volume $V$ according to the relation: $$\overline{p}=\alpha V^{-5/3}$$ where $\alpha$ is a constant. Find the quasi-static work done and the net heat absorbed by the system in each of the following three processes, all of which take the system from macrostate $A$ to macrostate $B$. 
-        \begin{enumerate}[label=(\alph*)]
-            \item The system is expanded from its original to its final volume, heat being added to maintain the pressure constant. The volume is then kept constant, and heat is extracted to reduce the pressure to $10^{-6}$ dynes cm$^{-2}$.
-            \item The volume is increased and heat is supploed to cause the pressure to decrease linearly with the volume. 
-            \item The two steps in process (a) are performed in the oppisite order. 
-        \end{enumerate}
+        In a quasi-static process $A\rightarrow B$ in which no heat is exchanged with the environment, the mean pressure $\overline{p}$ of a certain amount of gas is found to change with its volume $V$ according to the relation: $$\overline{p}=\alpha V^{-5/3}$$ where $\alpha$ is a constant. Find the quasi-static work done and the net heat absorbed by the system in each of the following three processes, all of which take the system from macrostate $A$ to macrostate $B$. 
+        \begin{multicols}{2}
+            \begin{figure}[H]
+                \centering
+                \begin{tikzpicture}[scale=0.7]
+                    \begin{axis}[ultra thick,
+                                width=10cm,
+                                samples=40,
+                                range=0:2,
+                                domain=0:2,
+                                xmin=-0.5,
+                                ymin=-0.5,
+                                xmax=2.5,
+                                ymax=2.5,
+                                xtick={0,2},
+                                ytick={0,2},
+                                xticklabels={1,8},
+                                yticklabels={1,32},
+                                xlabel={Volume $(10^3\text{cm}^3)$},
+                                ylabel={Pressure $(10^6\text{dynes cm}^{-2})$}]
+                        \addplot[only marks] coordinates {(0,2)} node [anchor=south east]{A};
+                        \addplot[only marks] coordinates {(2,0)} node [anchor=north west]{B};
+                            \begin{scope}[draw, postaction={decorate}]
+                                \addplot[Brown1, decoration = {markings,
+                                          mark = at position 0.25 with {\arrow{latex}},
+                                          mark = at position 0.75 with {\arrow{latex}}}] {2} node [sloped, pos=0.5, fill=white] {a};
+                                \addplot[Brown1, decoration = {markings,
+                                         mark = at position 0.5 with {\arrow{latex}}},
+                                         domain=2:0, % flipped domain for parametric
+                                         ] ({2},{x});
+                                \addplot[Blue1, decoration = {markings,
+                                         mark = at position 0.25 with {\arrow{latex}},
+                                         mark = at position 0.75 with {\arrow{latex}}}] {2-x} node [sloped, pos=0.5, fill=white] {b};
+                                \addplot[DarkOliveGreen3, decoration = {markings,
+                                         mark = at position 0.25 with {\arrow{latex}},
+                                         mark = at position 0.75 with {\arrow{latex}}}] {0} node [sloped, pos=0.5, fill=white] {c};
+                                \addplot[DarkOliveGreen3, decoration = {markings,
+                                        mark = at position 0.5 with {\arrow{latex}}},
+                                        domain=2:0, % flipped domain for parametric
+                                        ] ({0},{x});
+                                \addplot[Goldenrod3, decoration = {markings,
+                                        mark = at position 0.25 with {\arrow{latex}},
+                                        mark = at position 0.75 with {\arrow{latex}}}] {(x+0.59)^(-3/2)-0.22} node [pos=0.47, sloped, fill=white] {$\overline{p}=\alpha V^{-5/3}$}; %found this curve experimentally
+                            \end{scope}
+                        
+                    \end{axis}
+                \end{tikzpicture}
+            \end{figure}
+            \columnbreak
+            \begin{enumerate}[label=(\alph*)]
+                \item The system is expanded from its original to its final volume, heat being added to maintain the pressure constant. The volume is then kept constant, and heat is extracted to reduce the pressure to $10^{-6}$ dynes cm$^{-2}$.
+                \item The volume is increased and heat is supploed to cause the pressure to decrease linearly with the volume. 
+                \item The two steps in process (a) are performed in the opposite order. 
+            \end{enumerate}
+        \end{multicols}
         \answerline
+        \begin{enumerate}[label=\alph*)]
+            \item $\dbar W=pdV$ The quasi-static work done is the area under the curve, or:
+            \begin{equation*}
+                W=32\qty(1\ten{6}~\text{dynes cm}^{-2})*7\qty(1\ten{3}~\text{cm}^3)=\coloredanswer{224\ten{9}~\frac{\text{dynes}}{\text{cm}}}
+            \end{equation*}
+            \item Again, the work is found through finding the area under the curve, only this time the shape is a trapezoid (my favorite shape!):
+            \begin{equation*}
+                W=\frac{1+32}{2}\qty(1\ten{6}[dynes cm]^{-2})\times\qty(8\ten{3}[cm]^3)=\coloredanswer{1.32\ten{11}[dynes]}
+            \end{equation*}
+        \end{enumerate}
     \end{problem}\newpage
     \begin{problem}[Reif 3.2]
         Consider a system of $N$ localized weakly-interacting particles, each of spin $1/2$ and magnetic moment $\mu$ located in an external magnetic field $H$. \footnote{This system was already discussed in Reif 2.4}
@@ -221,5 +286,5 @@
         \end{enumerate}
         \answerline
     \end{problem}
-
+\section{Homework 4}
     \end{document}
