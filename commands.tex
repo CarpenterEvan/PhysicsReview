@@ -85,16 +85,20 @@
         {\frac{\mathrm{d}^{#2}}{\mathrm{d} #3^{#2}}}
         {\frac{\mathrm{d}^{#2} #3}{\mathrm{d} #4^{#2}}}
 	}}    
-\NewDocumentCommand \pder {s O{} m g}{ % custom partial derivative command, allows for euler notation if starred
-     \IfBooleanTF{#1}
-        {\IfNoValueTF{#4}
-            {\partial_{#3}^{#2}}
-            {\partial_{#4}^{#2}#3}
-                }
-        {\IfNoValueTF{#4}
-            {\frac{\partial^{#2}}{\partial #3^{#2}}}
-            {\frac{\partial^{#2} #3}{\partial #4^{#2}}}
-                }} 
+\NewDocumentCommand \pder {s O{} m g d[]}{ % custom partial derivative command, allows for euler notation if starred, added d[] entry for parenthesis around derivative for quantities that are held constant 
+	\IfBooleanTF{#1}
+	   {\IfNoValueTF{#4}
+		   {\partial_{#3}^{#2}}
+		   {\partial_{#4}^{#2}#3}
+			   }
+	   {\IfNoValueTF{#5}
+		   {\IfNoValueTF{#4}
+			   {\frac{\partial^{#2}}{\partial #3^{#2}}}
+			   {\frac{\partial^{#2} #3}{\partial #4^{#2}}}}
+		   {{\IfNoValueTF{#4}
+			   {\left(\frac{\partial^{#2}}{\partial #3^{#2}}\right)_{#5}}
+			   {\left(\frac{\partial^{#2} #3}{\partial #4^{#2}}\right)_{#5}}}}
+			   }} 
                 
 \NewDocumentCommand \header {m m m}{
 	\fancyhead[L]{#1} 

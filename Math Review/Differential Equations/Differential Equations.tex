@@ -1,37 +1,35 @@
 % Since \input doesn't like preambles, only uncomment next line if you're editing this TeX, don't forget the \end{document}! 
-%\documentclass{article}
-%\input{../../commands}
-%\begin{document}
-\section{Differential Equations} 
+%\documentclass{article}\input{../../commands}\begin{document}
+\NewDocumentCommand{\eqnref}{m}{Eqn. (\ref{#1})}
 
-Differential equations are equalities made from functions and their derivatives. Ordinary differential equations (ODEs) only have 1-D derivatives, while partial differential equations (PDEs) have partial derivatives in multiple dimensions. The order of a differential equation is the determined by the highest order derivative present in the differential equation. Since this is physics oriented, the highest order I'll need to write about is second order. Sections on PDEs and nonlinear equations will also be physics-oriented.
-\# of independent, dependent, and order. 
-non Linear vs linear (ode and pde)
-\\
-Introduction: $F
-(x,y(x),y^\prime(x),y^{\prime\prime}(x))$\\
-Laplace and Poisson equations, Fourier analysis, linear ODES (non/homo first sec order)\\
-Dynamics: $F(t,x(t),\dot{x}(t),\ddot{x}(t))=0$\\
-heat and wave equations, laplace analysis, nonlinear stuffs  
+\section{Differential Equations} 
+    Differential equations are equalities made from functions and their derivatives. Since a differential equation relates  functions to their rates of change, it can be used to model virtually anything that changes. Some specific examples where differential equations have been useful are: analyzing heat and fluid flow, throwing things, population growth, lasers, rockets, planetary motion, particle beam trajectories (as well as some more complex topics).
+    \par
+    Differential equations can be categorized in many different ways. The main sections that I make here are between Ordinary, Partial, and Non-Linear Differential Equations (ODEs, PDEs, and NLDEs). In each section I'll try and talk about the types of equations, how they show up in physics, and methods used to analyze them. Since this is physics oriented, the highest order derivative I'll need to consider is second order. PDEs and nonlinear differential equations are also large fields in their own right, and general analysis of them is difficult at best (and impossible for most other cases), so the secitons on PDEs and nonlinear equations will be physics-oriented as well, only talking about partial differential equations that show up in physical situations. 
 \par
-\invisiblelocaltableofcontents\label{toc:diffeq}
-\begingroup
-    \parindent 0cm \parfillskip 0cm \leftskip 0cm \rightskip 0cm
-    \etocframedstyle[1]{\Large\bf Table of Contents}
-    \etocsetstyle{subsection}
-                  {}
-                  {\leavevmode\leftskip 0cm\relax} {\normalsize\bf\etocnumber~\rm\etocname\nobreak\leaders\hbox{.}\hfill\tt p.\makebox[12 pt][r]{\etocpage} \par}
-                  {\vspace{-0.25cm}}
-    \etocsetstyle{subsubsection}
-                  {}
-                  {\leavevmode\leftskip 1cm\relax}
-                  {\small\bf\etocnumber~\rm\etocname\par}
-                  {}
-    \tableofcontents\ref{toc:diffeq}
-\endgroup\newpage
+%\input{diffeqtoc.tex}
+\input{../Differential Equations/diffeqtoc.tex}
+\subsection{Ordinary Differential Equations (ODEs)}
+    ODEs are differential equations involving only one independent variable. In physics, they typically appear as functions of space or of time, so a function $y(x)$ or $x(t)$: 
+    \begin{align}
+        c_3\der[2]{y}{x}+c_2\der{y}{x}+c_1y(x)=g(x)\label{eqn:ode}
+        \\
+        c_3\Ddot{x}+c_2\dot{x}+c_1x(t)=h(t)\notag
+    \end{align}
+    Where $g(x),h(t)$ are also functions related to the problem.\footnote{If instead of $g(x),h(t)$ there was $g(f(x)),h(x(t))$, then the equations would be nonlinear, and you would be in the wrong section.} Mathematically speaking, this is just two ways to write the same differential equation, changing notaiton and what you call the variables. Physically however, there are slight differences; Equations of time usually start at time $t=0$ and only have positive values for $t$, while equations of space can have negative values for $x$. In analysis sections, I'll write about the $y(x)$ case.
+    \subsubsection{First Order}
+        In \eqnref{eqn:ode}, when $c_1=0$ the equation is said to be first order. The significant remaining cases depend on $g(x)$. If $g(x)=0$, then the equation is also said to be homogeneous, and if $g(x)\neq0$ then it is non-homogeneous. For homogeneous equations, the general form is:
+        \begin{equation}
+            c_2\der{y}{x}+c_1y(x)=0
+        \end{equation}
+        and they are solved by assuming that the solution will look like $y=e^{x}$, substituting $e^{x}$ for $y$, and finding the coefficients. 
+    \subsubsection{Second Order}
+    \subsubsection{System} 
+\subsection{Partial Differential Equations (PDEs)}
+\subsection{Nonlinear Differential Equations (NLDEs)}
 \subsection{First Order ODEs}
     \subsubsection{Homogeneous}
-        A function of the form $f(x,y,y'...)=0$. If the equation as a whole is linear\footnote{An example of a nonlinear differential equation could be $f(x,y,y')=\sin(y'(x))+y^2(x)=0$}, 
+        A function of the form $f(x,y,y'...)=0$. If the equation as a whole is linear\footnote{An example of a nonlinear differential equation could be $\sin(y'(x))+y^2(x)=0$}, 
         the solution will be of the form \(y=e^{mx}\) where m is some complex number ($m=a+bi$). Solutions start by plugging in this guess of $y=e^{mx}$ and finding $m$:
         {
         \length[0.25 cm]
@@ -139,8 +137,6 @@ heat and wave equations, laplace analysis, nonlinear stuffs
         \textbf{Solving:}\; |M-\omega^2 I|=0 %}
     \end{align*}
 \newpage
-
-
 \subsection{The Laplace Transform}
     A powerful method for solving IVPs using an integral transform. The general method is to transform a differential equation from the $t$ domain to the $s$ domain using the transform, where the equation becomes a simple algebra system. After solving for $Y(s)$, use the inverse transform to turn the obtained function into the complete solution.  Using Partial Fraction Decomposition is often useful when solving these. Use tables.
     \begin{align*}
@@ -158,12 +154,12 @@ heat and wave equations, laplace analysis, nonlinear stuffs
     \]
     If $\lap[f](s)=F(s)~\&~\lap[g](s)=G(s)$ exists, then $\lap^{-1}[FG]=(f*g)$ and $\lap[f*g](s)=FG$. This is useful for when we want to recover $h(t)$ from $H(s)=FG$ for a known $FG$.
 \subsection{Partial Fraction Decomposition}
-Useful for re-writing some of the results of a Laplace transform. It involves decomposing the denominator of some difficult fraction into multiple seperate fractions. 
-\begin{align*}
-    \frac{1}{x^2-x+1}=\frac{A}{}
-\end{align*}
+    Useful for re-writing some of the results of a Laplace transform. It involves decomposing the denominator of some difficult fraction into multiple seperate fractions. 
+    \begin{align*}
+        \frac{1}{x^2-x+1}=\frac{A}{}
+    \end{align*}
 \newpage
-\subsection{Bernoulli Equations: \protect\(y'+P(x)y=g(x)y^n\protect\protect\)}
+\subsection{Bernoulli Equations}
     Take the form: $y'+P(x)y=g(x)y^n$ for $n \in \mathbb{R}$ When $n \neq 0,1$ solve by substituting $u=y^{1-n}$
     \begin{align*}
         y'+\frac{1}{x}y&=xy^2\xrightarrow{n=2\ \therefore\ u=y^{-1}\ \therefore\ y=u^{-1}} \frac{dy}{dx}=\frac{dy}{du}\frac{du}{dx}=-u^{-2}\frac{du}{dx}\\
@@ -172,7 +168,7 @@ Useful for re-writing some of the results of a Laplace transform. It involves de
         \int d(\mu(x)u)&=\int \mu(x)g(x)dx\ ;\ \int d\left(\frac{u}{x}\right)=\int (-1)dx\\
         u&=-x^2+c_1x\ \therefore\ \boxed{y=\frac{1}{-x^2+c_1x}}
         \end{align*}
-\subsection*{Cauchy-Euler: $x^ny^{(n)}+...+x^2y''+axy'+by=0$}
+\subsection*{Cauchy-Euler}
     Also called The ``Equidimensional'' Equation. Assume solution of $y=x^m$ and plug in. Solve for $m$.
     \begin{alignat}{2}
         \underset { m_1 \neq m_2}{\textbf{Real Distinct Roots:}}
@@ -182,9 +178,6 @@ Useful for re-writing some of the results of a Laplace transform. It involves de
         \underset{b \neq 0}{\textbf{Complex Roots:}}
         &\quad y=c_{1}x^{\alpha }\cos(\beta \ln(x))+c_{2}x^{\alpha }\sin(\beta \ln(x))
     \end{alignat}
-\subsection{Numerical}
-
-    What types of numerical differential equations do you do again\ldots?
 \subsection{PDEs in Physics}
     \subsubsection{The Heat Equation} % most general and applications 
     \subsubsection{The Wave Equation} % 1d, 3d, spherical, cylindrical
