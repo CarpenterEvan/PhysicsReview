@@ -1,56 +1,99 @@
 % Since \input doesn't like preambles, only uncomment next line if you're editing this TeX, don't forget the \end{document}! 
-%\documentclass{article}\input{../../commands}\begin{document}
-\NewDocumentCommand{\eqnref}{m}{Eqn. (\ref{#1})}
-
+\documentclass{article}\input{../../commands}\begin{document}
+\setlength{\columnseprule}{1pt}
+\NewDocumentCommand{\eqnref}{m}{Eqn.\,(\ref{#1})}
 \section{Differential Equations} 
-    Differential equations are equalities made from functions and their derivatives. Since a differential equation relates  functions to their rates of change, it can be used to model virtually anything that changes. Some specific examples where differential equations have been useful are: analyzing heat and fluid flow, throwing things, population growth, lasers, rockets, planetary motion, particle beam trajectories (as well as some more complex topics).
+    Differential equations are equalities made from functions and their derivatives. Since a differential equation relates  functions to their rates of change, it can be used to model virtually anything that changes. Some specific examples where differential equations have been useful are: analyzing heat and fluid flow, throwing things, population growth, lasers, rockets, planetary motion, particle beam trajectories (and much more!~:D).
     \par
-    Differential equations can be categorized in many different ways. The main sections that I make here are between Ordinary, Partial, and Non-Linear Differential Equations (ODEs, PDEs, and NLDEs). In each section I'll try and talk about the types of equations, how they show up in physics, and methods used to analyze them. Since this is physics oriented, the highest order derivative I'll need to consider is second order. PDEs and nonlinear differential equations are also large fields in their own right, and general analysis of them is difficult at best (and impossible for most other cases), so the secitons on PDEs and nonlinear equations will be physics-oriented as well, only talking about partial differential equations that show up in physical situations. 
+    Differential equations can be categorized in many different ways. The main distinctons that I make here are between Ordinary, Partial, and Non-Linear Differential Equations (ODEs, PDEs, and NLDEs). In each section I'll try and talk about the types of equations, how they show up in physics, and methods used to analyze them. Since this is physics oriented, the highest order derivative I'll need to consider is second order. PDEs and nonlinear differential equations are also large fields in their own right, and general analysis of them is difficult at best (and impossible for most other cases), so the secitons on PDEs and nonlinear equations will be physics-oriented as well. 
 \par
-%\input{diffeqtoc.tex}
-\input{../Differential Equations/diffeqtoc.tex}
+\input{diffeqtoc.tex}
+%\input{../Differential Equations/diffeqtoc.tex}
 \subsection{Ordinary Differential Equations (ODEs)}
     ODEs are differential equations involving only one independent variable. In physics, they typically appear as functions of space or of time, so a function $y(x)$ or $x(t)$: 
     \begin{align}
-        c_3\der[2]{y}{x}+c_2\der{y}{x}+c_1y(x)=g(x)\label{eqn:ode}
+        a\der[2]{y}{x}+b\der{y}{x}+cy(x)=g(x)\label{eqn:ode}
         \\
-        c_3\Ddot{x}+c_2\dot{x}+c_1x(t)=h(t)\notag
+        a\Ddot{x}+b\dot{x}+cx(t)=h(t)\notag
     \end{align}
-    Where $g(x),h(t)$ are also functions related to the problem.\footnote{If instead of $g(x),h(t)$ there was $g(f(x)),h(x(t))$, then the equations would be nonlinear, and you would be in the wrong section.} Mathematically speaking, this is just two ways to write the same differential equation, changing notaiton and what you call the variables. Physically however, there are slight differences; Equations of time usually start at time $t=0$ and only have positive values for $t$, while equations of space can have negative values for $x$. In analysis sections, I'll write about the $y(x)$ case.
-    \subsubsection{First Order}
-        In \eqnref{eqn:ode}, when $c_1=0$ the equation is said to be first order. The significant remaining cases depend on $g(x)$. If $g(x)=0$, then the equation is also said to be homogeneous, and if $g(x)\neq0$ then it is non-homogeneous. For homogeneous equations, the general form is:
-        \begin{equation}
-            c_2\der{y}{x}+c_1y(x)=0
-        \end{equation}
-        and they are solved by assuming that the solution will look like $y=e^{x}$, substituting $e^{x}$ for $y$, and finding the coefficients. 
+    Where $g(x),h(t)$ are functions related to the problem.\footnote{If instead of $g(x),h(t)$ there was $g(f(x)),h(x(t))$, then the equations would be nonlinear, and you would be in the wrong section.} For ODEs, $a,b,c$ can be constants or functions of $x$. Mathematically speaking, this is just two ways to write the same differential equation, changing notaiton and what you call the variables. Physically however, there are slight differences; Equations of time usually start at time $t=0$ and only have positive values for $t$, while equations of space can have negative values for $x$. In analysis sections, I'll write about the $y(x)$ case since the $x(t)$ case can be covered in examples.
     \subsubsection{Second Order}
+        In \eqnref{eqn:ode}, if $a,b,c\neq0$, the equation is said to be second order. If $g(x)=0$ then the equation is also said to be homogeneous. If $g(x)\neq0$ then it is non-homogeneous (or inhomogeneous). The answer is assumed to look like $e^{\lambda x}$, so that is what is substituted in.\footnote{The use of $\lambda$ is to highlight the fact that $e^x$ is an eigenfunction of the derivative, and $\lambda$ is the eigenvalue.}
+        \begin{multicols}{2}\raggedcolumns
+            {\length[0.25cm]
+                \begin{gather*}
+                    a\der[2]{y}{x}+b\der{y}{x}+cy=0
+                    \\
+                    a\qty(\lambda^2e^{\lambda x})+b\qty(\lambda e^{\lambda x})+c\qty(e^{\lambda x})=0
+                    \\
+                    \qty(a\lambda^2+b\lambda+c)e^{\lambda x}=0
+                \end{gather*}
+            }   
+            {\length[0.25cm]
+                \begin{gather}
+                    a\lambda^2+b\lambda+c=0 \label{eqn:chareqn}
+                    \\
+                    \lambda=\frac{-b\pm\sqrt{b^2-4ac}}{2a}\notag
+                \end{gather}
+            } 
+        \end{multicols}
+        \eqnref{eqn:chareqn} is called the characteristic equation.
+        There are three solution outcomes for $y$, depending on the value of $\lambda$, assuming that it can be a complex number $\lambda=\alpha+\beta i$:
+        {\length[0.7cm]
+            \begin{align}
+                \underset { \alpha_1 \neq \alpha_2\And \beta=0 }{\textbf{Real Distinct Roots:}}&& y_c&=c_1e^{\alpha_1x}+c_2e^{\alpha_2x}\label{eqn:realdistinctroots}
+                \\
+                \underset{\alpha_1=\alpha_2 \And \beta=0 }{\textbf{Real Repeating Roots:}}&& y_c&=c_1e^{\alpha x}+c_2xe^{\alpha x}\label{eqn:realrepeatroots}
+                \\
+                \underset{\beta \neq 0}{\textbf{Complex Roots:}}&& y_c&=e^{\alpha x}\qty(c_1\cos(\beta x)+c_2i\sin(\beta x))\label{eqn:complexroots}
+            \end{align}
+        }
+        \eqnref{eqn:realrepeatroots} is found due to linearity; (EXAMPLE ABOUT MULTIPLYING BY CONSTANT) and \eqnref{eqn:complexroots} is found through Euler's Identity. Note that this solution algorithm works for first order equations as well.  
+        \\[0.25cm]
+        If $g(x)\neq0$ then the equation is said to be nonhomogeneous (or inhomogeneous, they are synonyms). Since the equation is still linear, then by definition any two linearly independent solutions can be used to construct a third. To solve this, we look for a homogeneous solution\footnote{sometimes called the complimentary solution $y_c$} $y_h$ and particular solution $y_p$. $y_h$ is the solution to the homogeneous case, and $y_p$ is found 
+    \subsubsection{Shortcut for First Order}
+        In \eqnref{eqn:ode}, when $a=0$ the equation is said to be first order. The significant remaining cases depend on $g(x)$. If $g(x)=0$, then the equation is also said to be homogeneous, and if $g(x)\neq0$ then it is non-homogeneous. For homogeneous equations, the general form is:
+        \begin{equation}
+            b\der{y}{x}+cy(x)=0
+        \end{equation}
+        Just like polynomials, it can be helpful to remove coefficients from the highest order term:
+        \begin{gather*}
+            \der{y}{x}+\frac{c}{b}y(x)=0
+            \\
+            \der{y}{x}+P(x)y(x)=0
+        \end{gather*}
+        This is assuming $c\rightarrow c(x),~b\rightarrow b(x)$ and making $P(x)\equiv\frac{c(x)}{b(x)}$. This equation is called seperable, because all of the $x$ and $y$ terms can be separated to either side of the equation. 
+        \begin{multicols}{2}\raggedcolumns
+            {\length[0.25cm]
+                \begin{gather*}
+                    \der{y}{x}=-P(x)y
+                    \\
+                    \frac{dy}{y}=- P(x)dx
+                    \\
+                    \int\frac{dy}{y}=-\int P(x)dx
+                \end{gather*}
+            }   
+            {\length[0.25cm]
+                \begin{gather}
+                \ln(y)+C_{\text{onst}}=-\int P(x)dx \notag
+                \\
+                e^{\ln(y)}=e^{-C_{\text{onst}}}e^{-\int P(x)dx} \notag
+                \\
+                \coloredanswer{y(x)=Ae^{-\int P(x)dx}}
+            \end{gather}
+            } 
+        \end{multicols}
+        
+        Examples:
+        \\
+        Numerical solve:
+    \newpage
     \subsubsection{System} 
 \subsection{Partial Differential Equations (PDEs)}
 \subsection{Nonlinear Differential Equations (NLDEs)}
+
 \subsection{First Order ODEs}
-    \subsubsection{Homogeneous}
-        A function of the form $f(x,y,y'...)=0$. If the equation as a whole is linear\footnote{An example of a nonlinear differential equation could be $\sin(y'(x))+y^2(x)=0$}, 
-        the solution will be of the form \(y=e^{mx}\) where m is some complex number ($m=a+bi$). Solutions start by plugging in this guess of $y=e^{mx}$ and finding $m$:
-        {
-        \length[0.25 cm]
-        \begin{gather*}
-            ay''+by'+cy=0 
-            \\
-            a\qty(m^2e^{m x})+b \qty(m e^{m x})+c \qty(e^{m x})=0
-            \\
-            \qty(am^2+b m+c)e^{mx}=0
-            \\
-            am^2+b m+c=0
-            \\
-            m=\frac{-b\pm\sqrt{b^2-4ac}}{2a}
-        \end{gather*}
-        }
-        Solve for $m$, since $m$ is a complex root there are three cases:
-        \begin{gather}
-            \underset { a_1 \neq a_2\And b=0 }{\textbf{Real Distinct Roots:}}\quad y_c=c_1e^{a_1x}+c_2e^{a_2x}\\[0.7 cm]
-            \underset{a_1=a_2 \And b=0 }{\textbf{Real Repeating Roots:}}\quad y_c=c_1e^{ax}+c_2xe^{ax}\\[0.7 cm]
-            \underset{b \neq 0}{\textbf{Complex Roots:}}\quad y_c=e^{ax}\left(c_1\cos(bx)+c_2\sin(bx)\right)
-        \end{gather}
+       
     \subsubsection{Non-Homogeneous}
         Takes the form: $y'+P(x)y=g(x)$. 
         \begin{align*}
@@ -178,9 +221,9 @@
         \underset{b \neq 0}{\textbf{Complex Roots:}}
         &\quad y=c_{1}x^{\alpha }\cos(\beta \ln(x))+c_{2}x^{\alpha }\sin(\beta \ln(x))
     \end{alignat}
-\subsection{PDEs in Physics}
+\subsection{PDEs in Physics} 
     \subsubsection{The Heat Equation} % most general and applications 
     \subsubsection{The Wave Equation} % 1d, 3d, spherical, cylindrical
     \subsubsection{Laplace's Equation} % in multi dimensions and coords
     \subsubsection{Poisson's Equation} % same
-%\end{document}
+\end{document}
