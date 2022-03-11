@@ -1,19 +1,21 @@
 \documentclass{article}
     \input{../../commands.tex}
+
     \header{Physics 406}{}{Derivative Crusher Algorithm}
-    \thetitle{Derivative Crusher Algorithm}[by \hyperlink{https://lsa.umich.edu/physics/people/faculty/akhoury.html}{ \large Ratindranath Akhoury}]
+    \thetitle{Derivative Crusher Algorithm}[by\large\ \Akhoury]
     \date{Winter 2022}
+
     \author{\small Typed in \LaTeX\ by \EC}
-    \counterwithin{probcount}{section} % reset problem every section.
-    \addtolength{\jot}{0.25cm} % changes row spacing to 0.25cm in align environment. Equivalent to replacing all \\ with \\[0.25cm] in align environment. 
+    \addtolength{\jot}{0.25cm}% changes row spacing to 0.25cm in align
+    \def\Akhoury{\hyperlink{https://lsa.umich.edu/physics/people/faculty/akhoury.html}{Ratindranath Akhoury}}
 \begin{document}
-\maketitle
+\maketitle\thispagestyle{fancy}
 \noindent\textbf{Idea:} A partial derivative with thermodynamically significant variables
     \begin{center}
-        $\displaystyle\qty(\pder{x}{y})_z$ where $\{x,y,z\}$ can be any of $\{S,T,P,V,E,F,G,H\}$
+        $\displaystyle\pder{x}{y}[z]$ where $\{x,y,z\}$ can be any of $\{S,T,P,V,E,F,G,H\}$
     \end{center}
-    can be expressed in terms of in terms of first and second derivatives of fundamental relations. This re-arranging of expressions is very useful in thermodynamics and statistical mechanics, as it allows us to find simple relations between physical quantities in a thermodynamical system. The 
-    Derivative Crusher Algorithm is an algorithm that "crushes" a thermodynamically significant partial derivative into useful and easily measureable quantities. Developed and taught by Professor \hyperlink{https://lsa.umich.edu/physics/people/faculty/akhoury.html}{ Ratindranath Akhoury}.
+    can be expressed in terms of first and second derivatives of fundamental relations. This re-arranging of expressions is very useful in thermodynamics and statistical mechanics, as it allows us to find simple relations between physical quantities in a thermodynamical system. The 
+    Derivative Crusher Algorithm is an algorithm that "crushes" a thermodynamically significant partial derivative into useful and easily measureable quantities. Developed and taught by Professor \Akhoury.
 \section*{Choosing Gibbs Free Energy}
     \begin{table}[H]
         \renewcommand{\arraystretch}{1.5}
@@ -44,15 +46,15 @@
     \end{align*}
     \newpage
 \section*{Operations}
-    The Derivative Crusher Algorithm is made of three operations and six relations. 
+    The Derivative Crusher Algorithm is made of three operations and seven relations. 
     Looking at the derivatives of $G(T,P)=E-TS-PV$ more closely, certain constants can be defined: 
     \begin{align*}
-        \pder{G}{T}[P]&=-S & \pder[2]{G}{T}[P]&=\coloredanswer{-\pder{S}{T}[P]\equiv\frac{C_p}{T}}\tag{C1}\label{C1}
+        \pder{G}{T}[P]&=-S & \pder[2]{G}{T}[P]&=\coloredanswer{\pder{S}{T}[P]\equiv\frac{C_p}{T}}\tag{C1}\label{C1}
         \\
-        \pder{G}{P}[T]&=V & \pder[2]{G}{P}[T]&=\coloredanswer{\pder{V}{P}[T]\equiv\kappa V}\tag{C2}\label{C2}
+        \pder{G}{P}[T]&=V & \pder[2]{G}{P}[T]&=\coloredanswer{\pder{V}{P}[T]\equiv-\kappa V}\tag{C2}\label{C2}
     \end{align*}
     \begin{equation*}
-        \qty[\pder{T}\pder{G}{P}[T]~]_{P}=\qty[\pder{P}\pder{G}{T}[P]~]_{T}=\coloredanswer{\pder{V}{T}[P]\equiv\alpha V}\tag{C3}\label{C3} % ~ is for space
+        \qty[\pder{T}\pder{G}{P}[T]~]_{P}=\qty[\pder{P}\pder{G}{T}[P]~]_{T}=\coloredanswer{\pder{V}{T}[P]\equiv \alpha V}\tag{C3}\label{C3} % ~ is for space
     \end{equation*}
     $C_p$ is specific heat at constant pressure. 
     \\
@@ -75,14 +77,16 @@
             \coloredanswer{\pder{x}{y}[z]=\frac{\pder{x}{w}[z]}{\pder{y}{w}[z]}}\tag{D3}\label{D3}
         \end{equation*}
     \end{enumerate}
-    The last crucial component are the Maxwell Relations between $S,V,T,P$:
-    \begin{align*}
-        \coloredanswer{\pder{S}{V}[T]=\pder{P}{T}[V]}\tag{M1}\label{M1}
+    The last crucial component are the Maxwell Relations between $S,V,T,P$:~\footnote{Note that in the one dimensional case, $P\rightarrow F$ and $V\rightarrow X$}
+    \begin{gather*}
+        \coloredanswer{\pder{S}{V}[T]=\pder{P}{T}[V]}\tag{M1}\label{M1} % re-type with X, F is negative
         \\
         \coloredanswer{\pder{V}{S}[P]=\pder{T}{P}[S]}\tag{M2}\label{M2}
         \\
-        \coloredanswer{\pder{V}{T}[P]=-\pder{S}{P}[T]}\tag{M3}\label{M3}
-    \end{align*}
+        \coloredanswer{\pder{S}{P}[T]=-\pder{V}{T}[P]}\tag{M3}\label{M3}
+        \\
+        \coloredanswer{\pder{P}{S}[V]=-\pder{T}{V}[S]}\tag{M4}\label{M4}
+    \end{gather*}
     \newpage
 \section*{Steps of the Algorithm}
     \begin{enumerate}
@@ -103,6 +107,14 @@
             z&=P,V\quad\boxed{\pder{S}{T}[P]=\frac{C_P}{T}\quad,\quad \pder{S}{T}[V]=\frac{C_v}{T}}
         \end{align*}
         \item Bring $V$ to numerator in order to get $\alpha$ or $\kappa$. 
+        \begin{align*}
+            \boxed{\frac{-\pder{V}{T}[P]}{\pder{V}{P}[T]}=\pder{P}{T}[V]=\frac{\alpha}{\kappa}}
+        \end{align*}
         \item Eliminate $C_v$ in favor of $C_p,\alpha,\kappa$
+        \begin{gather*}
+            C_V=T\pder{S}{T}[V]=C_P+T\pder{S}{P}[T]\pder{P}{T}[V]
+            \\
+            C_P-C_V=VT\frac{\alpha^2}{\kappa}
+        \end{gather*}
     \end{enumerate} 
 \end{document}

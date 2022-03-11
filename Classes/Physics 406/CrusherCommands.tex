@@ -1,0 +1,36 @@
+\usepackage{xparse}
+\NewDocumentCommand \pder {s O{} m g d[]}{% custom partial derivative command. \pder{x}{y}[z], \pder*{x}{y}[z]
+	\IfBooleanTF{#1} % Star indicates euler notation
+	   {\IfNoValueTF{#4}% \pder*{x} or \pder*{f}{x}?
+		   {\partial_{#3}^{#2}}% d_x
+		   {\partial_{#4}^{#2}#3}% d_x f
+			   }
+	   {\IfNoValueTF{#5} % #5 is optional variable, what is "held constant" in the partial derivative
+		   {\IfNoValueTF{#4}% \pder{x} or \pder{f}{x}?
+			   {\frac{\partial^{#2}}%    d^n
+                     {\partial #3^{#2}}% dx^n
+                     } 
+			   {\frac{\partial^{#2} #3}% d^n f
+                     {\partial #4^{#2}}% dx^n
+                     }
+                }
+		   {{\IfNoValueTF{#4}% \pder{x} or \pder{f}{x}?
+			   {\left(\frac{\partial^{#2}}
+                           {\partial {#3}^{#2}}\right)_{\!#5}\!} % \! is thin negative space
+			   {\left(\frac{\partial^{#2} #3}
+                           {\partial {#4}^{#2}}\right)_{\!#5}\!}}}
+			   }} 
+
+\NewDocumentCommand{\DerivCrush}{s m m m g}{
+    % \DerivCrush{x}{y}{z} D1  
+    % \DerivCrush*{x}{y}{z} D2  
+    % \DerivCrush{x}{y}{z}{w} D3 
+    \IfNoValueTF{#5}
+        {   \IfBooleanTF{#1}
+                {\frac{-\pder{#4}{#3}[#2]}{\pder{#4}{#2}[#3]}}
+                {\frac{1}{\pder{#3}{#2}[#4]}}
+        }
+        {\frac{\pder{#2}{#5}[#4]}{\pder{#3}{#5}[#4]}}
+} 
+
+\NewDocumentCommand{\CrushStep}{m O{}}{~~\xrightarrow[#2]{~~#1~~}~~}

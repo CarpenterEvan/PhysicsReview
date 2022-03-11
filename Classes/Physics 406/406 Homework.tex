@@ -1,8 +1,8 @@
 \documentclass{article}
 \input{../../commands.tex}
-\header{Physics 406}{}{Evan Carpenter}
-\thetitle{Physics 406 Homework}
-\date{Winter 2022}
+\header{Physics 406}{$\uparrow\uparrow\uparrow$}{Evan Carpenter}
+\thetitle{Physics 406 Homework}[Winter Semester 2022]
+\date{}
 \author{\EC}
 \counterwithin{probcount}{section} % reset problem every section.
 \addtolength{\jot}{0.25cm} % changes row spacing to 0.25cm in align environment. Equivalent to replacing all \\ with \\[0.25cm] in align environment. 
@@ -18,9 +18,10 @@
 } % \DerivCrush{x}{y}{z} D1  \DerivCrush*{x}{y}{z} D2  \DerivCrush{x}{y}{z}{w} D3 
 \NewDocumentCommand{\CrushStep}{m O{}}{~~\xrightarrow[#2]{~~#1~~}~~}
 \begin{document}
+\pagenumbering{gobble}
 \maketitle
 \tableofcontents
-\newpage
+\newpage\pagenumbering{arabic}
 \section{Homework 1}
     \begin{problem}
         Prove that the quantity $\displaystyle S=-k\sum_{r=1}^{n}p_r\ln(p_r)$ is a maximum when $p_r=\oo{n}$. You may need to use the inequality: $$\ln(\oo{np_r})\leq\qty(\oo{np_r}-1)$$
@@ -295,185 +296,240 @@
         \end{enumerate}
         \answerline
     \end{problem}
-\newpage 
+    \newpage 
 \section{Homework 4}
-\begin{problem}[Reif 4.1]
-    \begin{enumerate}[label=(\alph*)]
-        \item 1kg of water at $0\degree$C is brought into contact with a large hear reservoir at $100\degree$C. When the water has reached $100\degree$C, what has been the change in entropy of the water? Of the heat reservoir? of the system that is the water and reservoir?
-        \item If the water has been heated $0\degree\text{C}\rightarrow100\degree\text{C}$ by instead first bringing it into contact with a $50\degree$C reservoir, then with a $100\degree$C reservoir, what would have been the change in the entropy of the entire system?
-        \item Show how the water might be heated $0\degree\text{C}\rightarrow100\degree$C with no entropy change in the system.
-    \end{enumerate}
-    \answerline
-    \begin{enumerate}[label=\alph*)]
-        \item \textcolor{Red2}{Even though this is not a quasi-static process, we can solve it as though it were a quasi-static process. SEE EXAMPLE ON PG 143, is this due to path independence? Are we supposed to assume the value for c? Why is it assumed to be constant? Do we find heat in this problem?} Using Reif Eqn. (4.5.2)assuming $c_w=4.2(\text{J$\cdot$kg$^{-1}$K$^{-1}$}),\and m_w=1000\text{g}$:
+    \begin{problem}[Reif 4.1]
+        \begin{enumerate}[label=(\alph*)]
+            \item 1kg of water at $0\degree$C is brought into contact with a large hear reservoir at $100\degree$C. When the water has reached $100\degree$C, what has been the change in entropy of the water? Of the heat reservoir? of the system that is the water and reservoir?
+            \item If the water has been heated $0\degree\text{C}\rightarrow100\degree\text{C}$ by instead first bringing it into contact with a $50\degree$C reservoir, then with a $100\degree$C reservoir, what would have been the change in the entropy of the entire system?
+            \item Show how the water might be heated $0\degree\text{C}\rightarrow100\degree$C with no entropy change in the system.
+        \end{enumerate}
+        \answerline
+        \begin{enumerate}[label=\alph*)]
+            \item Using Reif Eqn. (4.5.2) assuming $c_w=4.2(\text{J$\cdot$kg$^{-1}$K$^{-1}$}),\and m_w=1000\text{g}$:
+            \begin{align*}
+                \Delta S_w&\equiv S_w(373.16)-S_w(273.16)
+                \\
+                &=\int_{273.16}^{373.16}\frac{m_wc_wdT}{T}
+                \\
+                &=4.18\ten{3}(\text{J$\cdot$K$^{-1}$})\times\int_{273.16}^{373.16}\frac{dT}{T}
+                \\
+                &=4.2\ten{3}(\text{J$\cdot$K$^{-1}$})\times\qty(\ln(373.16 \text{K})-\ln(273.16\text{K}))
+                \\
+                &\coloredanswer{\Delta S_w=1310.19\ \text{J$\cdot$K$^{-1}$}}
+            \end{align*}
+            For the reservoir:
+            \begin{align*}
+                Q_R&=-Q_w=-m_wc_w\Delta T=-1000\times 4.18\times 100
+                \\
+                dS_R&=\frac{\dbar Q}{T}=\frac{-m_wc_w\Delta T}{T}=\frac{-1000\times 4.18\times 100}{373}
+                \\
+                &\coloredanswer{\Delta S_R=-1120.64\ \text{J$\cdot$K$^{-1}$}}
+            \end{align*}
+            So the total change in entropy for the system is $\Delta S_{sys}=\Delta S_w+\Delta S_R=\coloredanswer{189.55\ \text{J$\cdot$K$^{-1}$}}$
+            \item $\Delta S_w$ is the same, but $\Delta S_R$ is different: 
+            \begin{align*}
+                \Delta S_R&=-\qty(\frac{m_wc_w50}{323}+\frac{m_wc_w50}{373})=-1207.38\ \text{J$\cdot$K$^{-1}$}
+            \end{align*}
+            So $\Delta S_{sys}=\coloredanswer{102.81\ \text{J$\cdot$K$^{-1}$}}$
+            \item If the temperature of the successive heat reservoirs is changed infinitesimally then there will be no change in entropy. 
+        \end{enumerate}
+    \end{problem}\newpage
+    \begin{problem}[Reif 4.3]
+        The heat absorbed by a mole of ideal gas in a quasi-static process in which its temperature $T$ changes by $dT$ and its volume $V$ by $dV$ is given by $$\dbar Q=cdT+\overline{p}dV$$ where $c$ is its constant molar specific heat at constant volume and $\overline{p}$ is its mean pressure $\overline{p}=RT/V$. Find an expression for the change of entropy of this gas in a quasi-static process which takes it from $(T_i,V_i)\rightarrow(T_f,V_f)$. Does your answer depend on the process incolved in going from the initial to the final state?
+        \answerline
         \begin{align*}
-            \Delta S_w&\equiv S_w(373.16)-S_w(273.16)
+            \dbar Q &=cdT+\frac{RT}{V}dV
             \\
-            &=\int_{273.16}^{373.16}\frac{m_wc_wdT}{T}
+            dS &= \frac{\dbar Q}{T}=\frac{cdT}{T}+\frac{RdV}{V}
             \\
-            &=4.18\ten{3}(\text{J$\cdot$K$^{-1}$})\times\int_{273.16}^{373.16}\frac{dT}{T}
+            \Delta S&=\int dS
             \\
-            &=4.2\ten{3}(\text{J$\cdot$K$^{-1}$})\times\qty(\ln(373.16 \text{K})-\ln(273.16\text{K}))
+            &= c\int_{T_i}^{T_f}\frac{dT}{T}+R\int_{V_i}^{V_f}\frac{dV}{V}
             \\
-            \Delta S_w&=\coloredanswer{1310.19\ \text{J$\cdot$K$^{-1}$}}
+            &\coloredanswer{\Delta S= c\ln(\frac{T_f}{T_i})+R\ln(\frac{V_f}{V_i})}
         \end{align*}
-        mc delta t for water then - 
-        \item This should be different? Is it because this is not quasi-static? but then how can we do this calculation 
-        \item If all of the heat absorbed is 
-    \end{enumerate}
-\end{problem}\newpage
-\begin{problem}[Reif 4.3]
-    The heat absorbed by a mole of ideal gas in a quasi-static process in which its temperature $T$ changes by $dT$ and its volume $V$ by $dV$ is given by $$\dbar Q=cdT+\overline{p}dV$$ where $c$ is its constant molar specific heat at constant volume and $\overline{p}$ is its mean pressure $\overline{p}=RT/V$. Find an expression for the change of entropy of this gas in a quasi-static process which takes it from $(T_i,V_i)\rightarrow(T_f,V_f)$. Does your answer depend on the process incolved in going from the initial to the final state?
-    \answerline
-    \begin{align*}
-        \dbar Q &=cdT+\frac{RT}{V}dV
-        \\
-        dS &= \frac{\dbar Q}{T}=\frac{cdT}{T}+\frac{RdV}{V}
-        \\
-        \Delta S&=\int dS
-        \\
-        &= c\int_{T_i}^{T_f}\frac{dT}{T}+R\int_{V_i}^{V_f}\frac{dV}{V}
-        \\
-        &\coloredanswer{\Delta S= c\ln(\frac{T_f}{T_i})+R\ln(\frac{V_f}{V_i})}
-    \end{align*}
-    Since this depends on exact differentials $dT,dV$ this is process independent. 
-\end{problem}\newpage
-\begin{problem}[Reif 5.2]
-    The molar specific heat at constant volume of a monatomic ideal gas is known to be $\frac{3}{2}R$. Suppose that one mole of such gas is subjected to a cyclic quasi-static process which appears as a circle on the $P-V$ diagram on page 193. Find: 
-    \begin{enumerate}[label=(\alph*)]
-        \item The net work (in Joules) done by the gas in one cycle.
-        \item The internal energy difference (in Joules) of the gas between states $C$ and $A$
-        \item The heat absorbed (in Joules) by the gas going from $A\rightarrow C$ via the $ABC$ path of the cycle.
-    \end{enumerate}
-    \answerline
-    \begin{enumerate}[label=\alph*)]
-        \item $W=\int pdV$, and due to the nature of the problem, the integral is equivalent to the area of the circle: $\pi*1^2*\ten{9}\text{dynes}\cdot\text{cm}$. Given that $\ten{9}\text{dynes}\cdot\text{cm}\approx100J$, the answer can be written as: $$\coloredanswer{W\approx314\ \text{J}}$$
-        \item Since this is a state function and $\nu=1$:
+        Since this depends on exact differentials $dT,dV$ this is process independent. 
+    \end{problem}\newpage
+    \begin{problem}[Reif 5.2]
+        The molar specific heat at constant volume of a monatomic ideal gas is known to be $\frac{3}{2}R$. Suppose that one mole of such gas is subjected to a cyclic quasi-static process which appears as a circle on the $P-V$ diagram on page 193. Find: 
+        \begin{enumerate}[label=(\alph*)]
+            \item The net work (in Joules) done by the gas in one cycle.
+            \item The internal energy difference (in Joules) of the gas between states $C$ and $A$
+            \item The heat absorbed (in Joules) by the gas going from $A\rightarrow C$ via the $ABC$ path of the cycle.
+        \end{enumerate}
+        \answerline
+        \begin{enumerate}[label=\alph*)]
+            \item $W=\int pdV$, and due to the nature of the problem, the integral is equivalent to the area of the circle: $\pi*1^2*\ten{9}\text{dynes}\cdot\text{cm}$. Given that $\ten{9}\text{dynes}\cdot\text{cm}\approx100J$, the answer can be written as: $$\coloredanswer{W\approx314\ \text{J}}$$
+            \item Since this is a state function and $\nu=1$:
+            \begin{align*}
+                E&=\frac{3}{2}RT
+                dE &= \frac{3}{2}R dT 
+                \\
+                \Delta E &=\frac{3 R}{2}(T_A-T_C)
+                \xrightarrow{T=\frac{pV}{R}}
+                \Delta E= \frac{3}{2}\qty(p_AV_A-p_CV_C)
+                \\
+                &=\frac{3}{2}\qty(2*1-2*3)\ten{9}\text{dynes}\cdot\text{cm}
+                \\
+                &\coloredanswer{\Delta E_{AC}\approx600 \text{J}}
+            \end{align*}
+            \item $\Delta Q_{AC}=\Delta E_{CA}+\Delta W_{AC}$ part (a) found $\Delta W$ for the full circle, $W_{AC}$ is half of that plus the square under the circle. Part (b) found $\Delta E_{AC}$. 
+            \begin{gather*}
+                \Delta Q_{AC}=600+\qty(400+\frac{314}{2})
+                \\
+                \coloredanswer{\Delta Q_{AC}=1157\ \text{J}}
+            \end{gather*}
+        \end{enumerate}
+    \end{problem}\newpage
+    \begin{problem}
+        For an ideal gas whose entropy is fixed $$E=kV^{-\frac{2}{3}}$$ where $k$ is a constant independent of $V$.
+        \begin{enumerate}[label=(\alph*)]
+            \item Find an expression for the pressure $p$ in terms of $k$ and $V$.
+            \item Perform a Legendre transformation to find an appropriate function
+            of $P$ from which the same relation may be derived.
+        \end{enumerate}
+        \answerline
+        \begin{enumerate}[label=\alph*)]
+            \item 
+            \begin{align*}
+                dS&=0=\dbar Q\implies \dbar Q=0=dE+pdV
+                \\
+                dE&=-pdV=\pder{E}{V}dV\implies -\pder{E}{V}=p
+                \\
+                -&\pder{V}\qty(kV^{-2/3})=\coloredanswer{\frac{2}{3}kV^{-5/3}=p}
+            \end{align*}
+            \item Why not rearrange algebraically? 
+            \begin{align*}
+                0&=dE+pdV
+                \\
+                0&=dE+\colorbox{Pink2}{pdV+Vdp}-Vdp
+                \\
+                0&=\underbrace{dE+\colorbox{Pink2}{d(pV)}}-Vdp
+                \\[-0.25cm]
+                0&=\colorbox{Goldenrod3}{d(E+pV)}-Vdp
+                \\
+                0&=\colorbox{Goldenrod3}{dH}-Vdp
+                \\
+                dH&=Vdp
+                \\
+                &???
+            \end{align*}
+        \end{enumerate}
+    \end{problem}\newpage
+    \begin{problem}
+        The specific heat at constant volume and pressure are respectively: 
+        $$C_V=\pder{Q}{T}[V]\quad,\quad C_P=\pder{Q}{T}[P]$$ Present arguments that for an ideal gas $(PV=NkT,~E=\frac{3}{2}NkT)$:
+        $$\dbar Q=C_VdT+PdV=C_PdT-VdP$$
+        For a quasistatic adiabatic process, show that the equation of state may be written, \textbf{using the above as} $PV^\gamma=$ Constant. Where $\gamma\equiv C_P/C_V$
+        \answerline
         \begin{align*}
-            c_V=\oo{\nu}\pder{Q}{T}[V]&=\oo{\nu}\pder{E}{T}[V]=\frac{3}{2}R
-            \xrightarrow{~~~~~~}
-            \pder{E}{T}[V]=\frac{3\nu}{2}R=\frac{3}{2}R
-            \\
-            dE&=\pder{E}{T}[V]dT+\cancel{\pder{E}{V}[T]dV}
-            \\
-            dE &= \frac{3}{2}R dT 
-            \\
-            \Delta E &=\frac{3 R}{2}(T_A-T_C)
-            \xrightarrow{T=\frac{pV}{R}}
-            \Delta E= \frac{3}{2}\qty(p_AV_A-p_CV_C)
-            \\
-            &=\frac{3}{2}\qty(2*1-2*3)\ten{9}\text{dynes}\cdot\text{cm}
-            \\
-            &\coloredanswer{\Delta E_{AC}\approx600 \text{J}}
+            C_p&=T\pder{S}{T}[p]=\qty(\frac{T\partial S}{\partial T})_{p}=\pder{Q}{T}[p]\quad\checkmark
         \end{align*}
-        \item $\Delta Q_{AC}=\Delta E_{CA}+\Delta W_{AC}$ part (a) found $2\Delta W$ and part (b) found $\Delta E_{AC}$
-        \begin{gather*}
-            \Delta Q_{AC}=600+157
-            \\
-            \coloredanswer{\Delta Q_{AC}=757\ \text{J}}
-        \end{gather*}
-    \end{enumerate}
-\end{problem}\newpage
-\begin{problem}
-    For an ideal gas whose entropy is fixed $$E=kV^{-\frac{2}{3}}$$ where $k$ is a constant independent of $V$.
-    \begin{enumerate}[label=(\alph*)]
-        \item Find an expression for the pressure $p$ in terms of $k$ and $V$.
-        \item Perform a Legendre transformation to find an appropriate function
-        of $P$ from which the same relation may be derived.
-    \end{enumerate}
-    \answerline
-    \begin{enumerate}[label=\alph*)]
-        \item 
-        \begin{align*}
-            dS&=0=\dbar Q\implies \dbar Q=0=dE+pdV
-            \\
-            dE&=-pdV=\pder{E}{V}dV\implies -\pder{E}{V}=p
-            \\
-            -&\pder{V}\qty(kV^{-2/3})=\coloredanswer{\frac{2}{3}kV^{-5/3}=p}
-        \end{align*}
-        \item Why not rearrange algebraically? 
-        \begin{align*}
-            0&=dE+pdV
-            \\
-            0&=dE+\colorbox{Pink2}{pdV+Vdp}-Vdp
-            \\
-            0&=\underbrace{dE+\colorbox{Pink2}{d(pV)}}-Vdp
-            \\[-0.25cm]
-            0&=\colorbox{Goldenrod3}{d(E+pV)}-Vdp
-            \\
-            0&=\colorbox{Goldenrod3}{dH}-Vdp
-            \\
-            dH&=Vdp
-            \\
-            &???
-        \end{align*}
-    \end{enumerate}
-\end{problem}\newpage
-\begin{problem}
-    The specific heat at constant volume and pressure are respectively: 
-    $$C_V=\pder{Q}{T}[V]\quad,\quad C_P=\pder{Q}{T}[P]$$ Present arguments that for an ideal gas $(PV=NkT,~E=\frac{3}{2}NkT)$:
-    $$\dbar Q=C_VdT+PdV=C_PdT-VdP$$
-    For a quasistatic adiabatic process, show that the equation of state may be written, \textbf{using the above as} $PV^\gamma=$ Constant. Where $\gamma\equiv C_P/C_V$
-    \answerline
-    \begin{align*}
-        C_p&=T\pder{S}{T}[p]=\qty(\frac{T\partial S}{\partial T})_{p}=\pder{Q}{T}[p]\quad\checkmark
-    \end{align*}
-\end{problem}\newpage
+    \end{problem}\newpage
 
 \section{Homework 5}
-\begin{problem}[Reif 5.12]
-    \answerline
-    \begin{equation*}
-        m\frac{\Delta p}{\Delta T}
-        \rightarrow
-        m\pder{p}{T}[S] 
-        \CrushStep{D2} 
-        m\DerivCrush*{p}{T}{S}
-        \CrushStep{C1}[M3]
-        m\frac{C_p}{-T\pder{V}{T}[p]}
-        \CrushStep{C3}
-        \frac{C_p}{-T\alpha V}=\frac{\rho C_p}{T\alpha}
-    \end{equation*}
-    \vspace{0.5cm}
-    \begin{equation*}
-        \frac{-T\alpha}{\rho C_P}\Delta P=\Delta T
-    \end{equation*}
-\end{problem}
-\begin{problem}[Reif 5.13]
-    \answerline
-    \begin{align*}
-        c_P&=T\pder{S}{T}[P]\xrightarrow{~~~~} \pder{c_P}{P}[T]=T\qty[\pder{P}\pder{S}{T}[P]~]_T=T\qty[\pder{T}\pder{S}{P}[T]~]_P\CrushStep{M3}[C3]T\qty[\pder{T}\qty(-\alpha(T) V)]_p
-        \\
-        &=-VT\pder{\alpha}{T}[p]=\coloredanswer{-VT\alpha'}
-    \end{align*}
-\end{problem}
-\begin{problem}[Reif 5.14]
-    
-\end{problem}
-\begin{problem}[Crushing (T/V)H]
-    Crush the derivative $\pder{T}{V}[H]$ and write it in terms of $C_P,\kappa,\alpha,V,T$. 
-\end{problem}
+    \begin{problem}[Reif 5.12]
+        \answerline
+        \begin{equation*}
+            m\frac{\Delta p}{\Delta T}
+            \rightarrow
+            m\pder{p}{T}[S] 
+            \CrushStep{D2} 
+            m\DerivCrush*{p}{T}{S}
+            \CrushStep{C1}[M3]
+            m\frac{C_p}{T\pder{V}{T}[p]}
+            \CrushStep{C3}
+            \frac{C_p}{T\alpha V}=\frac{\rho C_p}{T\alpha}
+        \end{equation*}
+        \vspace{0.5cm}
+        \begin{equation*}
+            \frac{T\alpha}{\rho C_P}\Delta P=\Delta T
+        \end{equation*}
+    \end{problem}\newpage
+    \begin{problem}[Reif 5.13]
+        A homogeneous substance at temperature $T$ and pressure $P$ has a molar volume $V$ and a molar specific heat (measured at constant pressure) given by $c_P$. Its coefficient of volume expansion $\alpha$ is known as a function of temperature. Calculate how $c_P$ depends on the pressure at a given temperature. i.e. Calculate $\qty(\partial c_P/\partial p)_T$ in terms of $T,V,\alpha$.~\footnote{For some reason Reif defines $\alpha=-\oo{V}\pder{V}{T}[P]$ in their solutions manual. The original definition $\alpha=\oo{V}\pder{V}{T}[P]$ is used here.}
+        \answerline
+        Making note that $\alpha=\alpha(T)$
+        \begin{align*}
+            c_P&=T\pder{S}{T}[P]\xrightarrow{~~~~} \pder{c_P}{P}[T]=T\qty[\pder{P}\pder{S}{T}[P]~]_T=T\qty[\pder{T}\pder{S}{P}[T]~]_P\CrushStep{M3}[C3]T\qty[\pder{T}\qty(-\alpha V)]_p
+            \\
+            &=T\pder{V}{T}[P]-VT\pder{\alpha}{T}[p]\CrushStep{C3}\coloredanswer{TV\alpha'-TV\alpha^2}
+        \end{align*}
+    \end{problem}\newpage
+    \begin{problem}[Reif 5.14]
+        See Reif pg. 196
+        \answerline
+        \begin{enumerate}[label=(\alph*)]
+            \item 
+            \begin{align*}
+                TdS&=\dbar Q=dE+\dbar W
+                \\
+                &=dE-FdL\xrightarrow{~~~}dE-aT^2(L-L_0)dL
+                \\
+                &\coloredanswer{dS=\frac{dE}{T}-aT(L-L_0)dL}
+            \end{align*}
+            \item \textcolor{Red1}{Does constant E \bf imply \rm constant T, is that all we need?}
+            \begin{align*}
+                dS&=\coloredanswer[Pink2]{\oo{T}}dE\coloredanswer[Goldenrod3]{-aT(L-L_0)}dL
+                \\
+                &=\coloredanswer[Pink2]{\pder{S}{E}[L]\ }dE+\coloredanswer[Goldenrod3]{\pder{S}{L}[T]\ }dL
+                \\
+                \pder{S}{L}[T]&=-\pder{F}{T}[L]??
+            \end{align*}
+            \item what
+            \begin{align*}
+                S(T,L)&-S(T_0,L_0)
+                \\
+                \int dS &=\int_{T_0}^{T_f}\oo{T}dE-aT\int_{L_0}^{L}(L'-L_0)dL' 
+                \\
+                S(T,L) &= \int_{T_0}^{T_f}\oo[b]{C_L}dE-aT\qty(\frac{L^2}{2}-\frac{L_0^2}{2}-LL_0+L_0^2)
+                \\
+                &= \int_{T_0}^{T_f}\oo[b]{T\pder{S}{T}[L]}dE-aT\oo{2}\qty(L^2+L_0^2-2LL_0)
+                \\
+                &=\int_{T_0}^{T_f}\oo{bT\pder{Q}{T}[L]}dE -\frac{aT}{2}\qty(L-L_0)^2
+            \end{align*}
+        \end{enumerate}
+    \end{problem}\newpage
+    \begin{problem}[Crushing (T/V)H]
+        Crush the derivative $\pder{T}{V}[H]$ and write it in terms of $C_p,\kappa,\alpha,V,T$. 
+        \answerline
+        \begin{align*}
+            \pder{T}{V}[H]
+            \CrushStep{D2}
+            \DerivCrush*{T}{V}{H}
+        \end{align*}
+    \end{problem}\newpage
 \section{Homework 6}
-\begin{problem}[Reif 5.15]
-    
-\end{problem}
-\begin{problem}[Reif 5.17]
-    
-\end{problem}
-\begin{problem}[Reif 5.23]
-    
-\end{problem}
+    \begin{problem}[Reif 5.15]
+        \answerline
+    \end{problem}\newpage
+    \begin{problem}[Reif 5.17]
+        \answerline
+    \end{problem}\newpage
+    \begin{problem}[Reif 5.23]
+        \answerline
+    \end{problem}\newpage
 \section{Homework 7}
-\begin{problem}[Reif 5.26]
-    
-\end{problem}
-\begin{problem}
-    The thermodynamic variables for a magnetic system are $H,M,T$ where $H$ is the magnetic field, $M$ is the magnetization and $T$ the absolute temperature. The magnetic work is $dW = -HdM$ and the first law
-    states that $dE=TdS+HdM$ The equation of state is given by Curie's law, $M=\kappa H/T$ where $\kappa$ is a constant. The heat capacity at constant $H$ is $C_H$, and at constant $M$ is denoted by $C_M$. Many
-    thermodynamic relations can be obtained from those of the $P,V,T$ system by the correspondence $H \leftrightarrow -P\,,\, M\leftrightarrow V$.
-    \begin{enumerate}[label=(\alph*)]
-        \item Show that $\displaystyle C_M=\pder{E}{T}[M]$ and that $\displaystyle C_H=\pder{E}{T}[H]-H\pder{M}{T}[H]$
-        \item 
-    \end{enumerate}
-\end{problem}
-    \end{document}
+    \begin{problem}[Reif 5.26]
+        \answerline
+    \end{problem}\newpage
+    \begin{problem}
+        The thermodynamic variables for a magnetic system are $H,M,T$ where $H$ is the magnetic field, $M$ is the magnetization and $T$ the absolute temperature. The magnetic work is $dW = -HdM$ and the first law
+        states that $dE=TdS+HdM$ The equation of state is given by Curie's law, $M=\kappa H/T$ where $\kappa$ is a constant. The heat capacity at constant $H$ is $C_H$, and at constant $M$ is denoted by $C_M$. Many
+        thermodynamic relations can be obtained from those of the $P,V,T$ system by the correspondence $H \leftrightarrow -P\,,\, M\leftrightarrow V$.
+        \begin{enumerate}[label=(\alph*)]
+            \item Show that $\displaystyle C_M=\pder{E}{T}[M]$ and that $\displaystyle C_H=\pder{E}{T}[H]-H\pder{M}{T}[H]$
+            \item Using Curie's law and the first law show that $$\pder{E}{M}[T]=0$$
+            \item Show that $$C_H-C_M=\frac{M^2}{k}$$
+        \end{enumerate}
+    \end{problem}\newpage
+    \begin{problem}
+        Later on in the course we will see that the equation of state of radiation is: $pV=E/3$. Stefan's law relates the energy to the temperature and
+        volume by: $E=\sigma VT^4$ where $\sigma$ is a constant. Using just this, answer the following:
+        \begin{enumerate}[label=(\alph*)]
+            \item Find the entropy $S$ of radiation as a function of $V,T$.\footnote{\textit{Hint: use the fact that $dS$ is an exact differential and therefore path independent.}}
+            \item During the big bang, radiation initially confined to a small region expands adiabatically and cools down. Using the result of part (a) find the relationship betweeen the temperature $T$ and radius of the universe $R$.
+        \end{enumerate}
+    \end{problem}
+\end{document}
