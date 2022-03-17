@@ -1,13 +1,18 @@
 \documentclass{article}
     \input{../../commands.tex}
 
-    \header{Physics 406}{}{Derivative Crusher Algorithm}
-    \thetitle{Derivative Crusher Algorithm}[by\large\ \Akhoury]
-    \date{Winter 2022}
+\header{Physics 406}{}{Derivative Crusher Algorithm}
+\thetitle{Derivative Crusher Algorithm}[by\large\ \Akhoury]
+\date{Winter 2022}
 
-    \author{\small Typed in \LaTeX\ by \EC}
-    \addtolength{\jot}{0.25cm}% changes row spacing to 0.25cm in align
-    \def\Akhoury{\hyperlink{https://lsa.umich.edu/physics/people/faculty/akhoury.html}{Ratindranath Akhoury}}
+\author{\small Typed in \LaTeX\ by \EC}
+\addtolength{\jot}{0.25cm}% changes row spacing to 0.25cm in align
+\def\Akhoury{
+    \hyperlink{
+        https://lsa.umich.edu/physics/people/faculty/akhoury.html
+    }{Ratindranath Akhoury}
+    }
+
 \begin{document}
 \maketitle\thispagestyle{fancy}
 \noindent\textbf{Idea:} A partial derivative with thermodynamically significant variables
@@ -49,7 +54,7 @@
     The Derivative Crusher Algorithm is made of three operations and seven relations. 
     Looking at the derivatives of $G(T,P)=E-TS-PV$ more closely, certain constants can be defined: 
     \begin{align*}
-        \pder{G}{T}[P]&=-S & \pder[2]{G}{T}[P]&=\coloredanswer{\pder{S}{T}[P]\equiv\frac{C_p}{T}}\tag{C1}\label{C1}
+        \pder{G}{T}[P]&=-S & \pder[2]{G}{T}[P]&=\coloredanswer{\pder{S}{T}[P]\equiv\frac{C_p}{T}}=\oo{T}\pder{Q}{T}[P]\tag{C1}\label{C1}
         \\
         \pder{G}{P}[T]&=V & \pder[2]{G}{P}[T]&=\coloredanswer{\pder{V}{P}[T]\equiv-\kappa V}\tag{C2}\label{C2}
     \end{align*}
@@ -70,16 +75,16 @@
         \end{equation*}
         \item Bringing $z$ to the numerator:
         \begin{equation*}
-            \coloredanswer{\pder{x}{y}[z]=-\frac{\pder{z}{y}[x]}{\pder{z}{x}[y]}}\tag{D2}\label{D2}
+            \coloredanswer{\pder{x}{y}[z]=\frac{-\pder{z}{y}[x]}{\pder{z}{x}[y]}}\tag{D2}\label{D2}
         \end{equation*}
         \item Introduce new variable $w$:
         \begin{equation*}
             \coloredanswer{\pder{x}{y}[z]=\frac{\pder{x}{w}[z]}{\pder{y}{w}[z]}}\tag{D3}\label{D3}
         \end{equation*}
     \end{enumerate}
-    The last crucial component are the Maxwell Relations between $S,V,T,P$:~\footnote{Note that in the one dimensional case, $P\rightarrow F$ and $V\rightarrow X$}
+    The last crucial component are the Maxwell Relations between $S,V,T,P$:~\footnote{Note that in the one dimensional case, pressure is force (negative by convention): $P\rightarrow -F$ and $V\rightarrow X$}
     \begin{gather*}
-        \coloredanswer{\pder{S}{V}[T]=\pder{P}{T}[V]}\tag{M1}\label{M1} % re-type with X, F is negative
+        \coloredanswer{\pder{S}{V}[T]=\pder{P}{T}[V]}\tag{M1}\label{M1} % ~ is small space
         \\
         \coloredanswer{\pder{V}{S}[P]=\pder{T}{P}[S]}\tag{M2}\label{M2}
         \\
@@ -90,7 +95,7 @@
     \newpage
 \section*{Steps of the Algorithm}
     \begin{enumerate}
-        \item Bring potentials $E,F,G,H$ to the numerator (\ref{D1} or \ref{D2}) and eliminate them using:
+        \item Bring potentials ($E,F,G,H$) to the numerator (using \ref{D1} or \ref{D2}) and eliminate them using:
         \begin{align*}
             dE&=TdS-PdV
             &
@@ -104,17 +109,24 @@
         \begin{align*}
             z&=T\qquad\boxed{\pder{S}{V}[T]=\pder{P}{T}[V]\quad,\quad \pder{S}{P}[T]=-\pder{V}{T}[P]}
             \\
-            z&=P,V\quad\boxed{\pder{S}{T}[P]=\frac{C_P}{T}\quad,\quad \pder{S}{T}[V]=\frac{C_v}{T}}
+            z&=P,V\quad\boxed{\pder{S}{T}[P]=\frac{C_P}{T}\quad,\quad \pder{S}{T}[V]=\frac{C_V}{T}}
         \end{align*}
         \item Bring $V$ to numerator in order to get $\alpha$ or $\kappa$. 
         \begin{align*}
             \boxed{\frac{-\pder{V}{T}[P]}{\pder{V}{P}[T]}=\pder{P}{T}[V]=\frac{\alpha}{\kappa}}
         \end{align*}
-        \item Eliminate $C_v$ in favor of $C_p,\alpha,\kappa$
+        \item Eliminate $C_V$ in favor of $C_p,\alpha,\kappa$
+        A trick for going from $C_V\rightarrow C_P$ uses another useful derivative trick:
         \begin{gather*}
-            C_V=T\pder{S}{T}[V]=C_P+T\pder{S}{P}[T]\pder{P}{T}[V]
+            \pder{x}{y}[w]=\pder{x}{y}[z]+\pder{x}{z}[y]\pder{z}{x}[w]
             \\
-            C_P-C_V=VT\frac{\alpha^2}{\kappa}
+            \pder{Q}{T}[V]=\pder{Q}{T}[P]+\pder{Q}{P}[T]\pder{P}{T}[V]
+            \\
+            T\pder{S}{T}[V]=T\pder{S}{T}[P]+T\pder{S}{P}[T]\pder{P}{T}[V]
+            \\
+            C_V=C_P+T\pder{S}{P}[T]\pder{P}{T}[V]
+            \\
+            \boxed{C_P-C_V=VT\frac{\alpha^2}{\kappa}}=R                 
         \end{gather*}
     \end{enumerate} 
 \end{document}
