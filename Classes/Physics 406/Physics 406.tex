@@ -10,6 +10,15 @@
     \def \macst {macro\ste}
     \def \dof {degree of freedom\ }
     \def \dofs {degrees of freedom\ }
+    \NewDocumentEnvironment{ lecture } {O{} O{} +b} 
+	{\addtocounter{lecturecount}{1} % increase counter
+		\phantomsection % invisible marker for hyperref
+		\addcontentsline{toc}{subsection}{\textbf{Lecture~\thelecturecount:}~\textsl{#2}} % add to table of contents
+		\begin{trivlist} % begin unmarked ("trivial") list
+		\item \colorbox{LavenderBlush2}{\textbf{Lecture \thelecturecount.}~(\texttt{#1})~ \textit{#2}} % Header
+		\item #3  % +b is for inputs that are long
+		\end{trivlist} % end list
+	}{}
 \begin{document}
 \maketitle
 \input{../lectureformatting.tex}
@@ -46,26 +55,148 @@
         \\
         example with simp harmon oscill
     \end{lecture}
-\begin{lecture}[Jan 19][More on Microcanonical Ensemble]
-    $\Omega(E)=\#$ of states with energy between $E+\delta E$
-    \\
-    Describing energy levels of each particle, think N-cube
-    \\
-    Now \pa can interact!! Mechanical interactions and thermal interactions(both macro descriptions). 
-    \\
-    1 isolated system at equilibrium$\rightarrow$ same system but with partition, now 2 systems. $A^0$ is comprised of $A,A'$. Macro parameters of $A^0$ are for both states (N,V,E,T,\ldots).
-    \\
-    \begin{description}
-        \item [Thermal Interaction] External parameters of $A,A'$ are fixed but mean energy transferred from one system to the other as a result of purely thermal interactions called heat. Probabilities of energy states can change when systems interact $P(r)$
-        \item [Mechanical Interaction] External Parameters of $A,A'$ change, one does \emph{work} on the other! This causes the mean energies of $A,A'$ to change. 
-    \end{description}
-    $$\overline{E}=\sum_rp_rE_r$$
-    \\
-    Pure thermal and purely mech example in inf sqwell
-\end{lecture}
+    \begin{lecture}[Jan 19][More on Microcanonical Ensemble]
+        $\Omega(E)=\#$ of states with energy between $E+\delta E$
+        \\
+        Describing energy levels of each particle, think N-cube
+        \\
+        Now \pa can interact!! Mechanical interactions and thermal interactions(both macro descriptions). 
+        \\
+        1 isolated system at equilibrium$\rightarrow$ same system but with partition, now 2 systems. $A^0$ is comprised of $A,A'$. Macro parameters of $A^0$ are for both states (N,V,E,T,\ldots).
+        \\
+        \begin{description}
+            \item [Thermal Interaction] External parameters of $A,A'$ are fixed but mean energy transferred from one system to the other as a result of purely thermal interactions called heat. Probabilities of energy states can change when systems interact $P(r)$
+            \item [Mechanical Interaction] External Parameters of $A,A'$ change, one does \emph{work} on the other! This causes the mean energies of $A,A'$ to change. 
+        \end{description}
+        $$\overline{E}=\sum_rp_rE_r$$
+        \\
+        Pure thermal and purely mech example in inf sqwell
+    \end{lecture}
 \begin{lecture}[Jan 24]
     Pure thermal interaction changes $p_r$
     \\
     Pure mechanical interaction changes $E_r$
 \end{lecture}
+March 23rd
+\\\\
+Stable vs unstable equilibrium\\
+use gibbs and helmholts free energy\\
+isolated system vs in contact with temp or pressure reservoir\\
+equilibrium in contact \\
+system A changes states, excchanging heat or work. How much work can it do?\\
+Isolated system\{Reservoir(A, T0,P0)--work source\}
+A does $W^*$, energy, volume, and entropy increase by $\Delta E, \Delta V, \Delta S$ \\
+change of volume and entropy is opposite of change in A bc of first law $W^*+\Delta E-\underbrace{P_0\Delta V_0+T\Delta S_0}_{reservoir}=0$
+\\
+2nd law says $\Delta(S+S_0)\geq0$ which means $\Delta S_0 \geq -\Delta S$\\
+Sub in to first law equation \\
+$W^*\leq -\Delta (E-T_0S+P_0V)=-\Delta G_0$
+Not Gibbs free energy bc $T_0,P_0$ refer to reservoir, not to A, mixed with both variables.
+$G_0=G$ when A is in equilibrium with res
+\\
+Since system is isolated, it starts and ends at $T,P=T_0,P_0$\\
+meaning $W^*\leq -\Delta (E-TS+PV)=-\Delta G$ which is Gibb free energy. \\
+System has fixed volume too, $\Delta V=0$\\
+$W^*\leq -\Delta (E-T_0S)=-\Delta G$\\
+if $T=T_0\rightarrow W^*\leq -\Delta F$ Helmholtz for A.\\
+$W^*\leq -\Delta G$ in general\\
+$W^*\leq -\Delta F$ for fixed volume\\
+So $ -\Delta G$ and $-\Delta F$ are maximum work that can be done--> ``Free'' Energy!
+\\
+\\
+Spontanetous process defined as process with $W^*=0$\\
+$0\leq -\Delta G_0\rightarrow \Delta G_0\leq0\rightarrow (G_{0f}-G_{0i})\leq0\rightarrow \boxed{G_{0f}\leq G_{0i}}$
+\\
+For fixed volume: $\Delta F_0\leq0$\\
+In equilibrium, systems in contact with T,P reservoirs, there can be no change in gibbs or helmholtz, meaning that final can't be less than initial, meaning that it must be a minimum! 
+\\
+analogue (?) with of $S=S_{max}$ for isolated sys in eq
+\\
+\\
+Stability of thermo system. system A in reservoir, res has $T_0,P_0$. How do perterbations/fluctuations change $G_0$? Thinking abt stabel vs unstable equilibium. 
+\\
+Begin by characterizing A by $T,V$. 
+\\
+$$\pder{G_0}{T}[V]=0,\pder{G_0}{V}[T]=0$$
+Expanding about minimum $G_min$.
+$$G_0=G_{min}+\oo{2}\eval{\pder[2]{G_0}{T}[V]~}_{G=G_min}\qty(\Delta T)^2+\oo{2}\eval{\pder[2]{G_0}{V}[T]~}_{G=G_min}\qty(\Delta V)^2+\eval{\pder{G_0}{TV}~}_{G=G_min}\Delta T\Delta V+...$$
+Now calculate derivs. 
+$$\pder{G_0}{T}[V]=\pder{E}{T}[V]-T_0\pder{S}{T}[V]=T\pder{S}{T}[V]-T_0\pder{S}{T}[V]$$
+So $T=T_0$
+$$\pder{G_0}{V}[T]=\pder{E}{V}[T]-T_0\pder{S}{V}[T]=T\pder{S}{T}[V]-p-T_0\pder{S}{T}[V]+p_0=0$$
+so $P=P_0$
+$$\pder[2]{G_0}{V}[T]=T\pder[2]{S}{V}[T]-\pder{P}{V}[T]-T_0\pder[2]{S}{V}[T]=-\pder{P}{V}[T]=\oo{V\kappa}$$
+$$\pder[2]{G_0}{T}[V]=T\pder[2]{S}{T}[V]+\pder{S}{T}[V]-T_0-\pder[2]{S}{T}[V]$$
+$$=\pder{S}{T}[V]=\oo[C_V]{T}$$
+$$\pder{G_0}{TV}=T\pder{S}{TV}-T_0\pder{S}{TV}=0$$
+Combining them all together to get: 
+$$G_0=G_{min}+\underbrace{\frac{C_V}{2T_0}\qty(\Delta T)^2+\oo{2V\kappa}\qty(\Delta V)^2}_{\text{ Must be $>0$ for stable}}$$
+So stable if $C_V$and $\kappa >0$
+\\\\
+Monday March 28th\\
+Phase Transitions as applicaitons of tdymic instability, aka $C_V$ or $\kappa <0$. Phase transitions accompany changes of internal energy of system.
+\\
+Change in crystaline structure.
+\\
+Change in conductor to superconductor.
+\\\\
+Must consider non ideal gasses. Van-der Waals gas. 
+\\
+For 1 mol of VDW gas: $$\qty(p+\frac{a}{v^2})(v-b)=RT$$
+Consider isotherms on p-v diagram in Desmos, there is a section for low T where $\pder{P}{V}>0$ 
+\\
+System with 2 possible phases in contact with temp and pressure reservoir. Gibbs free energy. 
+$$G(T,P)\equiv G(T,P)/\text{mole}\qquad \nu_i\equiv\text{\# moles in phase\ }i$$
+For equilibrium $$G_T=\nu_1g_1+\nu_2g_2$$ must be a minimum. 
+Constraint is that $$\nu_1+\nu_2=\nu$$
+Three possibilities 
+\begin{itemize}
+    \item $g_1<g_2$ At equilibrum $G_T=\nu g_1$
+    \item $g_1>g_2$ At equilibrium $G_T=\nu g_2$
+    \item $g_1=g_2$ At equilibrium $G_T=\nu_1 g_1+\nu_2 g_2$
+\end{itemize}
+Phase diagram is a P-T diagram with lines that represent $g_i=g_j$ for two phases $i,j$
+\\
+For phase change:
+\begin{gather*}
+    g_1=g_2
+    \\
+    E_1-TS_1+PV_1=E_2-TS_2+PV_2
+    \\
+    (E_1-E_2)-\underbrace{T(S_1-S_2)}_{Q}+P(V_1-V_2)=0
+\end{gather*}
+First order phase transitions. \\
+Characterized by: 
+\begin{itemize}
+    \item $g(T,P)$ is continuous across boundary between phases. 
+    \item The first partial derivatives are discontinuous. $\pder{g}{P}[T]=v,\ \pder{g}{T}[P]=-s$ 
+    So in first order latent heat is absorbed or given off. 
+    take differentials a nd group together to get 
+\end{itemize}
+\begin{gather*}
+    \Delta\pder{g}{P}=v_1-v_2=\Delta v\ \text{Change in molar volume}
+    \\
+    \Delta\pder{g}{T}=-(s_1-s_2)=-\Delta s\ \text{Change in molar entropy}
+\end{gather*}
+the amount of molar latent heat that must be absorbed is $l$ so $\Delta S=l/T$
+$$\pder{P}{T}=\frac{\Delta S}{\Delta V}=\frac{l}{T\Delta V}$$
+Clausius-Clapeyron equation. \\
+First order phase transitions are characterized by latent heat produced. \\
+Second order phase transitions: both g and 1st derivatives are cont but second derivatives are not,,, no latent heat. 
+\\
+Application of Clausius-Clapeyron equation. \\
+consider liquid vapor, find vapor pressure in equilibrium with liquid. \\
+Simplifying asssump: 
+\begin{itemize}
+    \item $\Delta V=V_{vap}-V_{liq}\approx V_{vap}\rightarrow V_{liq}<<V_{vap}$
+    \item $PV=RT$
+    \item Asssume $l\neq l(T)$
+\end{itemize}
+\begin{gather*}
+    \der{P}{T}=\frac{l}{T}\oo{V_{vap}}=\frac{l}{T}\frac{P}{RT}=\frac{lP}{RT^2}
+    \\
+    \oo[dp]{p}=\frac{l}{RT^2}dt
+    \\
+    P=P_0e^{-l/RT}
+\end{gather*}
 \end{document}
