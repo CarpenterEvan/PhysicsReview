@@ -1,5 +1,5 @@
 % Since \input doesn't like preambles, only uncomment next line if you're editing this TeX, don't forget the \end{document}! 
-%\documentclass{article}\input{../MAIN/packages}\input{../MAIN/commands}\begin{document}
+%\documentclass{article}\input{../../commands}\begin{document}
 \section{Curvilinear Coordinates}
 \subsection{Spherical Coordinates}
     In this system, the following describe the space's basis set:
@@ -168,7 +168,7 @@
     \\
     \text{Scalar Laplacian:}&&
     \nabla^2 f 
-    &= \frac{1}{r^2} \pder*{r} \qty(r^2 \pder*{r}f) + \frac{1}{r^2 \sin(\theta)} \pder*{\theta} \qty(\sin(\theta)\pder*{\theta}f) +\frac{1}{r^2 \sin^2(\theta)} \pder*[2]{\phi}f
+    &= \frac{1}{r^2} \pder{r}\qty(r^2 \pder*{r}f) + \oo{r^2 \sin(\theta)} \pder*{\theta} \qty(\sin(\theta)\pder*{\theta}f) +\frac{1}{r^2 \sin^2(\theta)} \pder*[2]{\phi}f
     \end{align*}
     \length
 
@@ -348,7 +348,7 @@
             \\
             \text{Scalar Laplacian:}&&%\quad
             \nabla^2 f
-            &=\oo{s}\pder*{s}\qty(s\pder*{s}F) + \oo{{s}^2}\pder*[2]{\phi}F+ \pder*[2]{z}F 
+            &=\oo{s}\pder*{s}\qty(s\pder*{s}f) + \oo{{s}^2}\pder*[2]{\phi}f + \pder*[2]{z}f 
         \end{align*}
         \length
 %\end{document}
