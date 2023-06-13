@@ -2,31 +2,36 @@
 %\documentclass{article}\input{../../commands}\begin{document}
 \section{Curvilinear Coordinates}
 \subsection{Spherical Coordinates}
-    In this system, the following describe the space's basis set:
+    In this system of coordinates, the following describe the space's basis set:
     %\tikzsetnextfilename{spherical}
-    \begin{align*}
-        \begin{tikzpicture}[scale=1]
-            \begin{scope}[canvas is xy plane at z=0] % THETA
-                \fill [red!20] (0,0,0)--(1,1.732) arc [start angle=60, end angle=90, radius=2cm]--cycle;
-                \node at (0.35,1.5){$\theta$};
-                \draw [thick] (0,0) circle (2);
+    \tikzfading[name=ball, outer color=transparent!50, inner color=transparent!100]
+    \begin{figure}[H]
+        \begin{tikzpicture}
+            \draw [dotted] (2.3,0,2)--(2.3,2.3,2)--(0,2.3,0); % projection of r onto z and x axis
+            \draw [orange!30, fill=orange!30] (0,0,0)--(0.75,0.75,0) arc [start angle=45, end angle=90,radius=10 mm] node at (0.25,0.7) [black] {$\theta$}; % Theta arc
+            \begin{scope}[canvas is xz plane at y=0]
+                \draw [dotted] (0,0)--(2.3,2);
+                \fill [blue!20] (0,0)--(1.2,1) arc [start angle=45, end angle=120,radius=10 mm] node at (0.35,0.65) [black] {$\phi$};
             \end{scope}
-            \begin{scope}[canvas is xz plane at y=0] % PHI
-                \fill [blue!20] (0,0)--(2,0) arc[start angle=0, end angle=90,radius=2cm];
-                \node at (1,1) {$\phi$};
-                \draw [thick] (0,0) circle (2);
-            \end{scope}
-            \begin{scope}[ultra thick, latex-latex]
-            \draw  (xyz cs:y=-2)--(xyz cs:y=2) node [anchor=south]      {\textbf{z}};
-            \draw  (xyz cs:x=-2)--(xyz cs:x=2) node [anchor=north west] {\textbf{y}};
-            \draw  (xyz cs:z=-2)--(xyz cs:z=2) node [anchor=north west] {\textbf{x}};
-            \end{scope}
-            \draw [ultra thick, blue, -latex] (0,0,0)--(xyz spherical cs:radius=2, longitude= 30) node [anchor=south] {\textbf{r}};
+
+
+            %\fill [path fading=ball, color=black] (0.07,0) circle (2.5);
+            \draw [ultra thick, -latex] (0,0,0)--(3,0,0) node [anchor=north west] {\textbf{y}};
+            \draw [ultra thick, -latex] (0,0,0)--(0,3,0) node [anchor=south]      {\textbf{z}};
+            \draw [ultra thick, -latex] (0,0,0)--(0,0,3) node [anchor=north west] {\textbf{x}};
+
+
+            \draw [ultra thick, blue!20, -latex] (2.3,2.3,2)--(3,2,0.7) node [anchor=west, color=black] {$\e{\phi}$}; 
+            \draw [ultra thick, orange!30, -latex] (2.3,2.3,2)--(3,1.6,2.25) node [anchor= north, color=black] {$\e{\theta}$}; 
+            \draw [ultra thick, blue, -latex] (2.3,2.3,2)--(3,3,2) node [anchor=south east, color=black] {$\e{r}$}; 
+            \draw [ultra thick, red, -latex] (0,0,0)--(2.3,2.3,2) node at (1,0.5) {\textbf{r}};
+
+
+            \node (description text) at (6,2,0) {Distance from the origin: r};
+            \node at (description text.south) [xshift=29.5, yshift=-5] {Polar angle: $\theta$};
+            \node at (description text.south) [xshift=19, yshift=-16] {Azimuthal angle: $\phi$};
         \end{tikzpicture}
-    \text{Distance from the origin: r}\\
-    \text{Angle from z-axis, the polar angle: $\theta$}\\
-    \text{Angle around z-axis, the azimuthal angle: $\phi$}
-    \end{align*}
+    \end{figure}
     Important relationships:
     \begin{align*}
         \begin{bmatrix}
@@ -106,106 +111,95 @@
     \[\dl* = dr\ \e{r} + r d\theta\ \e{\theta} + r \sin(\theta) d\phi\ \e{\phi} \]
     Infinitesimal Areas:
     \begin{align*}
-    \begin{tabular}{|c|c|}
-        \hline
-        Held Constant & $\da*$ \\ 
-        \hline
-        r & $r^2 \sin(\theta) d\theta d\phi\ \e{r}$\\ 
-        \hline
-        $\theta$ & $r \sin(\theta) dr d\phi\ \e{\theta}$ \\ 
-        \hline
-        $\phi$ & $r dr d\theta\ \e{\phi}$\\
-        \hline
-    \end{tabular}
+        \begin{tabular}{|c|c|}
+            \hline
+            Held Constant & $\da*$ \\ 
+            \hline
+            r & $r^2 \sin(\theta) d\theta d\phi\ \e{r}$\\ 
+            \hline
+            $\theta$ & $r \sin(\theta) dr d\phi\ \e{\theta}$ \\ 
+            \hline
+            $\phi$ & $r dr d\theta\ \e{\phi}$\\
+            \hline
+        \end{tabular}
     \end{align*}
     Infinitesimal volume: \[dV = r^2\sin(\theta) dr d\theta d\phi\]
     \subsubsection*{Spherical Vector Derivatives:}
-    \length[0.7cm]
-    \begin{align*}
-    % Gradient         {
-    \text{Gradient:}&&
-    \nabla f &=
-    \left[
-    \begin{matrix}
-    \pder*{r}f
-    \\[0.3 cm]
-    \frac{1}{r} \pder*{\theta}f
-    \\[0.3 cm]
-    \frac{1}{r \sin(\theta)}\pder*{\phi}f
-    \end{matrix}\right]
-    \cdot
-    \left[
-    \begin{matrix}
-    \e{r}
-    \\[0.3 cm]
-    \e{\theta}
-    \\[0.3 cm]
-    \e{\phi}
-    \end{matrix}\right]
-    \\
-    \text{Divergence:}&&
-    \nabla \cdot \vb{A} &= \oo{r^2} \pder*{r}\qty(r^2A_r) + \oo{r \sin(\theta)} \pder*{\theta} \qty(\sin(\theta)A_\theta) + \oo{r \sin(\theta)} \pder*{\phi}A_\phi 
-    \\
-    \text{Curl:}&&
-    \nabla \times \vb{A} &= 
-    \left[
-    \begin{matrix}
-    \mathlarger{\frac{1}{r\sin(\theta)} \qty(\pder*{\theta}A_\phi\sin(\theta)-\pder*{\phi}A_\theta)}
-    \\[0.3 cm]
-    \mathlarger{\oo{r}\qty(\oo{\sin(\theta)}\pder*{\phi}A_r-\pder*{r}\qty(r A_{\phi}))}
-    \\[0.3 cm]
-    \mathlarger{\frac{1}{r}\qty(\pder*{r}\qty(rA_{\theta}) - \pder*{\theta}A_r)}
-    \end{matrix}\right]
-    \cdot
-    \left[
-    \begin{matrix}
-    \e{r}
-    \\
-    \e{\theta} 
-    \\
-    \e{\phi}
-    \end{matrix}\right]
-    \\
-    \text{Scalar Laplacian:}&&
-    \nabla^2 f 
-    &= \frac{1}{r^2} \pder{r}\qty(r^2 \pder*{r}f) + \oo{r^2 \sin(\theta)} \pder*{\theta} \qty(\sin(\theta)\pder*{\theta}f) +\frac{1}{r^2 \sin^2(\theta)} \pder*[2]{\phi}f
-    \end{align*}
-    \length
+        {\setlength\jot{1cm}
+        \renewcommand{\arraystretch}{1.5}
+        \begin{align*}
+            \text{Gradient:}&&
+            &\nabla f = 
+            \qty[
+            \begin{matrix}
+                \pder*{f}{r}
+                \\
+                \frac{1}{r} \pder*{f}{\theta}
+                \\
+                \frac{1}{r \sin(\theta)}\pder*{f}{\phi}
+            \end{matrix}
+            ]\cdot\qty[
+            \begin{matrix}
+                \e{r}\\\e{\theta}\\\e{\phi}
+            \end{matrix}
+            ]
+            \\
+            \text{Divergence:}&&
+            \div \vb{A} &= \oo{r^2}\pder*{r}\qty(r^2A_r) 
+            + \oo{r \sin(\theta)} \pder*{\theta} \qty(\sin(\theta)A_\theta) 
+            + \oo{r \sin(\theta)} \pder*{A_\phi}{\phi}
+            \\
+            \text{Curl:}&&
+            &\curl \vb{A} = 
+            \qty[
+               \begin{matrix}
+                    \oo{r\sin(\theta)}\qty[\pder*{\theta}\qty(A_\phi\sin(\theta))-\pder*{A_\theta}{\phi}]
+                    \\
+                    \oo{r\sin(\theta)}\pder*{A_r}{\phi}-\oo{r}\pder*{r}\qty(r A_{\phi})
+                    \\
+                    \frac{1}{r}\qty(\pder*{r}\qty(rA_{\theta}) - \pder*{\theta}A_r)
+                \end{matrix}
+            ]\cdot\qty[
+            \begin{matrix}
+                \e{r} \\\e{\theta} \\\e{\phi}
+            \end{matrix}]
+            \\
+            \text{Scalar Laplacian:}&&
+            \nabla^2 f 
+            &= \frac{1}{r^2} \pder{r}\qty(r^2 \pder{f}{r}) + \oo{r^2 \sin(\theta)} \pder{\theta} \qty(\sin(\theta)\pder{f}{\theta}) +\frac{1}{r^2 \sin^2(\theta)} \pder[2]{f}{\phi}
+        \end{align*}}
 
 
 \newpage
 \subsection{Cylindrical Coordinates}
     In this system, the following describe the space's basis set:
     %\tikzsetnextfilename{cylindrical}
-    \begin{align*}
-        \begin{tikzpicture}
-            \begin{scope}[canvas is xz plane at y=-2]
-                \draw [gray!50] (0,0) circle (2 cm);
+    \begin{figure}[H]
+        \begin{tikzpicture}  
+            \draw [dotted] (0,0,0)--(2.3,0,2)--(2.3,2.3,2)--(0,2.3,0);
+            \begin{scope}[canvas is xz plane at y=0]
+                \fill [blue!20] (0,0)--(1.2,1) arc [start angle=45, end angle=120,radius=10 mm] node at (0.35,0.65) [black] {$\phi$};
             \end{scope}
-            \begin{scope}[canvas is xz plane at y=-1]
-                \draw [gray] (0,0) circle (2 cm);
-            \end{scope}
-            \begin{scope}[canvas is xz plane at y= 0]
-                \fill [blue!20] (0,0)--(2,0) arc[start angle=0, end angle=90,radius=2cm];
-                \draw [ultra thick] (0,0) circle (2 cm);
-                \node at (1,1)[black, ultra thick]{$\mathbf{\phi}$};
-            \end{scope}
-            \begin{scope}[canvas is xz plane at y= 1]
-                \draw [gray] (0,0) circle (2 cm);
-            \end{scope}
-            \begin{scope}[canvas is xz plane at y= 2]
-                \draw [gray!50] (0,0) circle (2 cm);
-            \end{scope}
-            \draw [ultra thick, latex-latex] (-2,0,0)--(2,0,0) node [anchor=north west] {\textbf{y}};
-            \draw [ultra thick, latex-latex] (0,-2,0)--(0,2,0) node [anchor=south] {\textbf{z}};
-            \draw [ultra thick, latex-latex] (0,0,-2)--(0,0,2) node [anchor=north west] {\textbf{x}};
-            \draw [ultra thick, -latex, brown] (0,0.1,0)--(2,0.1,0) node [anchor=south east] {\textbf{s}};
-            \draw [ultra thick, -latex, red] (2,0,0)--(2,1,0) node [anchor=south] {\textbf{z}};
+            \draw [ultra thick, -latex] (0,0,0)--(3,0,0) node [anchor=north west] {\textbf{y}};
+            \draw [ultra thick, -latex] (0,0,0)--(0,3,0) node [anchor=south] {\textbf{z}};
+            \draw [ultra thick, -latex] (0,0,0)--(0,0,3) node [anchor=north west] {\textbf{x}};
+
+
+            \draw [ultra thick, blue!20, -latex] (2.3,2.3,2)--(2.7,2,0.7) node [anchor=west, color=black] {$\e{\phi}$}; 
+            \draw [ultra thick, brown, -latex] (2.3,2.3,2)--(3.5,2.3,3.043) node [anchor=north west, color=black] {$\e{s}$}; 
+            \draw [ultra thick, blue, -latex] (2.3,2.3,2)--(2.3,3,2) node [anchor=south east, color=black] {$\e{\textbf{z}}$}; 
+
+
+            \draw [ultra thick, red, -latex] (0,0,0)--(2.3,2.3,2) node at (1,0.5) {\textbf{r}};
+            \draw [ultra thick, -latex, brown] (0,0,0)--(2.3,0,2) node [anchor=west] {\textbf{s}};
+            \draw [ultra thick, -latex, blue] (0,0,0)--(0,2.3,0) node [anchor=east] {\textbf{z}};
+
+
+            \node (description text) at (6,2,0) {Distance from the z-axis: s};
+            \node at (description text.south) [xshift=29.5, yshift=-5] {Azimuthal angle: $\phi$};
+            \node at (description text.south) [xshift=19, yshift=-16] {Distance on z-axis: z};
         \end{tikzpicture}
-        \text{Distance from the z-axis: s}\\
-        \text{Angle around x-axis, the azimuthal angle: $\phi$}\\
-        \text{Distance on z-axis: z}\\
-    \end{align*}
+    \end{figure}
     Important relationships:
     \begin{align*}
         \begin{bmatrix}
@@ -301,54 +295,41 @@
         \end{center}
     Infinitesimal Volume: \[dV=sdsd\phi dz\]
     \subsubsection*{Cylindrical Vector Derivatives:}
-    \length[0.7cm]
+    {\setlength\jot{0.7cm}
+        \renewcommand{\arraystretch}{2.2}
+    
         \begin{align*}
         % Gradient         {
         \text{Gradient:}&&%\quad
             \nabla f &= 
-            \qty[
-            \begin{matrix}
-                \mathlarger{\partial_{s}f}
-                \\[0.3 cm]
-                \mathlarger{\frac{1}{s} \partial_{\phi}f}
-                \\[0.3 cm]
-                \mathlarger{\partial_{z}f}
-            \end{matrix}]
-            \cdot
-            \qty[
-            \begin{matrix}
-                \e{s}
-                \\[0.3 cm]
-                \e{\phi}
-                \\[0.3 cm]
-                \e{z}
-            \end{matrix}]
+                \qty(\pder{f}{s})\e{s}+
+                \qty(\oo{s} \pder{f}{\phi})\e{\phi}+
+                \qty(\pder{f}{z})\e{z}
             \\
         \text{Divergence:}&&%\quad
-            \div\vb{A} &= \oo{s}\pder*{s}\qty(s A_s) + \oo{s}\pder*{\phi}A_\phi  + \pder*{z}A_z
+            \div\vb{A} &= \oo{s}\pder{s}\qty(s A_s) + \oo{s}\pder{A_\phi}{\phi}  + \pder{A_z}{z}
             \\
         \text{Curl:}&&%\quad
-            \curl \vb{A} &= 
-            \qty[ 
+            &\mathlarger{\curl \vb{A} = 
+            \qty[
             \begin{matrix}
-                \mathlarger{\oo{s} \pder*{\phi}A_z - \pder*{z}A_\phi} 
-                \\[0.3 cm]
-                \mathlarger{\pder*{z}A_s - \pder*{s}A_z}
-                \\[0.3 cm]
-                \mathlarger{\oo{s}\pder*{s}\qty(s A_\phi) - \oo{s}\pder*{\phi}A_s}
-            \end{matrix}]
-            \cdot\qty[
+                \oo{s} \pder{A_z}{\phi} - \pder{A_\phi}{z}
+                \\
+                \pder{A_s}{z} - \pder{A_z}{s}
+                \\
+                \oo{s}\pder{s}\qty(s A_\phi) - \oo{s}\pder{A_s}{\phi}
+            \end{matrix}
+            ]\cdot\qty[
             \begin{matrix}
-                \e{s}
-                \\[0.3 cm]
-                \e{\phi}
-                \\[0.3 cm]
-                \e{z}
-            \end{matrix}]
+                \e{s}\\\e{\phi}\\\e{z}
+            \end{matrix}
+            ]}
             \\
             \text{Scalar Laplacian:}&&%\quad
             \nabla^2 f
-            &=\oo{s}\pder*{s}\qty(s\pder*{s}f) + \oo{{s}^2}\pder*[2]{\phi}f + \pder*[2]{z}f 
+            &=\oo{s}\pder{s}\qty(s\pder{f}{s}) 
+            + \oo{{s}^2}\pder[2]{f}{\phi} 
+            + \pder[2]{f}{z} 
         \end{align*}
-        \length
+    }
 %\end{document}

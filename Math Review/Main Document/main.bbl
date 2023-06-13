@@ -1,0 +1,95 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.1 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated as
+% required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+\datalist[entry]{nty/global//global/global}
+  \entry{greenberg_1998}{book}{}
+    \name{author}{1}{}{%
+      {{hash=GMD}{%
+         family={Greenberg},
+         familyi={G\bibinitperiod},
+         given={Michael\bibnamedelima D.},
+         giveni={M\bibinitperiod\bibinitdelim D\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Prentice Hall}%
+    }
+    \strng{namehash}{GMD1}
+    \strng{fullhash}{GMD1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{G}
+    \field{sortinithash}{G}
+    \field{isbn}{0-13-321431-1}
+    \field{title}{Advanced Engineering Mathematics}
+    \field{year}{1998}
+  \endentry
+
+  \entry{griffiths_2018}{book}{}
+    \name{author}{1}{}{%
+      {{hash=GDJ}{%
+         family={Griffiths},
+         familyi={G\bibinitperiod},
+         given={David\bibnamedelima Jeffrey},
+         giveni={D\bibinitperiod\bibinitdelim J\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Cambridge University Press}%
+    }
+    \strng{namehash}{GDJ1}
+    \strng{fullhash}{GDJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{G}
+    \field{sortinithash}{G}
+    \verb{doi}
+    \verb 10.1017%2F9781108333511
+    \endverb
+    \field{isbn}{978-1108420419}
+    \field{title}{Introduction to Electrodynamics}
+    \field{year}{2017}
+  \endentry
+
+  \entry{pinsky_2011}{book}{}
+    \name{author}{1}{}{%
+      {{hash=PMA}{%
+         family={Pinsky},
+         familyi={P\bibinitperiod},
+         given={Mark\bibnamedelima A.},
+         giveni={M\bibinitperiod\bibinitdelim A\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {American Mathematical Society}%
+    }
+    \strng{namehash}{PMA1}
+    \strng{fullhash}{PMA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{P}
+    \field{sortinithash}{P}
+    \field{isbn}{978-0821868898}
+    \field{note}{\sl I read an unreleased version published around 2003 that I
+  found in a free book pile, but I'm citing the most recent version here.}
+    \field{title}{Partial Differential Equations and Boundary-Value Problems
+  with Applications}
+    \field{year}{2011}
+  \endentry
+\enddatalist
+\endinput

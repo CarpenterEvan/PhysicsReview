@@ -1,14 +1,14 @@
 % Since \input doesn't like preambles, only uncomment next line if you're editing this TeX, don't forget the \end{document}! 
-\documentclass{article}\input{../../commands}\begin{document}
+%\documentclass{article}\input{../../commands}\begin{document}
 \setlength{\columnseprule}{1pt}
 \NewDocumentCommand{\eqnref}{m}{Eqn.\,(\ref{#1})}
 \section{Differential Equations} 
-    Differential equations are equalities made from functions and their derivatives. Since a differential equation relates  functions to their rates of change, it can be used to model virtually anything that changes. Some specific examples where differential equations have been useful are: analyzing heat and fluid flow, throwing things, population growth, lasers, rockets, planetary motion, particle beam trajectories (and much more!~:D).
+    Differential equations are equalities made from functions and their derivatives. Since a differential equation relates  functions to their rates of change, it can be used to model virtually anything that changes. 
     \par
-    Differential equations can be categorized in many different ways. The main distinctons that I make here are between Ordinary, Partial, and Non-Linear Differential Equations (ODEs, PDEs, and NLDEs). In each section I'll try and talk about the types of equations, how they show up in physics, and methods used to analyze them. Since this is physics oriented, the highest order derivative I'll need to consider is second order. PDEs and nonlinear differential equations are also large fields in their own right, and general analysis of them is difficult at best (and impossible for most other cases), so the secitons on PDEs and nonlinear equations will be physics-oriented as well. 
+    Differential equations can be categorized in many different ways. The main distinctons that I make here are between Ordinary, Partial, and Non-Linear Differential Equations (ODEs, PDEs, and NLDEs). Since this is physics oriented, I'll stick to differential equations that are relevant to physics (first and second order equations, etc.)
 \par
-\input{diffeqtoc.tex}
-%\input{../Differential Equations/diffeqtoc.tex}
+%\input{diffeqtoc.tex}
+\input{../Differential Equations/diffeqtoc.tex}
 \subsection{Ordinary Differential Equations (ODEs)}
     ODEs are differential equations involving only one independent variable. In physics, they typically appear as functions of space or of time, so a function $y(x)$ or $x(t)$: 
     \begin{align}
@@ -83,14 +83,8 @@
             \end{gather}
             } 
         \end{multicols}
-        
-        Examples:
-        \\
-        Numerical solve:
     \newpage
     \subsubsection{System} 
-\subsection{Partial Differential Equations (PDEs)}
-\subsection{Nonlinear Differential Equations (NLDEs)}
 
 \subsection{Second Order ODEs}
     \subsubsection{Homogeneous}
@@ -127,7 +121,7 @@
         There are two subcategories of this method: The superposition approach and the annihilator approach.\\
         Superposition: Solve for the complementary function $y_c$ (shown in the 'Homogeneous' section), then find a particular solution $y_p$.
 \subsection{System of Linear Equations}
-    Multiple differential equations that are related to each other. They are typically solved by putting them into matrices and using eigenvalues/eigenvectors.
+    Multiple differential equations that are related to each other. 
     \begin{align*}
         \textbf{First Order:}%{
         \begin{bmatrix}
@@ -143,6 +137,20 @@
         x\\
         y
         \end{bmatrix}\implies \textbf{X'}=M\textbf{X}\\
+    \end{align*}
+    They are typically solved by putting them into matrices and finding eigenvalues/eigenvectors. By definition an eigenvector $\vb{v}$ of a matrix $\vb{M}$ must satisfy: 
+    \[\vb{M}\vb{v}=\lambda\vb{v}\quad\exists\lambda\in\mathbb{C}\]
+    Rearranging to find $\lambda$ gives
+    \begin{equation*}
+        \vb{M}\vb{v}-\lambda\vb{v}=(\vb{M}-\lambda\vb{I})\vb{v}=0
+    \end{equation*}
+    The eigenvector $\vb{v}=0$ is a trivial solution, but if the matrix $(\vb{M}-\lambda\vb{I})$ is invertible, then it's inverse can be applied to both sides, leaving us with no choice but $\vb{v}=0$. Because of this, nontrivial values of $\lambda$ are therefore values that make $(\vb{M}-\lambda\vb{I})$ singular (i.e. non-invertible). 
+    A matrix is singular if the determinant is zero, so to find nontrivial $\lambda$, you solve: 
+    \begin{equation*}
+        \det(\vb{M}-\lambda\vb{I})=\qty|\vb{M}-\lambda\vb{I}|=0
+    \end{equation*}
+    Which could yield 
+    \begin{align*}
         \textbf{Solving:}\; |M-\lambda I|=0\quad\big{|}\quad  (M-\lambda_iI)\vb{e}_i=0 \quad\big{|}\quad \textbf{X}=\sum_i\vec{c}_ie^{\lambda_ix}\\%}
         \textbf{Normal Modes:}%{
         \begin{bmatrix}
@@ -202,9 +210,10 @@
         \underset{b \neq 0}{\textbf{Complex Roots:}}
         &\quad y=c_{1}x^{\alpha }\cos(\beta \ln(x))+c_{2}x^{\alpha }\sin(\beta \ln(x))
     \end{alignat}
-\subsection{PDEs in Physics} 
+    \subsection{PDEs in Physics} 
     \subsubsection{The Heat Equation} % most general and applications 
     \subsubsection{The Wave Equation} % 1d, 3d, spherical, cylindrical
     \subsubsection{Laplace's Equation} % in multi dimensions and coords
     \subsubsection{Poisson's Equation} % same
-\end{document}
+\subsection{Nonlinear Differential Equations (NLDEs)}
+%\end{document}
