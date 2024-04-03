@@ -156,21 +156,23 @@
     \subsection*{Divergence Theorem}
         The divergence of \(\vb{A}\) over a volume is equal to the components of \(\vb{A}\) that are normal to the surface that bounds the volume.\footnote{\(\oint\) is the closed path/closed surface integral sign.}
         \begin{align}
-            \boxed{\oint_S \vb{A} \da =\int_{\mathcal{V}} (\nabla \cdot \vb{A})dV } 
+            \boxed{\oiint_S \vb{A} \da =\iiint_{\mathcal{V}} (\div\vb{A})\d V } 
         \end{align}
     \subsection*{The Fundamental Theorem for Curls: Stokes' Theorem}
         The integral of a derivative over a region is equal to the value of the function at the boundary. That is, the curl over a surface is equal to the value of the function at the perimeter P. 
         \begin{align}
-            \boxed{\oint_C \vb{A} \cdot d\vb{l}=\int_{S} (\nabla \times \vb{A}) \cdot d\vb{a}} 
+            \boxed{\oint_C \vb{A} \dl=\iint_{S} (\curl \vb{A}) \da} 
         \end{align}
         \subsection*{Integration by Parts in Vector Calculus}
         \begin{align*}
-        \int_{\mathcal{V}} f(\nabla \cdot \vb{A})dV = \oint_S f\vb{A}\da-\int_{\mathcal{V}} \vb{A} \cdot (\nabla f)dV 
+        \iiint_{\mathcal{V}} f(\nabla \cdot \vb{A})\d V 
+        =
+        \oiint_S f\vb{A}\da
+        -\iiint_{\mathcal{V}} \vb{A} \cdot (\nabla f)\d V 
         \end{align*}
 
 
         \newpage
-
 
 \section{Theories with Vector Fields \label{vectorfields}}
     \subsubsection*{The Helmholtz Theorem}
@@ -210,5 +212,4 @@
             \iff
             \boxed{\vb{B} = \nabla \times \vb{A}}
         \end{align*}
-        
 %\end{document}

@@ -1,13 +1,13 @@
 \documentclass[12 pt, twoside]{article}
-\input{../../commands}
+\input{../../mycommands}
 
-\addbibresource[datatype=bibtex]{../references.bib} % this command inputs the references file and analyzes it using bibtex
-
+%\addbibresource[datatype=bibtex]{../references.bib} % this command inputs the references file and analyzes it using bibtex
 \begin{document}
-
 \input{FirstPage}
 \newpage
 \input{../Vector Calculus/Vector Calculus}
+\newpage
+\input{../Misc. Physics/Electrodynamics.tex}
 \newpage
 \input{../Linear Algebra/Linear Algebra}
 \newpage
@@ -19,6 +19,6 @@
 \newpage
 \input{../Special Functions/Special Functions}
 \newpage
-\nocite{*} % I didnt cite anything, so I use this to dump all my references here
-\printbibliography{}
+%\nocite{*} % I didnt cite anything, so I use this to dump all my references here
+%\printbibliography{}
 \end{document}

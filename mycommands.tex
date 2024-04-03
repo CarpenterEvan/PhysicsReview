@@ -1,4 +1,3 @@
-\usepackage[utf8]{inputenc} % allows for non-ASCII characters
 \usepackage[x11names]{xcolor}    % Color extensions
 \usepackage[margin=1in]{geometry} % Formatting on page
 \usepackage{array} % big arrays
@@ -16,8 +15,9 @@
     \pagestyle{fancy}
 \usepackage{float}
 \usepackage{gensymb}
-\usepackage{listings}
+\usepackage{listings} % type code, autosets colors for different languages
 \usepackage{physics} % easier commands for physics things
+\usepackage{slashed}
 \usepackage{relsize}  % allows for larger/smaller math 
 \usepackage{textcomp} % Gets rid of perthousand error
 \usepackage{upquote}  % fixes quotes in verbatim environment
@@ -38,10 +38,11 @@
 \usepackage{graphicx} % plots and graphics
 \usepackage{wrapfig}
 \usepackage{xparse} % Better commands
+\usepackage[compat=1.1.0]{tikz-feynman}
 \usepackage[hidelinks]{hyperref}% References--THIS GOES LAST
-
 % Packages that this breaks without: amsmath, gensymb, physics, hyperref, xcolor, xparse, and possibly others
 \numberwithin{equation}{section} % amsmath command that renews equation counter in each section\
+\def\d{{\rm d}}
 \def\ints{\int_\mathcal{S}} % Surface integral
 \def\intv{\int_\mathcal{V}} % Volume integral with V subscript
 \def\intall{\int_{-\infty}^{\infty}} % Integral over all space
@@ -49,12 +50,13 @@
 \def\iiintall{\iiint_{\rm All Space}} % Integral over all space
 \def\ik{4\pi\epsilon_0} % Inverse k for EM
 \def\lap{\mathcal{L}}
+
 \def\answerline{ % double horizontal line placed 0.5 cm below text, space between lines is 0.07 cm, then 0.75 cm of space 
 	\vspace{0.5 cm}
 	\hrule
 	\vspace{0.07 cm}
 	\hrule
-	\vspace{0.75 cm}\noindent} % don't indent text after the line
+	\vspace{0.75 cm}\noindent}
 \NewDocumentCommand\length{O{3pt}}{\setlength\jot{#1}} % for align vertical spacing, there's probably a better way to do this locally
 \NewDocumentCommand\ft{s O{n} O{L}}{ % I dont want to write \sin(stuff) \cos(stuff) every time in fourier transforms (ft)
     \IfBooleanTF{#1}{
@@ -63,9 +65,9 @@
         \cos(\frac{#2 \pi}{#3}x)
     }
 }
-
-\NewDocumentCommand\dl{s}{\IfBooleanTF{#1}{}{\cdot} d\mathbf{l}} % quicker curve integral dl, if no star, it also makes the dot 
-\NewDocumentCommand\da{s}{\IfBooleanTF{#1}{}{\cdot} d\mathbf{a}} % quicker surface integral da, if no star, it also makes the dot 
+\NewDocumentCommand\slsh{m}{\slashed{#1}}
+\NewDocumentCommand\dl{s}{\IfBooleanTF{#1}{}{\cdot} \d\mathbf{l}} % quicker curve integral dl, if no star, it also makes the dot 
+\NewDocumentCommand\da{s}{\IfBooleanTF{#1}{}{\cdot} \d\mathbf{a}} % quicker surface integral da, if no star, it also makes the dot 
 \NewDocumentCommand\oo{O{1} m} {\frac{#1}{#2}}   % reciprocal- 'one over', option to make it a regular fraction because oo is still quicker to type.
 \NewDocumentCommand\thetitle{m O{}}{ \title{ \hypertarget{top}{\textbf{#1}} \\ \large {#2} } } %Bold title that is a hypertarget, optional bolded subtitle that's scaled properly 
 
@@ -113,6 +115,8 @@
 	\fancyfoot[C]{--\thepage--}
 	\pagestyle{fancy}
 	\setlength\headheight{17pt}}
+\setlength\headheight{17pt}
+\addtolength{\topmargin}{-2.49998pt}
     
 \NewDocumentCommand{\coloredanswer}{O{LavenderBlush2} m}{ % makes coloredbox with pretty color
 	\mathchoice

@@ -1,0 +1,35 @@
+\section{Maxwell-Heaviside Equations}
+\begin{align*}
+	\div\vb{E}&=\frac{\rho}{\epsilon_0}
+	&
+	\oiint_{S}\vb{E}\da&=\iiint_{\mathcal{V}}\rho\d V\tag{Gauss' Law}
+	\\[0.25cm]
+	\curl\vb{E}&=-\pdv{\vb{B}}{t}
+	&
+	\oint_{C}\vb{E}\dl&=-\pdv{t}\iint_{S}\vb{B}\da\tag{Maxwell-Faraday Equation}
+	\\[0.25cm]
+	\div\vb{B}&=0
+	&
+	\oiint_{S}\vb{B}\da&=0\tag{Gauss' Law}
+	\\[0.25cm]
+	\curl\vb{B}&=\mu_0\vb{J}
+	&
+	\oint_{C}\vb{B}\dl&=\mu_0\iint_{S}\vb{J}\da\tag{Ampere's Law}
+	\\
+	&+\epsilon_0\mu_0\pdv{\vb{E}}{t}&&+\epsilon_0\mu_0\iint_{S}\pdv{\vb{E}}{t}\da\tag{Maxwell's Correction}
+\end{align*}
+\section{Fields in Matter}
+Fields inside media that are not vaccuum:
+\section{Retarded Potentials}
+\begin{align*}
+	\vb{E}(\vb{x},t)&=\frac{q}{4\pi\epsilon_0}\qty{\qty[\oo{\gamma^2}\frac{\vb{R}-R\vb*{\beta}}{\qty(R-\vb*{\beta}\cdot\vb{R})^3}]_\text{ret}
+	+\qty[\oo{c^2}\frac{\vb{R}\cross\qty[\qty(\vb{R}-R\vb*{\beta})\cross\vb{a}]}{\qty(R-\vb{R}\cdot\vb*{\beta})^3}]_\text{ret}}
+\end{align*}
+With:
+\begin{align*}
+	\gamma&=\qty(1-\vb*{\beta}^2)
+	&
+	\vb*{\beta}&=\frac{\vb{v}}{c}
+	\\
+	\vb{R}&=\vb{x}-\vb{x}_0(\tau_0)
+\end{align*}
