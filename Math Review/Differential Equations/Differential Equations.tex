@@ -208,16 +208,24 @@
     \end{align*}
 \newpage
 \subsection{Bernoulli Equations}
-    Take the form: $y'+P(x)y=g(x)y^n$ for $n \in \mathbb{R}$ When $n \neq 0,1$ solve by substituting $u=y^{1-n}$
+    \begin{description}
+        \item [\rm Form:] $\boxed{\displaystyle y'+P(x)y=g(x)y^n}\qquad n\in\mathbb{R}$
+        \item [\rm Form of Solution:] $\boxed{n\neq0,1\implies y^{1-n}\xrightarrow{\text{substitute}}u}$
+    \end{description}
     \begin{align*}
         y'+\frac{1}{x}y&=xy^2\xrightarrow{n=2\ \therefore\ u=y^{-1}\ \therefore\ y=u^{-1}} \frac{dy}{dx}=\frac{dy}{du}\frac{du}{dx}=-u^{-2}\frac{du}{dx}\\
-        -u^{-2}\frac{du}{dx}+\frac{1}{ux}&=xu^{-2}\xrightarrow{rearrange}\frac{du}{dx}-\frac{1}{x}u=-x\\
+        -u^{-2}\frac{du}{dx}+\frac{1}{ux}&=xu^{-2}\xrightarrow{\text{rearrange}}\frac{du}{dx}-\frac{1}{x}u=-x\\
         \mu(x)&=e^{-\int 1/x\ dx}=e^{-\ln(x)}=\frac{1}{x}\\
         \int d(\mu(x)u)&=\int \mu(x)g(x)dx\ ;\ \int d\left(\frac{u}{x}\right)=\int (-1)dx\\
         u&=-x^2+c_1x\ \therefore\ \boxed{y=\frac{1}{-x^2+c_1x}}
         \end{align*}
 \subsection*{Cauchy-Euler}
-    Also called The ``Equidimensional'' Equation. Assume solution of $y=x^m$ and plug in. Solve for $m$.
+    Also called The ``Equidimensional'' Equation. 
+    \begin{description}
+        \item [\rm Form:] $\boxed{\displaystyle a_{n}x^{n}y^{(n)}(x)+a_{n-1}x^{n-1}y^{(n-1)}(x)+\dots +a_{0}y(x)=0}$
+        \item [\rm Form of Solution:] $\boxed{y=x^m}$
+    \end{description}
+    
     \begin{alignat}{2}
         \underset { m_1 \neq m_2}{\textbf{Real Distinct Roots:}}
         &\quad y=c_1x^{m_1}+c_1x^{m_2}\\[0.7 cm]

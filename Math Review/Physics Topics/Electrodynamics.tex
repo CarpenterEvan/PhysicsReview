@@ -1,4 +1,5 @@
-\section{Maxwell-Heaviside Equations}
+\subsection{Electrodynamics}
+\subsubsection{Maxwell-Heaviside Equations}
 \begin{align*}
 	\div\vb{E}&=\frac{\rho}{\epsilon_0}
 	&
@@ -18,5 +19,18 @@
 	\\
 	&+\epsilon_0\mu_0\pdv{\vb{E}}{t}&&+\epsilon_0\mu_0\iint_{S}\pdv{\vb{E}}{t}\da\tag{Maxwell's Correction}
 \end{align*}
-\section{Fields in Matter}
+\subsubsection{Fields in Matter}
 Fields inside media that are not vaccuum:
+\subsubsection{Retarded Potentials}
+\begin{align*}
+	\vb{E}(\vb{x},t)&=\frac{q}{4\pi\epsilon_0}\qty{\qty[\oo{\gamma^2}\frac{\vb{R}-R\vb*{\beta}}{\qty(R-\vb*{\beta}\cdot\vb{R})^3}]_\text{ret}
+	+\qty[\oo{c^2}\frac{\vb{R}\cross\qty[\qty(\vb{R}-R\vb*{\beta})\cross\vb{a}]}{\qty(R-\vb{R}\cdot\vb*{\beta})^3}]_\text{ret}}
+\end{align*}
+With:
+\begin{align*}
+	\gamma&=\qty(1-\vb*{\beta}^2)
+	&
+	\vb*{\beta}&=\frac{\vb{v}}{c}
+	\\
+	\vb{R}&=\vb{x}-\vb{x}_0(\tau_0)
+\end{align*}

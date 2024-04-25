@@ -44,11 +44,11 @@
   <internal package="biblatex" priority="9" active="0">
     <generic>latex</generic>
     <provides type="dynamic">
-      <file>main.aux</file>
-      <file>main-blx.bib</file>
+      <file>521_Final.aux</file>
+      <file>521_Final-blx.bib</file>
     </provides>
     <requires type="dynamic">
-      <file>main.bbl</file>
+      <file>521_Final.bbl</file>
     </requires>
     <requires type="static">
       <file>blx-dm.def</file>
@@ -68,20 +68,20 @@
     <cmdline>
       <binary>bibtex</binary>
       <option>-min-crossrefs 2</option>
-      <infile>main</infile>
+      <infile>521_Final</infile>
     </cmdline>
     <input>
-      <file>main.aux</file>
+      <file>521_Final.aux</file>
     </input>
     <output>
-      <file>main.bbl</file>
+      <file>521_Final.bbl</file>
     </output>
     <provides type="dynamic">
-      <file>main.bbl</file>
+      <file>521_Final.bbl</file>
     </provides>
     <requires type="dynamic">
-      <file>main.aux</file>
-      <file>main-blx.bib</file>
+      <file>521_Final.aux</file>
+      <file>521_Final-blx.bib</file>
     </requires>
     <requires type="editable">
     </requires>

@@ -1,0 +1,456 @@
+\documentclass[12 pt,draft]{article}
+
+\usepackage{multirow}
+\usepackage{titling}
+\include{mycommands.tex}
+\def\class{Physics 521}
+\title{Final Exam}
+\date{Due: Tues. Apr. 23, 2024}
+
+\header{\class}{\thetitle}{\thedate}
+
+\pagestyle{fancy}
+\setlength\headheight{17pt}
+
+\fancypagestyle{firstpage}{%
+  \fancyhead[L]{\class} 
+    \fancyhead[C]{\bf\thetitle}
+    \fancyhead[R]{Name: Evan Carpenter}
+}
+\renewcommand{\b}[1]{\overline{#1}}
+\newcommand{\trexp}[4]{g^{#1#2}g^{#3#4}-g^{#1#3}g^{#2#4}+g^{#1#4}g^{#2#3}}
+\newcommand{\trexplow}[4]{g_{#1#2}g_{#3#4}-g_{#1#3}g_{#2#4}+g_{#1#4}g_{#2#3}}
+\begin{document}
+\thispagestyle{firstpage}
+
+\begin{problem}[$Z\rightarrow W^+W^-$]
+	If the $W$ bosons had much less mass such that $Z\rightarrow W^+W^-$ were kinematically possible, compute what the particle width of $Z\rightarrow W^+W^-$ would be. You can assume the W is massless in this calculation. In this case, what would the ratio of $\Gamma(Z\rightarrow W^+W^-)/\Gamma(Z \rightarrow e^+e^-)$ be?
+	\answerline
+\end{problem}
+\begin{problem}[Coupling Crossing]
+	Take a look at problem 10.6 in the textbook. For the Standard Model and the Minimal Supersymmetric Standard Model compute the energy scale where the $SU(2)$ coupling crosses the $U(1)$ coupling, and where the $SU(2)$ coupling crosses the $SU(3)$ coupling. Thus, you should compute four energy scales in this problem. You should compute these numbers analytically first and then plug in the numbers given in problem 10.6 to give numerical values in terms of GeV.
+	\answerline
+\end{problem}
+\begin{align}
+	\mu\dv{g_i}{\mu}&=\oo[B_i]{16\pi^2}g^3_i
+	\\[0.25 cm]
+	\frac{\d g_i}{g_i^3}
+	&=\oo[B_i]{16\pi^2}\frac{\d \mu}{\mu}
+	\\[0.25 cm]
+	\int_{g_i(M_Z)}^{g_i}\frac{\d g_i}{g_i^3}
+	&=\oo[B_i]{16\pi^2}\int_{M_Z}^{\mu}\frac{\d \mu'}{\mu'}
+	\\[0.25 cm]
+	\eval{\frac{-1}{2{g'_i}^2}}_{g_i(M_Z)}^{g}
+	&=\oo[B_i]{16\pi^2}\eval{\ln\mu'}_{M_Z}^{\mu}
+	\\[0.25 cm]
+	\frac{-1}{2{g_i(\mu)}^2}+\frac{1}{2{g_i(M_Z)}^2}
+	&=\oo[B_i]{16\pi^2}\ln\qty(\frac{\mu}{M_Z})
+	\\[0.25 cm]
+	\frac{-4\pi}{{g_i(\mu)}^2}+\frac{4\pi}{{g_i(M_Z)}^2}
+	&=\oo[B_i]{2\pi}\ln\qty(\frac{\mu}{M_Z})
+	\\[0.25 cm]
+	\frac{{g_i(\mu)}^2}{4\pi}
+	&=\qty[\frac{4\pi}{{g_i(M_Z)}^2}-\oo[B_i]{2\pi}\ln\qty(\frac{\mu}{M_Z})]^{-1}
+\end{align}
+\newpage
+For the Standard model:
+\begin{align}
+	\frac{{g_1(\mu)}^2}{4\pi}&=\qty[\frac{4\pi}{{g_1(M_Z)}^2}-\oo[B_1]{2\pi}\ln\qty(\frac{\mu}{M_Z})]^{-1}
+	\\
+	\frac{{g_2(\mu)}^2}{4\pi}&=\qty[\frac{4\pi}{{g_2(M_Z)}^2}-\oo[B_2]{2\pi}\ln\qty(\frac{\mu}{M_Z})]^{-1}
+\end{align}
+Solving analytically for when the $SU(2)_L$ coupling crosses the $ U(1)_Y$ coupling ($g_2(\mu)=g_1(\mu)$):
+\begin{align}
+	\frac{{g_1(\mu_c)}^2}{4\pi}&=\qty[\frac{4\pi}{{g_1(M_Z)}^2}-\oo[B_1]{2\pi}\ln\qty(\frac{\mu}{M_Z})]^{-1}=\frac{{g_2(\mu)}^2}{4\pi}=\qty[\frac{4\pi}{{g_2(M_Z)}^2}-\oo[B_2]{2\pi}\ln\qty(\frac{\mu}{M_Z})]^{-1}
+	\\
+\end{align}
+
+\begin{description}
+	\item[i=1] $g_1(M_Z)=0.461$, $B_1=41/10$, $g_1(\mu)\propto U(1)_Y$ coupling
+	\begin{align}
+		\frac{{g_1(\mu)}^2}{4\pi}&=\qty[\frac{4\pi}{{g_1(M_Z)}^2}-\oo[B_1]{2\pi}\ln\qty(\frac{\mu}{M_Z})]^{-1}
+		\\
+		\frac{{g_1(\mu)}^2}{4\pi}=\qty[\frac{4\pi}{{0.461}^2}-\oo[41]{20\pi}\ln\qty(\frac{\mu}{M_Z})]^{-1}
+	\end{align}
+	\item[i=2]  $g_2(M_Z)=0.652$, $B_2=-19/6$, $g_2(\mu)= SU(2)_L$ coupling
+	\begin{align}
+		\frac{{g_2(\mu)}^2}{4\pi}&=\qty[\frac{4\pi}{{g_2(M_Z)}^2}-\oo[B_2]{2\pi}\ln\qty(\frac{\mu}{M_Z})]^{-1}
+		\\
+		\frac{{g_2(\mu)}^2}{4\pi}=\qty[\frac{4\pi}{{0.652}^2}+\oo[19]{12\pi}\ln\qty(\frac{\mu}{M_Z})]^{-1}
+	\end{align}
+	\item[i=3]  $\alpha_3(M_Z)=0.1185$, $B_3=-7$, $\alpha_3(\mu)\propto SU(3)_c$ coupling
+	\begin{align}
+		\alpha_3(\mu)&=\qty[\oo{\alpha(M_Z)}-\oo[B_3]{2\pi}\ln\qty(\frac{\mu}{M_Z})]^{-1}
+		\\
+		\alpha_3(\mu)&=\qty[\oo{
+			0.1185}+\oo[7]{2\pi}\ln\qty(\frac{\mu}{M_Z})]^{-1}
+	\end{align}
+\end{description}
+\begin{problem}[ $e^+e^- \rightarrow hZ$]
+	Compute the cross-section of $e^+e^- \rightarrow hZ$ at energies $\sqrt{s}>m_h+M_Z$. Compute analytically first, and then find the numerical value of the cross-section in fb for $\sqrt{s}=$ 250GeV, 500 GeV, 1TeV. At each of these energies, determine how many $b\b{b}e^+e^-$ events occur that originate from this process followed by $h \rightarrow b\b{b}$ and $Z \rightarrow e^+e^-$ decays. Use the following values for branching fractions: $B(h \rightarrow b\b{b})$ = 0.584 and $B(Z \rightarrow e^+e^-)$ = 0.034. Keep the masses of $h$ and $Z$ for this problem.
+	\answerline
+\end{problem}
+\begin{problem}
+	Let us assume that the Higgs boson can decay into two exotic massless $X$-bosons via a $h-X_\alpha-X_\beta$ Feynman rule of $i(g_{\alpha\beta}k_1 \cdot k_2-k_{1\alpha}k_{2\beta})/\Lambda$, where $\Lambda$ is a mass parameter, and $k_1$ ($k_2$) is the outgoing momentum of the $X_\alpha$ ($X_\beta$) boson. Compute the partial width of $h \rightarrow XX$. Determine the value of $\Lambda$ such that the partial width of the Higgs boson into $X$-bosons is the same as the partial width of the Higgs boson into muons. [Note: there are 5th-force issues with an exotic photon being exactly massless, but for this problem you should treat it as effectively massless.]
+	\answerline
+\end{problem}
+\newpage
+\begin{problem}[ $\mu\b{\mu}\rightarrow f\b{f}$]
+In honor of the recent proposal to build a future muon collider, compute $\mu^+\mu^-\rightarrow f\b{f}$ (where~$f \neq \mu$) at leading order (i.e., tree-level) in the Standard Model. \\ Assume
+$m_\mu = m_f = 0$. Determine the numerical value of the production cross-section in fb of
+$\mu^+\mu^-\rightarrow t\b{t}$ at $\sqrt{s}$ = 10 TeV.
+\answerline
+\end{problem}
+
+Starting with the Feynman diagrams:
+\begin{comment}
+% Feynman Diagrams
+\begin{align*}
+    \text{QED} \qquad\qquad\feynmandiagram[baseline=(v1.base), horizontal=v1 to v2]{
+		a [particle=$\mu^-$]-- [fermion] v1 -- [fermion] b [particle=$\mu^+$],
+		v1 -- [photon, edge label=$\gamma$] v2 -- [fermion] c [particle=$f$],
+		d [particle=$\b{f}$] -- [fermion] v2,
+		};
+    \qquad&\longrightarrow\qquad
+    \feynmandiagram[baseline=(v1.base), horizontal=v1 to v2]{
+		a [particle=$u_b$]-- [fermion, momentum'=$p_b$] v1 -- [fermion, reversed momentum=$p_a$] b [particle=$\b{v}_a$],
+		v1 -- [photon, edge label=$\sqrt{s}$] v2 -- [fermion, momentum'=$k_1$] c [particle=$\b{u}_1$],
+		d [particle=$v_2$] -- [fermion, reversed momentum=$k_2$] v2,
+		};
+    \\
+    \text{Weak}\qquad\qquad\feynmandiagram[baseline=(v1.base), horizontal=v1 to v2]{
+		a [particle=$\mu^-$]-- [fermion] v1 -- [fermion] b [particle=$\mu^+$],
+		v1 -- [boson, edge label=$Z$] v2 -- [fermion] c [particle=$f$],
+		d [particle=$\b{f}$] -- [fermion] v2,
+		};
+    \qquad&\longrightarrow\qquad
+    \feynmandiagram[baseline=(v1.base), horizontal=v1 to v2]{
+		a [particle=$u_b$]-- [fermion, momentum'=$p_b$] v1 -- [fermion, reversed momentum=$p_a$] b [particle=$\b{v}_a$],
+		v1 -- [photon, edge label=$\sqrt{s}$] v2 -- [fermion, momentum'=$k_1$] c [particle=$\b{u}_1$],
+		d [particle=$v_2$] -- [fermion, reversed momentum=$k_2$] v2,
+		};
+    \\
+\end{align*}
+\end{comment}
+The matrix elements are:
+% M's
+\begin{align}
+	% M_QED
+	\mathcal{M}_\text{QED}&=\qty[\b{v}_a\qty(-ie\gamma^\mu)u_b]\frac{-ig_{\mu\nu}}{s}\qty[\b{u}_a\qty(-ieQ_f\gamma^\mu)v_2]
+    \\
+    &=\frac{ieQ_f}{s}\qty(\b{v}_a\gamma^\mu u_b)\qty(\b{u}_1\gamma_\mu v_2)
+	\\
+	% M_QED^*
+	\mathcal{M}_\text{QED}^*&=
+	\frac{-ieQ_f}{s}\qty(\b{u}_b\gamma^\mu v_a)\qty(\b{v}_2\gamma_\mu u_1)
+    \\
+	% M_weak
+    \begin{split}
+		\mathcal{M}_\text{weak}&=
+			\qty[
+			\b{v}_a
+			\qty(-i\gamma^\mu\qty(g_V^f-g_A^f\gamma_5))
+			u_b
+			]
+			\frac{-i}{s-M_Z^2}
+			\qty(g_{\mu\nu}+\frac{p_\nu p_\mu}{M_Z^2})
+			\qty[\b{u}_1\qty(-i\gamma^\nu\qty(g_V^f-g_A^f\gamma_5))v_2]
+			\\
+			&=\frac{i}{s-M_Z^2}\qty(g_{\mu\nu}+\frac{p_\nu p_\mu}{M_Z^2})
+			\qty[\b{v}_a\gamma^\mu\qty(g_V^f-g_A^f\gamma_5)u_b]
+			\qty[\b{u}_1\gamma^\nu\qty(g_V^f-g_A^f\gamma_5)v_2]
+	\end{split}
+	\\
+	\begin{split}
+		\mathcal{M}_\text{weak}&=
+		\frac{i}{s-M_Z^2}
+		\qty[\b{v}_a\gamma^\mu\qty(g_V^f-g_A^f\gamma_5)u_b]
+		\qty[\b{u}_1\gamma_\mu\qty(g_V^f-g_A^f\gamma_5)v_2]
+		\\
+		&+\frac{i}{s-M_Z^2}
+		\qty[\b{v}_a\slsh{p}_Z\qty(g_V^f-g_A^f\gamma_5)u_b]
+		\qty[\b{u}_1\slsh{p}_Z\qty(g_V^f-g_A^f\gamma_5)v_2]
+	\end{split}
+	\\
+	% M_weak^*
+	\begin{split}
+		\mathcal{M}_\text{weak}^*&=
+		\frac{-i}{s-M_Z^2}
+		\qty[\b{u}_b\gamma^\mu\qty(g_V^f+g_A^f\gamma_5)v_a]
+		\qty[\b{v}_2\gamma_\mu\qty(g_V^f+g_A^f\gamma_5)u_1]
+		\\
+		&-\frac{i}{s-M_Z^2}
+		\qty[\b{u}_b\slsh{p}_Z\qty(g_V^f+g_A^f\gamma_5)v_a]
+		\qty[\b{v}_2\slsh{p}_Z\qty(g_V^f+g_A^f\gamma_5)u_1]
+	\end{split}
+\end{align}
+So now to write $\mathcal{M}_{\mu\b{\mu}\rightarrow{f\b{f}}}=\mathcal{M}_\text{QED}+\mathcal{M}_\text{weak}$:
+\begin{align}
+	\begin{split}
+		\mathcal{M}_{\mu\b{\mu}\rightarrow{f\b{f}}}
+		&=
+		% A^\mu
+		\frac{ieQ_f}{s}
+		\qty(\b{v}_a\gamma^\mu u_b)
+		\qty(\b{u}_1\gamma_\mu v_2)
+		\\&
+		% B^\nu
+		+\frac{i}{s-M_Z^2}
+		\qty[\b{v}_a\gamma^\nu\qty(g_V^f-g_A^f\gamma_5)u_b]
+		\qty[\b{u}_1\gamma_\nu\qty(g_V^f-g_A^f\gamma_5)v_2]
+		\\&
+		% \slsh{C}
+		+\frac{i}{s-M_Z^2}
+		\qty[\b{v}_a\slsh{p}_Z\qty(g_V^f-g_A^f\gamma_5)u_b]
+		\qty[\b{u}_1\slsh{p}_Z\qty(g_V^f-g_A^f\gamma_5)v_2]
+	\end{split}
+	\\
+	\begin{split}
+		\mathcal{M}_{\mu\b{\mu}\rightarrow{f\b{f}}}^*&=
+		% A^\sigma
+		\frac{-ieQ_f}{s}
+		\qty(\b{u}_b\gamma^\sigma v_a)
+		\qty(\b{v}_2\gamma_\sigma u_1)	
+		\\&
+		% B^\rho
+		+\frac{-i}{s-M_Z^2}
+		\qty[\b{u}_b\gamma^\rho\qty(g_V^f+g_A^f\gamma_5)v_a]
+		\qty[\b{v}_2\gamma_\rho\qty(g_V^f+g_A^f\gamma_5)u_1]
+		\\&
+		% \slsh{C}^*
+		-\frac{i}{s-M_Z^2}
+		\qty[\b{u}_b\slsh{p}_Z\qty(g_V^f+g_A^f\gamma_5)v_a]
+		\qty[\b{v}_2\slsh{p}_Z\qty(g_V^f+g_A^f\gamma_5)u_1]
+	\end{split}
+\end{align}
+Relabelling by index to make the squaring easier:
+\begin{align}
+	\mathcal{M}_{\mu\b{\mu}\rightarrow{f\b{f}}}&=A^\mu+B^\nu+\slsh{C}
+	\\
+	\mathcal{M}_{\mu\b{\mu}\rightarrow{f\b{f}}}^*&=A^\sigma+B^\rho+\slsh{C}^*
+\end{align}
+\begin{align}
+	\oo{4}\sum_\text{spins}\qty|\mathcal{M}_{\mu\b{\mu}\rightarrow{f\b{f}}}|^2
+	&=\oo{4}\sum_\text{spins}(A^\mu+B^\nu+\slsh{C})(A^\sigma+B^\rho+\slsh{C})
+	\\
+	\begin{split}
+	&=\oo{4}\sum_\text{spins}
+	\Big(
+		A^\mu A^\sigma
+		+A^\mu B^\rho
+		+A^\mu \slsh{C}^*
+		\\&\qquad\qquad
+		+B^\nu A^\sigma
+		+B^\nu B^\rho
+		+B^\nu \slsh{C}^*
+		\\&\qquad\qquad
+		+\slsh{C}A^\sigma
+		+\slsh{C}B^\rho
+		+\slsh{C}\slsh{C}^*
+		\Big)
+	\end{split}
+\end{align}
+% A^\mu A^\sigma
+	\begin{align}
+		\oo{4}\sum_\text{spins}A^\mu A^\sigma
+		&=\oo{4}\sum_\text{spins}
+		\frac{ieQ_f}{s}
+		\qty(\b{v}_a\gamma^\mu u_b)
+		\qty(\b{u}_1\gamma_\mu v_2)
+		\frac{-ieQ_f}{s}
+		\qty(\b{u}_b\gamma^\sigma v_a)
+		\qty(\b{v}_2\gamma_\sigma u_1)
+		\\
+		&=\oo{4}\sum_\text{spins}
+		\frac{e^2Q_f^2}{s^2}
+		\Tr[\b{v}_a\gamma^\mu \slsh{p}_b\gamma^\sigma v_a]
+		\Tr[\b{u}_1\gamma_\mu \slsh{k}_2\gamma_\sigma u_1]
+		\\
+		&=
+		\frac{e^2Q_f^2}{4s^2}
+		\Tr[\slsh{p}_a\gamma^\mu \slsh{p}_b\gamma^\sigma]
+		\Tr[\slsh{k}_1\gamma_\mu \slsh{k}_2\gamma_\sigma]
+		\\
+		&=\frac{e^2Q_f^2}{4s^2}
+		p_{a,\alpha}p_{b,\beta}
+		k_1^{\kappa}k_2^{\eta}
+		\qty(\trexp{\alpha}{\mu}{\beta}{\nu})
+		\qty(\trexplow{\kappa}{\mu}{\eta}{\nu})
+		\\
+		\begin{split}
+			&=\frac{e^2Q_f^2}{4s^2}
+			\qty(
+				p_{a,\alpha}p_{b,\beta}g^{\alpha\mu} g^{\beta\nu}
+				-p_{a,\alpha}p_{b,\beta}g^{\alpha\beta} g^{\mu\nu}
+				+p_{a,\alpha}p_{b,\beta}g^{\alpha\nu} g^{\mu\beta})
+			\ldots\\&\qquad\qquad\ldots
+			\qty(
+				k_1^{\kappa}k_2^{\eta}g_{\kappa\mu} g_{\eta\nu}
+				-k_1^{\kappa}k_2^{\eta}g_{\kappa\eta}g_{\mu\nu}
+				+k_1^{\kappa}k_2^{\eta}g_{\kappa\nu} g_{\mu\eta})
+		\end{split}
+		\\
+		\begin{split}
+			&=\frac{e^2Q_f^2}{4s^2}
+			\qty(
+				p_a^{\mu}p_b^{\nu}
+				-\qty(p_a\cdot p_b)g^{\mu\nu}
+				+p_a^{\nu}p_b^{\mu}
+				)
+			\qty(
+				k_{1,\mu}k_{2,\nu}
+				-\qty(k_1\cdot k_2)g_{\mu\nu}
+				+k_{1,\nu}k_{2,\mu}
+				)
+		\end{split}
+		\\
+		\begin{split}
+			&=\frac{e^2Q_f^2}{4s^2}
+			\Big(
+				p_a^{\mu}p_b^{\nu}k_{1,\mu}k_{2,\nu}
+				-p_a^{\mu}p_b^{\nu}\qty(k_1\cdot k_2)g_{\mu\nu}
+				+p_a^{\mu}p_b^{\nu}k_{1,\nu}k_{2,\mu}
+				\\&\qquad\qquad
+				-\qty(p_a\cdot p_b)g^{\mu\nu}k_{1,\mu}k_{2,\nu}
+				+\qty(p_a\cdot p_b)g^{\mu\nu}\qty(k_1\cdot k_2)g_{\mu\nu}
+				-\qty(p_a\cdot p_b)g^{\mu\nu}k_{1,\nu}k_{2,\mu}
+				\\&\qquad\qquad
+				+p_a^{\nu}p_b^{\mu}k_{1,\mu}k_{2,\nu}
+				-p_a^{\nu}p_b^{\mu}\qty(k_1\cdot k_2)g_{\mu\nu}
+				+p_a^{\nu}p_b^{\mu}k_{1,\nu}k_{2,\mu}
+			\Big)
+		\end{split}
+		\\
+		\begin{split}
+			&=\frac{e^2Q_f^2}{4s^2}
+			\Big(
+				\qty(p_a\cdot k_1)\qty(p_b\cdot k_2)
+				-\qty(p_a\cdot p_b)\qty(k_1\cdot k_2)
+				+(p_a\cdot k_2) \qty(p_b\cdot k_1)
+				\\&\qquad\qquad
+				-\qty(p_a\cdot p_b)\qty(k_1\cdot k_2)
+				+4\qty(p_a\cdot p_b)\qty(k_1\cdot k_2)
+				-\qty(p_a\cdot p_b)\qty(k_1\cdot k_2)
+				\\&\qquad\qquad
+				+\qty(p_a\cdot k_2)\qty(p_b\cdot k_1)
+				-\qty(p_a\cdot p_b)\qty(k_1\cdot k_2)
+				+\qty(p_a\cdot k_1)\qty(p_b\cdot k_2)
+			\Big)
+		\end{split}
+	\end{align}
+	\begin{align}
+		\begin{split}
+			&=\frac{e^2Q_f^2}{4s^2}
+			\Big(
+				2\qty(p_a\cdot k_1) \qty(p_b\cdot k_2)
+				+2\qty(p_a\cdot k_2) \qty(p_b\cdot k_1)
+			\Big)
+		\end{split}
+		\\
+		\begin{split}
+			\oo{4}\sum_\text{spins}A^\mu A^\sigma
+			&=\frac{e^2Q_f^2}{2s^2}
+			\qty(
+				\qty(p_a\cdot k_1) \qty(p_b\cdot k_2)
+				+\qty(p_a\cdot k_2) \qty(p_b\cdot k_1)
+			)
+		\end{split}
+	\end{align}
+\hrule
+% A^\mu B^\rho
+	\begin{align}
+		\oo{4}\sum_\text{spins}A^\mu B^\rho&=
+		\oo{4}\sum_\text{spins}
+		\frac{eQ_f}{s\qty(s-M_Z^2)}
+			\qty(\b{v}_a\gamma^\mu u_b)
+			\qty(\b{u}_1\gamma_\mu v_2)
+			\qty[\b{u}_b\gamma^\rho\qty(g_V^f+g_A^f\gamma_5)v_a]
+			\qty[\b{v}_2\gamma_\rho\qty(g_V^f+g_A^f\gamma_5)u_1]
+		\\
+		&=\oo{4}\sum_\text{spins}
+		\frac{eQ_f}{s\qty(s-M_Z^2)}
+			\Tr[\b{v}_a\gamma^\mu \slsh{p}_b\gamma^\rho\qty(g_V^f+g_A^f\gamma_5)v_a]
+			\Tr[\b{u}_1\gamma_\mu \slsh{k}_2\gamma_\rho\qty(g_V^f+g_A^f\gamma_5)u_1]
+		\\
+		&=\frac{eQ_f}{4s\qty(s-M_Z^2)}
+			\Tr[\slsh{p}_a\gamma^\mu \slsh{p}_b\gamma^\rho\qty(g_V^f+g_A^f\gamma_5)]
+			\Tr[\slsh{k}_1\gamma_\mu \slsh{k}_2\gamma_\rho\qty(g_V^f+g_A^f\gamma_5)]
+		\\
+		\begin{split}
+			&=\frac{eQ_f}{4s\qty(s-M_Z^2)}
+				\qty(g_V^f\Tr[\slsh{p}_a\gamma^\mu \slsh{p}_b\gamma^\rho]+g_A^f\Tr[\slsh{p}_a\gamma^\mu \slsh{p}_b\gamma^\rho\gamma_5])
+				\ldots\\&\qquad\qquad\qquad\ldots
+				\qty(g_V^f\Tr[\slsh{k}_1\gamma_\mu \slsh{k}_2\gamma_\rho]+g_A^f\Tr[\slsh{k}_1\gamma_\mu \slsh{k}_2\gamma_\rho\gamma_5])
+		\end{split}
+		\\
+		\begin{split}
+			&=\frac{eQ_f}{4s\qty(s-M_Z^2)}
+				\qty(g_V^f\qty(
+				p_a^{\mu}p_b^{\nu}
+				-\qty(p_a\cdot p_b)g^{\mu\nu}
+				+p_a^{\nu}p_b^{\mu}
+				)
+				+4ig_A^fp_{a,\alpha}p_{b,\beta}\epsilon^{\alpha\mu\beta\rho})
+				\ldots\\&\qquad\qquad\qquad\ldots
+				\qty(g_V^f\qty(
+				k_{1,\mu}k_{2,\nu}
+				-\qty(k_1\cdot k_2)g_{\mu\nu}
+				+k_{1,\nu}k_{2,\mu}
+				)
+				+4ig_A^fk_1^{\kappa}k_2^{\eta}\epsilon_{\kappa\mu\eta\rho})
+		\end{split}
+	\end{align}
+	Terms with just one $\epsilon^{\mu\nu\sigma\rho}$ end up summing to zero, so only the diagonal terms survive multiplication:
+	\begin{align}
+		\begin{split}
+			&=\frac{eQ_f}{4s\qty(s-M_Z^2)}
+				\Big[
+					\qty(g_V^f)^2
+					\qty(
+						p_a^{\mu}p_b^{\nu}
+						-\qty(p_a\cdot p_b)g^{\mu\nu}
+						+p_a^{\nu}p_b^{\mu}
+					)
+					\qty(
+						k_{1,\mu}k_{2,\nu}
+						-\qty(k_1\cdot k_2)g_{\mu\nu}
+						+k_{1,\nu}k_{2,\mu}
+					)
+					\ldots\\&\qquad\qquad\qquad\ldots
+					-16\qty(g_A^f)^2p_{a,\alpha}p_{b,\beta}k_1^{\kappa}k_2^{\eta}\epsilon^{\alpha\mu\beta\rho}
+					\epsilon_{\kappa\mu\eta\rho}
+				\Big]
+		\end{split}
+		\\
+		\begin{split}
+			&=\frac{eQ_f}{4s\qty(s-M_Z^2)}
+				\Big[
+					2\qty(g_V^f)^2
+					\qty(
+						\qty(p_a\cdot k_1) \qty(p_b\cdot k_2)
+						+\qty(p_a\cdot k_2) \qty(p_b\cdot k_1)
+					)
+					\ldots\\&\qquad\qquad\qquad\ldots
+					-16\qty(g_A^f)^2p_{a,\alpha}p_{b,\beta}k_1^{\kappa}k_2^{\eta}
+					\qty(-2\delta^{\alpha}_{\kappa}\delta^{\beta}_\eta+2\delta^{\alpha}_{\eta}\delta^\beta_\kappa)
+				\Big]
+		\end{split}
+		\\
+		\begin{split}
+			&=\frac{eQ_f}{4s\qty(s-M_Z^2)}
+				\Big[
+					2\qty(g_V^f)^2
+					\qty(
+						\qty(p_a\cdot k_1) \qty(p_b\cdot k_2)
+						+\qty(p_a\cdot k_2) \qty(p_b\cdot k_1)
+					)
+					\ldots\\&\qquad\qquad\qquad\ldots
+					-16\qty(g_A^f)^2
+					\qty(
+						-2\qty(p_a\cdot k_1) \qty(p_b\cdot k_2)
+						+2\qty(p_a\cdot k_2)\qty(p_b \cdot k_1)
+					)
+				\Big]
+		\end{split}
+	\end{align}
+\end{document}
