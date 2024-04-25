@@ -127,8 +127,10 @@
 
 \newcounter{probcount} % new counter for problem numbers, starts at 0 by default
 \numberwithin{equation}{probcount} % amsmath command that renews equation counter in each problem
+
 \NewDocumentEnvironment{ problem } {O{} +b} %Problem environment for homework, autocounts numbers, behaves like a section and can get listed (and hyperlinked) in the toc. 
 	{\addtocounter{probcount}{1} % increase counter at the beginning of every problem
+	 \setcounter{equation}{0}
 	 \phantomsection % invisible page marker for hyperref
 	 \addcontentsline{toc}{subsection}{Problem \theprobcount~{\it#1}} % add "Problem \theprobcount. \textit{#1}" to table of contents (toc) as if it were a subsection
 	 \begin{trivlist} % begin unmarked ("trivial") list
