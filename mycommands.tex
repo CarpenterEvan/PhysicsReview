@@ -41,7 +41,7 @@
 \usepackage[compat=1.1.0]{tikz-feynman}
 \usepackage[hidelinks]{hyperref}% References--THIS GOES LAST
 % Packages that this breaks without: amsmath, gensymb, physics, hyperref, xcolor, xparse, and possibly others
-
+\numberwithin{equation}{section} % amsmath command that renews equation counter in each section\
 \def\d{{\rm d}}
 \def\ints{\int_\mathcal{S}} % Surface integral
 \def\intv{\int_\mathcal{V}} % Volume integral with V subscript
@@ -126,11 +126,8 @@
 	{}}
 
 \newcounter{probcount} % new counter for problem numbers, starts at 0 by default
-\numberwithin{equation}{probcount} % amsmath command that renews equation counter in each problem
-
 \NewDocumentEnvironment{ problem } {O{} +b} %Problem environment for homework, autocounts numbers, behaves like a section and can get listed (and hyperlinked) in the toc. 
 	{\addtocounter{probcount}{1} % increase counter at the beginning of every problem
-	 \setcounter{equation}{0}
 	 \phantomsection % invisible page marker for hyperref
 	 \addcontentsline{toc}{subsection}{Problem \theprobcount~{\it#1}} % add "Problem \theprobcount. \textit{#1}" to table of contents (toc) as if it were a subsection
 	 \begin{trivlist} % begin unmarked ("trivial") list
