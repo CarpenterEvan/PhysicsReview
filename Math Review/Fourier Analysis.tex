@@ -1,5 +1,12 @@
 % Since \input doesn't like preambles, only uncomment next line if you're editing this TeX, don't forget the \end{document}! 
 %\documentclass{article}\input{../MAIN/packages}\input{../MAIN/commands}\begin{document}
+\NewDocumentCommand\ft{s O{n} O{L}}{ % I dont want to write \sin(stuff) \cos(stuff) every time in fourier transforms (ft)
+    \IfBooleanTF{#1}{
+        \sin(\frac{#2 \pi}{#3}x)
+    }{
+        \cos(\frac{#2 \pi}{#3}x)
+    }
+}
 \section{Fourier Analysis}       
 \subsection{Fourier Series}
 If a function $f$ and it's derivative $f'$ are both piece-wise continuous on the interval $[-L,L]$, then $f$ can be written as a weighted sum of sines and cosines in a Fourier series:

@@ -1,48 +1,4 @@
-\usepackage[x11names]{xcolor}    % Color extensions
-\usepackage[margin=1in]{geometry} % Formatting on page
-\usepackage{array} % big arrays
-\usepackage{amsmath} % Math symbols
-\usepackage{amsthm}   
-\usepackage{amssymb}
-\usepackage[backend=bibtex]{biblatex} % bibliography
-\usepackage{bm} % bold for greek letters
-\usepackage{cancel}
-\usepackage[format=hang]{caption}
-\usepackage{enumitem} % Enumerating things
-\usepackage{esint} % better double and triple Integrals
-\usepackage{etoc}
-\usepackage{fancyhdr} % Headers
-    \pagestyle{fancy}
-\usepackage{float}
-\usepackage{gensymb}
-\usepackage{listings} % type code, autosets colors for different languages
-\usepackage{physics} % easier commands for physics things
-\usepackage{slashed}
-\usepackage{relsize}  % allows for larger/smaller math 
-\usepackage{textcomp} % Gets rid of perthousand error
-\usepackage{upquote}  % fixes quotes in verbatim environment
-\usepackage{verbatim} % Allows for comment environment
-\usepackage{tikz} % pictures
-	\usetikzlibrary{calc}
-	\usetikzlibrary{decorations.markings}
-	\usetikzlibrary{3d}
-	\usetikzlibrary{intersections}
-\usepackage{pgfplots} % plots and graphics
-	\pgfplotsset{compat=newest} % or use compat=1.6
-	\usepgfplotslibrary{fillbetween}
-	\usetikzlibrary{3d}
-	\usetikzlibrary{datavisualization.formats.functions}
-	\usetikzlibrary{decorations.pathmorphing}
-	\usetikzlibrary{decorations.text}
-	\usetikzlibrary{fadings,patterns}
-\usepackage{graphicx} % plots and graphics
-\usepackage{wrapfig}
-\usepackage{xparse} % Better commands
-\usepackage[compat=1.1.0]{tikz-feynman}
-\usepackage[hidelinks]{hyperref}% References--THIS GOES LAST
-% Packages that this breaks without: amsmath, gensymb, physics, hyperref, xcolor, xparse, and possibly others
-\numberwithin{equation}{section} % amsmath command that renews equation counter in each section\
-\def\d{{\rm d}}
+\def\d{{\rm d}} % for integration
 \def\ints{\int_\mathcal{S}} % Surface integral
 \def\intv{\int_\mathcal{V}} % Volume integral with V subscript
 \def\intall{\int_{-\infty}^{\infty}} % Integral over all space
@@ -58,32 +14,29 @@
 	\hrule
 	\vspace{0.75 cm}\noindent}
 \NewDocumentCommand\length{O{3pt}}{\setlength\jot{#1}} % for align vertical spacing, there's probably a better way to do this locally
-\NewDocumentCommand\ft{s O{n} O{L}}{ % I dont want to write \sin(stuff) \cos(stuff) every time in fourier transforms (ft)
-    \IfBooleanTF{#1}{
-        \sin(\frac{#2 \pi}{#3}x)
-    }{
-        \cos(\frac{#2 \pi}{#3}x)
-    }
-}
+
 \NewDocumentCommand\slsh{m}{\slashed{#1}}
 \NewDocumentCommand\dl{s}{\IfBooleanTF{#1}{}{\cdot} \d\mathbf{l}} % quicker curve integral dl, if no star, it also makes the dot 
 \NewDocumentCommand\da{s}{\IfBooleanTF{#1}{}{\cdot} \d\mathbf{a}} % quicker surface integral da, if no star, it also makes the dot 
 \NewDocumentCommand\oo{O{1} m} {\frac{#1}{#2}}   % reciprocal- 'one over', option to make it a regular fraction because oo is still quicker to type.
 \NewDocumentCommand\thetitle{m O{}}{ \title{ \hypertarget{top}{\textbf{#1}} \\ \large {#2} } } %Bold title that is a hypertarget, optional bolded subtitle that's scaled properly 
 
-\NewDocumentCommand \e {s m}{ % basis vector command
+\NewDocumentCommand{\pT}{}{$p_{\rm T}$} % transverse momentum
+\NewDocumentCommand{\ET}{}{$E_{\rm T}$} % transverse Energy
+\NewDocumentCommand{\MET}{}{$E_{\rm T}^{\rm miss}$} % transverse Energy
+\NewDocumentCommand{\e}{s m}{ % basis vector command
 	\IfBooleanTF{#1} % \e{x} for x hat notation, \e*{x} for e_x notation
 	{\mathbf{\hat{e}_{#2}}}
 	{\bm{\hat{#2}}}} % from package bm, more powerful than \mathbf} 
-\NewDocumentCommand \parametric {m}{ %command for getting boundary conditions with a "{" on the left
+\NewDocumentCommand{\parametric}{m}{ %command for getting boundary conditions with a "{" on the left
     \left\{ 
 	\begin{gathered}
 		\begin{matrix}
 			#1
     		\end{matrix}
 	\end{gathered}
-	 \right.}
-\NewDocumentCommand \der {s O{} m g}{ % custom derivative command
+	 \right.} % this is the correct number of curly braces. 
+\NewDocumentCommand{\der}{s O{} m g}{ % custom derivative command
      \IfBooleanTF{#1} % if \der*, #1 is true, euler notation used, if \der , #1 is false, d/dx is used 
     {\IfNoValueTF{#4}  % g returns -NoValue- if no argument (read below)
         {\mathrm{D}_{#3}^{#2}}  % g is included so \der{x} and \der{f}{x} both have x in the denominator
@@ -134,7 +87,7 @@
 	 \item {\bf Problem \theprobcount} {\it#1} % print Problem with the counter and optional text 
 	 \item #2  % +b is for inputs that are long
 	 \end{trivlist} % end list
-	}{} % don't do anything then "problem" environment ends, irrelevant because trivlist is already ended
+	}{} % don't do anything, then "problem" environment ends, irrelevant because trivlist is already ended
 	
 \def\UM{\colorbox{blue}{\textcolor{Gold1}{\textbf{University of Michigan}}}} % School Pride
 \def\EC{\href{https://github.com/CarpenterEvan/PhysicsReview}{\(\mathbb{E}\textsc{van}~\mathbb{C}\textsc{arpenter}\)}}
