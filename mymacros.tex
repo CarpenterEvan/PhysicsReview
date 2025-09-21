@@ -24,6 +24,7 @@
 \NewDocumentCommand{\pT}{}{$p_{\rm T}$} % transverse momentum
 \NewDocumentCommand{\ET}{}{$E_{\rm T}$} % transverse Energy
 \NewDocumentCommand{\MET}{}{$E_{\rm T}^{\rm miss}$} % transverse Energy
+
 \NewDocumentCommand{\e}{s m}{ % basis vector command
 	\IfBooleanTF{#1} % \e{x} for x hat notation, \e*{x} for e_x notation
 	{\mathbf{\hat{e}_{#2}}}
@@ -35,7 +36,8 @@
 			#1
     		\end{matrix}
 	\end{gathered}
-	 \right.} % this is the correct number of curly braces. 
+	 \right.} % this is the correct number of curly braces.
+ 
 \NewDocumentCommand{\der}{s O{} m g}{ % custom derivative command
      \IfBooleanTF{#1} % if \der*, #1 is true, euler notation used, if \der , #1 is false, d/dx is used 
     {\IfNoValueTF{#4}  % g returns -NoValue- if no argument (read below)
@@ -78,16 +80,16 @@
 	{}
 	{}}
 
-\newcounter{probcount} % new counter for problem numbers, starts at 0 by default
-\NewDocumentEnvironment{ problem } {O{} +b} %Problem environment for homework, autocounts numbers, behaves like a section and can get listed (and hyperlinked) in the toc. 
-	{\addtocounter{probcount}{1} % increase counter at the beginning of every problem
-	 \phantomsection % invisible page marker for hyperref
-	 \addcontentsline{toc}{subsection}{Problem \theprobcount~{\it#1}} % add "Problem \theprobcount. \textit{#1}" to table of contents (toc) as if it were a subsection
-	 \begin{trivlist} % begin unmarked ("trivial") list
-	 \item {\bf Problem \theprobcount} {\it#1} % print Problem with the counter and optional text 
-	 \item #2  % +b is for inputs that are long
-	 \end{trivlist} % end list
-	}{} % don't do anything, then "problem" environment ends, irrelevant because trivlist is already ended
+\newcounter{probcount}% new counter for problem numbers, starts at 0 by default
+\NewDocumentEnvironment{ problem } {O{} +b}%Problem environment for homework, autocounts numbers, behaves like a section and can get listed (and hyperlinked) in the toc. 
+	{\addtocounter{probcount}{1}% increase counter at the beginning of every problem
+	 \phantomsection% invisible page marker for hyperref
+	 \addcontentsline{toc}{subsection}{Problem \theprobcount~{\it#1}}% add "Problem \theprobcount. \textit{#1}" to table of contents (toc) as if it were a subsection
+	 \begin{trivlist}% begin unmarked ("trivial") list
+	 \item {\bf Problem \theprobcount} {\it#1}% print Problem with the counter and optional text 
+	 \item #2% +b is for inputs that are long
+	 \end{trivlist}% end list
+	}{}% don't do anything, then "problem" environment ends, irrelevant because trivlist is already ended
 	
 \def\UM{\colorbox{blue}{\textcolor{Gold1}{\textbf{University of Michigan}}}} % School Pride
 \def\EC{\href{https://github.com/CarpenterEvan/PhysicsReview}{\(\mathbb{E}\textsc{van}~\mathbb{C}\textsc{arpenter}\)}}
