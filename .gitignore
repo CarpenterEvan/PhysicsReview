@@ -1,7 +1,12 @@
 .DS_Store
 .ipynb_checkpoints
 *.aux
-*.log
-*.bib
-*.xml
+*.bbl
+*.dpth
+*.fdb_latexmk
+*.fls
 *.gz
+*.log
+*.md5
+*.pdf
+*.xml
