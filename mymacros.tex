@@ -1,0 +1,133 @@
+
+
+
+\def\answerline{ % double horizontal line placed 0.5 cm below text, space between lines is 0.07 cm, then 0.75 cm of space 
+	\vspace{0.5 cm}
+	\hrule
+	\vspace{0.07 cm}
+	\hrule
+	\vspace{0.75 cm}\noindent}
+\NewDocumentCommand\length{O{3pt}}{\setlength\jot{#1}}% for align vertical spacing, there's probably a better way to do this locally
+
+
+\NewDocumentCommand\thetitle{m O{}}{ \title{ \hypertarget{top}{\textbf{#1}} \\ \large {#2} } } %Bold title that is a hypertarget, optional bolded subtitle that's scaled properly 
+
+% Transverse Quantities
+\NewDocumentCommand{\pT}{}{$p_{\rm T}$} % transverse momentum
+\NewDocumentCommand{\ET}{}{$E_{\rm T}$} % transverse Energy
+\NewDocumentCommand{\MET}{}{$E_{\rm T}^{\rm miss}$} % transverse Energy
+
+% Particles
+\NewDocumentCommand{\h}{s}{\IfBooleanTF{#1}{\(H\)}{\(H^0\)}}
+\NewDocumentCommand{\Z}{s}{\IfBooleanTF{#1}{\(Z\)}{\(Z^0\)}}
+\NewDocumentCommand{\W}{s O{+}}{\IfBooleanTF{#1}{\(W^{#2}\)}{\(W^{\pm}\)}}
+
+% Math symbols
+\NewDocumentCommand{\e}{s m}{ % basis vector command
+	\IfBooleanTF{#1} % \e{x} for x hat notation, \e*{x} for e_x notation
+	{\mathbf{\hat{e}_{#2}}}
+	{\bm{\hat{#2}}}} % from package bm, more powerful than \mathbf} 
+\def\ints{\int_\mathcal{S}} % Surface integral
+\def\intv{\int_\mathcal{V}} % Volume integral with V subscript
+\def\intall{\int_{-\infty}^{\infty}} % Integral over all space
+\def\iintall{\iint_{\rm All Space}} % Integral over all space
+\def\iiintall{\iiint_{\rm All Space}} % Integral over all space
+\def\ik{4\pi\epsilon_0} % Inverse k for EM
+\def\lap{\mathcal{L}}% Laplace
+\def\d{{\rm d}} % for integration
+\NewDocumentCommand\slsh{m}{\slashed{#1}}
+\NewDocumentCommand\dl{s}{\IfBooleanTF{#1}{}{\cdot} \d\mathbf{l}} % quicker curve integral dl, if no star, it also makes the dot 
+\NewDocumentCommand\da{s}{\IfBooleanTF{#1}{}{\cdot} \d\mathbf{a}} % quicker surface integral da, if no star, it also makes the dot 
+\NewDocumentCommand\oo{O{1} m} {\frac{#1}{#2}}   % reciprocal- 'one over', option to make it a regular fraction because oo is still quicker to type.
+
+% Math Structures
+\NewDocumentCommand{\parametric}{m}{ %command for getting boundary conditions with a "{" on the left
+    \left\{ 
+	\begin{gathered}
+		\begin{matrix}
+			#1
+    	\end{matrix}
+	\end{gathered}
+	 \right.% nothing shows up on the right side
+}% Don't trust the highlighting, this has the correct number of curly braces.
+
+\NewDocumentCommand{\colvec}{+m}{
+	\begingroup
+		\renewcommand{\arraystretch}{1.25} % Default is 1.2. Adjust vertical spacing
+		\begin{gathered}
+			\begin{bmatrix}
+				#1
+			\end{bmatrix}
+		\end{gathered}
+	\endgroup
+}
+\NewDocumentCommand{\der}{s O{} m g}{% custom derivative command
+	% \pder*{x} 		--> d_x
+	% \pder[2]{x}		--> d^{2}f/d^{2}x
+	% \pder{x}			--> d/dx
+	% \pder{f}{x}		--> df/dx
+	% \pder{f}{x}{y}	--> (df/dx)_y
+	% \pder*[a]{b}{c}{e}--> (d^{a}_{c} b)_{e}
+	% \pder*[a]{b}{c}{e}--> (d^{a}_{c} b)_{e}
+     \IfBooleanTF{#1}
+    {\IfNoValueTF{#4}  % g returns -NoValue- if no argument (read below)
+        {\mathrm{D}_{#3}^{#2}} 
+        {\mathrm{D}_{#4}^{#2}#3}
+            }
+    {\IfNoValueTF{#4}
+        {\frac{\mathrm{d}^{#2}}{\mathrm{d} #3^{#2}}}
+        {\frac{\mathrm{d}^{#2} #3}{\mathrm{d} #4^{#2}}}
+	}}
+\NewDocumentCommand{\pder}{s O{} m g d[]}{% custom partial derivative command, 
+	% \pder*{x} 		--> ∂_x
+	% \pder[2]{x}		--> ∂^{2}f/∂^{2}x
+	% \pder{x}			--> ∂/∂x
+	% \pder{f}{x}		--> ∂f/∂x
+	% \pder{f}{x}{y}	--> (∂f/∂x)_y
+	% \pder*[a]{b}{c}[e]--> (∂^{a}_{c} b)_{e}
+	% \pder[a]{b}{c}[e]--> (∂^{a}b/∂^{a}c)_{e}
+	\IfBooleanTF{#1}
+	   {\IfNoValueTF{#4} 
+		   {\partial_{#3}^{#2}}
+		   {\partial_{#4}^{#2}#3}
+			   }
+	   {\IfNoValueTF{#5}% d[] returns -NoValue- if no argument present delimited by []
+		   {\IfNoValueTF{#4}% g returns -NoValue- if no argument is present
+			   {\frac{\partial^{#2}}{\partial #3^{#2}}}
+			   {\frac{\partial^{#2} #3}{\partial #4^{#2}}}}
+		   {{\IfNoValueTF{#4} 
+			   {\left(\frac{\partial^{#2}}{\partial #3^{#2}}\right)_{\!#5}\!\!} % \! is thin negative horizontal space
+			   {\left(\frac{\partial^{#2} #3}{\partial #4^{#2}}\right)_{\!#5}\!\!}}}
+			   }} 
+                
+\NewDocumentCommand{\header}{m m m}{% Makes header that links to the key "top", usually used for first page
+	\fancyhead[L]{#1} 
+	\fancyhead[C]{\hyperlink{top}{ \textbf{#2} }}
+	\fancyhead[R]{#3}
+	\fancyfoot[C]{--\thepage--}
+	\pagestyle{fancy}}
+\setlength\headheight{17pt}
+\addtolength{\topmargin}{-2.49998pt}
+
+    
+\NewDocumentCommand{\coloredanswer}{O{LavenderBlush2} m}{% makes coloredbox with pretty color
+	\mathchoice
+	{\colorbox{#1}{$\displaystyle #2$}}
+	{\colorbox{#1}{$\textstyle #2$}}
+	{}
+	{}}
+
+\newcounter{probcount}% new counter for problem numbers, starts at 0 by default
+\NewDocumentEnvironment{ problem } {O{} +b}% Problem environment for homework, autocounts numbers, behaves like a section and can get listed (and hyperlinked) in the toc. 
+	{\addtocounter{probcount}{1}% increase counter at the beginning of every problem
+	 \phantomsection% invisible page marker for hyperref
+	 \addcontentsline{toc}{subsection}{Problem \theprobcount~{\it#1}}% add "Problem \theprobcount. \textit{#1}" to table of contents (toc) as if it were a subsection
+	 \begin{trivlist}% begin unmarked ("trivial") list
+	 \item {\bf Problem \theprobcount} {\it#1}% print Problem with the counter and optional text 
+	 \item #2% +b is for inputs that are long
+	 \end{trivlist}% end list
+	}{}% don't do anything, then "problem" environment ends, irrelevant because trivlist is already ended
+	
+\def\UM{\colorbox{blue}{\textcolor{Gold1}{\textbf{University of Michigan}}}} % School Pride
+\def\EC{\href{https://github.com/CarpenterEvan/PhysicsReview}{\(\mathbb{E}\textsc{van}~\mathbb{C}\textsc{arpenter}\)}}
+\endinput

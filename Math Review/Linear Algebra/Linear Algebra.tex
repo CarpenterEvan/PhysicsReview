@@ -1,0 +1,16 @@
+% Since \input doesn't like preambles, only uncomment next line if you're editing this TeX, don't forget the \end{document}! 
+%\documentclass{article}\input{../../commands}\begin{document}
+\section{Linear Algebra}
+\subsection{Eigenvalue, Eigenvector, Eigenfunction}
+By definition an eigenvector $\vb{v}$ of a matrix $\vb{M}$ must satisfy: 
+    \[\vb{M}\vb{v}=\lambda\vb{v}\quad\exists\lambda\in\mathbb{C}\]
+    Rearranging to find $\lambda$ gives
+    \begin{equation*}
+        \vb{M}\vb{v}-\lambda\vb{v}=(\vb{M}-\lambda\vb{I})\vb{v}=0
+    \end{equation*}
+    The eigenvector $\vb{v}=0$ is a trivial solution, but if the matrix $(\vb{M}-\lambda\vb{I})$ is invertible, then it's inverse can be applied to both sides, leaving us with no choice but $\vb{v}=0$. Because of this, nontrivial values of $\lambda$ are therefore values that make $(\vb{M}-\lambda\vb{I})$ singular (i.e. non-invertible). 
+    A matrix is singular if the determinant is zero, so to find nontrivial $\lambda$, you solve: 
+    \begin{equation*}
+        \det(\vb{M}-\lambda\vb{I})=\qty|\vb{M}-\lambda\vb{I}|=0
+    \end{equation*}
+%\end{document}
