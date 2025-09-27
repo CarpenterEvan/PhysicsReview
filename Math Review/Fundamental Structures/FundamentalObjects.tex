@@ -1,31 +1,38 @@
 \subsection{Fundamental Mathematical Objects:}
 
 \textbf{(Algebraic) Field}: A field \(\mathcal{F}\) is defined as a set \(\{F\}\) with two binary operations \(\cdot,+\) called multiplication and addition, respectively. 
-\[\mathcal{F}=\big[\{F\},(\times,+)\big]\]
+\[\mathcal{F}=\big[\{F\},(\cdot,+)\big]\]
 The binary operations, by definition, map two elements in \(\{F\}\) to a uniquely determined third element, also in \(\{F\}\). 
 \begin{align*}
 	F_1\times F_2&\rightarrow F_3
-	\\
-	F_1+ F_2&\rightarrow F_3
 \end{align*}
-For all elements of the field \(F_1,F_2,\ldots\), the following axioms hold:
+For all elements of the field \(F_1,F_2,\ldots\), the following axioms hold for the binary operations:
+
 \begin{itemize}
 	\item Associativity of multiplication and addition.
 	\item Commutativity of multiplication and addition.
-	\item There exist multiplicative and additive identities in \(\{F\}\).
-	\item There exist multiplicative and additive inverses in \(\{F\}\).
+	\item There exist multiplicative and additive identities \(\forall\)\ elements in \(\{F\}\).
+	\item There exist multiplicative and additive inverses \(\forall\)\ elements in \(\{F\}\).
 	\item Multiplication distributes over addition.
 \end{itemize}
 Typically when talking about a field \(\mathcal{F}\), most people are reffering to the set \(\{F\}\), and it is implied that the binary operations and axioms are applicable to the set. 
 
 
-\textbf{Vector Space}: A vector space $\mathcal{V}$ is defined \textit{over} a field \(\mathcal{F}\). 
-\[\mathcal{V}=\big[\{V\},\{F\}\big]\]
+\textbf{Vector Space}: A vector space is comprised of a field \(\mathcal{F}\), a nonempty set \(\{V\}\), a binary operation (vector addition), and a binary function (scalar multiplication). 
+\[\mathcal{V}=\big[\{V\},[\mathcal{F}], (+,\cdot)\big]\]
+The elements of \(\{V\}\) are vectors. The binary operation is between vectors in the set \(\{V\}\), and the binary function is between an element of \(\{F\}\) and an element of \(\{V\}\), and maps to an element in \(\{V\}\).
+\begin{align*}
+	V\cross V&\rightarrow V & \vb{a}+\vb{b}=\vb{c}\ \vb{a},\,\vb{b},\,\vb{c}\in \{V\}
+	\\
+	F\cross V&\rightarrow V & a\vb{v}_1=\vb{v}_2\ a \in \{F\},\ \vb{v}_1,\,\vb{v}_2\in\{V\}
+\end{align*}
+A vector space $\mathcal{V}$ is said to be defined \textit{over} a field \(\mathcal{F}\), in the sense that within a vector space is an associated field, whose elements are used in scaling the vectors. 
+
 
 
 \textbf{Hilbert Space}: Complex inner-product space that is also a complete (no points missing, every point can be reached from combinations of every other point) metric space wrt the metric from the inner product. 
 \[\mathcal{H}=\big[\{\psi\},(d:\psi^\dagger \cdot \psi\rightarrow\mathbb{C})\big]\]
-Inner product space: 
+Inner product space:
 \\
 Four Vectors:
 \begin{align*}

@@ -1,32 +1,24 @@
-\usepackage[x11names]{xcolor}    % Color extensions
-\usepackage[margin=1in]{geometry} % Formatting on page
-\usepackage{array} % big arrays
-\usepackage{amsmath} % Math symbols
-\usepackage{amsthm}   
-\usepackage{amssymb}
+% Packages are in alphabetical order, the only exceptions are made to avoid import conflicts.  
+
+\usepackage[x11names]{xcolor}% Color extensions, import first to avoid package conflicts
+\usepackage[margin=1in]{geometry}% Formatting on page
+\usepackage{array}% big arrays
+\usepackage{amsmath}% Math symbols
+\usepackage{amsthm}%   
+\usepackage{amssymb}%
 \usepackage[backend=bibtex]{biblatex} % bibliography
-\usepackage{bm} % bold for greek letters
-\usepackage{cancel}
+\usepackage{bm}% bold, even for greek letters
+\usepackage{cancel}% slash or x out text or equations
 \usepackage[format=hang]{caption}
-\usepackage{enumitem} % Enumerating things
-\usepackage{esint} % better double and triple Integrals
-\usepackage{etoc}
+\usepackage{enumitem}% Enumerating things, more flexible than itemize
+\usepackage{esint}% better double and triple Integrals
+\usepackage{etoc}% Flexibly designed table of contents
 \usepackage{fancyhdr} % Headers
     \pagestyle{fancy}
-\usepackage{float}
+\usepackage{float}% Position figures and tables flexibly
 \usepackage{gensymb}
-\usepackage{listings} % type code, autosets colors for different languages
-\usepackage{physics} % easier commands for physics things
-\usepackage{slashed}
-\usepackage{relsize}  % allows for larger/smaller math 
-\usepackage{textcomp} % Gets rid of perthousand error
-\usepackage{upquote}  % fixes quotes in verbatim environment
-\usepackage{verbatim} % Allows for comment environment
-\usepackage{tikz} % pictures
-	\usetikzlibrary{calc}
-	\usetikzlibrary{decorations.markings}
-	\usetikzlibrary{3d}
-	\usetikzlibrary{intersections}
+\usepackage{graphicx}% plots and graphics
+\usepackage{listings}% type code, autosets colors for different languages
 \usepackage{pgfplots} % plots and graphics
 	\pgfplotsset{compat=newest} % or use compat=1.6
 	\usepgfplotslibrary{fillbetween}
@@ -35,11 +27,19 @@
 	\usetikzlibrary{decorations.pathmorphing}
 	\usetikzlibrary{decorations.text}
 	\usetikzlibrary{fadings,patterns}
-\usepackage{graphicx} % plots and graphics
+\usepackage{physics}% Predefined commands for many physics things
+\usepackage{slashed}
+\usepackage{relsize}% Allows for larger/smaller math 
+\usepackage{textcomp}% Gets rid of perthousand error
+\usepackage{tikz}% Pictures
+	\usetikzlibrary{calc}
+	\usetikzlibrary{decorations.markings}
+	\usetikzlibrary{3d}
+	\usetikzlibrary{intersections}
+\usepackage{upquote}  % fixes quotes in verbatim environment
+\usepackage{verbatim} % Allows for the "comment" environment
 \usepackage{wrapfig}
 \usepackage{xparse} % Better commands
 \usepackage[compat=1.1.0]{tikz-feynman}
 \usepackage[hidelinks]{hyperref}% References--THIS GOES LAST
-% Packages that this breaks without: amsmath, gensymb, physics, hyperref, xcolor, xparse, and possibly others
-\numberwithin{equation}{section} % amsmath command that renews equation counter in each section\
 \endinput
