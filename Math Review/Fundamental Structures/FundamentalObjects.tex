@@ -1,39 +1,59 @@
-\subsection{Fundamental Mathematical Objects:}
+\section{Fundamental Mathematical Objects}
 
-\textbf{(Algebraic) Field}: A field \(\mathcal{F}\) is defined as a set \(\{F\}\) with two binary operations \(\cdot,+\) called multiplication and addition, respectively. 
+\textbf{(Algebraic) Field}: A field \(\mathcal{F}\) is defined as a set \Fset\ with two binary operations \(\cdot,+\) called multiplication and addition, respectively. 
 \[\mathcal{F}=\big[\{F\},(\cdot,+)\big]\]
-The binary operations, by definition, map two elements in \(\{F\}\) to a uniquely determined third element, also in \(\{F\}\). 
+The binary operations, by definition, map two elements in \Fset\ to a uniquely determined third element, also in \Fset. 
 \begin{align*}
-	F_1\times F_2&\rightarrow F_3
+	(\placeholder)+(\placeholder):F_1\times F_2&\rightarrow F_3
+	\\
+	(\placeholder)\cdot(\placeholder):F_1\times F_2&\rightarrow F_3
 \end{align*}
 For all elements of the field \(F_1,F_2,\ldots\), the following axioms hold for the binary operations:
 
 \begin{itemize}
 	\item Associativity of multiplication and addition.
 	\item Commutativity of multiplication and addition.
-	\item There exist multiplicative and additive identities \(\forall\)\ elements in \(\{F\}\).
-	\item There exist multiplicative and additive inverses \(\forall\)\ elements in \(\{F\}\).
+	\item There exist multiplicative and additive identities \(\forall\)\ elements in \Fset.
+	\item There exist multiplicative and additive inverses \(\forall\)\ elements in \Fset.
 	\item Multiplication distributes over addition.
 \end{itemize}
 Typically when talking about a field \(\mathcal{F}\), most people are reffering to the set \(\{F\}\), and it is implied that the binary operations and axioms are applicable to the set. 
-
-
-\textbf{Vector Space}: A vector space is comprised of a field \(\mathcal{F}\), a nonempty set \(\{V\}\), a binary operation (vector addition), and a binary function (scalar multiplication). 
-\[\mathcal{V}=\big[\{V\},[\mathcal{F}], (+,\cdot)\big]\]
-The elements of \(\{V\}\) are vectors. The binary operation is between vectors in the set \(\{V\}\), and the binary function is between an element of \(\{F\}\) and an element of \(\{V\}\), and maps to an element in \(\{V\}\).
+\\[0.25cm]
+\textbf{Vector Space}: A vector space is comprised of a nonempty set \Vset, a field \(\mathcal{F}\), a binary operation (vector addition), and a binary function (scalar multiplication). 
+\[\mathcal{V}=\big[\Vset,[\mathcal{F}], (+,\cdot)\big]\]
+The elements of \(\{V\}\) are vectors. The binary operation is between vectors in the set \Vset, and the binary function is between an element of \Fset\ and an element of \Vset, and maps to an element in \(\{V\}\).
 \begin{align*}
-	V\cross V&\rightarrow V & \vb{a}+\vb{b}=\vb{c}\ \vb{a},\,\vb{b},\,\vb{c}\in \{V\}
+	(\placeholder)+(\placeholder):V\cross V&\rightarrow V & \vb{v}_1+\vb{v}_2&=\vb{c}\qquad \vb{v}_1,\,\vb{v}_2,\,\vb{v}_3\in\Vset
 	\\
-	F\cross V&\rightarrow V & a\vb{v}_1=\vb{v}_2\ a \in \{F\},\ \vb{v}_1,\,\vb{v}_2\in\{V\}
+	(\placeholder)\cdot(\placeholder):F\cross V&\rightarrow V & a\vb{v}_1&=\vb{v}_2\quad\ a\in\Fset,\ \vb{v}_1,\,\vb{v}_2\in\Vset
 \end{align*}
-A vector space $\mathcal{V}$ is said to be defined \textit{over} a field \(\mathcal{F}\), in the sense that within a vector space is an associated field, whose elements are used in scaling the vectors. 
+For all elements of the field and the vector space, the following vector axioms hold:
+\begin{itemize}
+	\item Associativity of vector addition.
+	\item Commutivity of vector addition.
+	\item For vector addition, there exist additive identities.
+	\item For vector addition, there exist additive inverses.
+	\item Scalar multiplication is compatible with field multiplication.
+	\item Scalar multiplication distributes over field addition. 
+	\item For scalar multiplicaion, there exist multaplicative identities.
+	\item For scalar multiplicaion, there exist multiplicative inverses.
+\end{itemize}
+A vector space \(\mathcal{V}\) is said to be defined \textit{over} a field \(\mathcal{F}\), in the sense that within a vector space is an associated field, whose elements are used in scaling the vectors. Two examples of this is a vector space over the field of real numbers, or a vector space over the field of complex numbers. Most of the time \Vset\ is referred to as the vector space, and the field is either assumed to be \(\mathbb{R},\,\mathbb{C}\).
 
+\textbf{Metric Space}: A metric space is comprised of a set \Xset\ and a binary function, which represents the distance between two elements of \Xset. The distance function can be nearly anything. Euclidean distance is a familiar example. 
 
-
+\textbf{Inner Product Space}: An inner product space contains a vector space defined over a field-- almost always \(\mathbb{R},\,\mathbb{C}\)--along with a binary operation (the inner product). 
+\begin{equation*}
+	\mathcal{V}_{\rm inner}=\big[[\mathcal{V}],\,(\braket{\placeholder}{\placeholder})\big]
+\end{equation*}
+For all elements ofThe innner product 
+The inner product maps two elements of \Vset\ to \Fset.
+\begin{equation*}
+	\braket{\placeholder}{\placeholder}: V\cross V\rightarrow F
+\end{equation*}
+Inner product spaces over the field \(\mathbb{C}\) are called ``unitary spaces''.
 \textbf{Hilbert Space}: Complex inner-product space that is also a complete (no points missing, every point can be reached from combinations of every other point) metric space wrt the metric from the inner product. 
 \[\mathcal{H}=\big[\{\psi\},(d:\psi^\dagger \cdot \psi\rightarrow\mathbb{C})\big]\]
-Inner product space:
-\\
 Four Vectors:
 \begin{align*}
 	x^{\mu}&=\colvec{ct\\x_{1}\\x_{2}\\x_{3}}=\colvec{ct\\\vb{x}}

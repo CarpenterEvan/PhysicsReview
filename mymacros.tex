@@ -38,7 +38,9 @@
 %%%% Math %%%%
 	%%
 	%% Symbols and Shorthand
-
+		\LoopCommands{\lettersAll}[#1set] {\newmathcommand#2{\{\MakeUppercase{#1}\}}}
+		\LoopCommands{\lettersAll}[#1set] {\newtextcommand#2{\(\{\MakeUppercase{#1}\}\)}}
+		\def\placeholder{\bm{\,\cdot\,}}% Placeholder of the argument of a function
 		\def\ints{\int_\mathcal{S}}% Surface integral
 		\def\intv{\int_{D}}% Volume integral with D subscript
 		\def\intall{\int_{-\infty}^{\infty}}% Integral over all space
@@ -56,8 +58,9 @@
 			{\mathbf{\hat{e}_{#2}}}
 			{\bm{\hat{#2}}}}
 		\NewDocumentCommand\slsh{m}{\slashed{#1}}
-		\NewDocumentCommand\dl{s}{\IfBooleanTF{#1}{\cdot}{} \d\mathbf{l}}% Curve integral •dl, if no star, if no star then just dl
-		\NewDocumentCommand\da{s}{\IfBooleanTF{#1}{\cdot}{} \d\mathbf{a}}% Surface integral •da, if no star then just da 
+		\LoopCommands{{l}{a}}[d#1]{\NewDocumentCommand#2{s}{\IfBooleanTF{##1}{\cdot}{}\d\mathbf{#1}}}
+		%\NewDocumentCommand\dl{s}{\IfBooleanTF{#1}{\cdot}{} \d\mathbf{l}}% Curve integral •dl, if no star, if no star then just dl
+		%\NewDocumentCommand\da{s}{\IfBooleanTF{#1}{\cdot}{} \d\mathbf{a}}% Surface integral •da, if no star then just da 
 		\NewDocumentCommand\oo{O{1} m}{\frac{#1}{#2}}% reciprocal- 'one over', optional argulent is there to make it a regular fraction, because oo is still quicker to type.
 	%%
 	%% Vectors and Matrices
@@ -116,12 +119,15 @@
 					}
 			{\IfNoValueTF{#5}% d[] returns -NoValue- if no argument present delimited by []
 				{\IfNoValueTF{#4}
-					{\frac{\partial^{#2}}{\partial #3^{#2}}}
-					{\frac{\partial^{#2} #3}{\partial #4^{#2}}}}
-				{{\IfNoValueTF{#4} 
-					{\left(\frac{\partial^{#2}}{\partial #3^{#2}}\right)_{\!#5}\!\!} % \! is thin negative horizontal space
-					{\left(\frac{\partial^{#2} #3}{\partial #4^{#2}}\right)_{\!#5}\!\!}}}
-					}} 
+					{\frac{\partial^{#2}}{\partial#3^{#2}}}%
+					{\frac{\partial^{#2} #3}{\partial#4^{#2}}}
+				}{
+					{\IfNoValueTF{#4} 
+					{\left(\frac{\partial^{#2}}{\partial#3^{#2}}\right)_{\!#5}\!\!}% \! is thin negative horizontal space
+					{\left(\frac{\partial^{#2} #3}{\partial#4^{#2}}\right)_{\!#5}\!\!}}
+				}
+			}
+		} 
 			
 	%%
 	%% Misc. Problem Solving
