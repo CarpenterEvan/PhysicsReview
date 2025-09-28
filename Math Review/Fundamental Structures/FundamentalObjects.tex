@@ -46,14 +46,32 @@ A vector space \(\mathcal{V}\) is said to be defined \textit{over} a field \(\ma
 \begin{equation*}
 	\mathcal{V}_{\rm inner}=\big[[\mathcal{V}],\,(\braket{\placeholder}{\placeholder})\big]
 \end{equation*}
-For all elements ofThe innner product 
 The inner product maps two elements of \Vset\ to \Fset.
 \begin{equation*}
 	\braket{\placeholder}{\placeholder}: V\cross V\rightarrow F
 \end{equation*}
+Inner product has three properties:
+\begin{description}
+	\item[Linearity of the \textbf{first} argument] \(\braket{a\vb{v_1}+b\vb{v_2}}{c\vb{v_3}}=a\braket{\vb{v_1}}{c\vb{v}_3}+F_2\braket{\vb{v_2}}{c\vb{v}_3}\)
+	\item[Complex conjugate symmetry] \(\braket{\vb{v_1}}{\vb{v_2}}=\overline{\braket{\vb{v_2}}{\vb{v_1}}}\)
+	\item[Positive definiteness] \(\braket{\vb{v_1}}{\vb{v_2}}>0\)
+\end{description}
+A ``norm'' can be defined, that corresponds to the length of the vectors. 
+\begin{equation*}
+	\norm{\vb{v}_i}=\sqrt{\braket{\vb{v}_i}{\vb{v}_i}}
+\end{equation*}
 Inner product spaces over the field \(\mathbb{C}\) are called ``unitary spaces''.
+\\
 \textbf{Hilbert Space}: Complex inner-product space that is also a complete (no points missing, every point can be reached from combinations of every other point) metric space wrt the metric from the inner product. 
-\[\mathcal{H}=\big[\{\psi\},(d:\psi^\dagger \cdot \psi\rightarrow\mathbb{C})\big]\]
+\[\mathcal{H}=\big[\{\psi\},(d)\big]\]
+The distance function is based off of the norm that can be defined on an inner product space.
+\begin{equation*}
+	d:\psi^\dagger \cdot \psi\rightarrow\mathbb{C}
+\end{equation*}
+
+
+
+
 Four Vectors:
 \begin{align*}
 	x^{\mu}&=\colvec{ct\\x_{1}\\x_{2}\\x_{3}}=\colvec{ct\\\vb{x}}
