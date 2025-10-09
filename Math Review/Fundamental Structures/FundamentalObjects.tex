@@ -1,6 +1,6 @@
 \section{Fundamental Mathematical Objects}
 
-\textbf{(Algebraic) Field}: A field \(\mathcal{F}\) is defined as a set \Fset\ with two binary operations \(\cdot,+\) called multiplication and addition, respectively. 
+\textbf{(Algebraic) Field}: A field is where we can pick our numbers from. A field \(\mathcal{F}\) is defined as a set \Fset\ with two binary operations \(\cdot,+\) called multiplication and addition, respectively.
 \[\mathcal{F}=\big[\{F\},(\cdot,+)\big]\]
 The binary operations, by definition, map two elements in \Fset\ to a uniquely determined third element, also in \Fset. 
 \begin{align*}
@@ -41,7 +41,7 @@ For all elements of the field and the vector space, the following vector axioms 
 A vector space \(\mathcal{V}\) is said to be defined \textit{over} a field \(\mathcal{F}\), in the sense that within a vector space is an associated field, whose elements are used in scaling the vectors. Two examples of this is a vector space over the field of real numbers, or a vector space over the field of complex numbers. Most of the time \Vset\ is referred to as the vector space, and the field is either assumed to be \(\mathbb{R},\,\mathbb{C}\).
 
 \textbf{Metric Space}: A metric space is comprised of a set \Xset\ and a binary function, which represents the distance between two elements of \Xset. The distance function can be nearly anything. Euclidean distance is a familiar example. 
-
+\\
 \textbf{Inner Product Space}: An inner product space contains a vector space defined over a field-- almost always \(\mathbb{R},\,\mathbb{C}\)--along with a binary operation (the inner product). 
 \begin{equation*}
 	\mathcal{V}_{\rm inner}=\big[[\mathcal{V}],\,(\braket{\placeholder}{\placeholder})\big]
@@ -62,16 +62,22 @@ A ``norm'' can be defined, that corresponds to the length of the vectors.
 \end{equation*}
 Inner product spaces over the field \(\mathbb{C}\) are called ``unitary spaces''.
 \\
-\textbf{Hilbert Space}: Complex inner-product space that is also a complete (no points missing, every point can be reached from combinations of every other point) metric space wrt the metric from the inner product. 
-\[\mathcal{H}=\big[\{\psi\},(d)\big]\]
+\textbf{Hilbert Space}: A Hilbert space is a complete inner-product space over the field of complex numbers. Since this is also a metric space, the metric is derived from the inner product.
+\[H=\big[\{\psi\},(d)\big]\]
 The distance function is based off of the norm that can be defined on an inner product space.
 \begin{equation*}
-	d:\psi^\dagger \cdot \psi\rightarrow\mathbb{C}
+	d:\braket{\psi_i}{\psi_j}\rightarrow\mathbb{C}
 \end{equation*}
 
+Quantum states are represented as elements \(\ket{\alpha}\) in this space. States can be represented in different bases like position or momentum, where they become wavefunctions:
+\begin{align*}
+	\psi(x)&=\braket{x}{\alpha}	
+	\\
+	\phi(p)&=\braket{p}{\alpha}
+\end{align*}
+Algebraically, a ket \(\ket{\alpha}\) is a column vector, and a bra \(\bra{\alpha}\) is a row vector. 
 
-
-
+\newpage
 Four Vectors:
 \begin{align*}
 	x^{\mu}&=\colvec{ct\\x_{1}\\x_{2}\\x_{3}}=\colvec{ct\\\vb{x}}

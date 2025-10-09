@@ -33,12 +33,14 @@
 		\NewDocumentCommand{\h}{s}{\IfBooleanTF{#1}{\(H\)}{\(H^0\)}}
 		\NewDocumentCommand{\Z}{s}{\IfBooleanTF{#1}{\(Z\)}{\(Z^0\)}}
 		\NewDocumentCommand{\W}{s O{+}}{\IfBooleanTF{#1}{\(W^{#2}\)}{\(W^{\pm}\)}}
-
+		
+	\def\ik{4\pi\epsilon_0} % Inverse k for EM
 	%%
 %%%% Math %%%%
 	%%
 	%% Symbols and Shorthand
-		\LoopCommands{\lettersAll}[#1set] {\newmathcommand#2{\{\MakeUppercase{#1}\}}}
+		% to make sets
+		\LoopCommands{\lettersAll}[#1set] {\newmathcommand#2{\{\MakeUppercase{#1}\}}} 
 		\LoopCommands{\lettersAll}[#1set] {\newtextcommand#2{\(\{\MakeUppercase{#1}\}\)}}
 		\def\placeholder{\bm{\,\cdot\,}}% Placeholder of the argument of a function
 		\def\ints{\int_\mathcal{S}}% Surface integral
@@ -46,9 +48,8 @@
 		\def\intall{\int_{-\infty}^{\infty}}% Integral over all space
 		\def\iintall{\iint_{\rm All Space}}% Integral over all space
 		\def\iiintall{\iiint_{\rm All Space}}% Integral over all space
-		\def\ik{4\pi\epsilon_0} % Inverse k for EM
 		\def\lap{\mathcal{L}}% Laplace
-		\def\d{{\rm d}} % for integration
+		\def\d{{\rm d}}% for integration
 
 		\NewDocumentCommand{\e}{s m}{% Basis vector
 			% \e{x} --> \hat{e}_x
@@ -59,6 +60,7 @@
 			{\bm{\hat{#2}}}}
 		\NewDocumentCommand\slsh{m}{\slashed{#1}}
 		\LoopCommands{{l}{a}}[d#1]{\NewDocumentCommand#2{s}{\IfBooleanTF{##1}{\cdot}{}\d\mathbf{#1}}}
+		\LoopCommands{xyztV}[d#1]{\NewDocumentCommand#2{s}{\d#1}}
 		%\NewDocumentCommand\dl{s}{\IfBooleanTF{#1}{\cdot}{} \d\mathbf{l}}% Curve integral •dl, if no star, if no star then just dl
 		%\NewDocumentCommand\da{s}{\IfBooleanTF{#1}{\cdot}{} \d\mathbf{a}}% Surface integral •da, if no star then just da 
 		\NewDocumentCommand\oo{O{1} m}{\frac{#1}{#2}}% reciprocal- 'one over', optional argulent is there to make it a regular fraction, because oo is still quicker to type.
@@ -73,7 +75,7 @@
 					#1
 		    	\end{matrix}
 			\end{gathered}
-			 \right.
+			\right.
 		}
 
 		\NewDocumentCommand{\colvec}{+m}{% Colummn vector
@@ -97,13 +99,14 @@
 			% \der*[a]{b}{c}{e}	--> (D^{a}_{c} b)_{e}
 			\IfBooleanTF{#1}
 			{\IfNoValueTF{#4}% g returns -NoValue- if no argument
-				{\mathrm{D}_{#3}^{#2}} 
+				{\mathrm{D}_{#3}^{#2}}
 				{\mathrm{D}_{#4}^{#2}#3}
-					}
+			}
 			{\IfNoValueTF{#4}
 				{\frac{\mathrm{d}^{#2}}{\mathrm{d} #3^{#2}}}
 				{\frac{\mathrm{d}^{#2} #3}{\mathrm{d} #4^{#2}}}
-			}}
+			}
+		}
 		\NewDocumentCommand{\pder}{s O{} m g d[]}{% custom partial derivative command, 
 			% \pder*{x} 		--> ∂_x
 			% \pder[2]{x}		--> ∂^{2}f/∂^{2}x
@@ -119,11 +122,11 @@
 					}
 			{\IfNoValueTF{#5}% d[] returns -NoValue- if no argument present delimited by []
 				{\IfNoValueTF{#4}
-					{\frac{\partial^{#2}}{\partial#3^{#2}}}%
+					{\frac{\partial^{#2}}{\partial#3^{#2}}}
 					{\frac{\partial^{#2} #3}{\partial#4^{#2}}}
 				}{
 					{\IfNoValueTF{#4} 
-					{\left(\frac{\partial^{#2}}{\partial#3^{#2}}\right)_{\!#5}\!\!}% \! is thin negative horizontal space
+					{\left(\frac{\partial^{#2}}{\partial#3^{#2}}\right)_{\!#5}\!\!}% \! is negative \, space
 					{\left(\frac{\partial^{#2} #3}{\partial#4^{#2}}\right)_{\!#5}\!\!}}
 				}
 			}

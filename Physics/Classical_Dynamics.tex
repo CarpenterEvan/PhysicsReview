@@ -1,0 +1,14 @@
+\subsection{Guiding Principle of Least Action}
+In the modern mechanics, a system of interest is described in the space of possible configurations, which does not need to be the same as physical space. For example, a while a pendulum system can be described in terms of it's \(x,y\) positions, it can also be explained in terms of it's length and angle, or even it's kinetic and potential energy at any given moment. All of these choices uniquely describe the system, and should be equally valid. The quantities used to fully describe the system are the \textbf{generalized coordinates} \(q_i\) (\(i=1,2,3,\ldots)\). Examples of \(q\) could be positions, angles, currents, or even fields. Since these coordinates typically evolve in time, the other natural quantities of interest are the generalized velocities \(\dot{q}_i(t)\). 
+\begin{center}
+	Using the right \(\{q_i(t),\,\dot{q}_i(t)\}\), a system will be fully described at any time t.
+\end{center}
+The axes of configuration space are the full set of \(\{q_i(t),\,\dot{q}_i(t)\}\)
+Kinetic energy \(T\) and potential energy \(U\) of a particle depend on the path taken by the elements of the system in configuration space.
+Average (or even instantaneous) kinetic/potential energies can be regarded as (integral) functionals of their paths. For example, taking the generalized coordinates to be the positions of the \(i\)th particle of the system:
+\begin{align*}
+	\overline{T}_i&=\oo{t_2-t_1} \int_{t_1}^{t_2}\oo{2}m{\dot{x}_i(t)}^2 \dt
+	\\
+	\overline{U}_i&= \oo{t_2-t_1} \int_{t_1}^{t_2}U[{x_i(t)}] \dt
+\end{align*}
+As the path described by \(x(t)\) changes, the values of \(overline{T}\) and \(\overline{U}\) change. 
