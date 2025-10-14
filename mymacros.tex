@@ -21,6 +21,12 @@
 	\setlength\headheight{17pt}
 	\addtolength{\topmargin}{-2.49998pt}
 	\numberwithin{equation}{section} % amsmath command that renews equation counter in each section\
+	\DeclareTColorBox{mathbox}{m}{
+		colframe=RosyBrown4,
+		colback=Thistle1,
+		title=#1}
+%%
+%%
 %%%% Physics %%%%
 	%%
 	%% Transverse Quantities
@@ -36,6 +42,8 @@
 		
 	\def\ik{4\pi\epsilon_0} % Inverse k for EM
 	%%
+%%
+%%
 %%%% Math %%%%
 	%%
 	%% Symbols and Shorthand
@@ -60,7 +68,7 @@
 			{\bm{\hat{#2}}}}
 		\NewDocumentCommand\slsh{m}{\slashed{#1}}
 		\LoopCommands{{l}{a}}[d#1]{\NewDocumentCommand#2{s}{\IfBooleanTF{##1}{\cdot}{}\d\mathbf{#1}}}
-		\LoopCommands{xyztV}[d#1]{\NewDocumentCommand#2{s}{\d#1}}
+		\LoopCommands{xyztV}[d#1]{\NewDocumentCommand#2{s}{\,\d#1}}
 		%\NewDocumentCommand\dl{s}{\IfBooleanTF{#1}{\cdot}{} \d\mathbf{l}}% Curve integral •dl, if no star, if no star then just dl
 		%\NewDocumentCommand\da{s}{\IfBooleanTF{#1}{\cdot}{} \d\mathbf{a}}% Surface integral •da, if no star then just da 
 		\NewDocumentCommand\oo{O{1} m}{\frac{#1}{#2}}% reciprocal- 'one over', optional argulent is there to make it a regular fraction, because oo is still quicker to type.

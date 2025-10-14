@@ -14,33 +14,31 @@
 \usepackage{esint}% better double and triple Integrals
 \usepackage{etoc}% Flexibly designed table of contents
 \usepackage{fancyhdr} % Headers
-    \pagestyle{fancy}
+    \pagestyle{fancy}%
 \usepackage{float}% Position figures and tables flexibly
-\usepackage{gensymb}
+\usepackage{gensymb}%
 \usepackage{graphicx}% plots and graphics
 \usepackage{listings}% type code, autosets colors for different languages
 \usepackage{mathcommand}% Allows for macros to be defined differently in math environments.
-\usepackage{pgfplots} % plots and graphics
+\usepackage{pgfplots}% plots and graphics
 	\pgfplotsset{compat=newest} % or use compat=1.6
-	\usepgfplotslibrary{fillbetween}
-	\usetikzlibrary{3d}
-	\usetikzlibrary{datavisualization.formats.functions}
-	\usetikzlibrary{decorations.pathmorphing}
-	\usetikzlibrary{decorations.text}
-	\usetikzlibrary{fadings,patterns}
+	\usepgfplotslibrary{fillbetween}%
 \usepackage{physics}% Predefined commands for many physics things
 \usepackage{slashed}
 \usepackage{relsize}% Allows for larger/smaller math 
 \usepackage{textcomp}% Gets rid of perthousand error
 \usepackage{tikz}% Pictures
-	\usetikzlibrary{calc}
-	\usetikzlibrary{decorations.markings}
-	\usetikzlibrary{3d}
-	\usetikzlibrary{intersections}
-\usepackage{upquote}  % fixes quotes in verbatim environment
-\usepackage{verbatim} % Allows for the "comment" environment
-\usepackage{wrapfig}
-\usepackage{xparse} % Better commands
-\usepackage[compat=1.1.0]{tikz-feynman}
-\usepackage[hidelinks]{hyperref}% References--THIS GOES LAST
+	\usetikzlibrary{decorations.markings}%
+	\usetikzlibrary{3d,calc,fadings,patterns,intersections}%
+	\usetikzlibrary{datavisualization.formats.functions}%
+	\usetikzlibrary{decorations.pathmorphing}%
+	\usetikzlibrary{decorations.text}%
+\usepackage{tcolorbox}% Beautiful colored boxed with flexible options
+	\tcbuselibrary{xparse}
+\usepackage{upquote}% Fixes quotes in verbatim environment
+\usepackage{verbatim}% Defines the "comment" environment
+\usepackage{wrapfig}% 
+\usepackage{xparse}% Allows for more flexible command definitions 
+\usepackage[compat=1.1.0]{tikz-feynman}% Feynman diagrams
+\usepackage[hidelinks]{hyperref}% References--Put this last for compatability
 \endinput

@@ -1,15 +1,16 @@
 \section{Fundamental Mathematical Objects}
-
-\textbf{(Algebraic) Field}: A field is where we can pick our numbers from. A field \(\mathcal{F}\) is defined as a set \Fset\ with two binary operations \(\cdot,+\) called multiplication and addition, respectively.
-\[\mathcal{F}=\big[\{F\},(\cdot,+)\big]\]
-The binary operations, by definition, map two elements in \Fset\ to a uniquely determined third element, also in \Fset. 
-\begin{align*}
-	(\placeholder)+(\placeholder):F_1\times F_2&\rightarrow F_3
-	\\
-	(\placeholder)\cdot(\placeholder):F_1\times F_2&\rightarrow F_3
-\end{align*}
-For all elements of the field \(F_1,F_2,\ldots\), the following axioms hold for the binary operations:
-
+	\begin{mathbox}{Algebraic Field}
+		\begin{equation*}
+			\mathcal{F}=\big[\{F\},(\cdot,+)\big]
+		\end{equation*}
+		\begin{align*}
+			(\placeholder)+(\placeholder):F\times F&\rightarrow F
+			&
+			(\placeholder)\cdot(\placeholder):F\times F&\rightarrow F
+		\end{align*}
+	\end{mathbox}
+A field is where we can pick our numbers from. A field \(\mathcal{F}\) is defined as a set \Fset\ with two binary operations \(\cdot,+\) called multiplication and addition, respectively.
+The binary operations, by definition, map two elements in \Fset\ to a uniquely determined third element, also in \Fset. For all elements of the field \Fset, the following axioms hold for the binary operations:
 \begin{itemize}
 	\item Associativity of multiplication and addition.
 	\item Commutativity of multiplication and addition.
@@ -17,59 +18,91 @@ For all elements of the field \(F_1,F_2,\ldots\), the following axioms hold for 
 	\item There exist multiplicative and additive inverses \(\forall\)\ elements in \Fset.
 	\item Multiplication distributes over addition.
 \end{itemize}
+
 Typically when talking about a field \(\mathcal{F}\), most people are reffering to the set \(\{F\}\), and it is implied that the binary operations and axioms are applicable to the set. 
-\\[0.25cm]
-\textbf{Vector Space}: A vector space is comprised of a nonempty set \Vset, a field \(\mathcal{F}\), a binary operation (vector addition), and a binary function (scalar multiplication). 
-\[\mathcal{V}=\big[\Vset,[\mathcal{F}], (+,\cdot)\big]\]
+\begin{mathbox}{Group}
+	\begin{align*}
+		\mathcal{G}=\big(G,\cdot\big)
+		\\
+		(\placeholder)\cdot(\placeholder):G\cross G&\rightarrow G
+	\end{align*}
+\end{mathbox}
+A group is a set with a binary operation. 
+In physics, groups are usually for more complex objects like matrices, wheras fields are usually numbers. 
+\newpage
+\begin{mathbox}{Metric Space}
+	\begin{equation*}
+		\mathcal{M}_d=\big[\Mset, (d)\big]
+	\end{equation*}
+	\begin{align*}
+	d(\placeholder,\placeholder):M\cross M&\rightarrow \mathbb{R}
+	\end{align*}
+\end{mathbox}
+A metric space is comprised of a set \Xset\ and a binary function, which represents the distance between two elements of \Xset. The distance function \(d\) can be nearly anything, but respects three properties:
+\begin{itemize}
+	\item Non-negativity: \(d(a,b)\geq0\)
+	\item Symmetry: \(d(a,b)=d(b,a)\)
+	\item Triangle inequality: \(d(a,c)\leq d(a,b)+d(b,c)\)
+\end{itemize}
+Euclidean distance is a familiar \(d\).
+
+\newpage
+\begin{mathbox}{Vector Space}
+	\begin{equation*}
+		\mathcal{V}=\big[\Vset,[\mathcal{F}], (+,\cdot)\big]
+	\end{equation*}
+	\begin{align*}
+	(\placeholder)+(\placeholder):V\cross V&\rightarrow V
+	&
+	(\placeholder)\cdot(\placeholder):F\cross V&\rightarrow V
+	\end{align*}
+\end{mathbox}
+A vector space is comprised of a nonempty set \Vset, a field \(\mathcal{F}\), a binary operation (vector addition), and a binary function (scalar multiplication).
 The elements of \(\{V\}\) are vectors. The binary operation is between vectors in the set \Vset, and the binary function is between an element of \Fset\ and an element of \Vset, and maps to an element in \(\{V\}\).
-\begin{align*}
-	(\placeholder)+(\placeholder):V\cross V&\rightarrow V & \vb{v}_1+\vb{v}_2&=\vb{c}\qquad \vb{v}_1,\,\vb{v}_2,\,\vb{v}_3\in\Vset
-	\\
-	(\placeholder)\cdot(\placeholder):F\cross V&\rightarrow V & a\vb{v}_1&=\vb{v}_2\quad\ a\in\Fset,\ \vb{v}_1,\,\vb{v}_2\in\Vset
-\end{align*}
+
 For all elements of the field and the vector space, the following vector axioms hold:
+
 \begin{itemize}
 	\item Associativity of vector addition.
 	\item Commutivity of vector addition.
-	\item For vector addition, there exist additive identities.
-	\item For vector addition, there exist additive inverses.
+	\item For vector addition, there exist additive identities in \Vset.
+	\item For vector addition, there exist additive inverses in \Vset.
 	\item Scalar multiplication is compatible with field multiplication.
 	\item Scalar multiplication distributes over field addition. 
 	\item For scalar multiplicaion, there exist multaplicative identities.
 	\item For scalar multiplicaion, there exist multiplicative inverses.
 \end{itemize}
 A vector space \(\mathcal{V}\) is said to be defined \textit{over} a field \(\mathcal{F}\), in the sense that within a vector space is an associated field, whose elements are used in scaling the vectors. Two examples of this is a vector space over the field of real numbers, or a vector space over the field of complex numbers. Most of the time \Vset\ is referred to as the vector space, and the field is either assumed to be \(\mathbb{R},\,\mathbb{C}\).
-
-\textbf{Metric Space}: A metric space is comprised of a set \Xset\ and a binary function, which represents the distance between two elements of \Xset. The distance function can be nearly anything. Euclidean distance is a familiar example. 
-\\
-\textbf{Inner Product Space}: An inner product space contains a vector space defined over a field-- almost always \(\mathbb{R},\,\mathbb{C}\)--along with a binary operation (the inner product). 
-\begin{equation*}
-	\mathcal{V}_{\rm inner}=\big[[\mathcal{V}],\,(\braket{\placeholder}{\placeholder})\big]
-\end{equation*}
-The inner product maps two elements of \Vset\ to \Fset.
-\begin{equation*}
+\newpage
+\begin{mathbox}{Inner Product Space}
+	\begin{equation*}
+		\mathcal{V}_{\rm inner}=\big[[\mathcal{V}],\,(\braket{\placeholder}{\placeholder})\big]
+	\end{equation*}
+	\begin{equation*}
 	\braket{\placeholder}{\placeholder}: V\cross V\rightarrow F
 \end{equation*}
-Inner product has three properties:
-\begin{description}
-	\item[Linearity of the \textbf{first} argument] \(\braket{a\vb{v_1}+b\vb{v_2}}{c\vb{v_3}}=a\braket{\vb{v_1}}{c\vb{v}_3}+F_2\braket{\vb{v_2}}{c\vb{v}_3}\)
-	\item[Complex conjugate symmetry] \(\braket{\vb{v_1}}{\vb{v_2}}=\overline{\braket{\vb{v_2}}{\vb{v_1}}}\)
-	\item[Positive definiteness] \(\braket{\vb{v_1}}{\vb{v_2}}>0\)
-\end{description}
-A ``norm'' can be defined, that corresponds to the length of the vectors. 
+\end{mathbox}
+An inner product space contains a vector space defined over a field (almost always \(\mathbb{R}\) or \(\mathbb{C}\)) along with a binary operation (the inner product). 
+The inner product maps two elements of \Vset\ to \Fset, and respects three properties:
+\begin{itemize}
+	\item Linearity of the \textbf{first} argument \(\braket{a\vb{v_1}+b\vb{v_2}}{c\vb{v_3}}=a\braket{\vb{v_1}}{c\vb{v}_3}+b\braket{\vb{v_2}}{c\vb{v}_3}\)
+	\item Complex conjugate symmetry \(\braket{\vb{v_1}}{\vb{v_2}}=\overline{\braket{\vb{v_2}}{\vb{v_1}}}\)
+	\item Positive definiteness \(\braket{\vb{v_1}}{\vb{v_2}}>0\)
+\end{itemize}
+A norm can be defined, that corresponds to the length of the vectors. 
 \begin{equation*}
 	\norm{\vb{v}_i}=\sqrt{\braket{\vb{v}_i}{\vb{v}_i}}
 \end{equation*}
 Inner product spaces over the field \(\mathbb{C}\) are called ``unitary spaces''.
 \\
 \textbf{Hilbert Space}: A Hilbert space is a complete inner-product space over the field of complex numbers. Since this is also a metric space, the metric is derived from the inner product.
-\[H=\big[\{\psi\},(d)\big]\]
+\[H=\big[[V_{\text{inner}}],(d)\big]\]
 The distance function is based off of the norm that can be defined on an inner product space.
 \begin{equation*}
 	d:\braket{\psi_i}{\psi_j}\rightarrow\mathbb{C}
 \end{equation*}
 
-Quantum states are represented as elements \(\ket{\alpha}\) in this space. States can be represented in different bases like position or momentum, where they become wavefunctions:
+Quantum states are represented as vectors \(\ket{\alpha}\) in this space. States can be represented in different bases like position or momentum, where they become wavefunctions:
 \begin{align*}
 	\psi(x)&=\braket{x}{\alpha}	
 	\\
@@ -78,20 +111,5 @@ Quantum states are represented as elements \(\ket{\alpha}\) in this space. State
 Algebraically, a ket \(\ket{\alpha}\) is a column vector, and a bra \(\bra{\alpha}\) is a row vector. 
 
 \newpage
-Four Vectors:
-\begin{align*}
-	x^{\mu}&=\colvec{ct\\x_{1}\\x_{2}\\x_{3}}=\colvec{ct\\\vb{x}}
-	&
-	p^{\mu}&=\colvec{cE\\p_{1}\\p_{2}\\p_{3}}=\colvec{cE\\\vb{p}}
-	\\[0.5cm]
-	A^{\mu}&=\colvec{\oo{c}\phi\\A_{1}\\A_{2}\\A_{3}}=\colvec{\oo{c}\phi\\\vb{A}}
-	&
-	\pder*[\mu]{}&=\colvec{\oo{c}\pder*{t}\\\pder*{1}\\\pder*{2}\\\pder*{3}}=\colvec{\oo{c}\pder*{t}\\\grad{}}
-\end{align*}
-Metric Tensors, $g_{\mu\nu}$ is the general metric tensor, and $\eta_{\mu\nu}$ is most commonly used for flat spacetime. For particle physics, either can be used, and it would be understood that $g_{\mu\nu}$ is in flat spacetime. 
-\begin{align}
-	g_{\mu\nu}&=\mqty[\xmat*{g}{4}{4}]
-	\\
-	\eta_{\mu\nu}&=\mqty[\dmat[0]{1,-1,-1,-1}]
-\end{align}
-Field: Classically it is a function assigned to every point in spacetime. The structure could be a function that returns a number, it could be a function that returns a vector, it could be a 
+
+Field: Classically it is a function that maps every point in spacetime to some higher structure, usually a tensor.
