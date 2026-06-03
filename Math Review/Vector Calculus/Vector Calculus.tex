@@ -2,9 +2,10 @@
 %\documentclass{article}\input{../MAIN/packages}\input{../MAIN/commands}\begin{document}
 \section{Differential Calculus}
     \subsection*{Differentiation in One Dimension (1-D)}
-        The derivative is the proportionality factor of how rapidly the function \(f(x)\) varies when the argument \(x\) is changed by \(dx\); \(f\) changes by an amount \(df\):
+        Derivatives are representastive of rates of change.\\
+        The derivative is the proportionality factor of how rapidly the function \(f(x)\) varies when the argument \(x\) is changed by \(\dx\); \(f\) changes by an amount \(df\):
         \begin{align*}
-            df = \qty(\der{f}{x})dx
+            \df = \qty(\der{f}{x})\dx
         \end{align*}
         Multiplying and dividing functions $f=f(x),~g=g(x)$, in derivatives 
         \\
@@ -19,9 +20,9 @@
     \subsection*{Differentiation in Three Dimensions (3-D)}
         For 3-variable functions:
         \begin{align*}
-            df =\qty(\der{f}{x})dx + \qty(\der{f}{y})dy + \qty(\der{f}{z})dz
+            \df =\qty(\der{f}{x})\dx + \qty(\der{f}{y})\dy + \qty(\der{f}{z})\dz
         \end{align*}
-        The derivative of \(f(x,y,z)\) tells one how \(f\) changes when one alters all three variables by \(dx, dy, dz\).
+        The derivative of \(f(x,y,z)\) tells you how \(f\) changes when one alters all three variables by \(\dx, \dy, z\).
     \subsection*{Gradient}
         \begin{align*}
             \grad f(x,y,z) = 
@@ -32,9 +33,16 @@
                 \\
                 \pder*{z}
             \end{bmatrix}
-            f(x,y,z) = \coloredanswer{\pder{f}{x}\e{x}+\pder{f}{y}\e{y}+\pder{f}{z}\e{z}}
+            f(x,y,z) = \begin{bmatrix}
+                \pder*{x}f
+                \\
+                \pder*{y}f
+                \\
+                \pder*{z}f
+            \end{bmatrix}
+            = \coloredanswer{\pder{f}{x}\e{x}+\pder{f}{y}\e{y}+\pder{f}{z}\e{z}}
         \end{align*}
-        The del operator ($\nabla$) is a \textcolor{Blue1}{\bf vector derivative operator}. It can take in a scalar field $f(x,y,z)$ and returns a vector field. The vectors \textcolor{Blue1}{\bf points in the direction of \(f\)'s maximum increase of the scalar field}, moreover, the magnitude of \(\nabla f\) gives the magnitude of each vector along this maximal direction.
+        The del operator ($\nabla$) is a \textcolor{Blue1}{\bf vector derivative operator}. It can take in a scalar field $f(x,y,z)$ and returns a vector field. The resulting vectors \textcolor{Blue1}{\bf points in the direction of \(f\)'s maximum increase of the scalar field}, moreover, the magnitude of \(\nabla f\) gives the magnitude of each vector along this maximal direction.
         \\[0.5 cm]
         Just like 1-D derivatives, you can find the extrema of a function with three variables by observing it at a stationary point \((x,y,z)\):
         \begin{align*}
@@ -62,17 +70,16 @@
             ]=
             \coloredanswer{\pder{A_x}{x}+\pder{A_y}{y}+\pder{A_z}{z}}
         \end{equation}
-        Divergences obey the following Product Rules:
-        {\length[0.25 cm]
+        Divergences obey the following product rules:
         \begin{align*}
             \div(f\vb{A}) &= f(\nabla \cdot \vb{A}) + \vb{A} \cdot (\nabla f)
             \\
             \div{(\vb{A} \times \vb{B})} &= \vb{B} \cdot (\nabla \times \vb{A}) - \vb{A} \cdot (\nabla \times \vb{B})
         \end{align*}
-        }
+
         When the divergence of a vector field is zero everywhere it is called {\bf solenoidal}. Any closed surface has no net flux across it in a solenoidal field.
     \subsection*{Curl}
-        Curl is a measure of how much a vector ``swirls'' around the point in question. The curl of a vector field \(\vb{A}\) is found by taking the cross product of the del operator with \(\vb{A}\). One can find the curl conveniently as the determinant of the following matrix: 
+        Curl is a measure of how much a vector ``swirls'' around the point in question. The curl of a vector field \(\vb{A}(x,y,z)\) is found by taking the cross product of the del operator with \(\vb{A}\). One can find the curl conveniently as the determinant of the following matrix: 
         \begin{equation}
             \curl \vb{A} = 
             \qty[
@@ -98,23 +105,15 @@
             (\pder*{z} A_x-\pder*{x} A_z)
             \\[0.25 cm]
             (\pder*{x} A_y-\pder*{y} A_x)
-            \end{bmatrix}
-            \cdot
-            \begin{bmatrix}
-            \e{x}
-            \\
-            \e{y}
-            \\
-            \e{z}
             \end{bmatrix}}
         \end{equation}
-        Curls obey the following Product Rules:
+        Curls obey the following product rules:
         \begin{align*}
         \curl (f\vb{A}) &= f(\curl \vb{A}) - \vb{A} \times (\nabla f)
         \\[0.3 cm]
         \curl (\vb{A} \times \vb{B}) &= (\vb{B} \cdot \nabla)\vb{A} - (\vb{A} \cdot \nabla)\vb{B} + \vb{A}(\nabla \cdot \vb{B}) - \vb{B}(\nabla \cdot \vb{A})
         \end{align*}
-        \textcolor{Blue1}{\bf The curl of a vector field is a vector field.}\footnote{\sl Technically\rm\ a pseudo-vector field.} When the curl of a vector field is zero, the field is called {\bf irrotational} and the field is conservative. %(See Section \textbf{\ref{vectorfields}})
+        \textcolor{Blue1}{\bf The curl of a vector field is a vector field.}\footnote{\sl Technically\rm\ a pseudo-vector field.} When the curl of a vector field is zero, the field is called {\bf irrotational} and the field is conservative.
     \subsection*{Laplacian}
         The laplace operator (denoted by \(\nabla^2\)) is a kind of second derivative for scalars and vectors.\footnote{Some people use \(\Delta\) instead of \(\nabla^2\), but that seems goofy, so I don't use it.} It can be thought of as taking whichever vector derivatives are possible. 
         \begin{align}
@@ -133,12 +132,12 @@
             = 0 
         \end{gather}
 \newpage
-\section{Integral Calculus}      
+\section{Vector Integrals}      
     Remember that \(\dl*,~\da*,\) and $dV$ are different in different coordinate systems.
-    \length[0.5 cm]
+
     \begin{align}
         \textbf{ \large Curve Integral}&
-        \quad\int_C \vb{A}\dl=\iiint\vb{A}\cdot\qty(dx\ \e{x}+dy\ \e{y}+dz\ \e{z})
+        \quad\int_C \vb{A}\dl=\iiint\vb{A}\cdot\qty(\dx\ \e{x}+\dy\ \e{y}+dz\ \e{z})
         \\
         \textbf{\large Surface Integral}&\quad
         \int_S \vb{A}\da=\iint_D(\vb{A}\cdot\e{z})dxdy=\iint_D A_k \dx_i\dx_j
@@ -146,7 +145,7 @@
         \textbf{\large Volume Integral}&\quad
         \int_{\mathcal{V}} \vb{A} \dV=\int A_x\dV\ \e{x}+\int A_y\dV\ \e{y}+\int A_z \dV\ \e{z}
     \end{align}
-    \length
+
 
     \subsection*{The Fundamental Theorem for Gradients}
         Similar to the fundamental theorem of calculus, the curve integral of the gradient of a scalar function is equal to the difference of values of that scalar function at the endpoints. 
@@ -156,7 +155,7 @@
     \subsection*{Divergence Theorem}
         The divergence of \(\vb{A}\) over a volume is equal to the components of \(\vb{A}\) that are normal to the surface that bounds the volume.\footnote{\(\oint\) is the closed path/closed surface integral sign.}
         \begin{align}
-            \boxed{\oiint_S \vb{A} \da =\iiint_{\mathcal{V}} (\div\vb{A})\d V } 
+            \boxed{\oiint_S \vb{A} \da =\iiint_{\mathcal{V}} (\div\vb{A})\dV } 
         \end{align}
     \subsection*{The Fundamental Theorem for Curls: Stokes' Theorem}
         The integral of a derivative over a region is equal to the value of the function at the boundary. That is, the curl over a surface is equal to the value of the function at the perimeter P. 
@@ -165,10 +164,10 @@
         \end{align}
         \subsection*{Integration by Parts in Vector Calculus}
         \begin{align*}
-        \iiint_{\mathcal{V}} f(\nabla \cdot \vb{A})\d V 
+        \iiint_{\mathcal{V}} f(\nabla \cdot \vb{A})\dV 
         =
         \oiint_S f\vb{A}\da
-        -\iiint_{\mathcal{V}} \vb{A} \cdot (\nabla f)\d V 
+        -\iiint_{\mathcal{V}} \vb{A} \cdot (\nabla f)\dV 
         \end{align*}
 
 
@@ -179,7 +178,7 @@
         A field is uniquely determined by its divergence and curl when boundary conditions are applied. If there exists a scalar field \(\phi\), and vector field \(\vb{A}\), \(C\), and:
         This means that a vector field \(\vb{F}\) can be :
         \begin{equation}
-            \vb{F}=-\nabla V+\curl\vb{A}
+            \vb{F}(\vb{x})=-\nabla V(\vb{x})+\curl\vb{A}(\vb{x})
         \end{equation}
         \begin{align*}
             \left.

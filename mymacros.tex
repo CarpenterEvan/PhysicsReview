@@ -48,8 +48,9 @@
 	%%
 	%% Symbols and Shorthand
 		% to make sets
-		\LoopCommands{\lettersAll}[#1set] {\newmathcommand#2{\{\MakeUppercase{#1}\}}} 
-		\LoopCommands{\lettersAll}[#1set] {\newtextcommand#2{\(\{\MakeUppercase{#1}\}\)}}
+		\LoopCommands{\lettersAll}[#1set] {\newmathcommand#2{\{\MakeUppercase{#1}\}}}% \Qset --> {Q}
+		\LoopCommands{\lettersAll}[#1set] {\newtextcommand#2{\(\MakeUppercase{#1}\)}}% set command but math mode
+		\LoopCommands{\lettersAll}[#1hat] {\newmathcommand#2{\hat{#1}}}%
 		\def\placeholder{\bm{\,\cdot\,}}% Placeholder of the argument of a function
 		\def\ints{\int_\mathcal{S}}% Surface integral
 		\def\intv{\int_{D}}% Volume integral with D subscript
@@ -57,20 +58,22 @@
 		\def\iintall{\iint_{\rm All Space}}% Integral over all space
 		\def\iiintall{\iiint_{\rm All Space}}% Integral over all space
 		\def\lap{\mathcal{L}}% Laplace
-		\def\d{{\rm d}}% for integration
-
 		\NewDocumentCommand{\e}{s m}{% Basis vector
-			% \e{x} --> \hat{e}_x
-			% \e*{x} --> \hat{x}
-			% e, x will be bolded, even if x is greek letter.
-			\IfBooleanTF{#1}
-			{\mathbf{\hat{e}_{#2}}}
-			{\bm{\hat{#2}}}}
+		% \e{x} --> \hat{e}_x
+		% \e*{x} --> \hat{x}
+		% e, x will be bolded, even if x is greek letter.
+		\IfBooleanTF{#1}
+		{\mathbf{\hat{e}_{#2}}}
+		{\bm{\hat{#2}}}}
+
 		\NewDocumentCommand\slsh{m}{\slashed{#1}}
-		\LoopCommands{{l}{a}}[d#1]{\NewDocumentCommand#2{s}{\IfBooleanTF{##1}{\cdot}{}\d\mathbf{#1}}}
-		\LoopCommands{xyztV}[d#1]{\NewDocumentCommand#2{s}{\,\d#1}}
-		%\NewDocumentCommand\dl{s}{\IfBooleanTF{#1}{\cdot}{} \d\mathbf{l}}% Curve integral •dl, if no star, if no star then just dl
-		%\NewDocumentCommand\da{s}{\IfBooleanTF{#1}{\cdot}{} \d\mathbf{a}}% Surface integral •da, if no star then just da 
+		% Integral differentials
+			% Vector differentials like \dl, \da come by default with dot product \cdot, 
+			% Hide \cdot with * option (\dl*, \da*)
+			\def\d{{\rm d}}% for integration
+			\LoopCommands{{l}{a}{\ell}}[d#1]{\NewDocumentCommand#2{s}{\IfBooleanTF{##1}{}{\cdot}\d\mathbf{#1}}}
+			\LoopCommands{xyztVf}[d#1]{\NewDocumentCommand#2{s}{\,\d#1}}
+
 		\NewDocumentCommand\oo{O{1} m}{\frac{#1}{#2}}% reciprocal- 'one over', optional argulent is there to make it a regular fraction, because oo is still quicker to type.
 	%%
 	%% Vectors and Matrices
@@ -103,7 +106,8 @@
 			% \der[2]{x}        --> d^{2}f/d^{2}x
 			% \der{x}           --> d/dx
 			% \der{f}{x}		--> df/dx
-			% \der{f}{x}{y}		--> (df/dx)_y
+			% \der{f}{x}{y}		--> (df/dx)_{y}
+			% \der[a]{f}{x}{y}	--> (d^{a}f/dx^{a})_{y}
 			% \der*[a]{b}{c}{e}	--> (D^{a}_{c} b)_{e}
 			\IfBooleanTF{#1}
 			{\IfNoValueTF{#4}% g returns -NoValue- if no argument
@@ -149,7 +153,6 @@
 				\colorbox{#1}{$\textstyle #2$}}
 		{}
 		{}}
-		
 		\newcounter{probcount}% new counter for problem numbers, starts at 0 by default
 		\NewDocumentEnvironment{ problem } {O{} +b}% Problem environment for homework, autocounts numbers, behaves like a section and can get listed (and hyperlinked) in the toc. 
 			{\addtocounter{probcount}{1}% increase counter at the beginning of every problem

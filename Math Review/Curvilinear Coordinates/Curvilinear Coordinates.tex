@@ -1,5 +1,6 @@
 % Since \input doesn't like preambles, only uncomment next line if you're editing this TeX, don't forget the \end{document}! 
 %\documentclass{article}\input{../../commands}\begin{document}
+\newpage
 \section{Curvilinear Coordinates}
 \subsection{Spherical Coordinates}
     In this system of coordinates, the following describe the space's basis set:
@@ -8,28 +9,28 @@
     \begin{figure}[H]
         \begin{tikzpicture}
             \draw [dotted] (2.3,0,2)--(2.3,2.3,2)--(0,2.3,0); % projection of r onto z and x axis
-            \draw [orange!30, fill=orange!30] (0,0,0)--(0.75,0.75,0) arc [start angle=45, end angle=90,radius=10 mm] node at (0.25,0.7) [black] {$\theta$}; % Theta arc
+            \draw [orange!30, fill=orange!30] (0,0,0)--(0.75,0.75,0) arc [start angle=45, end angle=90,radius=10 mm] node at (0.25,0.7) [black] {\(\theta\)}; % Theta arc
             \begin{scope}[canvas is xz plane at y=0]
                 \draw [dotted] (0,0)--(2.3,2);
-                \fill [blue!20] (0,0)--(1.2,1) arc [start angle=45, end angle=120,radius=10 mm] node at (0.35,0.65) [black] {$\phi$};
+                \fill [blue!20] (0,0)--(1.2,1) arc [start angle=45, end angle=120,radius=10 mm] node at (0.35,0.65) [black] {\(\phi\)};
             \end{scope}
 
 
-            %\fill [path fading=ball, color=black] (0.07,0) circle (2.5);
+            \fill [path fading=ball, color=black] (0.07,0) circle (2.5);
             \draw [ultra thick, -latex] (0,0,0)--(3,0,0) node [anchor=north west] {\textbf{y}};
             \draw [ultra thick, -latex] (0,0,0)--(0,3,0) node [anchor=south]      {\textbf{z}};
             \draw [ultra thick, -latex] (0,0,0)--(0,0,3) node [anchor=north west] {\textbf{x}};
 
 
-            \draw [ultra thick, blue!20, -latex] (2.3,2.3,2)--(3,2,0.7) node [anchor=west, color=black] {$\e{\phi}$}; 
-            \draw [ultra thick, orange!30, -latex] (2.3,2.3,2)--(3,1.6,2.25) node [anchor= north, color=black] {$\e{\theta}$}; 
-            \draw [ultra thick, blue, -latex] (2.3,2.3,2)--(3,3,2) node [anchor=south east, color=black] {$\e{r}$}; 
-            \draw [ultra thick, red, -latex] (0,0,0)--(2.3,2.3,2) node at (1,0.5) {\textbf{r}};
+            \draw [ultra thick, blue!20, -latex] (2.3,2.3,2)--(3,2,0.7) node [anchor=west, color=black] {\(\e{\phi}\)};
+            \draw [ultra thick, orange!30, -latex] (2.3,2.3,2)--(3,1.6,2.25) node [anchor= north, color=black] {\(\e{\theta}\)};
+            \draw [ultra thick, blue, -latex] (2.3,2.3,2)--(3,3,2) node [anchor=south east, color=black] {\(\e{r}\)};
+            \draw [ultra thick, red, -latex] (0,0,0)--(2.3,2.3,2) node at (1,0.5) {\(r\)};
 
 
-            \node (description text) at (6,2,0) {Distance from the origin: r};
-            \node at (description text.south) [xshift=29.5, yshift=-5] {Polar angle: $\theta$};
-            \node at (description text.south) [xshift=19, yshift=-16] {Azimuthal angle: $\phi$};
+            \node (r text) at (6,2,0) {Distance from the origin: \(r\)};
+            \node (theta text) at (r text.south) [xshift=29.5, yshift=-5] {Polar angle: \(\theta\)};
+            \node (phi text) at (theta text.south) [yshift=-5] {Azimuthal angle: \(\phi\)};
         \end{tikzpicture}
     \end{figure}
     Important relationships:
@@ -57,74 +58,53 @@
     \vspace{0.5 cm}
     Position, velocity, and acceleration:
     \begin{align*}
-        \vb{r}(t)&=
+        \vb{r}\qty(r,\theta,\phi, t)&=
         \begin{bmatrix}
-        r
+        r(t)
         \\
-        0
+        \theta(t)
         \\
-        0
-        \end{bmatrix}
-        \cdot
-        \begin{bmatrix}
-        \e{r}
-        \\
-        \e{\theta}
-        \\
-        \e{\phi}
+        \phi(t)
         \end{bmatrix}
         \\
-        \vb{v}(t)&=
+        \vb{v}\qty(r,\theta,\phi)&=
         \begin{bmatrix}
         \dot{r}
         \\
         r\dot{\theta}
         \\
-        r\dot{\phi}\sin(\theta)
-        \end{bmatrix}
-        \cdot
-        \begin{bmatrix}
-        \e{r}
-        \\
-        \e{\theta}
-        \\
-        \e{\phi}
+        r\sin(\theta)\dot{\phi}
         \end{bmatrix}
         \\
-        \vb{a}(t)&=
+        \vb{a}\qty(r,\theta,\phi)&=
         \begin{bmatrix}
         \Ddot{r}-r\dot{\theta}^2-r\dot{\phi}^2\sin^2(\theta)
         \\
         r\Ddot{\theta}+2\dot{r}\dot{\theta}-r\dot{\phi}^2\sin(\theta)\cos(\theta)
         \\
-        2r\dot{\theta}\dot{\phi}\cos(\theta)+2\dot{r}\dot{\phi}\sin(\theta)+r\Ddot{\phi}\sin(\theta)
-        \end{bmatrix}
-        \cdot
-        \begin{bmatrix}
-        \e{r}\\
-        \e{\theta}\\
-        \e{\phi}
+        2r\cos(\theta)\dot{\theta}\dot{\phi}+2\sin(\theta)\dot{r}\dot{\phi}+r\sin(\theta)\Ddot{\phi}
         \end{bmatrix}
     \end{align*}
     \newpage\noindent
     Infinitesimal Displacement:
-    \[\dl* = dr\ \e{r} + r d\theta\ \e{\theta} + r \sin(\theta) d\phi\ \e{\phi} \]
+    \[\d\vb{\ell} = dr\ \e{r} + r d\theta\ \e{\theta} + r \sin(\theta) d\phi\ \e{\phi} \]
     Infinitesimal Areas:
     \begin{align*}
         \begin{tabular}{|c|c|}
             \hline
             Held Constant & $\da*$ \\ 
             \hline
-            r & $r^2 \sin(\theta) d\theta d\phi\ \e{r}$\\ 
+            \(r\) & \(r^2 \sin(\theta) d\theta d\phi\ \e{r}\)\\ 
             \hline
-            $\theta$ & $r \sin(\theta) dr d\phi\ \e{\theta}$ \\ 
+            \(\theta\) & \(r \sin(\theta) dr d\phi\ \e{\theta}\)\\
             \hline
-            $\phi$ & $r dr d\theta\ \e{\phi}$\\
+            \(\phi\) & \(r dr d\theta\ \e{\phi}\)\\
             \hline
         \end{tabular}
     \end{align*}
     Infinitesimal volume: \[dV = r^2\sin(\theta) dr d\theta d\phi\]
     \subsubsection*{Spherical Vector Derivatives:}
+        For a scalar function \(f(r,\theta,\phi)\) and vector function \(\vb{A}(r,\theta,\phi)\), the derivatives are:
         {\setlength\jot{1cm}
         \renewcommand{\arraystretch}{1.5}
         \begin{align*}
@@ -138,10 +118,6 @@
                 \\
                 \frac{1}{r \sin(\theta)}\pder*{f}{\phi}
             \end{matrix}
-            ]\cdot\qty[
-            \begin{matrix}
-                \e{r}\\\e{\theta}\\\e{\phi}
-            \end{matrix}
             ]
             \\
             \text{Divergence:}&&
@@ -150,7 +126,7 @@
             + \oo{r \sin(\theta)} \pder*{A_\phi}{\phi}
             \\
             \text{Curl:}&&
-            &\curl \vb{A} = 
+            &\curl \vb{A}= 
             \qty[
                \begin{matrix}
                     \oo{r\sin(\theta)}\qty[\pder*{\theta}\qty(A_\phi\sin(\theta))-\pder*{A_\theta}{\phi}]
@@ -159,13 +135,10 @@
                     \\
                     \frac{1}{r}\qty(\pder*{r}\qty(rA_{\theta}) - \pder*{\theta}A_r)
                 \end{matrix}
-            ]\cdot\qty[
-            \begin{matrix}
-                \e{r} \\\e{\theta} \\\e{\phi}
-            \end{matrix}]
+            ]
             \\
             \text{Scalar Laplacian:}&&
-            \nabla^2 f 
+            \nabla^2 f
             &= \frac{1}{r^2} \pder{r}\qty(r^2 \pder{f}{r}) + \oo{r^2 \sin(\theta)} \pder{\theta} \qty(\sin(\theta)\pder{f}{\theta}) +\frac{1}{r^2 \sin^2(\theta)} \pder[2]{f}{\phi}
         \end{align*}}
 
@@ -225,24 +198,16 @@
     \end{center}
     Position, velocity, and acceleration:
     \begin{align*}
-        \vb{r}(t)&=
+        \vb{r}\qty(s,\phi,z,t)&=
         \begin{bmatrix}
-            s
+            s(t)
             \\
-            0
+            \phi(t)
             \\
-            z
-        \end{bmatrix}
-        \cdot
-        \begin{bmatrix}
-            \e{s}
-            \\
-            \e{\phi}
-            \\
-            \e{z}
+            z(t)
         \end{bmatrix}
         &
-        \vb{v}(t)&=
+        \vb{v}\qty(s,\phi,z)&=
         \begin{bmatrix}
             \dot{s}
             \\
@@ -250,16 +215,8 @@
             \\
             \dot{z}
         \end{bmatrix}
-        \cdot
-        \begin{bmatrix}
-            \e{s}
-            \\
-            \e{\phi}
-            \\
-            \e{z}
-        \end{bmatrix}
         &
-        \vb{a}(t)&=
+        \vb{a}\qty(s,\phi,z)&=
         \begin{bmatrix}
             \Ddot{s}-r\dot{\phi}^2
             \\
@@ -267,69 +224,56 @@
             \\
             \Ddot{z}
         \end{bmatrix}
-        \cdot
-        \begin{bmatrix}
-            \e{s}
-            \\
-            \e{\phi}
-            \\
-            \e{z}
-        \end{bmatrix}
     \end{align*}
     \newpage\noindent
     Infinitesimal Length:
         \[\dl*= ds\ \e{s}+sd\phi\ \e{\phi}+dz\ \e{z}\]
     Infinitesimal Areas:
         \begin{center}
-        \begin{tabular}{|c|c|}
-            \hline
-            Held Constant & $\da*$ \\ 
-            \hline
-            s & $sd\phi dz\ \e{s}$ \\ 
-            \hline
-            $\phi$ & $dsdz\ \e{\phi}$  \\ 
-            \hline
-            z & $sdsd\phi\ \e{z}$\\
-            \hline
-        \end{tabular}
+            \begin{tabular}{|c|c|}
+                \hline
+                Held Constant & \(\da*\)\\
+                \hline
+                \(s\) & \(sd\phi dz\ \e{s}\)\\
+                \hline
+                \(\phi\) & \(dsdz\ \e{\phi}\)\\
+                \hline
+                \(z\) & \(sdsd\phi\ \e{z}\)\\
+                \hline
+            \end{tabular}
         \end{center}
     Infinitesimal Volume: \[dV=sdsd\phi dz\]
     \subsubsection*{Cylindrical Vector Derivatives:}
-    {\setlength\jot{0.7cm}
-        \renewcommand{\arraystretch}{2.2}
-    
-        \begin{align*}
-        % Gradient         {
-        \text{Gradient:}&&%\quad
-            \nabla f &= 
-                \qty(\pder{f}{s})\e{s}+
-                \qty(\oo{s} \pder{f}{\phi})\e{\phi}+
-                \qty(\pder{f}{z})\e{z}
-            \\
-        \text{Divergence:}&&%\quad
-            \div\vb{A} &= \oo{s}\pder{s}\qty(s A_s) + \oo{s}\pder{A_\phi}{\phi}  + \pder{A_z}{z}
-            \\
-        \text{Curl:}&&%\quad
-            &\mathlarger{\curl \vb{A} = 
-            \qty[
-            \begin{matrix}
-                \oo{s} \pder{A_z}{\phi} - \pder{A_\phi}{z}
-                \\
-                \pder{A_s}{z} - \pder{A_z}{s}
-                \\
-                \oo{s}\pder{s}\qty(s A_\phi) - \oo{s}\pder{A_s}{\phi}
-            \end{matrix}
-            ]\cdot\qty[
-            \begin{matrix}
-                \e{s}\\\e{\phi}\\\e{z}
-            \end{matrix}
-            ]}
-            \\
-            \text{Scalar Laplacian:}&&%\quad
-            \nabla^2 f
-            &=\oo{s}\pder{s}\qty(s\pder{f}{s}) 
-            + \oo{{s}^2}\pder[2]{f}{\phi} 
-            + \pder[2]{f}{z} 
-        \end{align*}
-    }
+        {\setlength\jot{0.7cm}
+            \renewcommand{\arraystretch}{2.2}
+        
+            \begin{align*}
+                \text{Gradient:}&&
+                    \nabla f &= 
+                        \qty(\pder{f}{s})\e{s}+
+                        \qty(\oo{s} \pder{f}{\phi})\e{\phi}+
+                        \qty(\pder{f}{z})\e{z}
+                    \\
+                \text{Divergence:}&&
+                    \div\vb{A} &= \oo{s}\pder{s}\qty(s A_s) + \oo{s}\pder{A_\phi}{\phi}  + \pder{A_z}{z}
+                    \\
+                \text{Curl:}&&
+                    &\curl \vb{A} = 
+                    \qty[
+                        \begin{matrix}
+                            \oo{s} \pder*{A_z}{\phi} - \pder*{A_\phi}{z}
+                            \\
+                            \pder*{A_s}{z} - \pder*{A_z}{s}
+                            \\
+                            \oo{s}\pder*{s}\qty(s A_\phi) - \oo{s}\pder*{A_s}{\phi}
+                        \end{matrix}
+                    ]
+                    \\
+                    \text{Scalar Laplacian:}&&
+                    \nabla^2 f
+                    &=\oo{s}\pder{s}\qty(s\pder{f}{s}) 
+                    + \oo{{s}^2}\pder[2]{f}{\phi} 
+                    + \pder[2]{f}{z} 
+            \end{align*}
+        }
 %\end{document}

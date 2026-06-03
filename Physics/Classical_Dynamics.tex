@@ -1,26 +1,51 @@
-\section{Guiding Principle of Least Action}
-In the modern mechanics, a system of interest is described in the space of possible configurations, which does not need to be the same as physical space. For example, a while a pendulum system can be described in terms of it's \(x,y\) positions, it can also be explained in terms of it's length and angle, or even it's kinetic and potential energy at any given moment. All of these choices uniquely describe the system, and should be equally valid. The quantities used to fully describe the system are the \textbf{generalized coordinates} \(q_i\) (\(i=1,2,3,\ldots)\). Examples of \(q\) could be positions, angles, currents, or even fields. Since these coordinates typically evolve in time, the other natural quantities of interest are the generalized velocities \(\dot{q}_i(t)\). 
+\newpage\section{Guiding Principle of Least Action}
+Any system of interest can be described in terms of an abstract space of its possible configurations, which does not need to be the same as physical space. 
+\\
+The behavior of a pendulum, for example, can be described in terms of the \(x,y,z\) coodrinates of the pendulum in 3D space. As the pendulum moves through time, the coordinates change, always describing where the pendulum is. This can also be explained just as consistently in terms of it's length and angle. If the length of the pendulum doesn't change, then knowing the angle is all that needs to be known. [say something about velocities]
+Even it's kinetic and potential energy at any given moment. All of these choices uniquely describe the system, and should be equally valid. 
+\\
+The quantities used to fully describe the system are the \textbf{generalized coordinates} \(q_i\) (\(i=1,2,3,\ldots)\). Examples of \(q\) could be positions, angles, currents, or even entire fields. Since these coordinates typically evolve in time, the other natural quantities of interest are the generalized velocities \(\dot{q}_i(t)\). 
 \begin{center}
-	Using the right \(\{q_i(t),\,\dot{q}_i(t)\}\), a system will be fully described at any time t.
+	Using the right \(\{q_i(t),\,\dot{q}_i(t)\}\), a system will be fully described at any time \(t\).
 \end{center}
-The axes of configuration space are the full set of \(\{q_i(t),\,\dot{q}_i(t)\}\)
-Kinetic energy \(T\) and potential energy \(U\) of a particle depend on the path taken by the elements of the system in configuration space.
-Average (or even instantaneous) kinetic/potential energies can be regarded as (integral) functionals of their paths. For the simplest example of a single particle that can move in 1-D, taking the generalized coordinates to be the position:
+The axes of the relevant configuration space are the full set of \(\{q_i(t),\,\dot{q}_i(t)\}\).
+The kinetic energy, \(T\), and potential energy, \(U\), of a particle depend on the path taken by the elements of the system in this configuration space.
+Average (or even instantaneous) kinetic/potential energies can be regarded as (integral) functionals of their paths. For the simplest example of a single particle that can move in 1-D, taking the generalized coordinates to be the position\footnote{	
+	This can be expanded to account for multiple dimensions of generalized coordinates \(\vb{q}=(q_1,\ldots,q_i)\) with a line integral over the parameterized path in configuration space.
+	\(\overline{T}=\oo{t_2-t_1} \int_{t_1}^{t_2}T\qty(\vb{q}(t))\,|\dot{\vb{q}}(t)|\dt\)
+}:
 \begin{align*}
 	\overline{T}&=\oo{t_2-t_1} \int_{t_1}^{t_2}\oo{2}m{[\dot{x}(t)]}^2 \dt
 	\\
 	\overline{U}&= \oo{t_2-t_1} \int_{t_1}^{t_2}U[{x(t)}] \dt
 \end{align*}
 
-Back to the 1-D example, as the path described by \(x(t)\) changes, the values of \(\overline{T}\) and \(\overline{U}\) change. This change can be more rigorously quantified using the functional derivatives of the two energy functionals: 
+
+The definition of the lagrangian can be motivated by describing how the kinetic and potential energies change as the possible paths of the system change. In the explicit case of generalized coordinates being cartesian position and velocity. Describing how \(\overline{T}\) and \(\overline{U}\) change with the functional derivative:
+
 \begin{align*}
 	\frac{\delta\overline{T}}{\delta x(t)}
-	&=\frac{\delta\overline{V}}{\delta x(t)}
+	&=-m\ddot{x}(t)
 	\\
-	\frac{\delta\overline{T}}{\delta x(t)}-\frac{\delta\overline{V}}{\delta x(t)}
+	\frac{\delta\overline{U}}{\delta x(t)}
+	&=\der{U}{x}
+\end{align*}
+
+This change can be more rigorously quantified using the functional derivatives of the two energy functionals: 
+\begin{align*}
+	m\ddot{x}(t)
+	&=-\der{U}{x}
+\end{align*}
+This is true from physical principles classically.
+\begin{align*}
+	\frac{\delta\overline{T}}{\delta x(t)}
+	&=\frac{\delta\overline{U}}{\delta x(t)}
+\end{align*}
+\begin{align*}
+	\frac{\delta\overline{T}}{\delta x(t)}-\frac{\delta\overline{U}}{\delta x(t)}
 	&=0
 	\\
-	\frac{\delta}{\delta x(t)}\qty(\overline{T}-\overline{V})&=0
+	\frac{\delta}{\delta x(t)}\qty(\overline{T}-\overline{U})&=0
 \end{align*}
 The quantity \(T-V\) is stationary over a classical trajectory, this is what \textit{motivates} the definition of the Lagrangian \(L=T-V\). Using the definitions of \(\overline{T},\,\overline{V}\), it follows that the quantity that is stationary is the time integral of the lagrangian, which is called the action:
 \begin{align*}
@@ -28,12 +53,10 @@ The quantity \(T-V\) is stationary over a classical trajectory, this is what \te
 	\\
 	\frac{\delta}{\delta x(t)}\qty(S)&=0
 \end{align*}
-This can be expanded to account for multiple dimensions of generalized coordinates \(\vb{q}=(q_1,\ldots,q_i)\) with a line integral over the parameterized path in configuration space.
-\begin{align*}
-	\overline{T}&=\oo{t_2-t_1} \int_{t_1}^{t_2}T\qty(\vb{q}(t))\,|\dot{\vb{q}}(t)|\dt
-	\\
-	\overline{U}&= \oo{t_2-t_1} \int_{t_1}^{t_2}U\qty(\vb{q}(t))\,|\dot{\vb{q}}(t)|\dt
-\end{align*}
-Out of all possible paths in the configuration space of a physical system, the path \(\vb{q}(t)\) that is realized is the one that makes the action \(S\) stationary.  
+Out of all possible paths in the configuration space, the path that describes how a physical system evolves in reality will be the path with a stationary action \(S\).
 
-\subsection{Scalar Field}
+
+\subsection{Moving to Fields}
+Fields replace generalized coordinates in field theories.
+Instead of \(q_i(t)\) the field is defined at every point in real space \(\phi_i(x,t)\).
+Since there is an extra label, \(x\), the lagrangian will also depend on the position derivatives of the field, just like it depended on the time derivatives before. In order to derive the action like before, the 

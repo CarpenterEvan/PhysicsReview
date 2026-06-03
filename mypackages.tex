@@ -1,6 +1,9 @@
 % Packages are in alphabetical order, the only exceptions are made to avoid import conflicts.  
 
 \usepackage[x11names]{xcolor}% Color extensions, import first to avoid package conflicts
+%\usepackage[T1]{fontenc}
+\usepackage[sfdefault]{universalis}
+\DeclareFontFamilySubstitution{TS1}{UniversalisADFStd(0)}{cmr}
 \usepackage[margin=1in]{geometry}% Formatting on page
 \usepackage{array}% big arrays
 \usepackage{amsmath}% Math symbols
@@ -40,5 +43,7 @@
 \usepackage{wrapfig}% 
 \usepackage{xparse}% Allows for more flexible command definitions 
 \usepackage[compat=1.1.0]{tikz-feynman}% Feynman diagrams
+
 \usepackage[hidelinks]{hyperref}% References--Put this last for compatability
+
 \endinput
