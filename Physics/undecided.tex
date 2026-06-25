@@ -1,0 +1,105 @@
+\newpage Hamiltonian for harmonic oscillator 
+\NewDocumentCommand{\ppp}{}{{\vec{p}\,}}
+\begin{equation}
+	\hat{\mathcal{H}}=\frac{\hat{p}^2}{2m}+\oo{2}m\omega^2\hat{x}^2\label{eqn:harmonicHamiltonian}
+\end{equation}
+has the form \(a^2+b^2\) which can be factorized into the product of complex linear terms \((a+ib)(a-ib)\).\\ This would be nice because we could define a single new operator \(\ahat\) that is linear in both \(\hat{x}\) and \(\hat{p}\), and then \(\hat{\mathcal{H}}\) could be written in terms of a single operator (and it's complex conjugate). 
+Naively trying this substitution for the harmonic oscillator hamiltonian gives an extra term, since \([\hat{x},\hat{p}]\neq0\). 
+\begin{align*}
+	\hat{\mathcal{H}}&\neq\hbar\omega\qty(\ahat^{\dagger}\ahat)
+	\\
+	\hat{\mathcal{H}}&=\hbar\omega\qty(\ahat^{\dagger}\ahat+\frac{1}{2})
+\end{align*}
+Where
+\begin{align*}
+	\quad\ahat^{\dagger}&=\sqrt{\frac{m\omega}{2\hbar}}\qty(\hat{x}-\frac{i}{m\omega}\hat{p})\quad \text{(Creation operator)}
+	\\
+	\quad\ahat      &=\sqrt{\frac{m\omega}{2\hbar}}\qty(\hat{x}+\frac{i}{m\omega}\hat{p})\quad \text{(Annihilation operator)}
+\end{align*}
+The order can be chosen as \(\ahat^{\dagger}\ahat\) or \(\ahat\ahat^{\dagger}\), but \(\ahat^{\dagger}\ahat\) avoids the IR divergence without needing to subtract the zero point energy, this is why normal ordering chooses the annihilation operators to be on the right.
+\\
+The generalized coordinate and generalized momentum can be written in terms of the creation/annihilation perator:
+\begin{align*}
+	\hat{x}&=\sqrt{2\omega}\qty(\ahat+\ahat^{\dagger})
+	\\
+	\hat{p}&=\sqrt{\frac{\omega}{2}}\qty(\ahat-\ahat^{\dagger})
+\end{align*}
+Graduating again from generalized coordinates to fields. 
+The fields are now written in terms of an infinite linear combination of creation/annihilation operators. Is this because the fields must cover all of space, and the creation/annihilation operators are interpreted as creating states of definite momentum, therefore a fourier expansion can be written (why is that the next step? for localization in space?) \\
+\begin{align}
+	\phi(\vec{x})&=\int
+	\frac{\d^3p}{(2\pi)^3}
+	\oo{\sqrt{2E_{\vec{p}}}}
+	\qty(
+		\ahat_{\ppp}e^{i\vec{p}\cdot\vec{x}}
+		+
+		\ahat_{\vec{p}}^{\dagger}\,e^{-i\vec{p}\cdot\vec{x}}
+	)
+	\\
+	\pi(\vec{x})&=\int\frac{\d^3p}{(2\pi)^3}
+	(-i)\sqrt{\frac{E_{\vec{p}}}{2}}
+	\qty(
+		\ahat_{\ppp}e^{i\vec{p}\cdot\vec{x}}
+		-
+		\ahat_{\vec{p}}^{\dagger}\,e^{-i\vec{p}\cdot\vec{x}}
+	)
+\end{align}
+\\
+This changes the description subtly. Now in a system with multiple particles, instead of needing to define which particle is in which state, the states are defined in terms of how many particles, or excitations, it has. This is more realistic in QFT because particles themselves are indistinguishable excitations of the same field.
+\\
+The collection of energy eigenstates makes intuitive sense as an excitation, but since they are momentum/energy eigenstates, they are not localized in space.  
+
+Making this relativistic consistent means properly describing how the field, and therefore the operators, evolve with time. Currently the fields/operators only depend on space, putting them in the Sch\"odinger picture. To change an operator from the Sch\"odinger picture \(\mathcal{O}_{S}\) to Heisenberg \(\mathcal{O}_{H}\) the time evolution is applied to both sides:
+\begin{equation}
+	\mathcal{O}_{H} = e^{i\hat{\mathcal{H}}t}\mathcal{O}_{S}e^{-i\hat{\mathcal{H}}t}
+\end{equation}
+This means that the creation/annihilation operators can be made to evolve with time:
+\begin{align*}
+	\ahat_{\vb{p}}&=e^{i\hat{\mathcal{H}}t}\ahat_{\ppp}e^{-i\hat{\mathcal{H}}t}
+	\\
+	\ahat_{\vb{p}}&=e^{i\hat{\mathcal{H}}t}\ahat_{\ppp}e^{-i\hat{\mathcal{H}}t}
+\end{align*}
+This would be a good time to know \(\hat{\mathcal{H}},\ahat^{\dagger}\) commute, check that:
+\begin{align}
+	\qty[\hat{\mathcal{H}},\ahat^{\dagger}_{\vec{p}}]
+	&= \hbar\omega_{\ppp}\ahat^{\dagger}_{\ppp}
+	 = E_{\ppp}\ahat_{\vec{p}}^{\dagger}
+	\\
+	\qty[\hat{\mathcal{H}},\ahat_{\vec{p}}]
+	&=-\hbar\omega_{\ppp}\ahat_{\ppp}
+	=E_{\ppp}\ahat_{\vec{p}}
+\end{align}
+Using this commutation relation, a miracle happens and the resulting energies can be substituted in
+\begin{align}
+	\phi(\vb{x})=\phi(\vec{x},t)&=\int
+	\frac{\d^3p}{(2\pi)^3}
+	\oo{\sqrt{2E_{\ppp}}}
+	\qty(
+		\ahat_{\ppp}e^{-i\vb{p}\cdot\vb{x}}
+		+
+		\ahat_{\vec{p}}^{\dagger}\,e^{i\vb{p}\cdot\vb{x}}
+	)\label{eqn:}
+	\\
+	\pi(\vb{x})=\pi(\vec{x},t)&=\int\frac{\d^3p}{(2\pi)^3}
+	(-i)\sqrt{\frac{E_{\vec{p}}}{2}}
+	\qty(
+		\ahat_{\ppp}e^{-i\vb{p}\cdot\vb{x}}
+		-
+		\ahat_{\vec{p}}^{\dagger}\,e^{i\vb{p}\cdot\vb{x}}
+	)
+\end{align}
+Since this is now \(\vb{p}\cdot\vb{x}=E_{\ppp}t-\vec{p}\cdot\vec{x}\), the signs flip.
+\\
+This allows the fields operators \\
+For complex scalar fields, Tong defines
+
+\begin{align}
+	\psi(\vb{x})&=\int\frac{\d^3p}{\qty(2\pi)^3}
+	\oo{\sqrt{2E_{\ppp}}}
+	\qty(\bhat_{\ppp}e^{-i\vb{p} \cdot \vb{x}} + \chat_{\ppp}^{\dagger}e^{i\vb{p} \cdot \vb{x}} )
+	\\
+	\psi^{\dagger}(\vb{x})&=\int\frac{\d^3p}{\qty(2\pi)^3}
+	\oo{\sqrt{2E_{\ppp}}}
+	\qty(\bhat_{\ppp}^{\dagger}e^{i\vb{p} \cdot \vb{x}} + \chat_{\ppp}e^{-i\vb{p} \cdot \vb{x}} )
+\end{align}
+\input{Physics/LorentzTransforms.tex}

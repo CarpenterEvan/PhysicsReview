@@ -8,29 +8,48 @@
     \tikzfading[name=ball, outer color=transparent!50, inner color=transparent!100]
     \begin{figure}[H]
         \begin{tikzpicture}
-            \draw [dotted] (2.3,0,2)--(2.3,2.3,2)--(0,2.3,0); % projection of r onto z and x axis
-            \draw [orange!30, fill=orange!30] (0,0,0)--(0.75,0.75,0) arc [start angle=45, end angle=90,radius=10 mm] node at (0.25,0.7) [black] {\(\theta\)}; % Theta arc
-            \begin{scope}[canvas is xz plane at y=0]
-                \draw [dotted] (0,0)--(2.3,2);
-                \fill [blue!20] (0,0)--(1.2,1) arc [start angle=45, end angle=120,radius=10 mm] node at (0.35,0.65) [black] {\(\phi\)};
+            % 3D is in math convention--> Z sticks out of page in right handed coordinate system. 
+            % I relable this to be the physics convention, where Z sticks up. 
+            \def\bs{0.3}; % basis scalings
+            
+            \begin{scope}[canvas is xz plane at y=0]  
+                \draw (0,0) circle (3);
+            \end{scope}
+            \begin{scope}[canvas is xy plane at z=0]  
+                \draw (0,0) circle (3);
+            \end{scope}
+            \begin{scope}[rotate around y=90,canvas is xy plane at z=0]  
+                \draw (0,0) circle (3);
+            \end{scope}
+
+            %\begin{scope}[canvas is xz plane at y=2]
+                % Phi basis vector
+                %\draw [ultra thick, blue!20, -latex] (30:2)--++(-45:2*\bs) node [xshift=2, yshift=2,color=black] {\(\e{\phi}\)};
+            %\end{scope}
+            \begin{scope}[rotate around y=-30,canvas is xy plane at z=0]                
+                % Theta arc
+                \draw [orange!30, fill=orange!30] (0,0)--(45:15mm) arc [start angle=45, end angle=90,radius=15 mm] node [midway, below, xshift=-5, yshift=-5, black] {\(\theta\)} -- cycle ; 
+                
+                \draw [ultra thick, red, -latex] (0,0)--(2,2) node [at end, above right] {\(\vb{r}\)};
+                \draw [dotted] (2,0)--(2,2); 
+                %\draw [ultra thick, orange!30, -latex] (2,2)--(2*\bs+2,-2*\bs+2) node [xshift=1, color=black] {\(\e{\theta}\)};
+                %\draw [ultra thick, blue, -latex]      (2,2)--(2*\bs+2,2*\bs+2) node [xshift=1, yshift=3, color=black] {\(\e{r}\)};
             \end{scope}
 
 
-            \fill [path fading=ball, color=black] (0.07,0) circle (2.5);
+            \begin{scope}[canvas is xz plane at y=0]
+                % Phi angle
+                \fill [blue!20] (0,0)--(30:20mm) arc [start angle=30, end angle=90,radius=20 mm]  node [midway, above left] [black] {\(\phi\)} --cycle;
+            \end{scope}
+        
             \draw [ultra thick, -latex] (0,0,0)--(3,0,0) node [anchor=north west] {\textbf{y}};
             \draw [ultra thick, -latex] (0,0,0)--(0,3,0) node [anchor=south]      {\textbf{z}};
             \draw [ultra thick, -latex] (0,0,0)--(0,0,3) node [anchor=north west] {\textbf{x}};
 
-
-            \draw [ultra thick, blue!20, -latex] (2.3,2.3,2)--(3,2,0.7) node [anchor=west, color=black] {\(\e{\phi}\)};
-            \draw [ultra thick, orange!30, -latex] (2.3,2.3,2)--(3,1.6,2.25) node [anchor= north, color=black] {\(\e{\theta}\)};
-            \draw [ultra thick, blue, -latex] (2.3,2.3,2)--(3,3,2) node [anchor=south east, color=black] {\(\e{r}\)};
-            \draw [ultra thick, red, -latex] (0,0,0)--(2.3,2.3,2) node at (1,0.5) {\(r\)};
-
-
             \node (r text) at (6,2,0) {Distance from the origin: \(r\)};
             \node (theta text) at (r text.south) [xshift=29.5, yshift=-5] {Polar angle: \(\theta\)};
             \node (phi text) at (theta text.south) [yshift=-5] {Azimuthal angle: \(\phi\)};
+
         \end{tikzpicture}
     \end{figure}
     Important relationships:

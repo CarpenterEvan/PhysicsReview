@@ -1,0 +1,147 @@
+\section{Fundamental Objects and Operations}
+	\begin{mathbox}{Set}
+		\begin{equation*}
+			\{S\}
+		\end{equation*}
+	\end{mathbox}
+	A set is a collection of objects. It could be numbers, bugs, words, functions, it really doesn't matter.
+	\begin{align*}
+		\{S_1\} &= \{1,2,3,4\}
+		\\
+		\{S_2\} &= \{a,b,d,f\}
+		\\
+		a\in\{S_2\}
+	\end{align*}
+
+	\begin{mathbox}{Function/Mapping}
+		\begin{align*}
+			\Xset,\,\Yset,\,\Zset
+			\\
+			f: X\cross Y\rightarrow Z
+		\end{align*}
+	\end{mathbox}
+	A function or mapping associates an element of from one set (or more) to another set.  
+	\\
+	Injective functions map every element in the original set (domain) to a unique element in the final set (codomain).
+	\\
+	Surjective functions map at least one element in the domain to at most one element in the codomain (meaning one element in the codomain could have multiple elements mapped to it). 
+	\\
+	Bijective functions are both injective and surjective. This means that every element in the domain is mapped to a unique element in the codomain, and every element in the codomain is mapped to by a unique element in the domain.
+	\\
+	Most useful functions in physics are bijective.
+	\newpage
+	\begin{mathbox}{Group}
+		\begin{align*}
+			\mathcal{G}=\big[\Sset,\cdot\big]
+			\\
+			{\bf\cdot}\,:S\cross S&\rightarrow S
+		\end{align*}
+	\end{mathbox}
+	A group is a set with a binary operation, which maps two elements of the set to another member in the set. The binary operation for a group is usually called the group operation. 
+	\begin{mathbox}{Algebraic Field}
+		\begin{equation*}
+			\mathcal{F}=\big[\{S\},(\cdot,+)\big]
+		\end{equation*}
+		\begin{align*}
+			(\placeholder)+(\placeholder):S\times S&\rightarrow S
+			&
+			(\placeholder)\cdot(\placeholder):S\times S&\rightarrow S
+		\end{align*}
+	\end{mathbox}
+`A field is where we can pick our numbers from'. It doesn't have to be numbers, but in physics it nearly always is. A field \(\mathcal{F}\) is defined as a set \Sset\ (usually \(\mathbb{R}\) or \(\mathbb{C}\)) with two binary operations \(\cdot,+\) called multiplication and addition, respectively.
+The binary operations, by definition, map two elements in \Sset\ to a uniquely determined third element, also in \Sset. For all elements of the field \Fset, the following axioms hold for the binary operations:
+\begin{itemize}
+	\item Associativity of multiplication and addition.
+	\item Commutativity of multiplication and addition.
+	\item There exist multiplicative and additive identities \(\forall\)\ elements in \Fset.
+	\item There exist multiplicative and additive inverses \(\forall\)\ elements in \Fset.
+	\item Multiplication distributes over addition.
+\end{itemize}
+
+Typically when talking about a field \(\mathcal{F}\), most people are reffering to the set \(\Sset\), and it is implied that the binary operations and axioms are applicable to the set. 
+
+In physics, groups usually contain more complex objects like matrices (where the function is matrix multiplication), wheras fields are usually numbers, like \(\mathbb{C}\). 
+\newpage
+\begin{mathbox}{Metric Space}
+	\begin{equation*}
+		\mathcal{M}_d=\big[\Sset, (d)\big]
+	\end{equation*}
+	\begin{align*}
+	d(\placeholder,\placeholder):S\cross S&\rightarrow \mathbb{R}
+	\end{align*}
+\end{mathbox}
+A metric space is comprised of a set \Sset\ and a binary function, which represents the distance between two elements of \Sset. The distance function \(d\) can be nearly anything, but respects three properties:
+\begin{itemize}
+	\item Non-negativity: \(d(a,b)\geq0\)
+	\item Symmetry: \(d(a,b)=d(b,a)\)
+	\item Triangle inequality: \(d(a,c)\leq d(a,b)+d(b,c)\)
+\end{itemize}
+Euclidean distance is a familiar \(d\).
+\textcolor{red}{how to show multi dimensional euclidean distance with above definition?}
+
+\newpage
+\begin{mathbox}{Vector Space}
+	\begin{equation*}
+		\mathcal{V}=\big[\Sset,[\mathcal{F}], (+,\cdot)\big]
+	\end{equation*}
+	\begin{align*}
+	(\placeholder)+(\placeholder):S\cross S&\rightarrow S
+	&
+	(\placeholder)\cdot(\placeholder):F\cross S&\rightarrow S
+	\end{align*}
+\end{mathbox}
+A vector space is comprised of a nonempty set \Sset, a field \(\mathcal{F}\), a binary operation (vector addition), and a binary function (scalar multiplication).
+The elements of \Vset\ (vectors) can be combined using vector addition or scalar multiplication and the resulting vector will also be in \Vset. 
+\\
+Vector addition is between vectors in the set \Vset, and the scalar multiplication is between a vector from \Vset\ and a scalar from the field. is between an element of \Fset\ and an element of \Vset, and maps to an element in \Vset .
+
+For all elements of the field and the vector space, the following vector axioms hold:
+
+\begin{itemize}
+	\item Associativity of vector addition.
+	\item Commutivity of vector addition.
+	\item For vector addition, there exist additive identities in \Vset.
+	\item For vector addition, there exist additive inverses in \Vset.
+	\item Scalar multiplication is compatible with field multiplication.
+	\item Scalar multiplication distributes over field addition. 
+	\item For scalar multiplicaion, there exist multaplicative identities.
+	\item For scalar multiplicaion, there exist multiplicative inverses.
+\end{itemize}
+A vector space \(\mathcal{V}\) is said to be defined \textit{over} a field \(\mathcal{F}\), in the sense that within a vector space is an associated field, whose elements are used in scaling the vectors. Two examples of this is a vector space over the field of real numbers, or a vector space over the field of complex numbers. Most of the time \Vset\ is referred to as the vector space, and the field is either assumed to be \(\mathbb{R},\,\mathbb{C}\).
+\newpage
+\begin{mathbox}{Inner Product Space}
+	\begin{equation*}
+		\mathcal{V}_{\rm inner}=\big[[\mathcal{V}],\,(\braket{\placeholder}{\placeholder})\big]
+	\end{equation*}
+	\begin{equation*}
+	\braket{\placeholder}{\placeholder}: V\cross V\rightarrow F
+\end{equation*}
+\end{mathbox}
+An inner product space contains a vector space defined over a field (almost always \(\mathbb{R}\) or \(\mathbb{C}\)) along with a binary operation (the inner product). 
+The inner product maps two elements of \Vset\ to \Fset, and respects three properties:
+\begin{itemize}
+	\item Linearity of the \textbf{first} argument \(\braket{a\vb{v_1}+b\vb{v_2}}{c\vb{v_3}}=a\braket{\vb{v_1}}{c\vb{v}_3}+b\braket{\vb{v_2}}{c\vb{v}_3}\)
+	\item Complex conjugate symmetry \(\braket{\vb{v_1}}{\vb{v_2}}=\overline{\braket{\vb{v_2}}{\vb{v_1}}}\)
+	\item Positive definiteness \(\braket{\vb{v_1}}{\vb{v_2}}>0\)
+\end{itemize}
+A norm can be defined, that corresponds to the length of the vectors. 
+\begin{equation*}
+	\norm{\vb{v}_i}=\sqrt{\braket{\vb{v}_i}{\vb{v}_i}}
+\end{equation*}
+Inner product spaces over the field \(\mathbb{C}\) are called ``unitary spaces''.
+\\
+\textbf{Hilbert Space}: A Hilbert space is a complete inner-product space over the field of complex numbers. Since this is also a metric space, the metric is derived from the inner product.
+\[H=\big[[V_{\text{inner}}],(d)\big]\]
+The distance function is based off of the norm that can be defined on an inner product space.
+\begin{equation*}
+	d:\braket{\psi_i}{\psi_j}\rightarrow\mathbb{C}
+\end{equation*}
+
+Quantum states are represented as vectors \(\ket{\alpha}\) in this space. States can be represented in different bases like position or momentum, where they become wavefunctions:
+\begin{align*}
+	\psi(x)&=\braket{x}{\alpha}	
+	\\
+	\phi(p)&=\braket{p}{\alpha}
+\end{align*}
+Algebraically, a ket \(\ket{\alpha}\) is a column vector, and a bra \(\bra{\alpha}\) is a row vector. 
+\newpage
