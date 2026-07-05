@@ -7,19 +7,20 @@
 %%%% Document Structure %%%%
 	% Creates a bolded title that is a hypertarget with link="top", optional bolded subtitle that's scaled properly 
 	\NewDocumentCommand\thetitle{m O{}}{ \title{ \hypertarget{top}{\textbf{#1}} \\ \large {#2} } }
-
-	\def\UM{\colorbox{blue}{\textcolor{Gold1}{\textbf{University of Michigan}}}}% School Pride
+	
+	% University of Michigan Colors
+	\definecolor{WolverineMaize}{cmyk}{0,0.18,1,0}
+	\definecolor{WizardGreen}{RGB}{21, 110, 45}
+	\definecolor{WolverineBlue}{cmyk}{1,0.69,0,0.6}
+	\definecolor{UMMATan}{cmyk}{0.06, 0.14, 0.39, 0.08}
+	\definecolor{BurtonTowerBeige}{cmyk}{0.21, 0.15, 0.54, 0.31}
+	\definecolor{TappanRed}{cmyk}{0.08, 0.92, 1.00, 0.33}
+	% ATLAS Colors
+	\definecolor{ATLASBlue}{RGB}{11,128,195}
+	\def\UM{\colorbox{WolverineBlue}{\textcolor{WolverineMaize}{\textbf{University of Michigan}}}}% School Pride
 
 	\def\EC{\href{https://github.com/CarpenterEvan/PhysicsReview}{\(\mathbb{E}\textsc{van}~\mathbb{C}\textsc{arpenter}\)}}
 
-	\NewDocumentCommand{\header}{m m m}{% Makes header that links to the key="top", use in conjunction with \thetitle
-		\fancyhead[L]{#1} 
-		\fancyhead[C]{\hyperlink{top}{ \textbf{#2} }}
-		\fancyhead[R]{#3}
-		\fancyfoot[C]{--\thepage--}
-		\pagestyle{fancy}}
-	\setlength\headheight{17pt}
-	\addtolength{\topmargin}{-2.49998pt}
 	\numberwithin{equation}{section} % amsmath command that renews equation counter in each section\
 	\DeclareTColorBox{mathbox}{m}{
 		colframe=RosyBrown4,

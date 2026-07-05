@@ -1,0 +1,72 @@
+\documentclass[preview]{standalone}
+\usepackage{tikz}% Pictures
+	\usetikzlibrary{calc}%
+\pgfmathtruncatemacro{\nYears}{int(\the\year-1900)}
+\def\nTikzUnits{20}
+\pgfmathsetmacro{\nUnit}{\nTikzUnits/\nYears}% normalized unit
+\begin{document}
+	\tikzset{
+		tick/.style={|-}
+	}
+	\begin{tikzpicture}
+		\node (O) at (0,  0) {};% Origin
+		
+		\node (F) at (0,-\nTikzUnits) {};% end of timeline
+		
+		% Three hard-coded dates, 1900, 2000, and Current Day
+			\coordinate (1900) at (O);
+			\coordinate (2000) at ($(O)-(0,100*\nUnit)$);
+			\coordinate (today) at (F);
+
+		% Define *internally named* coordinates for each year in 1900-2099
+			\foreach \i in {1,2,3,4,5,6,7,8,9}{
+				\coordinate (190\i) at ($(O)-(0,\i*\nUnit)$);
+				\coordinate (200\i) at ($(O)-(0,100*\nUnit)-(0,\i*\nUnit)$);
+			}
+			\foreach \i in {10,11,...,99}{
+				\coordinate (19\i) at ($(O)-(0,\i*\nUnit)$);
+				\coordinate (20\i) at ($(O)-(0,100*\nUnit)-(0,\i*\nUnit)$);
+			}
+		% Define extra dates before 1900
+			\coordinate (1800) at ($(O)+(0,100*\nUnit)$);
+			\foreach \i in {1,2,3,4,5,6,7,8,9}{
+				\coordinate (180\i) at ($(1800)-(0,\i*\nUnit)$);
+			}
+			\foreach \i in {10,11,...,99}{
+				\coordinate (18\i) at ($(1800)-(0,\i*\nUnit)$);
+			}
+		% Draw timeline and title	
+			\draw[ultra thick, ->] (1850.center) -- (F.center);
+			\node at (1850.north) [anchor=south, xshift=2cm] {Timeline of Fundamental Particle Physics};
+		% Draw ticks every 5 years, starting from 1850-2020
+			\foreach \i in {50,55,...,95}{
+				\draw[tick] (18\i) -- (F);
+				\node at (18\i) [anchor=east] {18\i};
+			}
+			\foreach \i in {00,05,10,15,20,...,95}{
+				\draw[tick] (19\i) -- (F);
+				\node at (19\i) [anchor=east] {19\i};
+			}
+			\foreach \i in {00,05,10,...,20}{
+				\draw[tick] (20\i) -- (F);
+				\node at (20\i) [anchor=east] {20\i};
+			}
+			\node at (today) [anchor=east] {\the\year};
+		% 
+		% Populating with dates now
+		%\node at (1675) [anchor=west] {-(1675) Phosphorescence observed from static electricity, shaking mercury in vacuum. };
+		%\node at (1785) [anchor=west] {-(1785) Cathode rays first observed, but not named};
+		%\node at (1836) [anchor=west] {-(1836) Cathode rays identified as originating from cathode, but not named};
+		\node at (1859) [anchor=west] {-(1859) Cathode rays shown to interact magnetically};
+		\node at (1876) [anchor=west] {-(1876) Cathode rays named};
+		\node at (1905) [anchor=west] {-(1905) Photons used to explain photoelectric effect};
+		\node at (1914) [anchor=west] {-(1914) Electrons discovered as cathode rays};
+		\node at (1918) [anchor=west] {-(1918) Electrons identified and named};
+		\node at (1930) [anchor=west] {-(1930) Neutrino proposed to explain how \(\beta\) decay conserves spin, \(E,~\vec{p}\)};
+		\node at (1956) [anchor=west] {-(1956) Direct evidence for neutrino via inverse beta decay};
+		\node at (1964) [anchor=west] {-(1964) Quark model used to explain particle zoo};
+		\node at (1968) [anchor=west] {-(1968) Evidence of gluons in Y(9.64) resonance (3 g-jet final state)};
+		\node at (2012) [anchor=west] {-(2012) Experimental evidence of Higgs Boson announced by CERN};
+		\node at (today) [anchor=west] {-(\today) Today};
+	\end{tikzpicture}
+\end{document}

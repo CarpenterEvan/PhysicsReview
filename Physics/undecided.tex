@@ -103,3 +103,46 @@ For complex scalar fields, Tong defines
 	\qty(\bhat_{\ppp}^{\dagger}e^{i\vb{p} \cdot \vb{x}} + \chat_{\ppp}e^{-i\vb{p} \cdot \vb{x}} )
 \end{align}
 \input{Physics/LorentzTransforms.tex}
+Gamma matrices:
+\begin{align*}
+	\gamma^0&=
+	\begin{pmatrix}
+		0 & 0 & 1 & 0\\
+		0 & 0 & 0 & 1\\
+		1 & 0 & 0 & 0\\
+		0 & 1 & 0 & 0\\
+	\end{pmatrix}&
+	\gamma^1&=
+	\begin{pmatrix}
+		0 & 0 & 0 & 1\\
+		0 & 0 & 1 & 0\\
+		0 & 1 & 0 & 0\\
+		1 & 0 & 0 & 0\\
+	\end{pmatrix}&
+	\gamma^2&=
+	\begin{pmatrix}
+		 0 & 0 &  0 & i\\
+		 0 & 0 & -i & 0\\
+		 0 & i &  0 & 0\\
+		-i & 0 &  0 & 0\\
+	\end{pmatrix}&
+	\gamma^3&=
+	\begin{bmatrix}
+		0 &  0 & 1 &  0\\
+		0 &  0 & 0 & -1\\
+		1 &  0 & 0 &  0\\
+		0 & -1 & 0 &  0\\
+	\end{bmatrix}&
+\end{align*}
+Pauli Matrices:
+\begin{align*}
+	\sigma^1&=\begin{bmatrix} 0 &  1 \\ 1 &  0 \end{bmatrix}&
+	\sigma^2&=\begin{bmatrix} 0 & -i \\ i &  0 \end{bmatrix}&
+	\sigma^3&=\begin{bmatrix} 1 &  0 \\ 0 & -1 \end{bmatrix}
+\end{align*}
+Compacted gamma matrices:
+\begin{align*}
+	\gamma^0&=\begin{bmatrix}0&\mathbb{I}\\\mathbb{I}&0\end{bmatrix}&
+	\gamma^i&=\begin{bmatrix}0&\sigma^i\\-\sigma^i&0\end{bmatrix}
+\end{align*}
+Create a representation of the Lorentz algebra

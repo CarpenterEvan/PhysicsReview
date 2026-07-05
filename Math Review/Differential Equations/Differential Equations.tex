@@ -8,7 +8,7 @@
     Differential equations can be categorized in many different ways. The main distinctons that I make here are between Ordinary, Partial, and Non-Linear Differential Equations (ODEs, PDEs, and NLDEs). Since this is physics oriented, I'll stick to differential equations that are relevant to physics (first and second order equations, etc.)
 \par
 %\input{diffeqtoc.tex}
-\input{../Differential Equations/diffeqtoc.tex}
+\input{Math Review/Differential Equations/diffeqtoc.tex}
 \subsection{Ordinary Differential Equations (ODEs)}
     ODEs are differential equations involving only one independent variable. In physics, they typically appear as functions of space or of time, so a function $y(x)$ or $x(t)$: 
     \begin{align}
@@ -30,7 +30,6 @@
         \end{gather*}
         This is assuming $c\rightarrow c(x),~b\rightarrow b(x)$ and making $P(x)\equiv\frac{c(x)}{b(x)}$. This equation is called seperable, because all of the $x$ and $y$ terms can be separated to either side of the equation. 
         \begin{multicols}{2}\raggedcolumns
-            {\length[0.25cm]
                 \begin{gather*}
                     \der{y}{x}=-P(x)y
                     \\
@@ -38,8 +37,6 @@
                     \\
                     \int\frac{dy}{y}=-\int P(x)dx
                 \end{gather*}
-            }   
-            {\length[0.25cm]
                 \begin{gather}
                 \ln(y)+C_{\text{onst}}=-\int P(x)dx \notag
                 \\
@@ -47,7 +44,6 @@
                 \\
                 \coloredanswer{y(x)=Ae^{-\int P(x)dx}}
             \end{gather}
-            } 
         \end{multicols}
     \newpage
     
@@ -68,7 +64,6 @@
     \subsubsection{Constant Coefficients}
     This is valid for $a,b,c\neq0\ \&\  a,b,c\neq a(x),b(x),c(x)$, in \eqnref{eqn:ode}. If $g(x)=0$ then the equation is also said to be homogeneous. If $g(x)\neq0$ then it is non-homogeneous (or inhomogeneous). The answer is assumed to look like $e^{\lambda x}$, so that is what is substituted in.\footnote{The use of $\lambda$ is to highlight the fact that $e^x$ is an eigenfunction of the derivative, and $\lambda$ is the eigenvalue.}
     \begin{multicols}{2}\raggedcolumns
-        {\length[0.25cm]
             \begin{gather*}
                 a\der[2]{y}{x}+b\der{y}{x}+cy=0
                 \\
@@ -76,18 +71,14 @@
                 \\
                 \qty(a\lambda^2+b\lambda+c)e^{\lambda x}=0
             \end{gather*}
-        }   
-        {\length[0.25cm]
             \begin{gather}
                 a\lambda^2+b\lambda+c=0 \label{eqn:chareqn}
                 \\
                 \lambda=\frac{-b\pm\sqrt{b^2-4ac}}{2a}\notag
             \end{gather}
-        } 
     \end{multicols}
     \eqnref{eqn:chareqn} is called the characteristic equation.
     There are three solution outcomes for $y$, depending on the value of $\lambda$, assuming that it can be a complex number $\lambda=\alpha+\beta i$:
-    {\length[0.7cm]
         \begin{align}
             \underset { \alpha_1 \neq \alpha_2\And \beta=0 }{\textbf{Real Distinct Roots:}}&& y_c&=c_1e^{\alpha_1x}+c_2e^{\alpha_2x}\label{eqn:realdistinctroots}
             \\
@@ -95,7 +86,6 @@
             \\
             \underset{\beta \neq 0}{\textbf{Complex Roots:}}&& y_c&=e^{\alpha x}\qty(c_1\cos(\beta x)+c_2i\sin(\beta x))\label{eqn:complexroots}
         \end{align}
-    }
     \eqnref{eqn:realrepeatroots} is found due to linearity; (EXAMPLE ABOUT MULTIPLYING BY CONSTANT) and \eqnref{eqn:complexroots} is found through Euler's Identity. Note that this solution algorithm works for first order equations as well.  
     \\[0.25cm]
     

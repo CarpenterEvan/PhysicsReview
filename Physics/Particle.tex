@@ -1,6 +1,29 @@
 \newpage
 \section{Particle Physics}
-
+\subsection{Definitions used in the field (of study):}
+\newpage
+\includepdf[height=0.8\pdfpageheight, pagecommand={\thispagestyle{fancy}}]{Physics/build/ParticleTimeline.pdf}
+\newpage
+\begin{itemize}
+	\item dE/dx
+	\item Transverse momentum \pT:\@\ momentum transverse to the beam axis.
+	\item Transverse Energy \ET:\@\ Energy transverse to beam axis, deposited in calorimeter.
+	\item Scalar Fields
+	\item Classical Scattering
+	\item Run 1: 2010--2012
+	\item Run 2: 2015--2018
+	\item Run 3: 2022--2026
+	\item Cutflow: Volume of phase space (number of events) after each cut is applied. Used to visualize the cut restrictions as they are applied. 
+	\item Validation Region / Control Region: A selection of data space that very close to signal selection region. Used to `validate' the background region. Usually just has same cuts as signal region with exception of one cut inverted.
+	\item Quantization
+	\item On-shell: 
+	\item Branching Ratio: The fraction of particles that decay via a particular decay mode.
+	\item Cross Section: A measure of the probability that a specific process will occur when particles
+	      collide. It is typically measured in units of area, such as barns (1 barn = $\rm 10^{-28} m^2$ = $\rm 10^{-24} cm^2$).
+	\item Luminosity: A measure of the number of particles per unit area per unit time in a collider. It is used to calculate the event rate for a given process.
+	\item Integrated Luminosity: The total luminosity accumulated over a specific period of time. It is often expressed in inverse femtobarns (\(\rm fb^{-1}\)).
+	\item Event Topologies:
+\end{itemize}
 \subsection{Width}
 When particles decay immeasurably fast (\W, \Z, \h, t), width $\Gamma$ is used instead of mean lifetime $\tau$. 
 \subsection{Higgs}
@@ -88,77 +111,142 @@ The \h\ also explains how fermions get their mass, and there is a correspoondanc
 	\end{align*}
 \newpage
 \subsection{Mandelstam Variables}
-	\tikzfeynmanset{every momentum/arrow shorten/.append style={0.7}}
-	\begin{align*}
-		&
-		\feynmandiagram[baseline=(v1.base), horizontal=v1 to v2]{
-		a -- [fermion, momentum'=$p_a$] v1 -- [fermion, reversed momentum=$p_b$] b,
-		v1 -- [photon, edge label=$p_a+p_b$] v2 -- [fermion, momentum'=$k_1$] c,
-		d -- [fermion, momentum=$k_2$] v2,
-		};
-		&
-		&\feynmandiagram[baseline=(v2.base), vertical=v1 to v2]{
-			a -- [fermion, momentum'=$p_b$] v1 -- [fermion, momentum=$k_1$] b,
-			v1 -- [photon, edge label=$p_a-k_1$] v2 -- [fermion, momentum'=$k_1$] c,
-			d -- [fermion, momentum=$p_b$] v2,
-			};
-		&
-		&
-		\feynmandiagram[baseline=(v2.base), vertical=v1 to v2]{
-			a -- [fermion, momentum'=$p_b$] v1 -- [fermion, momentum=$k_1$] b,
-			v1 -- [photon, edge label=$p_a-k_1$] v2 -- [fermion, momentum'=$k_1$] c,
-			d -- [fermion, momentum=$p_b$] v2,
-			};
-		\\[0.25cm]
-		s&=(p_a+p_b)^2c^2=(k_1+k_2)^2c^2
-		&
-		t&=(p_a+p_b)^2c^2=(k_1+k_2)^2c^2
-		&
-		u&=\text{fix}
-	\end{align*}
+
+\begin{tikzpicture}[baseline=(current bounding box.south)]% S CHANNEL Template diagram. 
+    % Template diagrams are labelled from top to bottom, going left to right. 
+    % p_{a,b,c,...} are incoming,
+    % k_{1,2,3,...} are outgoing,
+    % v_{1,2,3,...} are vertices. 
+    \def\propAngle{0}% angle of virtual propagators (from horizontal)
+    \def\pAngle{30}% angle of incoming particle (from horizontal)
+    \def\kAngle{30}% angle of outgoing particle (from horizontal)
+    \def\legLength{1.5}% length of external leg
+    \def\propLength{2}% length of propagator
+
+    \begin{feynman}
+        \vertex (v_1) at (0,0);
+        \vertex (v_2) at ($(v_1)+(\propAngle:\propLength)$);
+
+        \vertex (p_a) at ($(v_1)-(-\pAngle:\legLength)$);
+        \vertex (p_b) at ($(v_1)-( \pAngle:\legLength)$);
+        \vertex (k_1) at ($(v_2)+( \kAngle:\legLength)$);
+        \vertex (k_2) at ($(v_2)+(-\kAngle:\legLength)$);
+
+        \draw[scalar, momentum=\((p_a+p_b)\)] (v_1) -- (v_2);
+        
+        \draw[scalar, momentum=\(p_a\)]       (p_a) -- (v_1);
+        \draw[scalar, momentum'=\(p_b\)] (p_b) -- (v_1);
+        \draw[scalar, momentum=\(k_1\)]       (v_2) -- (k_1);
+        \draw[scalar, momentum'=\(k_2\)] (v_2) -- (k_2);
+    \end{feynman}
+	\node at ($(v_1)! 0.5!(v_2)-(0,\legLength+1)$) {\(s=(p_a+p_b)^2c^2=(k_1+k_2)^2c^2\)};% below, midway between v_1 and v_2
+\end{tikzpicture}
+~~
+\begin{tikzpicture}[baseline=(current bounding box.south)]% T CHANNEL Template diagram. 
+    % Template diagrams are labelled from top to bottom, going left to right. 
+    % p_{a,b,c,...} are incoming,
+    % k_{1,2,3,...} are outgoing,
+    % v_{1,2,3,...} are vertices. 
+    \def\propAngle{0}% angle of virtual propagators (from vertical)
+    \def\pAngle{25}% angle of incoming particle (from horizontal)
+    \def\kAngle{25}% angle of outgoing particle (from horizontal)
+    \def\legLength{2}% length of external leg
+    \def\propLength{1.5}% length of propagator
+    
+    \begin{feynman}
+        \vertex (v_1) at (0,0);
+        \vertex (v_2) at ($(v_1)+(\propAngle-90:\propLength)$);
+
+        \vertex (p_a) at ($(v_1)-(-\pAngle:\legLength)$);
+        \vertex (k_1) at ($(v_1)+( \kAngle:\legLength)$);
+        \vertex (p_b) at ($(v_2)-( \pAngle:\legLength)$);
+        \vertex (k_2) at ($(v_2)+(-\kAngle:\legLength)$);
+
+        \draw[scalar, momentum=\(p_a\)] (p_a) -- (v_1);
+        \draw[scalar, momentum=\(k_1\)] (v_1) -- (k_1);
+
+        \draw[scalar, momentum=\((p_a-k_1)\)] (v_1) -- (v_2);
+        
+        \draw[scalar, momentum'=\(p_b\)] (p_b) -- (v_2);
+        \draw[scalar, momentum'=\(k_2\)] (v_2) -- (k_2);
+    \end{feynman}
+	\node at ($(p_b)! 0.5!(k_2)-(0,1)$) {\(t=(p_a-k_1)^2c^2=(k_2-p_b)^2c^2\)};% below, midway between p_b and k_2
+\end{tikzpicture}
+~~
+\begin{tikzpicture}[baseline=(current bounding box.south)]% U CHANNEL Template diagram. 
+    % Template diagrams are labelled from top to bottom, going left to right.
+    % p_{a,b,c,...} are incoming,
+    % k_{1,2,3,...} are outgoing,
+    % v_{1,2,3,...} are vertices. 
+    \def\propAngle{0}% angle of virtual propagators (from vertical)
+    \def\pAngle{25}% angle of incoming particle (from horizontal)
+    \def\kAngle{10}% angle of outgoing particle (from horizontal)
+    \def\legLength{2}% length of external leg
+    \def\propLength{2}% length of propagator
+    
+    \begin{feynman}
+        \vertex (v_1) at (0,0);
+        \vertex (v_2) at ($(v_1)+(\propAngle-90:\propLength)$);
+
+        \vertex (p_a) at ($(v_1)-(-\pAngle:\legLength)$);
+        \vertex (k_1) at ($(v_1)+( \kAngle:\legLength+0.5)$);
+        \vertex (p_b) at ($(v_2)-( \pAngle:\legLength)$);
+        \vertex (k_2) at ($(v_2)+(-\kAngle:\legLength+0.5)$);
+
+        \draw[scalar, momentum=\(p_a\)] (p_a) -- (v_1);
+        \draw[scalar, momentum'=\(k_2\)] (v_1) -- (k_2);
+
+        \draw[scalar, momentum'=\((p_a-k_2)\)] (v_1) -- (v_2);
+        
+        \draw[scalar, momentum'=\(p_b\)] (p_b) -- (v_2);
+        \draw[scalar, momentum=\(k_1\)] (v_2) -- (k_1);
+    \end{feynman}
+	\node at ($(p_b)! 0.5!(k_2)-(0,1)$) {\(u=(p_a-k_2)^2c^2=(k_1-p_b)^2c^2\)};% below, midway between p_b and k_2
+\end{tikzpicture}
+
 \newpage
-\subsection{Feynman Rules}
-	\tikzfeynmanset{
-		every vertex={red},
-		every particle={blue},
-		every blob={draw=black, pattern color=black},
-		}
-	\begin{align*}
-		%Incoming anti/fermions
-		\feynmandiagram[small, baseline=(v1.base), horizontal=v1 to v2]
-		{
-			v1 [color=black, particle=$f$] -- [fermion] v2[blob]-- [draw=none] v3 [particle={\phantom{$f$}}, color=white]
-		};
-		&\quad\longleftrightarrow\quad
-		u(p,s)
-		\\
-		\feynmandiagram[small, baseline=(v1.base), horizontal=v1 to v2]
-		{
-			v1 [color=black, particle=$f$] -- [anti fermion] v2[blob]-- [draw=none] v3 [particle={\phantom{$f$}}, color=white]
-		};
-		&\quad\longleftrightarrow\quad
-		\overline{v}(p,s)
-		\\
-		% Outgoing anti/fermions
-		\feynmandiagram[small, baseline=(v1.base), horizontal=v1 to v2]
-		{
-			v3 [draw=none] -- [draw=none] v1 [blob] -- [fermion] v2 [color=black, particle=$f$]
-		};
-		&\quad\longleftrightarrow\quad
-		\overline{u}(p,s)
-		\\
-		\feynmandiagram[small, baseline=(v1.base), horizontal=v1 to v2]
-		{
-			v3 [draw=none] -- [draw=none] v1 [blob] -- [anti fermion] v2 [color=black, particle=$f$]
-		};
-		&\quad\longleftrightarrow\quad
-		v(p,s)
-		\\
-		% Photon fermion interaction
-		\feynmandiagram[small, baseline=(v1.base), horizontal=v1 to v2]{
-		v1 [particle=$\mu$, color=black] -- [photon] v2,
-		[particle=$f$] a -- [fermion] v2 -- [fermion] b [particle=$f$],
-		};
-		&\quad\longleftrightarrow\quad
-		-iQ_fe\gamma^{\mu}
-	\end{align*}
+%\subsection{Feynman Rules}
+%	\tikzfeynmanset{
+%		every vertex={red},
+%		every particle={blue},
+%		every blob={draw=black, pattern color=black},
+%		}
+%	\begin{align*}
+%		%Incoming anti/fermions
+%		\feynmandiagram[small, baseline=(v1.base), horizontal=v1 to v2]
+%		{
+%			v1 [color=black, particle=$f$] -- [fermion] v2[blob]-- [draw=none] v3 [particle={\phantom{$f$}}, color=white]
+%		};
+%		&\quad\longleftrightarrow\quad
+%		u(p,s)
+%		\\
+%		\feynmandiagram[small, baseline=(v1.base), horizontal=v1 to v2]
+%		{
+%			v1 [color=black, particle=$f$] -- [anti fermion] v2[blob]-- [draw=none] v3 [particle={\phantom{$f$}}, color=white]
+%		};
+%		&\quad\longleftrightarrow\quad
+%		\overline{v}(p,s)
+%		\\
+%		% Outgoing anti/fermions
+%		\feynmandiagram[small, baseline=(v1.base), horizontal=v1 to v2]
+%		{
+%			v3 [draw=none] -- [draw=none] v1 [blob] -- [fermion] v2 [color=black, particle=$f$]
+%		};
+%		&\quad\longleftrightarrow\quad
+%		\overline{u}(p,s)
+%		\\
+%		\feynmandiagram[small, baseline=(v1.base), horizontal=v1 to v2]
+%		{
+%			v3 [draw=none] -- [draw=none] v1 [blob] -- [anti fermion] v2 [color=black, particle=$f$]
+%		};
+%		&\quad\longleftrightarrow\quad
+%		v(p,s)
+%		\\
+%		% Photon fermion interaction
+%		\feynmandiagram[small, baseline=(v1.base), horizontal=v1 to v2]{
+%		v1 [particle=$\mu$, color=black] -- [photon] v2,
+%		[particle=$f$] a -- [fermion] v2 -- [fermion] b [particle=$f$],
+%		};
+%		&\quad\longleftrightarrow\quad
+%		-iQ_fe\gamma^{\mu}
+%	\end{align*}%
