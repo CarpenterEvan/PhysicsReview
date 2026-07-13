@@ -23,9 +23,12 @@
 
 	\numberwithin{equation}{section} % amsmath command that renews equation counter in each section\
 	\DeclareTColorBox{mathbox}{m}{
-		colframe=RosyBrown4,
-		colback=Thistle1,
-		title=#1}
+		colframe=WolverineBlue,
+		colback=WolverineMaize,
+		float=h,
+		every float=\centering,
+		title=#1, 
+		width=0.75\textwidth}
 %%
 %%
 %%%% Physics %%%%
@@ -66,14 +69,25 @@
 		\IfBooleanTF{#1}
 		{\mathbf{\hat{e}_{#2}}}
 		{\bm{\hat{#2}}}}
-
+		\ExplSyntaxOn
+		% Helper macro to safely strip the backslash from a macro token for \csname
+		\newcommand{\stripbackslash}[1]{\expandafter\@gobble\string#1}
+		\ExplSyntaxOff
+		
 		\NewDocumentCommand\slsh{m}{\slashed{#1}}
 		% Integral differentials
 			% Vector differentials like \dl, \da come by default with dot product \cdot, 
 			% Hide \cdot with * option (\dl*, \da*)
 			\def\d{{\rm d}}% for integration
-			\LoopCommands{{l}{a}{\ell}}[d#1]{\NewDocumentCommand#2{s}{\IfBooleanTF{##1}{}{\cdot}\d\mathbf{#1}}}
-			\LoopCommands{xyztVf}[d#1]{\NewDocumentCommand#2{s}{\,\d#1}}
+			\NewDocumentCommand{\dl}{s}{
+				\,\d\bm{\ell}
+			}
+			\NewDocumentCommand{\da}{}{
+				\,\d\bm{a}
+			}
+			\LoopCommands{fqrstVxyz}[d#1]{\NewDocumentCommand#2{s}{\,\d#1}}
+			\NewDocumentCommand\dphi{}{\,\d{\phi}}
+			\NewDocumentCommand\dtheta{}{\,\d{\theta}}
 
 		\NewDocumentCommand\oo{O{1} m}{\frac{#1}{#2}}% reciprocal- 'one over', optional argulent is there to make it a regular fraction, because oo is still quicker to type.
 	%%

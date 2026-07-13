@@ -10,7 +10,6 @@
 	}
 	\begin{tikzpicture}
 		\node (O) at (0,  0) {};% Origin
-		
 		\node (F) at (0,-\nTikzUnits) {};% end of timeline
 		
 		% Three hard-coded dates, 1900, 2000, and Current Day
@@ -51,22 +50,21 @@
 				\draw[tick] (20\i) -- (F);
 				\node at (20\i) [anchor=east] {20\i};
 			}
-			\node at (today) [anchor=east] {\the\year};
 		% 
 		% Populating with dates now
-		%\node at (1675) [anchor=west] {-(1675) Phosphorescence observed from static electricity, shaking mercury in vacuum. };
+		%\node at (1675) [anchor=west] {-(1675) Fluorescence observed from static electricity, shaking mercury in vacuum. };
 		%\node at (1785) [anchor=west] {-(1785) Cathode rays first observed, but not named};
 		%\node at (1836) [anchor=west] {-(1836) Cathode rays identified as originating from cathode, but not named};
-		\node at (1859) [anchor=west] {-(1859) Cathode rays shown to interact magnetically};
-		\node at (1876) [anchor=west] {-(1876) Cathode rays named};
-		\node at (1905) [anchor=west] {-(1905) Photons used to explain photoelectric effect};
-		\node at (1914) [anchor=west] {-(1914) Electrons discovered as cathode rays};
-		\node at (1918) [anchor=west] {-(1918) Electrons identified and named};
-		\node at (1930) [anchor=west] {-(1930) Neutrino proposed to explain how \(\beta\) decay conserves spin, \(E,~\vec{p}\)};
-		\node at (1956) [anchor=west] {-(1956) Direct evidence for neutrino via inverse beta decay};
-		\node at (1964) [anchor=west] {-(1964) Quark model used to explain particle zoo};
-		\node at (1968) [anchor=west] {-(1968) Evidence of gluons in Y(9.64) resonance (3 g-jet final state)};
-		\node at (2012) [anchor=west] {-(2012) Experimental evidence of Higgs Boson announced by CERN};
-		\node at (today) [anchor=west] {-(\today) Today};
+		\node at (1859) [anchor=west] {-(1859) Cathode rays shown to interact magnetically.};
+		\node at (1876) [anchor=west] {-(1876) Cathode rays get their name.};
+		\node at (1905) [anchor=west] {-(1905) Photons used to explain photoelectric effect.};
+		\node at (1914) [anchor=west] {-(1914) Electrons discovered as cathode rays.};
+		\node at (1918) [anchor=west] {-(1918) Electrons identified and named.};
+		\node at (1930) [anchor=west] {-(1930) Neutrino proposed to explain how \(\beta\) decay conserves spin, \(E,~\vec{p}\).};
+		\node at (1956) [anchor=west] {-(1956) Direct evidence for neutrino via inverse beta decay.};
+		\node at (1964) [anchor=west] {-(1964) Quark model used to explain particle zoo.};
+		\node at (1968) [anchor=west] {-(1968) Evidence of gluons in Y(9.64) resonance (3 g-jet final state).};
+		\node at (2012) [anchor=west] {-(2012) Experimental evidence of Higgs Boson announced by CERN.};
+		\node at (today) [anchor=west] {-(Today)};
 	\end{tikzpicture}
 \end{document}

@@ -1,17 +1,27 @@
 \documentclass[11pt]{article}
 \input{mypackages}
 \input{mymacros}
-
+\addbibresource{references.bib}
 \begin{document}
-%\input{Math Review/Fundamental Structures/FundamentalObjOp.tex}
-%\input{Math Review/Vector Calculus/Vector Calculus.tex}
-%\input{Math Review/Differential Equations/Differential Equations.tex}
-%\input{Math Review/Curvilinear Coordinates/Curvilinear Coordinates.tex}
-
-%\input{Math Review/ProbAndStats/LikelihoodFunction.tex}%
-%\input{Math Review/ProbAndStats/PoissonDistribution.tex}%
-%\input{Physics/Classical_Dynamics.tex}%
-%\input{Physics/undecided.tex}%
+\input{Math Review/Linear Algebra/FundamentalObjOp.tex}
+\newpage
+\input{Math Review/Geometry/Curvilinear Coordinates.tex}
+\newpage
+\input{Math Review/Vector Calculus/Vector Calculus.tex}
+\newpage
+\input{Math Review/Differential Equations/Differential Equations.tex}
+\newpage
+\input{Math Review/ProbAndStats/LikelihoodFunction.tex}%
+\newpage
+\input{Math Review/ProbAndStats/PoissonDistribution.tex}%
+\newpage
+\input{Physics/Classical_Dynamics.tex}%
+\newpage
+\input{Physics/undecided.tex}%
+\newpage
 \input{Physics/Particle/Particle.tex}
-
+\newpage
+% include all references in bibliography regardless of if they've been cited
+\nocite{*}
+%\printbibliography
 \end{document}

@@ -23,24 +23,115 @@
             \df =\qty(\der{f}{x})\dx + \qty(\der{f}{y})\dy + \qty(\der{f}{z})\dz
         \end{align*}
         The derivative of \(f(x,y,z)\) tells you how \(f\) changes when one alters all three variables by \(\dx, \dy, z\).
-    \subsection*{Gradient}
-        \begin{align*}
-            \grad f(x,y,z) = 
-            \begin{bmatrix}
-                \pder*{x}
+        Cylindrical Coordinates:
+        \begin{align}
+            &\text{Infinitesimal Displacement:}
+            &&\text{Infinitesimal Areas:}
+            &&\text{Infinitesimal volume:}\notag
+            \\
+            \dl&= \ds\ \e{s}+s\d\phi\ \e{\phi}+\dz\, \e{z} 
+            &&
+            \begin{tabular}{|c|c|}
+                \hline
+                Constant & \(\da\)\\
+                \hline
+                \(s\)    & \(s\dphi\dz\,\e{s}\)
+                \\\hline
+                \(\phi\) & \(~~\ds\dz\,\e{\phi}\)
+                \\\hline
+                \(z\)    & \(s\ds\dphi\,\e{z}\)
                 \\
-                \pder*{y}
-                \\
-                \pder*{z}
-            \end{bmatrix}
-            f(x,y,z) = \begin{bmatrix}
-                \pder*{x}f
-                \\
-                \pder*{y}f
-                \\
-                \pder*{z}f
-            \end{bmatrix}
-            = \coloredanswer{\pder{f}{x}\e{x}+\pder{f}{y}\e{y}+\pder{f}{z}\e{z}}
+                \hline
+            \end{tabular}
+            &&
+            dV=s\ds\dphi\dz
+        \end{align}
+        Spherical Coordinates\\
+        \begin{align}
+            &\text{Infinitesimal Displacement:}
+            &&\text{Infinitesimal Areas:}
+            &&\text{Infinitesimal volume:}
+            \notag
+            \\
+            \dl &= \dr\,\e{r} + r \dtheta\, \e{\theta} + r \sin(\theta) \dphi\,\e{\phi}
+            &&
+            \begin{tabular}{|c|c|}
+                \hline
+                Constant & \(\da\) \\ 
+                \hline
+                \(r\)& \(r^2 \sin(\theta) \dtheta \dphi\ \e{r}\)\\ 
+                \hline
+                \(\theta\) & \(r \sin(\theta) \dr \dphi\ \e{\theta}\)\\
+                \hline
+                \(\phi\) & \(r \dr \dtheta\ \e{\phi}\)\\
+                \hline
+            \end{tabular}
+            &&
+            dV = r^2\sin(\theta) \dr \dtheta \dphi
+        \end{align}
+        \newpage
+        \subsection*{Gradient}
+            \begin{align*}
+                % Rectangular
+                &\grad f(x,y,z)
+                &&= 
+                \begin{bmatrix}
+                    \pder*{x}
+                    \\
+                    \pder*{y}
+                    \\
+                    \pder*{z}
+                \end{bmatrix}
+                f(x,y,z)
+                &&= 
+                \begin{bmatrix}
+                    \pder*{x}f
+                    \\
+                    \pder*{y}f
+                    \\
+                    \pder*{z}f
+                \end{bmatrix}
+                &&= 
+                \coloredanswer{\pder{f}{x}\e{x}+\pder{f}{y}\e{y}+\pder{f}{z}\e{z}}
+            \\
+            % Cylindrical
+                &\grad f(s,\phi,z) 
+                &&= 
+                \begin{bmatrix}
+                    \pder*{s}\\
+                    \oo{s} \pder*{\phi}\\
+                    \pder*{z}\\
+                \end{bmatrix}
+                f(s,\phi,z)
+                &&=
+                \begin{bmatrix}
+                    \pder*{f}{s}\\
+                    \oo{s} \pder*{f}{\phi}\\
+                    \pder*{f}{z}\\
+                \end{bmatrix}
+                &&=\coloredanswer{\pder{f}{s}\e{s}+\oo{s} \pder{f}{\phi}\e{\phi}+\pder{f}{z}\e{z}}
+            \\
+            % Spherical
+                &\grad f(r,\theta,\phi) 
+                &&= 
+                \begin{bmatrix}
+                    \pder*{r}
+                    \\
+                    \frac{1}{r} \pder*{\theta}
+                    \\[5pt]
+                    \frac{1}{r \sin(\theta)}\pder*{\phi}
+                \end{bmatrix}
+                f(r,\theta,\phi)
+                &&=
+                \begin{bmatrix}
+                    \pder*{f}{r}
+                    \\
+                    \frac{1}{r} \pder*{f}{\theta}
+                    \\[5pt]
+                    \frac{1}{r \sin(\theta)}\pder*{f}{\phi}
+                \end{bmatrix}
+                &&=
+                \coloredanswer{\pder{f}{r}\e{r}+\frac{1}{r} \pder{f}{\theta}\e{\theta}+\frac{1}{r \sin(\theta)}\pder{f}{\phi}\e{\phi}}
         \end{align*}
         The del operator ($\nabla$) is a \textcolor{Blue1}{\bf vector derivative operator}. It can take in a scalar field $f(x,y,z)$ and returns a vector field. The resulting vectors \textcolor{Blue1}{\bf points in the direction of \(f\)'s maximum increase of the scalar field}, moreover, the magnitude of \(\nabla f\) gives the magnitude of each vector along this maximal direction.
         \\[0.5 cm]
@@ -55,22 +146,60 @@
             \nabla (\vb{A} \cdot \vb{B}) 
             = (\vb{A} \cdot \nabla)\vb{B} + (\vb{B} \cdot \nabla)\vb{A}+ \vb{A} \times (\nabla \times \vb{B}) + \vb{B} \times(\nabla \times \vb{A}) \\
         \end{gather*}
+    \newpage
     \subsection*{Divergence}
-        Divergence is a measure of how much a vector field spreads out from a point or volume.   The divergence of a vector field \(\vb{A}\) is caluclated by taking a dot product between the del operator and a \(\vb{A}\). \textcolor{Blue1}{\bf The divergence of a vector field is a scalar.} 
-        \begin{equation}
-            \div\vb{A}=
-            \qty[
-                \begin{matrix}
+        Divergence is a metric of how much a vector field spreads out from a point or volume. The divergence of a vector field \(\vb{A}\) is caluclated by taking a dot product between the del operator and a \(\vb{A}\). The divergence of a vector field is a scalar.
+        \begin{align}
+            %%%%%%%%%%%%%%%%%% Rectangular
+                &\div\vb{A}(x,y,z)
+                =&&
+                \begin{bmatrix}
                     \pder*{x}\\\pder*{y}\\\pder*{z}
-                \end{matrix}
-            ]\cdot\qty[
-                \begin{matrix}
+                \end{bmatrix}
+                \cdot
+                \begin{bmatrix}
                     A_x\\A_y\\A_z
-                \end{matrix}
-            ]=
-            \coloredanswer{\pder{A_x}{x}+\pder{A_y}{y}+\pder{A_z}{z}}
-        \end{equation}
-        Divergences obey the following product rules:
+                \end{bmatrix}
+                &&=
+                \coloredanswer{\pder{A_x}{x}+\pder{A_y}{y}+\pder{A_z}{z}}
+            \\
+            %%%%%%%%%%% Cylindrical
+                &\div\vb{A}(s,\phi,z) 
+                =&&
+                \begin{bmatrix}
+                    \oo{s}\pder*{s}\qty(s)
+                    \\
+                    \oo{s}\pder*{\phi}
+                    \\
+                    \pder*{z}
+                \end{bmatrix}
+                \cdot
+                \begin{bmatrix}
+                    A_s\\A_\phi\\A_z
+                \end{bmatrix}
+                &&=
+                \coloredanswer{\oo{s}\pder{s}\qty(s A_s) + \oo{s}\pder{A_\phi}{\phi}  + \pder{A_z}{z}}
+            \\
+            %%%%%%%%%%%% Spherical 
+                &\div\vb{A}(r,\theta,\phi) 
+                =&&
+                \begin{bmatrix}
+                    \oo{r^2}\pder*{r}\qty(r^2)
+                    \\
+                    \oo{r \sin(\theta)} \pder*{\theta} \qty(\sin(\theta)) 
+                    \\
+                    \oo{r \sin(\theta)} \pder*{\phi}
+                \end{bmatrix}
+                \cdot
+                \begin{bmatrix}
+                    A_r\\A_\theta\\A_\phi
+                \end{bmatrix} 
+                &&=
+                \coloredanswer{\oo{r^2}\pder{r}\qty(r^2A_r) 
+                + \oo{r \sin(\theta)} \pder{\theta} \qty(\sin(\theta)A_\theta) 
+                + \oo{r \sin(\theta)} \pder{A_\phi}{\phi}}
+        \end{align}
+        Divergences, regardless of basis, obey the following product rules:
         \begin{align*}
             \div(f\vb{A}) &= f(\nabla \cdot \vb{A}) + \vb{A} \cdot (\nabla f)
             \\
@@ -78,19 +207,21 @@
         \end{align*}
 
         When the divergence of a vector field is zero everywhere it is called {\bf solenoidal}. Any closed surface has no net flux across it in a solenoidal field.
+    \newpage    
     \subsection*{Curl}
         Curl is a measure of how much a vector ``swirls'' around the point in question. The curl of a vector field \(\vb{A}(x,y,z)\) is found by taking the cross product of the del operator with \(\vb{A}\). One can find the curl conveniently as the determinant of the following matrix: 
-        \begin{equation}
-            \curl \vb{A} = 
-            \qty[
-                \begin{matrix}
-                    \pder*{x}\\\pder*{y}\\\pder*{z}
-                \end{matrix}
-            ]\cross\qty[
-                \begin{matrix}
-                    A_x\\A_y\\A_z
-                \end{matrix}
-            ]=
+        \begin{align}
+            %%%%% Rectangular %%%%%
+            \curl \vb{A}(x,y,z) 
+            = 
+            \begin{bmatrix}
+                \pder*{x}\\\pder*{y}\\\pder*{z}
+            \end{bmatrix}
+            \cross
+            \begin{bmatrix}
+                A_x\\A_y\\A_z
+            \end{bmatrix}
+            =
             \begin{vmatrix}
             \e{x}&\e{y}&\e{z}
             \\
@@ -98,7 +229,8 @@
             \\
             A_x&A_y&A_z
             \end{vmatrix}
-            =\coloredanswer{
+            =
+            \coloredanswer{
             \begin{bmatrix}
             (\pder*{y} A_z-\pder*{z} A_y)
             \\[0.25 cm]
@@ -106,16 +238,59 @@
             \\[0.25 cm]
             (\pder*{x} A_y-\pder*{y} A_x)
             \end{bmatrix}}
-        \end{equation}
+        \end{align}
+        \begin{align}
+            %%%%% Cylindrical %%%%%
+            \curl \vb{A}(s,\phi,\,z) 
+            &= 
+            \begin{bmatrix}
+                \oo{s} \pder*{A_z}{\phi} - \pder*{A_\phi}{z}
+                \\[0.25 cm]
+                \pder*{A_s}{z} - \pder*{A_z}{s}
+                \\[0.25 cm]
+                \oo{s}\pder*{s}\qty(s A_\phi) - \oo{s}\pder*{A_s}{\phi}
+            \end{bmatrix}
+        \end{align}
+        \begin{align}
+            %%%%% Spherical %%%%%
+            &\curl \vb{A}= 
+               \begin{bmatrix}
+                    \oo{r\sin(\theta)}\qty[\pder*{\theta}\qty(A_\phi\sin(\theta))-\pder*{A_\theta}{\phi}]
+                    \\[0.25 cm]
+                    \oo{r\sin(\theta)}\pder*{A_r}{\phi}-\oo{r}\pder*{r}\qty(r A_{\phi})
+                    \\[0.25 cm]
+                    \frac{1}{r}\qty(\pder*{r}\qty(rA_{\theta}) - \pder*{\theta}A_r)
+                \end{bmatrix}
+        \end{align}
         Curls obey the following product rules:
         \begin{align*}
         \curl (f\vb{A}) &= f(\curl \vb{A}) - \vb{A} \times (\nabla f)
         \\[0.3 cm]
         \curl (\vb{A} \times \vb{B}) &= (\vb{B} \cdot \nabla)\vb{A} - (\vb{A} \cdot \nabla)\vb{B} + \vb{A}(\nabla \cdot \vb{B}) - \vb{B}(\nabla \cdot \vb{A})
         \end{align*}
-        \textcolor{Blue1}{\bf The curl of a vector field is a vector field.}\footnote{\sl Technically\rm\ a pseudo-vector field.} When the curl of a vector field is zero, the field is called {\bf irrotational} and the field is conservative.
+        The curl of a vector field is a vector field.\footnote{\sl Technically\rm\ a pseudo-vector field, because how how the curl transforms under reflection.} When the curl of a vector field is zero, the field is called {\bf irrotational} and the field is conservative.
+    \newpage
     \subsection*{Laplacian}
         The laplace operator (denoted by \(\nabla^2\)) is a kind of second derivative for scalars and vectors.\footnote{Some people use \(\Delta\) instead of \(\nabla^2\), but that seems goofy, so I don't use it.} It can be thought of as taking whichever vector derivatives are possible. 
+        \begin{align}
+            \nabla^2 f(x,y,z)
+            &=
+            \pder[2]{f}{x}+
+            \pder[2]{f}{y}+
+            \pder[2]{f}{z}
+            \\
+            \nabla^2 f(s,\phi,z)
+            &=
+            \oo{s}\pder{s}\qty(s\pder{f}{s}) 
+            + \oo{{s}^2}\pder[2]{f}{\phi} 
+            + \pder[2]{f}{z} 
+            \\
+            \nabla^2 f(r,\theta,\phi)
+            &= 
+            \frac{1}{r^2} \pder{r}\qty(r^2 \pder{f}{r}) 
+            + \oo{r^2 \sin(\theta)} \pder{\theta} \qty(\sin(\theta)\pder{f}{\theta}) 
+            + \frac{1}{r^2 \sin^2(\theta)} \pder[2]{f}{\phi}
+        \end{align}
         \begin{align}
             \nabla^2f
             &=\nabla \cdot (\nabla f)
@@ -133,14 +308,14 @@
         \end{gather}
 \newpage
 \section{Vector Integrals}      
-    Remember that \(\dl*,~\da*,\) and $dV$ are different in different coordinate systems.
+    Remember that \(\dl,\da,\) and \(dV\) are different in different coordinate systems.
 
     \begin{align}
         \textbf{ \large Curve Integral}&
-        \quad\int_C \vb{A}\dl=\iiint\vb{A}\cdot\qty(\dx\ \e{x}+\dy\ \e{y}+dz\ \e{z})
+        \quad\int_C \vb{A}\cdot\dl=\iiint\vb{A}\cdot\qty(\dx\ \e{x}+\dy\ \e{y}+dz\ \e{z})
         \\
         \textbf{\large Surface Integral}&\quad
-        \int_S \vb{A}\da=\iint_D(\vb{A}\cdot\e{z})dxdy=\iint_D A_k \dx_i\dx_j
+        \int_S \vb{A}\cdot\da=\iint_D(\vb{A}\cdot\e{z})dxdy=\iint_D A_k \dx_i\dx_j
         \\
         \textbf{\large Volume Integral}&\quad
         \int_{\mathcal{V}} \vb{A} \dV=\int A_x\dV\ \e{x}+\int A_y\dV\ \e{y}+\int A_z \dV\ \e{z}
@@ -150,7 +325,7 @@
     \subsection*{The Fundamental Theorem for Gradients}
         Similar to the fundamental theorem of calculus, the curve integral of the gradient of a scalar function is equal to the difference of values of that scalar function at the endpoints. 
         \begin{equation}
-            \boxed{\int_C(\nabla f)\dl=f(\mathbf{b})-f(\mathbf{a})}
+            \boxed{\int_C(\nabla f)\cdot\dl=f(\mathbf{b})-f(\mathbf{a})}
         \end{equation}
     \subsection*{Divergence Theorem}
         The divergence of \(\vb{A}\) over a volume is equal to the components of \(\vb{A}\) that are normal to the surface that bounds the volume.\footnote{\(\oint\) is the closed path/closed surface integral sign.}
@@ -160,7 +335,7 @@
     \subsection*{The Fundamental Theorem for Curls: Stokes' Theorem}
         The integral of a derivative over a region is equal to the value of the function at the boundary. That is, the curl over a surface is equal to the value of the function at the perimeter P. 
         \begin{align}
-            \boxed{\oint_C \vb{A} \dl=\iint_{S} (\curl \vb{A}) \da} 
+            \boxed{\oint_C \vb{A}\cdot\dl=\iint_{S} (\curl \vb{A}) \da} 
         \end{align}
         \subsection*{Integration by Parts in Vector Calculus}
         \begin{align*}

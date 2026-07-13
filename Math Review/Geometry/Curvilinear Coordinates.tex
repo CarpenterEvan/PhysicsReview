@@ -1,0 +1,193 @@
+% Since \input doesn't like preambles, only uncomment next line if you're editing this TeX, don't forget the \end{document}! 
+%\documentclass{article}\input{../../commands}\begin{document}
+\newpage
+\section{Curvilinear Coordinates}
+\subsection{Cylindrical Coordinates}
+    In this system, the following describe the space's basis set:
+    %\tikzsetnextfilename{cylindrical}
+    \begin{figure}[H]
+        \begin{tikzpicture}  
+            \draw [dotted] (0,0,0)--(2.3,0,2)--(2.3,2.3,2)--(0,2.3,0);
+            \begin{scope}[canvas is xz plane at y=0]
+                \fill [blue!20] (0,0)--(1.2,1) arc [start angle=45, end angle=120,radius=10 mm] node at (0.35,0.65) [black] {$\phi$};
+            \end{scope}
+            \draw [ultra thick, -latex] (0,0,0)--(3,0,0) node [anchor=north west] {\textbf{y}};
+            \draw [ultra thick, -latex] (0,0,0)--(0,3,0) node [anchor=south] {\textbf{z}};
+            \draw [ultra thick, -latex] (0,0,0)--(0,0,3) node [anchor=north west] {\textbf{x}};
+
+
+            \draw [ultra thick, blue!20, -latex] (2.3,2.3,2)--(2.7,2,0.7) node [anchor=west, color=black] {$\e{\phi}$}; 
+            \draw [ultra thick, brown, -latex] (2.3,2.3,2)--(3.5,2.3,3.043) node [anchor=north west, color=black] {$\e{s}$}; 
+            \draw [ultra thick, blue, -latex] (2.3,2.3,2)--(2.3,3,2) node [anchor=south east, color=black] {$\e{\textbf{z}}$}; 
+
+
+            \draw [ultra thick, red, -latex] (0,0,0)--(2.3,2.3,2) node at (1,0.5) {\textbf{r}};
+            \draw [ultra thick, -latex, brown] (0,0,0)--(2.3,0,2) node [anchor=west] {\textbf{s}};
+            \draw [ultra thick, -latex, blue] (0,0,0)--(0,2.3,0) node [anchor=east] {\textbf{z}};
+
+
+            \node (description text) at (6,2,0) {Distance from the z-axis: s};
+            \node at (description text.south) [xshift=29.5, yshift=-5] {Azimuthal angle: $\phi$};
+            \node at (description text.south) [xshift=19, yshift=-16] {Distance on z-axis: z};
+        \end{tikzpicture}
+    \end{figure}
+    Important relationships:
+    \begin{align*}
+        \begin{bmatrix}
+        \e{s}\\
+        \e{\phi}\\
+        \e{z}
+        \end{bmatrix}
+        &=
+        \begin{bmatrix}
+        \cos(\phi)&\sin(\phi)&0\\
+        -\sin(\phi)&\cos(\phi)&0\\
+        0&0&1
+        \end{bmatrix}
+        \begin{bmatrix}
+        \e{x}\\
+        \e{y}\\
+        \e{z}
+        \end{bmatrix}
+    \end{align*}
+    \begin{center}
+    Matrix is orthogonal, transpose to find $\e{x}$ in terms of $\e{s}$
+    \vspace{0.5 cm}
+    \end{center}
+    Position, velocity, and acceleration:
+    \begin{align*}
+        \vb{r}\qty(s,\phi,z;t)&=
+        \begin{bmatrix}
+            s(t)
+            \\
+            \phi(t)
+            \\
+            z(t)
+        \end{bmatrix}
+        &
+        \vb{v}\qty(s,\phi,z;t)&=
+        \begin{bmatrix}
+            \dot{s}
+            \\
+            s\dot{\phi}
+            \\
+            \dot{z}
+        \end{bmatrix}
+        &
+        \vb{a}\qty(s,\phi,z;t)&=
+        \begin{bmatrix}
+            \Ddot{s}-r\dot{\phi}^2
+            \\
+            s\Ddot{\phi}+2\dot{s}\dot{\phi}
+            \\
+            \Ddot{z}
+        \end{bmatrix}
+    \end{align*}
+    \newpage\noindent
+    
+
+\newpage
+\subsection{Spherical Coordinates}
+    In this system of coordinates, the following describe the space's basis set:
+    %\tikzsetnextfilename{spherical}
+    \tikzfading[name=ball, outer color=transparent!50, inner color=transparent!100]
+    \begin{figure}[H]
+        \begin{tikzpicture}
+            % 3D is in math convention--> Z sticks out of page in right handed coordinate system. 
+            % I relable this to be the physics convention, where Z sticks up. 
+            \def\bs{0.3}; % basis scalings
+            
+            \begin{scope}[canvas is xz plane at y=0]  
+                \draw (0,0) circle (3);
+            \end{scope}
+            \begin{scope}[canvas is xy plane at z=0]  
+                \draw (0,0) circle (3);
+            \end{scope}
+            \begin{scope}[rotate around y=90,canvas is xy plane at z=0]  
+                \draw (0,0) circle (3);
+            \end{scope}
+
+            %\begin{scope}[canvas is xz plane at y=2]
+                % Phi basis vector
+                %\draw [ultra thick, blue!20, -latex] (30:2)--++(-45:2*\bs) node [xshift=2, yshift=2,color=black] {\(\e{\phi}\)};
+            %\end{scope}
+            \begin{scope}[rotate around y=-30,canvas is xy plane at z=0]                
+                % Theta arc
+                \draw [orange!30, fill=orange!30] (0,0)--(45:15mm) arc [start angle=45, end angle=90,radius=15 mm] node [midway, below, xshift=-5, yshift=-5, black] {\(\theta\)} -- cycle ; 
+                
+                \draw [ultra thick, red, -latex] (0,0)--(2,2) node [at end, above right] {\(\vb{r}\)};
+                \draw [dotted] (2,0)--(2,2); 
+                %\draw [ultra thick, orange!30, -latex] (2,2)--(2*\bs+2,-2*\bs+2) node [xshift=1, color=black] {\(\e{\theta}\)};
+                %\draw [ultra thick, blue, -latex]      (2,2)--(2*\bs+2,2*\bs+2) node [xshift=1, yshift=3, color=black] {\(\e{r}\)};
+            \end{scope}
+
+
+            \begin{scope}[canvas is xz plane at y=0]
+                % Phi angle
+                \fill [blue!20] (0,0)--(30:20mm) arc [start angle=30, end angle=90,radius=20 mm]  node [midway, above left] [black] {\(\phi\)} --cycle;
+            \end{scope}
+        
+            \draw [ultra thick, -latex] (0,0,0)--(3,0,0) node [anchor=north west] {\textbf{y}};
+            \draw [ultra thick, -latex] (0,0,0)--(0,3,0) node [anchor=south]      {\textbf{z}};
+            \draw [ultra thick, -latex] (0,0,0)--(0,0,3) node [anchor=north west] {\textbf{x}};
+
+            \node (r text) at (6,2,0) {Distance from the origin: \(r\)};
+            \node (theta text) at (r text.south) [xshift=29.5, yshift=-5] {Polar angle: \(\theta\)};
+            \node (phi text) at (theta text.south) [yshift=-5] {Azimuthal angle: \(\phi\)};
+
+        \end{tikzpicture}
+    \end{figure}
+    Important relationships:
+    \begin{align*}
+        \begin{bmatrix}
+        \e{r}\\
+        \e{\theta}\\
+        \e{\phi}
+        \end{bmatrix}
+        &=
+        \begin{bmatrix}
+        \sin(\theta)\cos(\phi)&\sin(\theta)\sin(\phi)&\cos(\theta)\\
+        \cos(\theta)\cos(\phi)&\cos(\theta)\sin(\phi)&-\sin(\theta)\\
+        -\sin(\phi)&\cos(\phi)&0
+        \end{bmatrix}
+        \begin{bmatrix}
+        \e{x}\\
+        \e{y}\\
+        \e{z}
+        \end{bmatrix}
+    \end{align*}
+    \begin{center}
+    Matrix is orthogonal, transpose to find $\e{x}$ in terms of $\e{r}$
+    \end{center}
+    \vspace{0.5 cm}
+    Position, velocity, and acceleration:
+    \begin{align*}
+        \vb{r}\qty(r,\theta,\phi; t)&=
+        \begin{bmatrix}
+        r(t)
+        \\
+        \theta(t)
+        \\
+        \phi(t)
+        \end{bmatrix}
+        \\
+        \vb{v}\qty(r,\theta,\phi;t)&=
+        \begin{bmatrix}
+        \dot{r}
+        \\
+        r\dot{\theta}
+        \\
+        r\sin(\theta)\dot{\phi}
+        \end{bmatrix}
+        \\
+        \vb{a}\qty(r,\theta,\phi;t)&=
+        \begin{bmatrix}
+        \Ddot{r}-r\dot{\theta}^2-r\dot{\phi}^2\sin^2(\theta)
+        \\
+        r\Ddot{\theta}+2\dot{r}\dot{\theta}-r\dot{\phi}^2\sin(\theta)\cos(\theta)
+        \\
+        2r\cos(\theta)\dot{\theta}\dot{\phi}+2\sin(\theta)\dot{r}\dot{\phi}+r\sin(\theta)\Ddot{\phi}
+        \end{bmatrix}
+    \end{align*}
+\newpage      
+%\end{document}

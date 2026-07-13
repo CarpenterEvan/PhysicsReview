@@ -1,18 +1,83 @@
 \section{Fundamental Objects and Operations}
 	\begin{mathbox}{Set}
-		\begin{equation*}
+		\begin{align*}
 			\{S\}
-		\end{equation*}
+		\end{align*}
+		Requirements:
+		\(\varnothing\in\{S\}\)
 	\end{mathbox}
 	A set is a collection of objects. It could be numbers, bugs, words, functions, it really doesn't matter.
+	Examples:
 	\begin{align*}
-		\{S_1\} &= \{1,2,3,4\}
+		\{S_1\} &= \{1,2,3,4,\ldots\}
 		\\
-		\{S_2\} &= \{a,b,d,f\}
+		\{S_2\} &= \{a,b,c,d\}
 		\\
-		a\in\{S_2\}
+		\{S_3\} &= \{\{S_1\}, \{S_2\}\}
+		\\
+		\{\text{birds}\} &= \{\text{pigeons},\,\text{crows},\,\text{penguins},\,\text{emus}\}
 	\end{align*}
-
+	\begin{figure}[H]
+		\centering
+		\subfloat{
+			\begin{tikzpicture}[scale=1.3]
+				\node (O) at (0,0) {};
+				\coordinate (S_4) at ($(O)+(0,1)$);
+				\filldraw[fill=blue!10!white, decoration={random steps, segment length=5, amplitude=2}] (S_4)
+				decorate { to[bend left] ++ (90:2)  }
+				decorate { to[bend left] ++ (90:1)   }
+				decorate { to[bend left] ++ (0:1)   }
+				decorate { to[bend left] ++ (2,0)    }
+				decorate { to[bend left] ++ (0.5,-2) }
+				decorate { to[bend left] (S_4) };
+				\node at ($(S_4)+(0.5,2.5)$)   {\includegraphics[width=1.3cm]{images/pigeon.png}};
+				\node at ($(S_4)+(0.5,0.75)$)  {\includegraphics[width=1.3cm]{images/crow.png}};
+				\node at ($(S_4)+(2.5,1.75)$)  {\includegraphics[width=1.3cm]{images/rhea.png}};
+				\node at ($(S_4)+(1.35,1.25)$) {\includegraphics[width=0.8cm]{images/penguin.png}};
+				\node at ($(S_4)+(1.75,-1)$) {birds};
+			\end{tikzpicture}
+		}
+		\hfill
+		\subfloat{
+			\begin{tikzpicture}
+				\filldraw[fill=green!20, decoration={random steps, segment length=5, amplitude=2}] (-0.5,-1.5)
+				decorate { to[bend left] (-0.5,3.5) }
+				decorate { -- (8,3.5) }
+				decorate { to[bend left] (8,-1.5) }
+				decorate { -- (-0.5,-1.5) };
+				\coordinate (S_1) at (0,0);
+				\filldraw[fill=blue!20, decoration={random steps}] (S_1)
+				decorate { to[bend left] ++ (120:1) }
+				decorate { to[bend left] ++ (45:1)  }
+				decorate { to[bend left] ++ (45:1)  }
+				decorate { to[bend left] ++ (2,0)   }
+				decorate { to[bend left] ++ (0,-2)  }
+				decorate { to [bend left] (0,0)     };
+				\node at ($(S_1)+(2,1)$) {\(a\)};
+				\node at ($(S_1)+(1,2)$) {\(b\)};
+				\node at ($(S_1)+(0,1)$) {\(d\)};
+				\node at ($(S_1)+(2,2)$) {\(c\)};
+				\node (S_1_Label) at ($(S_1)+(1.5,-0.75)$) {\(S_1\)};
+				\coordinate (S_2) at (5,0);
+				\filldraw[fill=red!20, decoration={random steps, segment length=5, amplitude=2}] (S_2)
+				decorate { to[bend left] ++ (120:1)  }
+				decorate { to[bend left] ++ (90:1)   }
+				decorate { to[bend left] ++ (45:1)   }
+				decorate { to[bend left] ++ (2,0)    }
+				decorate { to[bend left] ++ (0.5,-2) }
+				decorate { to[bend left] (S_2) };
+				\node at ($(S_2)+(2,1.5)$) {\(1\)};
+				\node at ($(S_2)+(1,2)$)   {\(2\)};
+				\node at ($(S_2)+(1,0.5)$) {\(3\)};
+				\node at ($(S_2)+(0,1)$)   {\(4\)};
+				\node (S_2_Label) at ($(S_2)+(1.25,-0.75)$) {\(S_2\)};
+				\node at ($(S_1_Label)!0.5!(S_2_Label)-(0,1.25)$) {\(S_3\)};
+			\end{tikzpicture}
+			}
+			\caption{Sets can be anything.}
+	\end{figure}
+	Sets can be split into different subsets based on some definition of equivalence. The criteria for sorting is the \emph{equivalence relation}, and each resulting subset is an \emph{equivalence class}. The set of all equivalence classes of a set is called the \emph{quotient set}.
+	\newpage
 	\begin{mathbox}{Function/Mapping}
 		\begin{align*}
 			\Xset,\,\Yset,\,\Zset
@@ -48,6 +113,7 @@
 			(\placeholder)\cdot(\placeholder):S\times S&\rightarrow S
 		\end{align*}
 	\end{mathbox}
+\\
 `A field is where we can pick our numbers from'. It doesn't have to be numbers, but in physics it nearly always is. A field \(\mathcal{F}\) is defined as a set \Sset\ (usually \(\mathbb{R}\) or \(\mathbb{C}\)) with two binary operations \(\cdot,+\) called multiplication and addition, respectively.
 The binary operations, by definition, map two elements in \Sset\ to a uniquely determined third element, also in \Sset. For all elements of the field \Fset, the following axioms hold for the binary operations:
 \begin{itemize}
