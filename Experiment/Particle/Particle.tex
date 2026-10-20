@@ -1,18 +1,18 @@
+\subsection{Particle Physics}
 \newpage
-\section{Particle Physics}
-\subsection{Definitions used in the field (of study):}
-\newpage
-\includepdf[height=0.8\pdfpageheight, pagecommand={\thispagestyle{fancy}}]{Physics/Particle/build/ParticleTimeline.pdf}
+\includepdf[height=0.5\pdfpageheight, pagecommand={\thispagestyle{fancy}}]{Experiment/Particle/build/ParticleTimeline.pdf}
 \newpage
 \begin{itemize}
-	\item dE/dx
 	\item Transverse momentum \pT:\@\ momentum transverse to the beam axis.
 	\item Transverse Energy \ET:\@\ Energy transverse to beam axis, deposited in calorimeter.
 	\item Scalar Fields
 	\item Classical Scattering
-	\item Run 1: 2010--2012
-	\item Run 2: 2015--2018
-	\item Run 3: 2022--2026
+	\item ATLAS Data
+	\begin{itemize}
+		\item Run 1: 2010--2012
+		\item Run 2: 2015--2018
+		\item Run 3: 2022--2026
+	\end{itemize}
 	\item Cutflow: Volume of phase space (number of events) after each cut is applied. Used to visualize the cut restrictions as they are applied. 
 	\item Validation Region / Control Region: A selection of data space that very close to signal selection region. Used to `validate' the background region. Usually just has same cuts as signal region with exception of one cut inverted.
 	\item Quantization
@@ -20,7 +20,7 @@
 	\item Branching Ratio: The fraction of particles that decay via a particular decay mode.
 	\item Cross Section: A measure of the probability that a specific process will occur when particles
 	      collide. It is typically measured in units of area, such as barns (1 barn = $\rm 10^{-28} m^2$ = $\rm 10^{-24} cm^2$).
-	\item Luminosity: A measure of the number of particles per unit area per unit time in a collider. It is used to calculate the event rate for a given process.
+	\item Luminosity: A measure of the number of particles per unit area per unit time in a collider. It is used to calculate the event rate for a given process.  \(L=\oo{\sigma}\der{N}{t}\)
 	\item Integrated Luminosity: The total luminosity accumulated over a specific period of time. It is often expressed in inverse femtobarns (\(\rm fb^{-1}\)).
 	\item Event Topologies:
 \end{itemize}
@@ -102,12 +102,42 @@ The \h\ also explains how fermions get their mass, and there is a correspoondanc
 		\end{align*}
 	\end{minipage}
 	\\[0.25 cm]
-	Quick Complex Conjugates:
-	\\
+\subsection{Spinor Identities:}
+	\begin{equation*}
+		u^s(\vb{p})=
+		\begin{pmatrix}
+			\ \sqrt{p\cdot\sigma}\xi^{s}\ 
+			\\
+			\ \sqrt{p\cdot\overline{\sigma}}\xi^{s}\ 
+		\end{pmatrix}
+		\qquad\qquad
+		v^s(\vb{p})=
+		\begin{pmatrix}
+			\ \sqrt{p\cdot\sigma}\xi^{s}\ 
+			\\
+			\ -\sqrt{p\cdot\overline{\sigma}}\xi^{s}\ 
+		\end{pmatrix}
+	\end{equation*}
+	Inner Products:
 	\begin{align*}
-		\qty(\bar{u}\gamma^\mu v)^*&=\bar{v}\gamma^\mu u 
+		u^r(\vb{p})^\dagger\cdot u^s(\vb{p})&=2p_0\delta^{rs}
+		&
+		v^r(\vb{p})^\dagger\cdot v^s(\vb{p})&=2p_0\delta^{rs}
 		\\
-		\qty(\bar{u}\gamma^\mu P_Lv)^*&=\bar{v}\gamma^\mu P_L u
+		\overline{u}^r(\vb{p})\cdot u^s(\vb{p})&=2m\delta^{rs}
+		&
+		\overline{v}^r(\vb{p})\cdot v^s(\vb{p})&=-2m\delta^{rs}
+	\end{align*}
+	Outer Products:
+	\begin{align*}
+		\sum_{s=1}^{2}u^s(\vb{p})\bar{u}^s(\vb{p})&=\slsh{p}+m
+		&
+		\sum_{s=1}^{2}v^s(\vb{p})\bar{v}^s(\vb{p})&=\slsh{p}-m
+	\end{align*}
+	\begin{align*}
+		\qty(\overline{u}\gamma^\mu v)^*&=\bar{v}\gamma^\mu u 
+		\\
+		\qty(\overline{u}\gamma^\mu P_Lv)^*&=\bar{v}\gamma^\mu P_L u
 	\end{align*}
 \newpage
 \subsection{Mandelstam Variables}
@@ -134,9 +164,9 @@ The \h\ also explains how fermions get their mass, and there is a correspoondanc
 
         \draw[scalar, momentum=\((p_a+p_b)\)] (v_1) -- (v_2);
         
-        \draw[scalar, momentum=\(p_a\)]       (p_a) -- (v_1);
+        \draw[scalar, momentum=\(p_a\)]  (p_a) -- (v_1);
         \draw[scalar, momentum'=\(p_b\)] (p_b) -- (v_1);
-        \draw[scalar, momentum=\(k_1\)]       (v_2) -- (k_1);
+        \draw[scalar, momentum=\(k_1\)]  (v_2) -- (k_1);
         \draw[scalar, momentum'=\(k_2\)] (v_2) -- (k_2);
     \end{feynman}
 	\node at ($(v_1)! 0.5!(v_2)-(0,\legLength+1)$) {\(s=(p_a+p_b)^2c^2=(k_1+k_2)^2c^2\)};% below, midway between v_1 and v_2

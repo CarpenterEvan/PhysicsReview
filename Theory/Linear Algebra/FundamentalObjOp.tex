@@ -1,11 +1,11 @@
-\section{Fundamental Objects and Operations}
-	\begin{mathbox}{Set}
+\subsection{Algebraic Objects and Operations}
+	\mymathbox{Set}{
 		\begin{align*}
 			\{S\}
 		\end{align*}
 		Requirements:
 		\(\varnothing\in\{S\}\)
-	\end{mathbox}
+	}
 	A set is a collection of objects. It could be numbers, bugs, words, functions, it really doesn't matter.
 	Examples:
 	\begin{align*}
@@ -78,13 +78,13 @@
 	\end{figure}
 	Sets can be split into different subsets based on some definition of equivalence. The criteria for sorting is the \emph{equivalence relation}, and each resulting subset is an \emph{equivalence class}. The set of all equivalence classes of a set is called the \emph{quotient set}.
 	\newpage
-	\begin{mathbox}{Function/Mapping}
+	\mymathbox{Function/Mapping}{
 		\begin{align*}
-			\Xset,\,\Yset,\,\Zset
+			\Xset,\,\Yset
 			\\
-			f: X\cross Y\rightarrow Z
+			f: X\rightarrow Y
 		\end{align*}
-	\end{mathbox}
+	}
 	A function or mapping associates an element of from one set (or more) to another set.  
 	\\
 	Injective functions map every element in the original set (domain) to a unique element in the final set (codomain).
@@ -95,34 +95,52 @@
 	\\
 	Most useful functions in physics are bijective.
 	\newpage
-	\begin{mathbox}{Group}
+	\mymathbox{Group}{
 		\begin{align*}
 			\mathcal{G}=\big[\Sset,\cdot\big]
 			\\
 			{\bf\cdot}\,:S\cross S&\rightarrow S
 		\end{align*}
-	\end{mathbox}
+	}
 	A group is a set with a binary operation, which maps two elements of the set to another member in the set. The binary operation for a group is usually called the group operation. 
-	\begin{mathbox}{Algebraic Field}
+	\newpage
+	\mymathbox{Algebraic Field}{
 		\begin{equation*}
 			\mathcal{F}=\big[\{S\},(\cdot,+)\big]
 		\end{equation*}
 		\begin{align*}
-			(\placeholder)+(\placeholder):S\times S&\rightarrow S
+			(\placeholder)+(\placeholder)&:S\times S\rightarrow S
 			&
-			(\placeholder)\cdot(\placeholder):S\times S&\rightarrow S
+			(\placeholder)\cdot(\placeholder)&:S\times S\rightarrow S
 		\end{align*}
-	\end{mathbox}
-\\
-`A field is where we can pick our numbers from'. It doesn't have to be numbers, but in physics it nearly always is. A field \(\mathcal{F}\) is defined as a set \Sset\ (usually \(\mathbb{R}\) or \(\mathbb{C}\)) with two binary operations \(\cdot,+\) called multiplication and addition, respectively.
-The binary operations, by definition, map two elements in \Sset\ to a uniquely determined third element, also in \Sset. For all elements of the field \Fset, the following axioms hold for the binary operations:
-\begin{itemize}
-	\item Associativity of multiplication and addition.
-	\item Commutativity of multiplication and addition.
-	\item There exist multiplicative and additive identities \(\forall\)\ elements in \Fset.
-	\item There exist multiplicative and additive inverses \(\forall\)\ elements in \Fset.
-	\item Multiplication distributes over addition.
-\end{itemize}
+		\begin{align*}
+			\vb{0},\vb{1},x_1,x_2,x_3\in\Sset\ \text{such that:}
+		\end{align*}
+		\begin{align*}
+			x_1+(x_2+x_3)&=(x_1+x_2)+x_3
+			&
+			x_1\cdot(x_2\cdot x_3)&=(x_1\cdot b)\cdot x_3
+			\\
+			x_1+x_2&=x_2+x_1
+			&
+			x_1\cdot x_2&= x_2\cdot x_1
+			\\
+			\vb{0}+x_1&=x_1
+			&
+			\vb{1}\cdot x_1&=x_1
+			\\
+			x_1\cdot(x_2+x_3)&=x_1\cdot x_2+x_1\cdot x_3
+		\end{align*}
+	}
+	`A field is where we can pick our numbers from'. It doesn't have to be numbers, but in physics it nearly always is. A field \(\mathcal{F}\) is defined as a set \Sset\ (usually \(\mathbb{R}\) or \(\mathbb{C}\)) with two binary operations \(\cdot,+\) called multiplication and addition, respectively.
+	The binary operations, by definition, map two elements in \Sset\ to a uniquely determined third element, also in \Sset. For all elements of the field \Fset, the following axioms hold for the binary operations:
+	\begin{itemize}
+		\item Associativity of multiplication and addition.
+		\item Commutativity of multiplication and addition.
+		\item There exist multiplicative and additive identities \(\forall\)\ elements in \Fset.
+		\item There exist multiplicative and additive inverses \(\forall\)\ elements in \Fset.
+		\item Multiplication distributes over addition.
+	\end{itemize}
 
 Typically when talking about a field \(\mathcal{F}\), most people are reffering to the set \(\Sset\), and it is implied that the binary operations and axioms are applicable to the set. 
 

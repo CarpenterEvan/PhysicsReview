@@ -1,27 +1,39 @@
-\documentclass[11pt]{article}
+\documentclass[11pt]{book}
 \input{mypackages}
 \input{mymacros}
 \addbibresource{references.bib}
 \begin{document}
-\input{Math Review/Linear Algebra/FundamentalObjOp.tex}
-\newpage
-\input{Math Review/Geometry/Curvilinear Coordinates.tex}
-\newpage
-\input{Math Review/Vector Calculus/Vector Calculus.tex}
-\newpage
-\input{Math Review/Differential Equations/Differential Equations.tex}
-\newpage
-\input{Math Review/ProbAndStats/LikelihoodFunction.tex}%
-\newpage
-\input{Math Review/ProbAndStats/PoissonDistribution.tex}%
-\newpage
-\input{Physics/Classical_Dynamics.tex}%
-\newpage
-\input{Physics/undecided.tex}%
-\newpage
-\input{Physics/Particle/Particle.tex}
-\newpage
-% include all references in bibliography regardless of if they've been cited
-\nocite{*}
+\tableofcontents
+\chapter{Theory (Bachelors/Masters)}
+	\section{Linear Algebra}
+		\input{Theory/Linear Algebra/FundamentalObjOp.tex}
+		\input{Theory/Linear Algebra/Linear Algebra.tex}
+	\section{Probability}
+		\input{Theory/ProbAndStats/LikelihoodFunction.tex}
+	\section{Calculus}
+		\input{Theory/Calculus/Vector Calculus.tex}
+		\input{Theory/Calculus/Differential Equations.tex}
+	\section{Geometry}
+		\include{Theory/Geometry/Curvilinear Coordinates.tex}
+	\section{Group Theory}
+		\include{Theory/GroupTheory.tex}
+	\section{Lagrangian Mechanics/Classical Field Theory}
+		\include{Theory/Physics/Classical_Dynamics.tex}
+	\section{Relatevistic Mechanics}
+		\input{Theory/Physics/LorentzTransforms.tex}
+	\section{Quantum Field Theory}
+		\input{Experiment/undecided.tex}
+	\section{Standard Model}
+	\section{Particle Physics}
+		\subsection{Relatevistic Kinematics of Particles}
+\chapter{Experiment (PhD)}
+	The divide between theoretical math and experimental application became hard to quantify (Looking at \(p_T,\eta\) spectra is invaluble for an analysis, but when learning about Lorentz transforms, \(\eta\) is just a rotation, and no one cares about \(p_T\)), so I divided them by the amount of specialization. The first chapter is building to particle physics as a whole, this is focusing just on particle physics, specifically how it exists as a practice. Including more focus on electroweak (EW) physics and two Higgs doublet model (2HDM).
+	\section{ATLAS Detector}
+	\section{Components of a General Particle Detector}
+	\section{History of Particle Physics}
+	\section{ATLAS Analysis}
+		\input{Experiment/Particle/Particle.tex}
+	% include all references in bibliography regardless of if they've been cited
+%\nocite{*}
 %\printbibliography
 \end{document}

@@ -22,13 +22,25 @@
 	\def\EC{\href{https://github.com/CarpenterEvan/PhysicsReview}{\(\mathbb{E}\textsc{van}~\mathbb{C}\textsc{arpenter}\)}}
 
 	\numberwithin{equation}{section} % amsmath command that renews equation counter in each section\
+	\DeclareTotalTColorBox{\mymathbox}{m m}{
+		bicolor,
+		colframe=WolverineBlue,
+		colback=WolverineMaize,
+		float=h,
+		drop shadow,
+		every float=\centering,
+		title=#1, 
+		width=0.66\pdfpagewidth,
+		}{#2}
+
 	\DeclareTColorBox{mathbox}{m}{
 		colframe=WolverineBlue,
 		colback=WolverineMaize,
 		float=h,
 		every float=\centering,
 		title=#1, 
-		width=0.75\textwidth}
+		width=0.75\textwidth,
+		}
 %%
 %%
 %%%% Physics %%%%
