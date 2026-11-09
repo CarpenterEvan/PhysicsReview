@@ -1,39 +1,61 @@
-\documentclass[11pt]{book}
+\documentclass[12pt, a4paper]{book}
 \input{mypackages}
 \input{mymacros}
 \addbibresource{references.bib}
 \begin{document}
-\tableofcontents
-\chapter{Theory (Bachelors/Masters)}
-	\section{Linear Algebra}
-		\input{Theory/Linear Algebra/FundamentalObjOp.tex}
-		\input{Theory/Linear Algebra/Linear Algebra.tex}
-	\section{Probability}
-		\input{Theory/ProbAndStats/LikelihoodFunction.tex}
-	\section{Calculus}
-		\input{Theory/Calculus/Vector Calculus.tex}
-		\input{Theory/Calculus/Differential Equations.tex}
-	\section{Geometry}
-		\include{Theory/Geometry/Curvilinear Coordinates.tex}
-	\section{Group Theory}
-		\include{Theory/GroupTheory.tex}
-	\section{Lagrangian Mechanics/Classical Field Theory}
-		\include{Theory/Physics/Classical_Dynamics.tex}
-	\section{Relatevistic Mechanics}
-		\input{Theory/Physics/LorentzTransforms.tex}
-	\section{Quantum Field Theory}
-		\input{Experiment/undecided.tex}
-	\section{Standard Model}
-	\section{Particle Physics}
-		\subsection{Relatevistic Kinematics of Particles}
-\chapter{Experiment (PhD)}
-	The divide between theoretical math and experimental application became hard to quantify (Looking at \(p_T,\eta\) spectra is invaluble for an analysis, but when learning about Lorentz transforms, \(\eta\) is just a rotation, and no one cares about \(p_T\)), so I divided them by the amount of specialization. The first chapter is building to particle physics as a whole, this is focusing just on particle physics, specifically how it exists as a practice. Including more focus on electroweak (EW) physics and two Higgs doublet model (2HDM).
-	\section{ATLAS Detector}
-	\section{Components of a General Particle Detector}
-	\section{History of Particle Physics}
-	\section{ATLAS Analysis}
-		\input{Experiment/Particle/Particle.tex}
+	\tableofcontents
+	\chapter{Theory (Bachelors/Masters)}
+		The divide between theoretical math and experimental application became hard to quantify (Looking at \(p_T,\eta\) spectra is invaluble for an analysis, but when learning about Lorentz transforms, \(\eta\) is just a rotation, and no one needs to care about \(p_T\)).
+		I divided the chapters by the amount of specialization. The first chapter is building to high energy particle physics as a whole.
+		%\section{Linear Algebra}
+		%	\input{Theory/Linear Algebra/FundamentalObjOp.tex}
+		%	\input{Theory/Linear Algebra/Linear Algebra.tex}
+		%\section{Probability}
+		%	\input{Theory/ProbAndStats/LikelihoodFunction.tex}
+		%\section{Calculus}
+		%	\input{Theory/Calculus/Vector Calculus.tex}
+		%	\input{Theory/Calculus/Differential Equations.tex}
+		%\section{Geometry}
+		%	\include{Theory/Geometry/Curvilinear Coordinates.tex}
+		\section{Group Theory}
+
+			\include{Theory/GroupTheory.tex}
+		%\section{Lagrangian Mechanics/Classical Field Theory}
+		%	\include{Theory/Physics/Classical_Dynamics.tex}
+		%\section{Relatevistic Mechanics}
+		%	\input{Theory/Physics/LorentzTransforms.tex}
+		\section{Quantum Field Theory}
+			\input{Experiment/undecided.tex}
+		\section{Standard Model}
+		\section{Particle Physics}
+			\subsection{Relatevistic Kinematics of Particles}
+	\chapter{Experiment (PhD)}
+		The main difference between a PhD and Masters is the nicheness of the things you care deeply about. This chapter is focusing just on high energy physics, specifically how it exists as a practice, and as an art. Within high ernergy particle physics, this is focused more heavily on electroweak (EW) physics and the two Higgs doublet model (2HDM).
+		\\
+		You will sacrifice generality for progress. 
+		\section{ATLAS Detector}
+		
+		\section{Components of a General Particle Detector}
+		\newpage
+		\section{History of Particle Physics}
+		\begin{figure}
+			\centering
+			\includepdf[height=0.7\pdfpageheight, pagecommand={\thispagestyle{fancy}}]{Experiment/Particle/build/ParticleTimeline.pdf}
+		\end{figure}
+		\newpage
+		\section{ATLAS Analysis}
+			\input{Experiment/Particle/Particle.tex}
+		\section{Neural Networks}
+			A key feature of neural networks is classification based on input variables. Classically, we use linear and nonlinear combinations of \emph{physics} variables to get useful quantities, like using differences of pseudorapidity and \(\phi\) to get a more robust separation:
+			\begin{align}
+			      \Delta R(\ell_1,\ell_2) 
+				  &= \sqrt{(\Delta \eta_{\ell_1,\ell_2})^2 + (\Delta \phi_{\ell_1,\ell_2})^2} 
+				  \\
+				  m_T
+				  &=\sqrt{m_1^2+m_2^2+2(E_T^1E_T^2-p^1_T\cdot p_T^2)}
+			\end{align}
+			\(\Delta R \) and \(m_T\) are useful for identifying certain particles at certain energies, they're used as selection criteria for events. With a neural network, many more variables can be used, typically with better selections. It takes in 5-20 vairables and gives a 1 dimensional score that can quantify signal or background. 
 	% include all references in bibliography regardless of if they've been cited
-%\nocite{*}
-%\printbibliography
+	%\nocite{*}
+	%\printbibliography 
 \end{document}

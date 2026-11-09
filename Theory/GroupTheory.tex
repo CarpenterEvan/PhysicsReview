@@ -1,3 +1,72 @@
 \subsection{Lie Groups}
-\subsection{SU(2)}
-\subsection{SU(3)}
+
+The group elements can vary smoothly, characterized by a continuous parameter. 
+Classical example is \SO{2} (over the field of \(\mathbb{R}\)), the 2D rotation group, which is parameterized by the rotation angle \(\phi\):
+\begin{align*}
+	\text{\rm SO}(2,\mathbb{R})=
+	\qty{
+	\begin{bmatrix}
+	\cos(\phi)
+	&
+	-\sin(\phi)
+	\\ 
+	\sin(\phi)
+	& 
+	\cos(\phi)
+	\end{bmatrix}:\phi\in\mathbb{R}/2\pi\mathbb{Z}}
+\end{align*}
+There are infinite elements in \SO{2}, because \(\phi\) can vary continuously. Two elements that are close in \(\phi\) are said to be close to each other. 
+\\
+Typical convention that the parameter \(\alpha=0\) is the identity element (true for \SO{2}) because identity element is important reference. 
+This translates to the representations of the group as well. 
+\footnote{The nuance of representations is not really needed yet in experimental physics, because we only care about a handful of groups, and the representations are always matrices. I include here to not get turned around by books written by theorists.}
+\begin{align*}
+	g(\alpha)\eval_{\alpha=0}\!\!\!=e
+	\quad\longrightarrow\quad
+	D(\alpha)\eval_{\alpha=0}\!\!\!=1
+\end{align*}
+By knowing ahead of time that this path will lead to fruit, we investigate Taylor expand with respect to the parameter.
+\begin{align*}
+	D(\alpha)=1+\alpha\pder{\alpha}D(\alpha)\eval_{\alpha=0}+\ldots
+\end{align*}
+The fruit will be delicious, so please allow a more suggestive re-writing without question, and allow there to be \(N\) parameters \(\alpha_a\), with {\(a=1,\ldots,N\)}\footnote{If N needs to be larger than 1, it will show, the \(X_a\) will be independent from each other. \(i\) is included so that if the representation is unitary, \(X_a\) will be hermitian.}:
+\begin{align*}
+	X_a&\equiv-i\pder{\alpha_a}D(\alpha)\eval_{\alpha_a=0}
+	\\
+	D(\alpha)&=1+i\alpha_a X_a+\ldots
+\end{align*}
+Where einstein summation is used for \(\alpha_a X_a\). Each \(X_a\) is a \emph{generator} of the group. 
+Commutators of generators are classify the group at a fundamental level. 
+\begin{align*}
+	e^{\alpha_aX_a}e^{i\beta_bX_b}=e^{\delta_aX_a}
+\end{align*}
+Expand using Baker-Campbell-Hausdorff formula, natural log and taylor expansions, end up with:
+\begin{align*}
+	\gamma_{c}&=\alpha_a\beta_bf_{abc}
+	\\
+	[X_a, X_b] &= if_{abc}X_c
+\end{align*}
+Where \(f_{abc}\) is called the \emph{structure constant}.
+This structure imposed on the space (rules defining how the emelemts combine) means that we refer to it as an \emph{Algebra}. The structure constant of the Lie algebra is dictated by the structure constant. 
+From commutator ordering rules \(f_{abc}=-f_{bac}\). 
+In \SU2 \(f_{abc}=\epsilon_{abc}\). 
+A specific set of matrices can be defined from the structure constant:
+\begin{align*}
+	[T_a]_{bc}&=-if_{abc}
+\end{align*}
+These matrices form the special \emph{adjoint representation}.
+The adjoint representation can be turned into a vector space with the product
+\begin{align*}
+	\Tr(T_aT_b)=\lambda\delta_{ab}
+\end{align*}
+Which can be used to define a compact lie group. I'm not sure why this representaiton or identity is important, but it might come up later.
+\subsection{\texorpdfstring{\SU2}{SU{2}}}
+Finally, some good shit. 
+\\
+\SU2 is characterized by the algebra:
+
+\begin{align*}
+	[J_i,J_j]=\im\varepsilon_{ijk}J_k
+\end{align*}
+Georgi makes note that since \(\epsilon_{ijk}\) is the simplest totally antisymmetric matrix with three indices, the \SU2 algebra is the simplest compact Lie algebra.
+\subsection{\texorpdfstring{\SU3}{SU{3}}}

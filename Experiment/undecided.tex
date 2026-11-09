@@ -16,16 +16,13 @@ Where
 	\\
 	\quad\ahat      &=\sqrt{\frac{m\omega}{2\hbar}}\qty(\hat{x}+\frac{i}{m\omega}\hat{p})\quad \text{(Annihilation operator)}
 \end{align*}
-The order can be chosen as \(\ahat^{\dagger}\ahat\) or \(\ahat\ahat^{\dagger}\), but \(\ahat^{\dagger}\ahat\) avoids the IR divergence without needing to subtract the zero point energy, this is why normal ordering chooses the annihilation operators to be on the right.
-\\
-The generalized coordinate and generalized momentum can be written in terms of the creation/annihilation perator:
+The order can be chosen as \(\ahat^{\dagger}\ahat\) or \(\ahat\ahat^{\dagger}\), but \(\ahat^{\dagger}\ahat\) avoids the IR divergence without needing to subtract the zero point energy, this is why normal ordering chooses the annihilation operators to be on the right. The generalized coordinate and generalized momentum can be written in terms of the creation/annihilation operator:
 \begin{align*}
-	\hat{x}&=\sqrt{2\omega}\qty(\ahat+\ahat^{\dagger})
+	\hat{x}=\sqrt{2\omega}\qty(\ahat+\ahat^{\dagger})%
 	\\
-	\hat{p}&=\sqrt{\frac{\omega}{2}}\qty(\ahat-\ahat^{\dagger})
+	\hat{p}=\sqrt{\frac{\omega}{2}}\qty(\ahat-\ahat^{\dagger})
 \end{align*}
-Graduating again from generalized coordinates to fields. 
-The fields are now written in terms of an infinite linear combination of creation/annihilation operators. Is this because the fields must cover all of space, and the creation/annihilation operators are interpreted as creating states of definite momentum, therefore a fourier expansion can be written (why is that the next step? for localization in space?) \\
+Graduating again from generalized coordinates to fields. The fields are now written in terms of an infinite linear combination of creation/annihilation operators. Is this because the fields must cover all of space, and the creation/annihilation operators are interpreted as creating states of definite momentum, therefore a fourier expansion can be written (why is that the next step? for localization in space?)
 \begin{align}
 	\phi(\vec{x})&=\int
 	\frac{\d^3p}{(2\pi)^3}
@@ -44,7 +41,6 @@ The fields are now written in terms of an infinite linear combination of creatio
 		\ahat_{\vec{p}}^{\dagger}\,e^{-i\vec{p}\cdot\vec{x}}
 	)
 \end{align}
-\\
 This changes the description subtly. Now in a system with multiple particles, instead of needing to define which particle is in which state, the states are defined in terms of how many particles, or excitations, it has. This is more realistic in QFT because particles themselves are indistinguishable excitations of the same field.
 \\
 The collection of energy eigenstates makes intuitive sense as an excitation, but since they are momentum/energy eigenstates, they are not localized in space.  
@@ -113,4 +109,80 @@ Compacted gamma matrices:
 	\gamma^0&=\begin{bmatrix}0&\mathbb{I}\\\mathbb{I}&0\end{bmatrix}&
 	\gamma^i&=\begin{bmatrix}0&\sigma^i\\-\sigma^i&0\end{bmatrix}
 \end{align*}
-Create a representation of the Lorentz algebra
+Create a representation of the Lorentz algebra. 
+Gamma Matrices have the following identities:
+\\
+\begin{minipage}{0.45\textwidth}
+	\begin{align*}
+		\gamma^{0\dagger}&=\gamma^0
+		\\
+		\gamma^{j\dagger}&=-\gamma^j\quad\qty(j=1,2,3)
+		\\
+		\gamma^0\gamma^{\mu\dagger}\gamma^0&=\gamma^\mu
+		\\
+		\gamma^{0}\gamma^{0}&=\mathbb{I}
+		\\
+		\gamma^\mu\gamma_\mu&=4
+		\\
+		\gamma^\mu\gamma_\nu\gamma_\mu&=-2\gamma_\nu
+		\\
+		\gamma^\mu a_\mu&=\gamma_\mu a^\mu=\slsh{a}
+		\\
+		\psi^\dagger\gamma^0&=\bar{\psi}
+	\end{align*}
+\end{minipage}
+\begin{minipage}{0.45\textwidth}
+	\begin{align*}
+		\qty{\gamma_\mu,\gamma_\nu}&=\gamma_\mu\gamma_\nu+\gamma_\nu\gamma_\mu=2g_{\mu\nu}
+		\\
+		\gamma^\mu\gamma_\mu&=4
+		\\
+		\qty[\gamma^\mu,a_\mu]&=0
+		\\
+		\gamma^\mu a_\mu&=\gamma_\mu a^\mu=\slsh{a}
+		\\
+		\Tr(\mathbb{I})&=4
+		\\
+		\Tr(\gamma_\mu\gamma_\nu)&=\Tr(\gamma^\mu\gamma^\nu)=4
+	\end{align*}
+	\begin{align*}
+		\hspace{-25pt}
+		\Tr(\gamma^\mu\gamma^\nu\gamma^\rho\gamma^\sigma)=4(g^{\mu\nu}g^{\rho\sigma}-g^{\mu\rho}g^{\nu\sigma}+g^{\mu\sigma}g^{\nu\rho})
+	\end{align*}
+\end{minipage}
+\\[0.25 cm]
+\(\gamma_5\) matrix:
+\\
+\begin{minipage}{0.45\textwidth}
+	\begin{align*}
+		\gamma_5^\dagger&=\gamma_5
+		\\
+		\gamma_{5}\gamma_{5}&=\mathbb{I}
+		\\
+		\qty{\gamma_5,\gamma_\nu}&=0
+		\\
+		\Tr(\gamma_5)&=0
+		\\
+		\Tr(\gamma_\mu\gamma_5)&=0
+		\\
+		\Tr(\gamma_\mu\gamma_\nu\gamma_5)&=0
+		\\
+		\Tr(\gamma_\mu\gamma_\nu\gamma_\rho\gamma_5)&=0
+		\\
+		\Tr(\gamma_\mu\gamma_\nu\gamma_\rho\gamma_\sigma\gamma_5)&=4i\epsilon_{\mu\nu\rho\sigma}
+	\end{align*}
+\end{minipage}
+\begin{minipage}{0.45\textwidth}
+	\begin{align*}
+		P_L&=\frac{1-\gamma_5}{2}
+		\\
+		P_R&=\frac{1+\gamma_5}{2}
+		\\
+		P_L\gamma_\mu&=\gamma_\mu P_R
+		\\
+		P_L(\gamma^\mu\gamma^\nu\dotsc\text{odd})P_L&=0
+		\\
+		P_L(\gamma^\mu\gamma^\nu\dotsc\text{even})P_L&=P_L\qty(\gamma^\mu\gamma^\nu\dotsc)
+	\end{align*}
+\end{minipage}
+\\[0.25 cm]

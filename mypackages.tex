@@ -4,7 +4,7 @@
 %\usepackage[T1]{fontenc}
 \usepackage[sfdefault]{universalis}
 \DeclareFontFamilySubstitution{TS1}{UniversalisADFStd(0)}{cmr}
-\usepackage[margin=1in]{geometry}% Formatting on page
+\usepackage[margin=1in,headheight=15pt]{geometry}% Formatting on page
 \usepackage{array}% big arrays
 \usepackage{amsmath}% Math symbols
 \usepackage{amsthm}%   
@@ -19,8 +19,8 @@
 \usepackage{fancyhdr} % Headers
     \pagestyle{fancy}%
 \usepackage{float}% Position figures and tables flexibly
-\usepackage{subfloat}
-\usepackage{subfig}
+\usepackage[countmax]{subfloat}
+\usepackage{subfig}%
 \usepackage{gensymb}%
 \usepackage{graphicx}% plots and graphics
 \usepackage{listings}% type code, autosets colors for different languages
@@ -47,6 +47,7 @@
 \usepackage[final]{pdfpages}
 \usepackage{xparse}% Allows for more flexible command definitions 
 \usepackage[compat=1.1.0]{tikz-feynman}% Feynman diagrams
+	\tikzfeynmanset{warn luatex=false}
 \usepackage{xspace}
 \usepackage[hidelinks]{hyperref}% References--Put this last for compatability
 

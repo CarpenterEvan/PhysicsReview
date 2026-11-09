@@ -1,0 +1,130 @@
+\subsection{Spinor Identities:}
+	\begin{equation*}
+		u^s(\vb{p})=
+		\begin{pmatrix}
+			\ \sqrt{p\cdot\sigma}\xi^{s}\ 
+			\\
+			\ \sqrt{p\cdot\overline{\sigma}}\xi^{s}\ 
+		\end{pmatrix}
+		\qquad\qquad
+		v^s(\vb{p})=
+		\begin{pmatrix}
+			\ \sqrt{p\cdot\sigma}\xi^{s}\ 
+			\\
+			\ -\sqrt{p\cdot\overline{\sigma}}\xi^{s}\ 
+		\end{pmatrix}
+	\end{equation*}
+	Inner Products:
+	\begin{align*}
+		u^r(\vb{p})^\dagger\cdot u^s(\vb{p})&=2p_0\delta^{rs}
+		&
+		v^r(\vb{p})^\dagger\cdot v^s(\vb{p})&=2p_0\delta^{rs}
+		\\
+		\overline{u}^r(\vb{p})\cdot u^s(\vb{p})&=2m\delta^{rs}
+		&
+		\overline{v}^r(\vb{p})\cdot v^s(\vb{p})&=-2m\delta^{rs}
+	\end{align*}
+	Outer Products:
+	\begin{align*}
+		\sum_{s=1}^{2}u^s(\vb{p})\bar{u}^s(\vb{p})&=\slsh{p}+m
+		&
+		\sum_{s=1}^{2}v^s(\vb{p})\bar{v}^s(\vb{p})&=\slsh{p}-m
+	\end{align*}
+	\begin{align*}
+		\qty(\overline{u}\gamma^\mu v)^*&=\bar{v}\gamma^\mu u 
+		\\
+		\qty(\overline{u}\gamma^\mu P_Lv)^*&=\bar{v}\gamma^\mu P_L u
+	\end{align*}
+\newpage
+\subsection{Mandelstam Variables}
+	\begin{tikzpicture}[baseline=(current bounding box.south)]% S CHANNEL Template diagram. 
+		% Template diagrams are labelled from top to bottom, going left to right. 
+		% p_{a,b,c,...} are incoming,
+		% k_{1,2,3,...} are outgoing,
+		% v_{1,2,3,...} are vertices. 
+		\def\propAngle{0}% angle of virtual propagators (from horizontal)
+		\def\pAngle{30}% angle of incoming particle (from horizontal)
+		\def\kAngle{30}% angle of outgoing particle (from horizontal)
+		\def\legLength{1.5}% length of external leg
+		\def\propLength{2}% length of propagator
+
+		\begin{feynman}
+			\vertex (v_1) at (0,0);
+			\vertex (v_2) at ($(v_1)+(\propAngle:\propLength)$);
+
+			\vertex (p_a) at ($(v_1)-(-\pAngle:\legLength)$);
+			\vertex (p_b) at ($(v_1)-( \pAngle:\legLength)$);
+			\vertex (k_1) at ($(v_2)+( \kAngle:\legLength)$);
+			\vertex (k_2) at ($(v_2)+(-\kAngle:\legLength)$);
+
+			\draw[scalar, momentum=\((p_a+p_b)\)] (v_1) -- (v_2);
+			
+			\draw[scalar, momentum=\(p_a\)]  (p_a) -- (v_1);
+			\draw[scalar, momentum'=\(p_b\)] (p_b) -- (v_1);
+			\draw[scalar, momentum=\(k_1\)]  (v_2) -- (k_1);
+			\draw[scalar, momentum'=\(k_2\)] (v_2) -- (k_2);
+		\end{feynman}
+		\node at ($(v_1)! 0.5!(v_2)-(0,\legLength+1)$) {\(s=(p_a+p_b)^2c^2=(k_1+k_2)^2c^2\)};% below, midway between v_1 and v_2
+	\end{tikzpicture}
+	~~
+	\begin{tikzpicture}[baseline=(current bounding box.south)]% T CHANNEL Template diagram. 
+		% Template diagrams are labelled from top to bottom, going left to right. 
+		% p_{a,b,c,...} are incoming,
+		% k_{1,2,3,...} are outgoing,
+		% v_{1,2,3,...} are vertices. 
+		\def\propAngle{0}% angle of virtual propagators (from vertical)
+		\def\pAngle{25}% angle of incoming particle (from horizontal)
+		\def\kAngle{25}% angle of outgoing particle (from horizontal)
+		\def\legLength{2}% length of external leg
+		\def\propLength{1.5}% length of propagator
+		
+		\begin{feynman}
+			\vertex (v_1) at (0,0);
+			\vertex (v_2) at ($(v_1)+(\propAngle-90:\propLength)$);
+
+			\vertex (p_a) at ($(v_1)-(-\pAngle:\legLength)$);
+			\vertex (k_1) at ($(v_1)+( \kAngle:\legLength)$);
+			\vertex (p_b) at ($(v_2)-( \pAngle:\legLength)$);
+			\vertex (k_2) at ($(v_2)+(-\kAngle:\legLength)$);
+
+			\draw[scalar, momentum=\(p_a\)] (p_a) -- (v_1);
+			\draw[scalar, momentum=\(k_1\)] (v_1) -- (k_1);
+
+			\draw[scalar, momentum=\((p_a-k_1)\)] (v_1) -- (v_2);
+			
+			\draw[scalar, momentum'=\(p_b\)] (p_b) -- (v_2);
+			\draw[scalar, momentum'=\(k_2\)] (v_2) -- (k_2);
+		\end{feynman}
+		\node at ($(p_b)! 0.5!(k_2)-(0,1)$) {\(t=(p_a-k_1)^2c^2=(k_2-p_b)^2c^2\)};% below, midway between p_b and k_2
+	\end{tikzpicture}
+	~~
+	\begin{tikzpicture}[baseline=(current bounding box.south)]% U CHANNEL Template diagram. 
+		% Template diagrams are labelled from top to bottom, going left to right.
+		% p_{a,b,c,...} are incoming,
+		% k_{1,2,3,...} are outgoing,
+		% v_{1,2,3,...} are vertices. 
+		\def\propAngle{0}% angle of virtual propagators (from vertical)
+		\def\pAngle{25}% angle of incoming particle (from horizontal)
+		\def\kAngle{10}% angle of outgoing particle (from horizontal)
+		\def\legLength{2}% length of external leg
+		\def\propLength{2}% length of propagator
+		
+		\begin{feynman}
+			\vertex (v_1) at (0,0);
+			\vertex (v_2) at ($(v_1)+(\propAngle-90:\propLength)$);
+
+			\vertex (p_a) at ($(v_1)-(-\pAngle:\legLength)$);
+			\vertex (k_1) at ($(v_1)+( \kAngle:\legLength+0.5)$);
+			\vertex (p_b) at ($(v_2)-( \pAngle:\legLength)$);
+			\vertex (k_2) at ($(v_2)+(-\kAngle:\legLength+0.5)$);
+
+			\draw[scalar, momentum=\(p_a\)] (p_a) -- (v_1);
+			\draw[scalar, momentum'=\(k_2\)] (v_1) -- (k_2);
+
+			\draw[scalar, momentum'=\((p_a-k_2)\)] (v_1) -- (v_2);
+			
+			\draw[scalar, momentum'=\(p_b\)] (p_b) -- (v_2);
+			\draw[scalar, momentum=\(k_1\)] (v_2) -- (k_1);
+		\end{feynman}
+		\node at ($(p_b)! 0.5!(k_2)-(0,1)$) {\(u=(p_a-k_2)^2c^2=(k_1-p_b)^2c^2\)};% below, midway between p_b and k_2
+	\end{tikzpicture}

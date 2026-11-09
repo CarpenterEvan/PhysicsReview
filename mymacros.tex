@@ -66,7 +66,17 @@
 		% to make sets
 		\LoopCommands{\lettersAll}[#1set] {\newmathcommand#2{\{\MakeUppercase{#1}\}}}% \Qset --> {Q}
 		\LoopCommands{\lettersAll}[#1set] {\newtextcommand#2{\(\MakeUppercase{#1}\)}}% set command but math mode
-		\LoopCommands{\lettersAll}[#1hat] {\newmathcommand#2{\hat{#1}}}%
+		\LoopCommands{\lettersAll}[#1hat]{\newmathcommand#2{\hat{#1}}}%
+		\def\im{
+			\stackrel{
+				\scalebox{0.3}{
+					\kern 1.4em\lower 1 ex \hbox{\ensuremath{\bullet}}
+					}
+			}{
+				\scalebox{0.7}{
+					\ensuremath{\it1}}
+			}\!\!
+		}
 		\def\placeholder{\bm{\,\cdot\,}}% Placeholder of the argument of a function
 		\def\ints{\int_\mathcal{S}}% Surface integral
 		\def\intv{\int_{D}}% Volume integral with D subscript
@@ -74,6 +84,8 @@
 		\def\iintall{\iint_{\rm All Space}}% Integral over all space
 		\def\iiintall{\iiint_{\rm All Space}}% Integral over all space
 		\def\lap{\mathcal{L}}% Laplace
+		\NewDocumentCommand{\SO}{m}{{\rm SO(#1)}}
+		\NewDocumentCommand{\SU}{m}{{\rm SU(#1)}}
 		\NewDocumentCommand{\e}{s m}{% Basis vector
 		% \e{x} --> \hat{e}_x
 		% \e*{x} --> \hat{x}
